@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Riona AI Instagram Manager</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <style>
+    .comment-card {
+      margin-bottom: 20px;
+      border-left: 5px solid #ccc;
+    }
+    .comment-card.pending {
+      border-left-color: #ffc107;
+    }
+    .comment-card.approved {
+      border-left-color: #28a745;
+    }
+    .comment-card.rejected {
+      border-left-color: #dc3545;
+    }
+    .comment-card.posted {
+      border-left-color: #007bff;
+    }
+    .comment-card.processing {
+      border-left-color: #6f42c1;
+    }
+    .comment-card.error {
+      border-left-color: #fd7e14;
+    }
+    .post-caption {
+      font-style: italic;
+      color: #666;
+      margin-bottom: 10px;
+    }
+    .timestamp {
+      font-size: 0.8rem;
+      color: #888;
+    }
+    .btn-toolbar {
+      justify-content: flex-end;
+    }
+    #loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+    .json-model-badge {
+      margin-left: 8px;
+      font-size: 0.75rem;
+    }
+    .post-id {
+      font-size: 0.85rem;
+      color: #495057;
+      margin-top: 5px;
+      margin-bottom: 10px;
+    }
+    .post-id-badge {
+      background-color: #e9ecef;
+      color: #495057;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    .status-history {
+      font-size: 0.8rem;
+      color: #6c757d;
+      margin-bottom: 10px;
+    }
+    .queue-info {
+      background-color: #f8f9fa;
+      border-radius: 4px;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+    .statistics-row {
+      margin-bottom: 20px;
+    }
+    .stat-card {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div id="loading">
+    <div class="spinner-border text-light" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Riona AI Instagram Manager</a>
+      <div>
+        <button class="btn btn-outline-light ms-2" id="downloadJsonBtn">
+          <i class="bi bi-download"></i> Export JSON
+        </button>
+        <button class="btn btn-outline-light ms-2" id="refreshBtn">
+          <i class="bi bi-arrow-clockwise"></i> Refresh
+        </button>
+        <!-- Nouveau bouton pour ajouter un compte Instagram -->
+        <button class="btn btn-outline-light ms-2" id="addInstagramAccountBtn">
+          <i class="bi bi-plus-square"></i> Ajouter compte Instagram
+        </button>
+        <!-- Logout button added here -->
+        <button class="btn btn-outline-light ms-2" id="logoutBtn">
+          <i class="bi bi-box-arrow-right"></i> Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <h1>Comment Review Dashboard</h1>
+    
+    <div class="alert alert-info" id="data-source-info">
+      Loading comments from API...
+    </div>
+    
+    <!-- Statistics Section -->
+    <div class="row statistics-row">
+      <div class="col-md-2">
+        <div class="card stat-card">
+          <div class="card-body">
+            <h6 class="card-title">Total</h6>
+            <div class="stat-number" id="stat-total">0</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="card stat-card">
+          <div class="card-body">
+            <h6 class="card-title">Pending</h6>
+            <div class="stat-number text-warning" id="stat-pending">0</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="card stat-card">
+          <div class="card-body">
+            <h6 class="card-title">Approved</h6>
+            <div class="stat-number text-success" id="stat-approved">0</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="card stat-card">
+          <div class="card-body">
+            <h6 class="card-title">Processing</h6>
+            <div class="stat-number text-primary" id="stat-processing">0</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="card stat-card">
+          <div class="card-body">
+            <h6 class="card-title">Posted</h6>
+            <div class="stat-number text-info" id="stat-posted">0</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="card stat-card">
+          <div class="card-body">
+            <h6 class="card-title">Rejected</h6>
+            <div class="stat-number text-danger" id="stat-rejected">0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Processing Queue Info -->
+    <div class="queue-info" id="queue-info">
+      <h5><i class="bi bi-hourglass-split"></i> Processing Queue</h5>
+      <div class="progress mb-3">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" id="queue-progress" style="width: 0%"></div>
+      </div>
+      <p id="queue-status">Checking queue status...</p>
+    </div>
+    
+    <div class="mb-4">
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-outline-secondary active" data-filter="all">All</button>
+        <button type="button" class="btn btn-outline-warning" data-filter="pending">Pending</button>
+        <button type="button" class="btn btn-outline-success" data-filter="approved">Approved</button>
+        <button type="button" class="btn btn-outline-primary" data-filter="processing">Processing</button>
+        <button type="button" class="btn btn-outline-info" data-filter="posted">Posted</button>
+        <button type="button" class="btn btn-outline-danger" data-filter="rejected">Rejected</button>
+        <button type="button" class="btn btn-outline-warning" data-filter="error">Error</button>
+      </div>
+      <div class="float-end">
+        <button class="btn btn-primary" id="addNewCommentBtn">
+          <i class="bi bi-plus-circle"></i> New Comment
+        </button>
+      </div>
+    </div>
+    
+    <div id="comments-container">
+      <!-- Comments will be loaded here -->
+      <div class="text-center py-5">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p>Loading comments...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Comment Modal -->
+  <div class="modal fade" id="editCommentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Comment</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="editCommentForm">
+            <input type="hidden" id="editCommentId" />
+            <div class="mb-3">
+              <label for="postId" class="form-label">Post ID</label>
+              <input type="text" class="form-control" id="postId" readonly />
+            </div>
+            <div class="mb-3">
+              <label for="postCaption" class="form-label">Post Caption</label>
+              <textarea class="form-control" id="postCaption" rows="3" readonly></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="commentText" class="form-label">Comment</label>
+              <textarea class="form-control" id="commentText" rows="3" required></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="saveCommentBtn">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Manual Comment Modal -->
+  <div class="modal fade" id="newCommentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Generate New Comment</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="newCommentForm">
+            <div class="mb-3">
+              <label for="newPostId" class="form-label">Post ID</label>
+              <input type="text" class="form-control" id="newPostId" required />
+            </div>
+            <div class="mb-3">
+              <label for="newPostCaption" class="form-label">Post Caption</label>
+              <textarea class="form-control" id="newPostCaption" rows="3" required></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="generateCommentBtn">Generate Comment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEW: Add Instagram Account Modal -->
+  <div class="modal fade" id="addInstagramAccountModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Ajouter un compte Instagram</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="addInstagramAccountForm">
+            <div class="mb-3">
+              <label for="instagramUsername" class="form-label">Nom d'utilisateur</label>
+              <input type="text" class="form-control" id="instagramUsername" required />
+            </div>
+            <div class="mb-3">
+              <label for="instagramUserId" class="form-label">ID Utilisateur Instagram</label>
+              <input type="text" class="form-control" id="instagramUserId" required />
+            </div>
+            <div class="mb-3">
+              <label for="instagramAccessToken" class="form-label">Token d'accès</label>
+              <input type="text" class="form-control" id="instagramAccessToken" required />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button type="button" class="btn btn-primary" id="saveInstagramAccountBtn">Ajouter le compte</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const commentsContainer = document.getElementById('comments-container');
+      const filterButtons = document.querySelectorAll('[data-filter]');
+      const editModal = new bootstrap.Modal(document.getElementById('editCommentModal'));
+      const newCommentModal = new bootstrap.Modal(document.getElementById('newCommentModal'));
+      const addInstagramAccountModal = new bootstrap.Modal(document.getElementById('addInstagramAccountModal'));
+      const commentTextArea = document.getElementById('commentText');
+      const postCaptionArea = document.getElementById('postCaption');
+      const postIdInput = document.getElementById('postId');
+      const editCommentIdInput = document.getElementById('editCommentId');
+      const saveCommentBtn = document.getElementById('saveCommentBtn');
+      const generateCommentBtn = document.getElementById('generateCommentBtn');
+      const saveInstagramAccountBtn = document.getElementById('saveInstagramAccountBtn');
+      const loading = document.getElementById('loading');
+      const downloadJsonBtn = document.getElementById('downloadJsonBtn');
+      const refreshBtn = document.getElementById('refreshBtn');
+      const dataSourceInfo = document.getElementById('data-source-info');
+      const addNewCommentBtn = document.getElementById('addNewCommentBtn');
+      const addInstagramAccountBtn = document.getElementById('addInstagramAccountBtn');
+      const logoutBtn = document.getElementById('logoutBtn');
+      
+      let currentFilter = 'all';
+      let comments = [];
+      const API_BASE_URL = '/api'; // Adjust based on your API configuration
+
+      // Updated API client
+      const api = {
+        async fetchComments() {
+          const response = await fetch(`${API_BASE_URL}/comments`);
+          if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+          return await response.json();
+        },
+        async getCommentById(id) {
+          const response = await fetch(`${API_BASE_URL}/comments/${id}`);
+          if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+          return await response.json();
+        },
+        async approveComment(id) {
+          const response = await fetch(`${API_BASE_URL}/comments/${id}/approve`, {
+            method: 'POST',
+          });
+          if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+          return await response.json();
+        },
+        async rejectComment(id) {
+          const response = await fetch(`${API_BASE_URL}/comments/${id}/reject`, {
+            method: 'POST',
+          });
+          if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+          return await response.json();
+        },
+        async postComment(id) {
+          const response = await fetch(`${API_BASE_URL}/comments/${id}/comment`, {
+            method: 'POST',
+          });
+          if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+          return await response.json();
+        },
+        async updateComment(id, comment) {
+          const response = await fetch(`${API_BASE_URL}/comments/${id}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ comment }),
+          });
+          if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+          return await response.json();
+        },
+        async generateComment(postId, caption) {
+          // Assume you have an endpoint for generating new comments
+          const response = await fetch(`${API_BASE_URL}/comments/generate`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ postId, caption }),
+          });
+          if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+          return await response.json();
+        },
+        async getQueueStatus() {
+          const response = await fetch(`${API_BASE_URL}/queue/status`);
+          if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+          return await response.json();
+        },
+        async addInstagramAccount(accountData) {
+          const response = await fetch(`${API_BASE_URL}/accounts/add`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(accountData),
+          });
+          if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+          return await response.json();
+        }
+      };
+
+      // Load comments from API
+      async function loadComments() {
+        loading.style.display = 'flex';
+        try {
+          comments = await api.fetchComments();
+          dataSourceInfo.innerHTML = `
+            <div class="alert alert-success">
+              Successfully loaded ${comments.length} comments from API
+            </div>
+          `;
+          updateStatistics();
+          renderComments();
+          await updateQueueStatus();
+        } catch (error) {
+          console.error('Error loading comments:', error);
+          dataSourceInfo.innerHTML = `
+            <div class="alert alert-danger">
+              <strong>Error:</strong> Failed to load comments from API.
+              <p>${error.message}</p>
+              <button class="btn btn-sm btn-primary" id="retryBtn">Retry</button>
+            </div>
+          `;
+          document.getElementById('retryBtn').addEventListener('click', loadComments);
+        }
+        loading.style.display = 'none';
+      }
+
+      // Update statistics
+      function updateStatistics() {
+        const stats = {
+          total: comments.length,
+          pending: comments.filter(c => c.status === 'pending').length,
+          approved: comments.filter(c => c.status === 'approved').length,
+          processing: comments.filter(c => c.status === 'processing').length,
+          posted: comments.filter(c => c.status === 'posted').length,
+          rejected: comments.filter(c => c.status === 'rejected').length,
+          error: comments.filter(c => c.status === 'error').length
+        };
+        
+        document.getElementById('stat-total').textContent = stats.total;
+        document.getElementById('stat-pending').textContent = stats.pending;
+        document.getElementById('stat-approved').textContent = stats.approved;
+        document.getElementById('stat-processing').textContent = stats.processing;
+        document.getElementById('stat-posted').textContent = stats.posted;
+        document.getElementById('stat-rejected').textContent = stats.rejected;
+      }
+      
+      // Update queue status
+      async function updateQueueStatus() {
+        try {
+          const queueStatus = await api.getQueueStatus();
+          const queueProgress = document.getElementById('queue-progress');
+          const queueStatusText = document.getElementById('queue-status');
+          
+          if (queueStatus.active) {
+            const percentComplete = queueStatus.processed / queueStatus.total * 100;
+            queueProgress.style.width = `${percentComplete}%`;
+            queueProgress.classList.add('bg-primary');
+            queueStatusText.innerHTML = `
+              <strong>Active:</strong> Processing ${queueStatus.processed} of ${queueStatus.total} comments
+              <span class="badge bg-primary ms-2">${percentComplete.toFixed(1)}%</span>
+              <span class="text-muted ms-2">Next comment in: ${queueStatus.nextProcessingIn || 'Unknown'}</span>
+            `;
+          } else {
+            queueProgress.style.width = '100%';
+            queueProgress.classList.remove('bg-primary');
+            queueProgress.classList.add('bg-success');
+            queueStatusText.innerHTML = `<span class="text-success">Queue is currently idle. No comments in processing.</span>`;
+          }
+        } catch (error) {
+          console.error('Error fetching queue status:', error);
+          document.getElementById('queue-status').textContent = 'Failed to load queue status.';
+        }
+      }
+
+      // Render comments based on current filter
+      function renderComments() {
+        if (comments.length === 0) {
+          commentsContainer.innerHTML = `
+            <div class="alert alert-info">
+              No comments found.
+            </div>
+          `;
+          return;
+        }
+        let filteredComments = currentFilter === 'all' ? comments : comments.filter(c => c.status === currentFilter);
+        if (filteredComments.length === 0) {
+          commentsContainer.innerHTML = `
+            <div class="alert alert-info">
+              No ${currentFilter} comments found.
+            </div>
+          `;
+          return;
+        }
+        filteredComments.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        let html = '';
+        filteredComments.forEach((comment, index) => {
+          const date = new Date(comment.timestamp);
+          const formattedDate = date.toLocaleString();
+          const modelBadge = comment.model ? `<span class="badge bg-info json-model-badge">${escapeHtml(comment.model)}</span>` : '';
+          const lastUpdated = comment.lastUpdated ? new Date(comment.lastUpdated).toLocaleString() : 'N/A';
+          
+          html += `
+            <div class="card comment-card ${comment.status}" data-id="${comment._id || comment.id}">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                  <h5 class="card-title">Post #${index + 1} ${modelBadge}</h5>
+                  <span class="badge bg-${getStatusBadgeColor(comment.status)}">${comment.status}</span>
+                </div>
+                <div class="post-id">
+                  <strong>Post ID:</strong> <span class="post-id-badge">${escapeHtml(comment.postId || '')}</span>
+                </div>
+                <div class="post-caption">"${escapeHtml(comment.postCaption || comment.caption)}"</div>
+                <div class="card-text mb-3">
+                  <strong>Comment:</strong> ${escapeHtml(comment.generatedComment || comment.comment)}
+                </div>
+                <div class="status-history">
+                  <small>Created: ${formattedDate} | Last Updated: ${lastUpdated}</small>
+                </div>
+                <div class="btn-toolbar">
+                  ${getActionButtons(comment)}
+                </div>
+              </div>
+            </div>
+          `;
+        });
+        commentsContainer.innerHTML = html;
+
+        // Add event listeners
+        addEventListeners();
+      }
+
+      // Add event listeners to buttons
+      function addEventListeners() {
+        document.querySelectorAll('.approve-btn').forEach(btn => {
+          btn.addEventListener('click', function (e) {
+            const id = e.target.dataset.id;
+            if (!confirm('Are you sure you want to approve this comment?')) return;
+            loading.style.display = 'flex';
+            api.approveComment(id)
+              .then(() => {
+                const commentIndex = comments.findIndex(c => c._id === id || c.id === id);
+                if (commentIndex !== -1) comments[commentIndex].status = 'approved';
+                updateStatistics();
+                renderComments();
+              })
+              .catch(err => alert(`Error approving comment: ${err.message}`))
+              .finally(() => loading.style.display = 'none');
+          });
+        });
+
+        document.querySelectorAll('.reject-btn').forEach(btn => {
+          btn.addEventListener('click', function (e) {
+            const id = e.target.dataset.id;
+            if (!confirm('Are you sure you want to reject this comment?')) return;
+            loading.style.display = 'flex';
+            api.rejectComment(id)
+              .then(() => {
+                const commentIndex = comments.findIndex(c => c._id === id || c.id === id);
+                if (commentIndex !== -1) comments[commentIndex].status = 'rejected';
+                updateStatistics();
+                renderComments();
+              })
+              .catch(err => alert(`Error rejecting comment: ${err.message}`))
+              .finally(() => loading.style.display = 'none');
+          });
+        });
+
+        document.querySelectorAll('.post-btn').forEach(btn => {
+          btn.addEventListener('click', function (e) {
+            const id = e.target.dataset.id;
+            if (!confirm('Are you sure you want to post this comment now?')) return;
+            loading.style.display = 'flex';
+            api.postComment(id)
+              .then(() => {
+                const commentIndex = comments.findIndex(c => c._id === id || c.id === id);
+                if (commentIndex !== -1) comments[commentIndex].status = 'processing';
+                updateStatistics();
+                renderComments();
+              })
+              .catch(err => alert(`Error posting comment: ${err.message}`))
+              .finally(() => loading.style.display = 'none');
+          });
+        });
+
+        document.querySelectorAll('.edit-btn').forEach(btn => {
+          btn.addEventListener('click', openEditModal);
+        });
+      }
+
+      // Helper function to get status badge color
+      function getStatusBadgeColor(status) {
+        switch (status) {
+          case 'pending': return 'warning';
+          case 'approved': return 'success';
+          case 'rejected': return 'danger';
+          case 'posted': return 'info';
+          case 'processing': return 'primary';
+          case 'error': return 'warning';
+          default: return 'secondary';
+        }
+      }
+
+      // Helper function to get action buttons based on comment status
+      function getActionButtons(comment) {
+        const id = comment._id || comment.id;
+        
+        switch (comment.status) {
+          case 'pending':
+            return `
+              <button class="btn btn-sm btn-success approve-btn" data-id="${id}">Approve</button>
+              <button class="btn btn-sm btn-danger reject-btn" data-id="${id}">Reject</button>
+              <button class="btn btn-sm btn-secondary edit-btn" data-id="${id}">Edit</button>
+            `;
+          case 'approved':
+            return `
+              <button class="btn btn-sm btn-primary post-btn" data-id="${id}">Post Now</button>
+              <button class="btn btn-sm btn-danger reject-btn" data-id="${id}">Reject</button>
+              <button class="btn btn-sm btn-secondary edit-btn" data-id="${id}">Edit</button>
+            `;
+          case 'rejected':
+            return `
+              <button class="btn btn-sm btn-success approve-btn" data-id="${id}">Approve</button>
+              <button class="btn btn-sm btn-secondary edit-btn" data-id="${id}">Edit</button>
+            `;
+          case 'processing':
+            return `
+              <button class="btn btn-sm btn-outline-secondary" disabled>
+                <span class="spinner-border spinner-border-sm"></span> Processing...
+              </button>
+            `;
+          case 'error':
+            return `
+              <button class="btn btn-sm btn-warning post-btn" data-id="${id}">Retry Posting</button>
+              <button class="btn btn-sm btn-secondary edit-btn" data-id="${id}">Edit</button>
+            `;
+          case 'posted':
+            return `<span class="badge bg-success">Posted to Instagram</span>`;
+          default:
+            return '';
+        }
+      }
+
+      // Open edit modal
+      function openEditModal(e) {
+        const id = e.target.dataset.id;
+        const comment = comments.find(c => (c._id === id || c.id === id));
+        if (comment) {
+          editCommentIdInput.value = id;
+          commentTextArea.value = comment.generatedComment || comment.comment;
+          postCaptionArea.value = comment.postCaption || comment.caption;
+          postIdInput.value = comment.postId || '';
+          editModal.show();
+        }
+      }
+
+      // Save edited comment
+      async function saveComment() {
+        const id = editCommentIdInput.value;
+        const generatedComment = commentTextArea.value.trim();
+        if (!generatedComment) {
+          alert('Comment cannot be empty');
+          return;
+        }
+        loading.style.display = 'flex';
+        try {
+          await api.updateComment(id, generatedComment);
+          const commentIndex = comments.findIndex(c => c._id === id || c.id === id);
+          if (commentIndex !== -1) {
+            if ('generatedComment' in comments[commentIndex]) {
+              comments[commentIndex].generatedComment = generatedComment;
+            } else {
+              comments[commentIndex].comment = generatedComment;
+            }
+            comments[commentIndex].lastUpdated = new Date().toISOString();
+          }
+          renderComments();
+          editModal.hide();
+        } catch (error) {
+          alert(`Error saving comment: ${error.message}`);
+        } finally {
+          loading.style.display = 'none';
+        }
+      }
+
+      // Generate new comment
+      async function generateNewComment() {
+        const postId = document.getElementById('newPostId').value.trim();
+        const caption = document.getElementById('newPostCaption').value.trim();
+        if (!postId || !caption) {
+          alert('Post ID and caption are required');
+          return;
+        }
+        loading.style.display = 'flex';
+        try {
+          const newComment = await api.generateComment(postId, caption);
+          comments.push({
+            _id: newComment._id || newComment.id || `new-${Date.now()}`, 
+            postId: newComment.postId,
+            postCaption: newComment.caption,
+            generatedComment: newComment.comment,
+            status: 'pending',
+            timestamp: new Date().toISOString(),
+            lastUpdated: new Date().toISOString(),
+            model: newComment.model || 'custom'
+          });
+          updateStatistics();
+          renderComments();
+          newCommentModal.hide();
+          document.getElementById('newCommentForm').reset();
+        } catch (error) {
+          alert(`Error generating comment: ${error.message}`);
+        } finally {
+          loading.style.display = 'none';
+        }
+      }
+
+      // Save new Instagram Account
+      async function saveInstagramAccount() {
+        const username = document.getElementById('instagramUsername').value.trim();
+        const userId = document.getElementById('instagramUserId').value.trim();
+        const accessToken = document.getElementById('instagramAccessToken').value.trim();
+        
+        if (!username || !userId || !accessToken) {
+          alert('Tous les champs sont obligatoires');
+          return;
+        }
+        loading.style.display = 'flex';
+        try {
+          const accountData = { username, userId, accessToken };
+          await api.addInstagramAccount(accountData);
+          alert('Compte Instagram ajouté avec succès');
+          addInstagramAccountModal.hide();
+          document.getElementById('addInstagramAccountForm').reset();
+        } catch (error) {
+          alert(`Erreur lors de l'ajout du compte: ${error.message}`);
+        } finally {
+          loading.style.display = 'none';
+        }
+      }
+
+      // Download JSON data
+      function downloadJson() {
+        const dataStr = JSON.stringify(comments, null, 2);
+        const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+        const exportFileDefaultName = `instagram-comments-${new Date().toISOString().slice(0,10)}.json`;
+        const linkElement = document.createElement('a');
+        linkElement.setAttribute('href', dataUri);
+        linkElement.setAttribute('download', exportFileDefaultName);
+        linkElement.click();
+      }
+
+      // Helper function to escape HTML
+      function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      // Add event listeners for filter buttons and other UI controls
+      filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          this.classList.add('active');
+          currentFilter = this.getAttribute('data-filter');
+          renderComments();
+        });
+      });
+
+      saveCommentBtn.addEventListener('click', saveComment);
+      generateCommentBtn.addEventListener('click', generateNewComment);
+      saveInstagramAccountBtn.addEventListener('click', saveInstagramAccount);
+      downloadJsonBtn.addEventListener('click', downloadJson);
+      refreshBtn.addEventListener('click', loadComments);
+      addNewCommentBtn.addEventListener('click', () => newCommentModal.show());
+      
+      // Open the add Instagram account modal when clicking the new button
+      addInstagramAccountBtn.addEventListener('click', () => addInstagramAccountModal.show());
+      
+      // Add event listener for logout button
+      logoutBtn.addEventListener('click', function() {
+        window.location.href = '/api/auth/logout';
+      });
+
+      // Set up refresh interval for queue status
+      setInterval(updateQueueStatus, 30000); // Update every 30 seconds
+
+      // Initial load
+      loadComments();
+    });
+  </script>
+</body>
+</html>

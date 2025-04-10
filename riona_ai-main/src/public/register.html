@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - Riona AI Instagram Manager</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .register-container {
+      max-width: 500px;
+      margin: 80px auto;
+    }
+    .card {
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    .card-header {
+      background-color: #343a40;
+      color: white;
+      border-radius: 10px 10px 0 0 !important;
+      padding: 20px;
+    }
+    .btn-primary {
+      background-color: #343a40;
+      border-color: #343a40;
+    }
+    .btn-primary:hover {
+      background-color: #23272b;
+      border-color: #23272b;
+    }
+    .form-control:focus {
+      border-color: #343a40;
+      box-shadow: 0 0 0 0.25rem rgba(52, 58, 64, 0.25);
+    }
+    .alert {
+      margin-bottom: 20px;
+    }
+    .login-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .password-requirements {
+      font-size: 0.8rem;
+      color: #6c757d;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container register-container">
+    <div class="card">
+      <div class="card-header text-center">
+        <h3><i class="bi bi-instagram me-2"></i>Riona AI Instagram Manager</h3>
+        <p class="mb-0">Create a new account</p>
+      </div>
+      <div class="card-body p-4">
+        <div id="register-alert" class="alert alert-danger d-none" role="alert">
+          <!-- Error messages will be displayed here -->
+        </div>
+        
+        <form id="register-form">
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-person"></i></span>
+              <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+              <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <label for="displayName" class="form-label">Display Name (optional)</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
+              <input type="text" class="form-control" id="displayName" name="displayName">
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-lock"></i></span>
+              <input type="password" class="form-control" id="password" name="password" required>
+              <button class="btn btn-outline-secondary" type="button" id="toggle-password">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+            <div class="password-requirements">
+              Password must be at least 8 characters long and include a mix of letters, numbers, and special characters.
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <label for="confirmPassword" class="form-label">Confirm Password</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+              <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+            </div>
+          </div>
+          
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary btn-lg">
+              <i class="bi bi-person-plus me-2"></i>Register
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    <div class="login-link">
+      <p>Already have an account? <a href="/login">Login here</a></p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const registerForm = document.getElementById('register-form');
+      const registerAlert = document.getElementById('register-alert');
+      const togglePasswordBtn = document.getElementById('toggle-password');
+      const passwordInput = document.getElementById('password');
+      const confirmPasswordInput = document.getElementById('confirmPassword');
+      
+      // Toggle password visibility
+      togglePasswordBtn.addEventListener('click', function() {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        this.querySelector('i').classList.toggle('bi-eye');
+        this.querySelector('i').classList.toggle('bi-eye-slash');
+      });
+      
+      // Validate password
+      function validatePassword(password) {
+  const minLength = password.length >= 8;
+  const hasLetter = /[a-zA-Z]/.test(password);
+  const hasNumber = /\d/.test(password);
+  const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+  
+  console.log('Password:', password);
+  console.log('minLength:', minLength);
+  console.log('hasLetter:', hasLetter);
+  console.log('hasNumber:', hasNumber);
+  console.log('hasSpecial:', hasSpecial);
+  
+  return minLength && hasLetter && hasNumber && hasSpecial;
+}
+
+      
+      // Handle form submission
+      registerForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const displayName = document.getElementById('displayName').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        
+        // Validate form
+        if (password !== confirmPassword) {
+          registerAlert.textContent = 'Passwords do not match';
+          registerAlert.classList.remove('d-none');
+          return;
+        }
+        
+        if (!validatePassword(password)) {
+          registerAlert.textContent = 'Password must be at least 8 characters long and include letters, numbers, and special characters';
+          registerAlert.classList.remove('d-none');
+          return;
+        }
+        
+        try {
+          const response = await fetch('/api/auth/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, email, password, displayName })
+          });
+          
+          const data = await response.json();
+          
+          if (!response.ok) {
+            throw new Error(data.message || 'Registration failed');
+          }
+          
+          // Show success message and redirect to login
+          registerAlert.textContent = 'Registration successful! Redirecting to login...';
+          registerAlert.classList.remove('alert-danger');
+          registerAlert.classList.add('alert-success');
+          registerAlert.classList.remove('d-none');
+          
+          setTimeout(() => {
+            window.location.href = '/login';
+          }, 2000);
+          
+        } catch (error) {
+          // Display error message
+          registerAlert.textContent = error.message;
+          registerAlert.classList.remove('d-none');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
