@@ -22,8 +22,7 @@ const commentBoxSelector: string = 'textarea[aria-label="Add a comment…"][plac
 const likeButtonSelector = 'svg.x1lliihq.x1n2onr6.xyb1xck[aria-label="Like"]';
 
 // -------------------------------------------------------
-// Puppeteer Setup const likeButtonSelector: string = 'svg[aria-label="Like"]';
-
+// Puppeteer Setup
 // -------------------------------------------------------
 puppeteer.use(StealthPlugin());
 puppeteer.use(
@@ -47,8 +46,10 @@ async function initBrowser(): Promise<{ browser: Browser; page: Page }> {
   if (browser && page) {
     return { browser, page };
   }
-  // Launch the browser in non-headless mode so you can see what it's doing
-  browser = await puppeteer.launch({ headless: false, slowMo: 50 });
+  // Lancement du navigateur en mode non-headless pour afficher l'interface visuelle (exemple initial)
+  // browser = await puppeteer.launch({ headless: false, slowMo: 50 });
+  // --- Modification pour lancer le navigateur en mode headless (backend) ---
+  browser = await puppeteer.launch({ headless: true });
   page = await browser.newPage();
   return { browser, page };
 }
@@ -102,36 +103,31 @@ export async function commentOnPostById(
       await delay(1000);
     }
 
-    // Faire défiler la page pour charger les éléments
-    
-   
-    
     // Find and click the like button
     const likeButton = await page.$(likeButtonSelector);
-if (likeButton) {
-  logger.info(`Found like button for post ${postId}.`);
-  const ariaLabel = await likeButton.evaluate(el => el.getAttribute("aria-label"));
+    if (likeButton) {
+      logger.info(`Found like button for post ${postId}.`);
+      const ariaLabel = await likeButton.evaluate(el => el.getAttribute("aria-label"));
 
-  if (ariaLabel === "Like") {
-    console.log(`Liking post ${postId}...`);
-    // Force the click by dispatching a click event from within the page context
-    await page.evaluate(button => {
-      // Scroll the button into view if necessary
-      button.scrollIntoView({ behavior: "instant", block: "center" });
-      // Dispatch a click event to force the action
-      button.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
-    }, likeButton);
-    console.log(`Post ${postId} liked.`);
-  } else if (ariaLabel === "Unlike") {
-    console.log(`Post ${postId} is already liked.`);
-  } else {
-    console.log(`Like button not found for post ${postId}.`);
-  }
-}
-
+      if (ariaLabel === "Like") {
+        console.log(`Liking post ${postId}...`);
+        // Force the click by dispatching a click event from within the page context
+        await page.evaluate(button => {
+          // Scroll the button into view if necessary
+          button.scrollIntoView({ behavior: "instant", block: "center" });
+          // Dispatch a click event to force the action
+          button.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+        }, likeButton);
+        console.log(`Post ${postId} liked.`);
+      } else if (ariaLabel === "Unlike") {
+        console.log(`Post ${postId} is already liked.`);
+      } else {
+        console.log(`Like button not found for post ${postId}.`);
+      }
+    }
 
     // --- Commenting on the post ---
-    // Attendre que la zone de commentaire soit disponible
+    // Wait for the comment box to be available
     const commentBox = await page.$(commentBoxSelector);
     if (!commentBox) {
       logger.error("Comment box not found.");
@@ -143,7 +139,7 @@ if (likeButton) {
     await page.type(commentBoxSelector, comment);
     logger.info(`Posting comment: "${comment}"`);
 
-    // Recherche et clic sur le bouton "Post"
+    // Find and click the "Post" button
     const postButtonHandle = await page.evaluateHandle(() => {
       const buttons = Array.from(document.querySelectorAll('div[role="button"]'));
       return buttons.find(
@@ -155,7 +151,7 @@ if (likeButton) {
       logger.info(`Clicking Post button for post ${postId}...`);
       await (postButtonHandle as any).click();
       logger.info(`Comment successfully posted on post ${postId}.`);
-      // Attendre que le commentaire soit bien posté
+      // Wait until the comment is fully posted
       await delay(2000);
       return { success: true, message: 'Comment posted successfully' };
     } else {
@@ -163,7 +159,7 @@ if (likeButton) {
       return { success: false, message: 'Post button not found' };
     }
   } catch (error) {
-    // Optionnel : capture d'écran pour le débogage
+    // Optionally, take a screenshot for debugging
     if (page) {
       await page.screenshot({ path: `error_${postId}.png` });
     }
@@ -171,8 +167,6 @@ if (likeButton) {
     return { success: false, message: `Error: ${error}` };
   }
 }
-
-
 
 // -------------------------------------------------------
 // Controller Endpoints

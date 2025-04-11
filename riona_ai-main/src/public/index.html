@@ -523,9 +523,15 @@
                   <h5 class="card-title">Post #${index + 1} ${modelBadge}</h5>
                   <span class="badge bg-${getStatusBadgeColor(comment.status)}">${comment.status}</span>
                 </div>
-                <div class="post-id">
-                  <strong>Post ID:</strong> <span class="post-id-badge">${escapeHtml(comment.postId || '')}</span>
-                </div>
+               <div class="post-id">
+  <strong>Post Link:</strong>
+  <span class="post-id-badge">
+    <a href="https://www.instagram.com/p/${escapeHtml(comment.postId)}/" target="_blank" rel="noopener noreferrer">
+      https://www.instagram.com/p/${escapeHtml(comment.postId)}/
+    </a>
+  </span>
+</div>
+
                 <div class="post-caption">"${escapeHtml(comment.postCaption || comment.caption)}"</div>
                 <div class="card-text mb-3">
                   <strong>Comment:</strong> ${escapeHtml(comment.generatedComment || comment.comment)}

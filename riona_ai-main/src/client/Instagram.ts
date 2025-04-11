@@ -43,8 +43,16 @@ async function runInstagram() {
   const server = new Server({ port: 8000 });
   await server.listen();
   const proxyUrl = `http://localhost:8000`;
+
+  // Lancement du navigateur en mode non-headless (affichage de l'interface) - version originale :
+  // const browser = await puppeteer.launch({
+  //   headless: false,
+  //   args: [`--proxy-server=${proxyUrl}`],
+  // });
+
+  // --- Modification pour exécuter en backend sans interface graphique ---
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
     args: [`--proxy-server=${proxyUrl}`],
   });
 
@@ -112,24 +120,24 @@ async function runInstagram() {
 
 // Fonction de connexion
 const loginWithCredentials = async (page: any, browser: Browser) => {
-    try {
-        await page.goto("https://www.instagram.com/accounts/login/");
-        await page.waitForSelector('input[name="username"]');
+  try {
+    await page.goto("https://www.instagram.com/accounts/login/");
+    await page.waitForSelector('input[name="username"]');
 
-        // Fill out the login form
-        await page.type('input[name="username"]', IGusername); // Replace with your username
-        await page.type('input[name="password"]', IGpassword); // Replace with your password
-        await page.click('button[type="submit"]');
+    // Remplir le formulaire de connexion
+    await page.type('input[name="username"]', IGusername);
+    await page.type('input[name="password"]', IGpassword);
+    await page.click('button[type="submit"]');
 
-        // Wait for navigation after login
-        await page.waitForNavigation();
+    // Attendre la navigation après la connexion
+    await page.waitForNavigation();
 
-        // Save cookies after login
-        const cookies = await browser.cookies();
-        await saveCookies("./cookies/Instagramcookies.json", cookies);
-    } catch (error) {
-        logger.error("Error logging in with credentials:", error);
-    }
+    // Sauvegarder les cookies après connexion
+    const cookies = await browser.cookies();
+    await saveCookies("./cookies/Instagramcookies.json", cookies);
+  } catch (error) {
+    logger.error("Error logging in with credentials:", error);
+  }
 }
 
 // ACTION 1 : Extraire les IDs des posts du fil d'actualité et les stocker dans un tableau
@@ -172,7 +180,7 @@ async function generateCommentForPost(page: any, postId: string) {
   const postUrl = `https://www.instagram.com/p/${postId}/`;
   await page.goto(postUrl, { waitUntil: "networkidle2" });
   await delay(2000); // Attendre le chargement du contenu
-    
+
   let caption = "";
   // Essayer chaque sélecteur de légende jusqu'à obtenir une légende non vide
   for (const sel of captionSelectors) {
@@ -208,9 +216,6 @@ async function generateCommentForPost(page: any, postId: string) {
       }
     }
   }
-
-  // Option : liker le post avant de générer le commentaire
-  
 
   // Construction du prompt pour la génération de commentaire
   const prompt = `Respond only with valid JSON. No introduction or explanation.
