@@ -5,7 +5,8 @@ import {
   rejectComment, 
   approveComment,  
   postComment,
-  updateComment
+  updateComment,
+  instagramLogin  // Ajout de l'import pour la fonction de login
 } from '../controllers/commentsControllers';
 // Import de la fonction processQueue depuis le fichier FIFO
 import { processQueue } from '../controllers/fifoProcessComments';
@@ -39,5 +40,5 @@ router.post('/trigger-fifo', async (_req, res) => {
     res.status(500).json({ message: (error as Error).message || 'Erreur lors du déclenchement du FIFO' });
   }
 });
-
+router.post('/instagram/login', instagramLogin);
 export default router;

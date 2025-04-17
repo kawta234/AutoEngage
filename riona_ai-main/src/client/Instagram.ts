@@ -36,68 +36,67 @@ puppeteer.use(
   })
 );
 
-// Fonction utilitaire de temporisation
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-async function runInstagram() {
-  const server = new Server({ port: 8000 });
-  await server.listen();
+
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+const COOKIES_PATH = "./cookies/Instagramcookies.json";
+
+export async function runInstagram(): Promise<void> {
+  // Start proxy server (optional)
+  const proxyServer = new Server({ port: 8000 });
+  await proxyServer.listen();
   const proxyUrl = `http://localhost:8000`;
 
-  // Lancement du navigateur en mode non-headless (affichage de l'interface) - version originale :
-  // const browser = await puppeteer.launch({
-  //   headless: false,
-  //   args: [`--proxy-server=${proxyUrl}`],
-  // });
-
-  // --- Modification pour exécuter en backend sans interface graphique ---
   const browser = await puppeteer.launch({
     headless: true,
     args: [`--proxy-server=${proxyUrl}`],
   });
-
   const page = await browser.newPage();
-  const cookiesPath = "./cookies/Instagramcookies.json";
-  const checkCookies = await Instagram_cookiesExist();
-  logger.info(`Vérification des cookies : ${checkCookies}`);
 
-  if (checkCookies) {
-    const cookies = await loadCookies(cookiesPath);
-    await page.setCookie(...cookies);
-    logger.info("Cookies chargés et appliqués.");
+  // Ensure we only log in via cookies
+  const cookiesExist = await Instagram_cookiesExist();
+  logger.info(`Cookies exist: ${cookiesExist}`);
 
-    // Vérification de la connexion via cookies
-    await page.goto("https://www.instagram.com/", { waitUntil: "networkidle2" });
-    const isLoggedIn = await page.$("a[href='/direct/inbox/']");
-    if (!isLoggedIn) {
-      logger.warn("Cookies invalides ou expirés. Nouvelle connexion...");
-      await loginWithCredentials(page, browser);
-    }
-  } else {
-    // Pas de cookies, connexion avec identifiants
-    await loginWithCredentials(page, browser);
+  if (!cookiesExist) {
+    logger.error("No Instagram cookies found; cannot log in.");
+    await browser.close();
+    await proxyServer.close(true);
+    return;
   }
 
-  // Capture optionnelle d'une capture d'écran après connexion
+  // Load and apply cookies
+  const cookies = await loadCookies(COOKIES_PATH);
+  await page.setCookie(...cookies);
+  logger.info("Instagram cookies loaded.");
+
+  // Verify cookie-based login
+  await page.goto("https://www.instagram.com/", { waitUntil: "networkidle2" });
+  const loggedInIndicator = await page.$("a[href='/direct/inbox/']");
+  if (!loggedInIndicator) {
+    logger.error("Cookies invalid or expired; please refresh your cookies file.");
+    await browser.close();
+    await proxyServer.close(true);
+    return;
+  }
+  logger.info("Logged into Instagram via cookies.");
+
+  // Optional snapshot
   await page.screenshot({ path: "logged_in.png" });
 
-  // Définir le nombre cible de posts à traiter
   const targetCount = 500;
   const processedIDs = new Set<string>();
 
-  // Boucle principale : extraire de nouveaux IDs et générer des commentaires jusqu'à atteindre le nombre cible
   while (processedIDs.size < targetCount) {
-    // IMPORTANT : S'assurer d'être sur le feed avant d'extraire des posts
+    // Ensure feed
     await page.goto("https://www.instagram.com/", { waitUntil: "networkidle2" });
     await delay(2000);
 
+    // Extract post IDs
     const postIDs = await extractPostIDs(page);
-    logger.info(`IDs extraits : ${postIDs.join(", ")}`);
-
-    // Filtrer les IDs déjà traités
     const newIDs = postIDs.filter(id => !processedIDs.has(id));
+
     if (newIDs.length === 0) {
-      console.log("Aucun nouveau post trouvé, défilement...");
+      logger.info("No new posts, scrolling...");
       await page.evaluate(() => window.scrollBy(0, window.innerHeight));
       await delay(3000);
       continue;
@@ -105,40 +104,22 @@ async function runInstagram() {
 
     for (const postId of newIDs) {
       if (processedIDs.size >= targetCount) break;
-      // Ici, nous n'avons pas de postIndex explicite puisque nous traitons un post à la fois par son URL
       await generateCommentForPost(page, postId);
       processedIDs.add(postId);
-      logger.info(`Post traité : ${postId} (Total traité : ${processedIDs.size})`);
+      logger.info(`Processed post ${postId} (${processedIDs.size}/${targetCount})`);
       await delay(5000);
     }
 
-    // Scroller pour charger d'autres posts
+    // Scroll for more
     await page.evaluate(() => window.scrollBy(0, window.innerHeight));
     await delay(3000);
   }
+
+  await browser.close();
+  await proxyServer.close(true);
 }
 
-// Fonction de connexion
-const loginWithCredentials = async (page: any, browser: Browser) => {
-  try {
-    await page.goto("https://www.instagram.com/accounts/login/");
-    await page.waitForSelector('input[name="username"]');
-
-    // Remplir le formulaire de connexion
-    await page.type('input[name="username"]', IGusername);
-    await page.type('input[name="password"]', IGpassword);
-    await page.click('button[type="submit"]');
-
-    // Attendre la navigation après la connexion
-    await page.waitForNavigation();
-
-    // Sauvegarder les cookies après connexion
-    const cookies = await browser.cookies();
-    await saveCookies("./cookies/Instagramcookies.json", cookies);
-  } catch (error) {
-    logger.error("Error logging in with credentials:", error);
-  }
-}
+//
 
 // ACTION 1 : Extraire les IDs des posts du fil d'actualité et les stocker dans un tableau
 async function extractPostIDs(page: any): Promise<string[]> {
@@ -280,4 +261,3 @@ Original Post: "${caption}"`;
   }
 }
 
-export { runInstagram, loginWithCredentials };

@@ -1,8 +1,14 @@
 import { Request, Response } from 'express';
-import { getUsersCollection } from '../config/db';
+import { connectToDatabase } from '../config/db';
 import { User, IUser } from '../models/user';
 import { ObjectId } from 'mongodb';
 import logger from '../config/logger';
+
+// Added getUsersCollection function since it was missing in db.ts
+async function getUsersCollection() {
+  const { db } = await connectToDatabase();
+  return db.collection<IUser>('users');
+}
 
 // Register a new user
 export const registerUser = async (req: Request, res: Response): Promise<void> => {
@@ -15,7 +21,7 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
       return;
     }
     
-    const collection = getUsersCollection();
+    const collection = await getUsersCollection();
     
     // Check if username or email already exists
     const existingUser = await collection.findOne({
@@ -29,7 +35,7 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
     
     // Hash password and create user
     const hashedPassword = await User.hashPassword(password);
-    const userData = {
+    const userData: IUser = {
       username,
       email,
       password: hashedPassword,
@@ -38,7 +44,7 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
       createdAt: new Date(),
       isActive: true
     };
-
+    
     // Create a new User instance and insert into the collection
     const newUser = new User(userData);
     await collection.insertOne(newUser);
@@ -57,23 +63,37 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
 };
 
 // Login user (handled by Passport, this is a callback)
-export const loginUser = (req: Request, res: Response): void => {
-  // Update last login time
-  const collection = getUsersCollection();
-  collection.updateOne(
-    { _id: new ObjectId((req.user as IUser)._id) },
-    { $set: { lastLogin: new Date() } }
-  ).catch(err => logger.error('Error updating last login:', err));
-  
-  res.status(200).json({
-    message: 'Login successful',
-    user: {
-      id: (req.user as IUser)._id,
-      username: (req.user as IUser).username,
-      displayName: (req.user as IUser).displayName,
-      role: (req.user as IUser).role
-    }
-  });
+export const loginUser = async (req: Request, res: Response): Promise<void> => {
+  try {
+    // Update last login time
+    const collection = await getUsersCollection();
+    await collection.updateOne(
+      { _id: new ObjectId((req.user as IUser)._id) },
+      { $set: { lastLogin: new Date() } }
+    );
+    
+    res.status(200).json({
+      message: 'Login successful',
+      user: {
+        id: (req.user as IUser)._id,
+        username: (req.user as IUser).username,
+        displayName: (req.user as IUser).displayName,
+        role: (req.user as IUser).role
+      }
+    });
+  } catch (err) {
+    logger.error('Error updating last login:', err);
+    // Still return success even if updating last login fails
+    res.status(200).json({
+      message: 'Login successful',
+      user: {
+        id: (req.user as IUser)._id,
+        username: (req.user as IUser).username,
+        displayName: (req.user as IUser).displayName,
+        role: (req.user as IUser).role
+      }
+    });
+  }
 };
 
 // Get current user
@@ -93,7 +113,6 @@ export const getCurrentUser = (req: Request, res: Response): void => {
   });
 };
 
-
 export const logoutUser = (req: Request, res: Response): void => {
   req.logout((err) => {
     if (err) {
@@ -103,6 +122,3 @@ export const logoutUser = (req: Request, res: Response): void => {
     return res.redirect('/login');
   });
 };
-
-
-

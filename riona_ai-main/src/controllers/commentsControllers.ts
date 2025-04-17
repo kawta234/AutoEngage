@@ -2,22 +2,28 @@
 
 import { Request, Response } from 'express';
 import { ObjectId } from 'mongodb';
-import { getCommentsCollection } from '../config/db';
+import { connectToDatabase, getUserCollection as dbGetUserCollection, getCommentsCollection as dbGetCommentsCollection } from '../config/db';
 import puppeteer from 'puppeteer-extra';
-import { Browser, DEFAULT_INTERCEPT_RESOLUTION_PRIORITY, Page, ElementHandle } from 'puppeteer';
+import { Browser, Page } from 'puppeteer';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 import AdblockerPlugin from 'puppeteer-extra-plugin-adblocker';
 import logger from '../config/logger';
-
 import fs from 'fs';
+
+// Added getUserCollection function since it was missing
+async function getUserCollection(userId: string) {
+  return dbGetUserCollection(userId);
+}
+
+// Fixed getCommentsCollection function to properly use the imported function
+function getCommentsCollection() {
+  return dbGetCommentsCollection();
+}
+
 // -------------------------------------------------------
 // Déclaration des sélecteurs utilisés dans ce module
 // -------------------------------------------------------
-
-// Sélecteur pour fermer le popup s'il est présent
 const popupCloseSelector: string = 'button[class*="dismiss"]';
-
-// Sélecteur pour la zone de commentaire (affiché ici comme variable en haut)
 const commentBoxSelector: string = 'textarea[aria-label="Add a comment…"][placeholder="Add a comment…"]';
 const likeButtonSelector = 'svg.x1lliihq.x1n2onr6.xyb1xck[aria-label="Like"]';
 
@@ -27,119 +33,80 @@ const likeButtonSelector = 'svg.x1lliihq.x1n2onr6.xyb1xck[aria-label="Like"]';
 puppeteer.use(StealthPlugin());
 puppeteer.use(
   AdblockerPlugin({
-    interceptResolutionPriority: DEFAULT_INTERCEPT_RESOLUTION_PRIORITY,
+    interceptResolutionPriority: 1,
   })
 );
 
 // Simple delay helper
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-// Global variables to reuse browser and page instances
 let browser: Browser | null = null;
 let page: Page | null = null;
 
-/**
- * Initializes the Puppeteer browser and page.
- * Reuses existing instances if available.
- */
 async function initBrowser(): Promise<{ browser: Browser; page: Page }> {
   if (browser && page) {
     return { browser, page };
   }
-  // Lancement du navigateur en mode non-headless pour afficher l'interface visuelle (exemple initial)
-  // browser = await puppeteer.launch({ headless: false, slowMo: 50 });
-  // --- Modification pour lancer le navigateur en mode headless (backend) ---
   browser = await puppeteer.launch({ headless: true });
   page = await browser.newPage();
   return { browser, page };
 }
 
-/**
- * Posts a comment on an Instagram post identified by postId.
- * Navigates to the post, fills in the comment box, and clicks the Post button.
- *
- * @param postId - The Instagram post ID (shortcode in the URL).
- * @param comment - The comment text to post.
- * @returns An object indicating success or failure.
- * 
- */
 export async function commentOnPostById(
+  userId: string,
   postId: string,
   comment: string
 ): Promise<{ success: boolean; message: string }> {
   let page;
   try {
-    // Initialize the browser and page (reuse existing instances if available)
     const { browser: instBrowser, page: instPage } = await initBrowser();
     page = instPage;
     
-    // Load cookies from the file instead of logging in with credentials
     const cookiesPath = './cookies/Instagramcookies.json';
     if (fs.existsSync(cookiesPath)) {
       const cookiesString = fs.readFileSync(cookiesPath, 'utf8');
       const cookies = JSON.parse(cookiesString);
-      // Set all cookies; alternatively, you can use the spread syntax:
-      // await page.setCookie(...cookies);
       for (const cookie of cookies) {
         await page.setCookie(cookie);
       }
-      logger.info("Cookies loaded successfully. Using them to authenticate.");
+      logger.info("Cookies loaded successfully.");
     } else {
-      logger.error('Cookies file does not exist. Run the login process to create it.');
+      logger.error('Cookies file does not exist.');
       return { success: false, message: "Cookies file not found" };
     }
 
-    // Navigate to the post URL
     const postUrl = `https://www.instagram.com/p/${postId}/`;
     logger.info(`Navigating to post: ${postUrl}`);
     await page.goto(postUrl, { waitUntil: 'networkidle2' });
     await delay(3000);
 
-    // Close the popup if present
-    const popupEl = await page.$(popupCloseSelector);  // popupCloseSelector should be defined/imported
+    const popupEl = await page.$(popupCloseSelector);
     if (popupEl) {
-      logger.info("Popup detected, attempting to close it.");
       await popupEl.click();
       await delay(1000);
     }
 
-    // Find and click the like button
     const likeButton = await page.$(likeButtonSelector);
     if (likeButton) {
-      logger.info(`Found like button for post ${postId}.`);
       const ariaLabel = await likeButton.evaluate(el => el.getAttribute("aria-label"));
-
       if (ariaLabel === "Like") {
-        console.log(`Liking post ${postId}...`);
-        // Force the click by dispatching a click event from within the page context
         await page.evaluate(button => {
-          // Scroll the button into view if necessary
           button.scrollIntoView({ behavior: "instant", block: "center" });
-          // Dispatch a click event to force the action
           button.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
         }, likeButton);
-        console.log(`Post ${postId} liked.`);
-      } else if (ariaLabel === "Unlike") {
-        console.log(`Post ${postId} is already liked.`);
-      } else {
-        console.log(`Like button not found for post ${postId}.`);
+        logger.info(`Post ${postId} liked.`);
       }
     }
 
-    // --- Commenting on the post ---
-    // Wait for the comment box to be available
     const commentBox = await page.$(commentBoxSelector);
     if (!commentBox) {
       logger.error("Comment box not found.");
       return { success: false, message: 'Comment box not found' };
     }
-
-    logger.info(`Found comment box for post ${postId}.`);
     await commentBox.click();
     await page.type(commentBoxSelector, comment);
     logger.info(`Posting comment: "${comment}"`);
 
-    // Find and click the "Post" button
     const postButtonHandle = await page.evaluateHandle(() => {
       const buttons = Array.from(document.querySelectorAll('div[role="button"]'));
       return buttons.find(
@@ -148,23 +115,31 @@ export async function commentOnPostById(
     });
 
     if (postButtonHandle) {
-      logger.info(`Clicking Post button for post ${postId}...`);
       await (postButtonHandle as any).click();
       logger.info(`Comment successfully posted on post ${postId}.`);
-      // Wait until the comment is fully posted
       await delay(2000);
-      return { success: true, message: 'Comment posted successfully' };
+
+      // Récupérer la collection utilisateur pour stocker les informations
+      const userCollection = await getUserCollection(userId);
+      await userCollection.insertOne({
+        postId: postId,
+        caption: comment,
+        comment: comment,
+        timestamp: new Date(),
+      });
+
+      return { success: true, message: 'Comment posted and saved successfully' };
     } else {
       logger.error('Post button not found');
       return { success: false, message: 'Post button not found' };
     }
   } catch (error) {
-    // Optionally, take a screenshot for debugging
     if (page) {
       await page.screenshot({ path: `error_${postId}.png` });
     }
-    logger.error(`Error posting comment on post ${postId}:`, error);
-    return { success: false, message: `Error: ${error}` };
+    const errMsg = error instanceof Error ? error.message : String(error);
+    logger.error(`Error posting comment on post ${postId}:`, errMsg);
+    return { success: false, message: `Error: ${errMsg}` };
   }
 }
 
@@ -172,161 +147,323 @@ export async function commentOnPostById(
 // Controller Endpoints
 // -------------------------------------------------------
 
-// Get all comments
-export const getAllComments = async (_req: Request, res: Response): Promise<void> => {
+export const getAllComments = async (req: Request, res: Response): Promise<void> => {
   try {
-    const collection = getCommentsCollection();
+    // Extract userId from query (if provided and is a string)
+    const userId = typeof req.query.userId === 'string' ? req.query.userId : undefined;
+
+    // Choose the right collection
+    const collection = userId
+      ? await getUserCollection(userId)
+      : getCommentsCollection();
+
+    // Fetch all comments
     const comments = await collection.find({}).toArray();
 
-    // Format comments for frontend
-    const formattedComments = comments.map((comment) => ({
+    // Map to the desired response shape
+    const formatted = comments.map(comment => ({
       id: comment._id.toString(),
       postId: comment.postId,
       postCaption: comment.caption,
       generatedComment: comment.comment,
       timestamp: comment.timestamp,
-      status: comment.status || 'pending',
-      model: comment.model || 'llama3.1'
+      status: comment.status ?? 'pending',
+      model: comment.model ?? 'llama3.1',
     }));
 
-    res.status(200).json(formattedComments);
+    res.status(200).json(formatted);
   } catch (error) {
-    logger.error('Error fetching comments:', error);
+    const msg = error instanceof Error ? error.message : String(error);
+    logger.error('Error fetching comments:', msg);
     res.status(500).json({ message: 'Failed to fetch comments' });
   }
 };
-
-// Get a specific comment by ID
 export const getCommentById = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
-    const collection = getCommentsCollection();
-    const comment = await collection.findOne({ _id: new ObjectId(id) });
+    const { userId } = req.query;
 
-    if (!comment) {
-      res.status(404).json({ message: 'Comment not found' });
-      return;
+    if (!userId || typeof userId !== 'string') {
+      // Si pas d'userId, utiliser la collection générale
+      const collection = getCommentsCollection();
+      const comment = await collection.findOne({ _id: new ObjectId(id) });
+      if (!comment) {
+        res.status(404).json({ message: 'Comment not found' });
+        return;
+      }
+      res.status(200).json({
+        id: comment._id.toString(),
+        postId: comment.postId,
+        postCaption: comment.caption,
+        generatedComment: comment.comment,
+        timestamp: comment.timestamp,
+        status: comment.status || 'pending',
+        model: comment.model || 'llama3.1'
+      });
+    } else {
+      // Si userId fourni, chercher dans la collection spécifique à l'utilisateur
+      const userCollection = await getUserCollection(userId);
+      const comment = await userCollection.findOne({ _id: new ObjectId(id) });
+      if (!comment) {
+        res.status(404).json({ message: 'Comment not found' });
+        return;
+      }
+      res.status(200).json({
+        id: comment._id.toString(),
+        postId: comment.postId,
+        postCaption: comment.caption,
+        generatedComment: comment.comment,
+        timestamp: comment.timestamp,
+        status: comment.status || 'pending',
+        model: comment.model || 'llama3.1'
+      });
     }
-
-    res.status(200).json({
-      id: comment._id.toString(),
-      postId: comment.postId,
-      postCaption: comment.caption,
-      generatedComment: comment.comment,
-      timestamp: comment.timestamp,
-      status: comment.status || 'pending',
-      model: comment.model || 'llama3.1'
-    });
   } catch (error) {
-    logger.error('Error fetching comment:', error);
+    const errMsg = error instanceof Error ? error.message : String(error);
+    logger.error('Error fetching comment:', errMsg);
     res.status(500).json({ message: 'Failed to fetch comment' });
   }
 };
 
-// Reject comment: update status to 'rejected'
+/**
+ * Lance un navigateur non-headless pour permettre une connexion manuelle à Instagram.
+ * Après la connexion, il sauvegarde les cookies dans un fichier puis ferme le navigateur.
+ */
+export const instagramLogin = async (_req: Request, res: Response): Promise<void> => {
+  try {
+    // Lancement du navigateur en mode non-headless avec options utiles
+    const instBrowser: Browser = await puppeteer.launch({
+      headless: false,
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
+    const instPage = await instBrowser.newPage();
+
+    // Accès à la page de login d'Instagram
+    await instPage.goto("https://www.instagram.com/accounts/login/", { waitUntil: 'networkidle2' });
+    await instPage.waitForSelector('input[name="username"]', { timeout: 60000 });
+    logger.info("Page de connexion Instagram chargée. Veuillez vous connecter manuellement.");
+
+    // Attente de la connexion manuelle de l'utilisateur.
+    // Ici, nous attendons la présence du lien vers la messagerie comme preuve de connexion.
+    try {
+      await instPage.waitForSelector("a[href='/direct/inbox/']", { timeout: 60000 });
+      logger.info("Connexion détectée (lien de messagerie présent).");
+    } catch (e) {
+      logger.warn("Lien de messagerie non détecté dans les 60s, attente additionnelle de 10s.");
+      await delay(10000);
+    }
+
+    // Sauvegarde des cookies (contenant les informations de connexion)
+    const cookies = await instPage.cookies();
+    fs.writeFileSync('./cookies/Instagramcookies.json', JSON.stringify(cookies, null, 2));
+    logger.info("Cookies Instagram sauvegardés avec succès.");
+
+    // Fermer le navigateur après la connexion
+    await instBrowser.close();
+
+    res.status(200).json({ message: "Instagram login completed. Cookies saved." });
+  } catch (error) {
+    const errMsg = error instanceof Error ? error.message : String(error);
+    logger.error("Erreur lors de la connexion à Instagram:", errMsg);
+    res.status(500).json({ message: "Échec de la connexion à Instagram.", error: errMsg });
+  }
+};
+
 export const rejectComment = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
-    const collection = getCommentsCollection();
+    const { userId } = req.body;
 
-    const result = await collection.deleteOne({ _id: new ObjectId(id) });
-
-    if (result.deletedCount === 0) {
-      res.status(404).json({ message: 'Comment not found' });
-      return;
+    if (!userId) {
+      // Si pas d'userId, utiliser la collection générale
+      const collection = getCommentsCollection();
+      const result = await collection.deleteOne({ _id: new ObjectId(id) });
+      if (result.deletedCount === 0) {
+        res.status(404).json({ message: 'Comment not found' });
+        return;
+      }
+      res.status(200).json({ message: 'Comment rejected and deleted successfully' });
+    } else {
+      // Si userId fourni, supprimer de la collection spécifique à l'utilisateur
+      const userCollection = await getUserCollection(userId);
+      const result = await userCollection.deleteOne({ _id: new ObjectId(id) });
+      if (result.deletedCount === 0) {
+        res.status(404).json({ message: 'Comment not found' });
+        return;
+      }
+      res.status(200).json({ message: 'Comment rejected and deleted successfully' });
     }
-
-    res.status(200).json({ message: 'Comment rejected and deleted successfully' });
   } catch (error) {
-    logger.error('Error rejecting comment:', error);
+    const errMsg = error instanceof Error ? error.message : String(error);
+    logger.error('Error rejecting comment:', errMsg);
     res.status(500).json({ message: 'Failed to reject comment' });
   }
 };
 
-// Function to post a comment on Instagram after logging in
 export const postComment = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
-    const collection = getCommentsCollection();
-    const comment = await collection.findOne({ _id: new ObjectId(id) });
+    const { userId, comment } = req.body;
 
-    if (!comment) {
-      res.status(404).json({ message: 'Comment not found' });
-      return;
+    let existingComment: any;
+    
+    if (!userId) {
+      // Si pas d'userId, utiliser la collection générale
+      const collection = getCommentsCollection();
+      existingComment = await collection.findOne({ _id: new ObjectId(id) });
+      if (!existingComment) {
+        res.status(404).json({ message: 'Comment not found' });
+        return;
+      }
+      
+      // Update status to processing
+      await collection.updateOne(
+        { _id: new ObjectId(id) },
+        { $set: { status: 'processing', lastUpdated: new Date() } }
+      );
+      
+      // Try to post the comment to Instagram
+      const result = await commentOnPostById(
+        "system",  // Using system as default userId when not provided
+        existingComment.postId,
+        existingComment.comment
+      );
+      
+      if (result.success) {
+        await collection.updateOne(
+          { _id: new ObjectId(id) },
+          { $set: { status: 'posted', postedAt: new Date() } }
+        );
+        res.status(200).json({ message: 'Comment posted successfully', result });
+      } else {
+        await collection.updateOne(
+          { _id: new ObjectId(id) },
+          { $set: { status: 'failed', error: result.message, lastUpdated: new Date() } }
+        );
+        res.status(500).json({ message: 'Failed to post comment', error: result.message });
+      }
+    } else {
+      // Si userId fourni, utiliser la collection spécifique à l'utilisateur
+      const userCollection = await getUserCollection(userId);
+      existingComment = await userCollection.findOne({ _id: new ObjectId(id) });
+      if (!existingComment) {
+        res.status(404).json({ message: 'Comment not found' });
+        return;
+      }
+      
+      // Update status to processing
+      await userCollection.updateOne(
+        { _id: new ObjectId(id) },
+        { $set: { status: 'processing', lastUpdated: new Date() } }
+      );
+      
+      // Try to post the comment to Instagram
+      const result = await commentOnPostById(
+        userId,
+        existingComment.postId,
+        existingComment.comment
+      );
+      
+      if (result.success) {
+        await userCollection.updateOne(
+          { _id: new ObjectId(id) },
+          { $set: { status: 'posted', postedAt: new Date() } }
+        );
+        res.status(200).json({ message: 'Comment posted successfully', result });
+      } else {
+        await userCollection.updateOne(
+          { _id: new ObjectId(id) },
+          { $set: { status: 'failed', error: result.message, lastUpdated: new Date() } }
+        );
+        res.status(500).json({ message: 'Failed to post comment', error: result.message });
+      }
     }
-
-    // Mise à jour du statut en "processing" dans la DB
-    await collection.updateOne(
-      { _id: new ObjectId(id) },
-      { $set: { status: 'processing', lastUpdated: new Date() } }
-    );
-
-    // Ici, la publication sur Instagram est désactivée
-    res.status(200).json({ message: 'Statut mis à jour en "processing" avec succès' });
   } catch (error) {
-    logger.error('Erreur lors de la mise à jour du commentaire:', error);
+    const errMsg = error instanceof Error ? error.message : String(error);
+    logger.error('Erreur lors de la mise à jour du commentaire:', errMsg);
     res.status(500).json({ message: 'Échec de la mise à jour du commentaire' });
   }
 };
 
-// Update comment: modifie le contenu du commentaire et la mise à jour dans la base de données
 export const updateComment = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
-    const { comment: newComment } = req.body;
-
-    // Vérification que le nouveau commentaire est fourni et non vide
+    const { comment: newComment, userId } = req.body;
+    
     if (!newComment || newComment.trim() === '') {
       res.status(400).json({ message: 'Le commentaire fourni est invalide' });
       return;
     }
 
-    const collection = getCommentsCollection();
-
-    // Met à jour le champ "comment" et la date de mise à jour dans la DB
-    const result = await collection.updateOne(
-      { _id: new ObjectId(id) },
-      { $set: { comment: newComment, lastUpdated: new Date() } }
-    );
-
+    let result;
+    if (!userId) {
+      // Si pas d'userId, utiliser la collection générale
+      const collection = getCommentsCollection();
+      result = await collection.updateOne(
+        { _id: new ObjectId(id) },
+        { $set: { comment: newComment, lastUpdated: new Date() } }
+      );
+    } else {
+      // Si userId fourni, utiliser la collection spécifique à l'utilisateur
+      const userCollection = await getUserCollection(userId);
+      result = await userCollection.updateOne(
+        { _id: new ObjectId(id) },
+        { $set: { comment: newComment, lastUpdated: new Date() } }
+      );
+    }
+    
     if (result.modifiedCount === 0) {
       res.status(404).json({ message: 'Commentaire non trouvé ou aucune modification détectée' });
       return;
     }
-
     res.status(200).json({ message: 'Commentaire mis à jour avec succès' });
   } catch (error) {
-    logger.error('Erreur lors de la mise à jour du commentaire :', error);
+    const errMsg = error instanceof Error ? error.message : String(error);
+    logger.error('Erreur lors de la mise à jour du commentaire :', errMsg);
     res.status(500).json({ message: 'Échec de la mise à jour du commentaire' });
   }
 };
 
-// Comment by ID: posts the comment via Instagram without updating DB status
 export const approveComment = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
-    const collection = getCommentsCollection();
-    const comment = await collection.findOne({ _id: new ObjectId(id) });
-    
-    if (!comment) {
-      res.status(404).json({ message: 'Comment not found' });
-      return;
+    const { userId } = req.body;
+
+    let result;
+    if (!userId) {
+      // Si pas d'userId, utiliser la collection générale
+      const collection = getCommentsCollection();
+      const comment = await collection.findOne({ _id: new ObjectId(id) });
+      if (!comment) {
+        res.status(404).json({ message: 'Comment not found' });
+        return;
+      }
+      result = await collection.updateOne(
+        { _id: new ObjectId(id) },
+        { $set: { status: 'approved' } }
+      );
+    } else {
+      // Si userId fourni, utiliser la collection spécifique à l'utilisateur
+      const userCollection = await getUserCollection(userId);
+      const comment = await userCollection.findOne({ _id: new ObjectId(id) });
+      if (!comment) {
+        res.status(404).json({ message: 'Comment not found' });
+        return;
+      }
+      result = await userCollection.updateOne(
+        { _id: new ObjectId(id) },
+        { $set: { status: 'approved' } }
+      );
     }
-    
-    // Update the comment's status to "approved"
-    const result = await collection.updateOne(
-      { _id: new ObjectId(id) },
-      { $set: { status: 'approved' } }
-    );
     
     if (result.modifiedCount === 0) {
       res.status(500).json({ message: 'Failed to approve comment' });
       return;
     }
-    
     res.status(200).json({ message: 'Comment approved successfully' });
   } catch (error) {
-    logger.error('Error approving comment:', error);
+    const errMsg = error instanceof Error ? error.message : String(error);
+    logger.error('Error approving comment:', errMsg);
     res.status(500).json({ message: 'Failed to approve comment' });
   }
 };

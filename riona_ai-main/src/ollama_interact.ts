@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import axios from 'axios';
 import * as dotenv from 'dotenv';
-import { getCommentsCollection, connectToDatabase } from './config/db';
+import { getCommentsCollection, connectToDatabase, getUserCollection } from './config/db';
 dotenv.config();
 
 type OutputHandler = (message: string) => void;
@@ -20,10 +20,13 @@ const encodeImageToBase64 = (imagePath: string): string => {
 // Using a variable to store comments (in-memory storage)
 let commentsMemory: { postId: string; comment: string; caption: string; timestamp?: Date }[] = [];
 
-// Function to save the generated comment
- // Ajustez le chemin d'importation en fonction de votre structure de projet
-
- export const saveInstagramComment = async (postId: string, comment: string, caption: string) => {
+// Function to save the generated comment to a user-specific collection
+export const saveInstagramComment = async (
+    postId: string, 
+    comment: string, 
+    caption: string, 
+    userId?: string // Ajout du paramètre userId qui peut être optionnel
+) => {
     // Vérifier que la caption n'est pas tronquée
     console.log("Caption reçue pour sauvegarde:", caption);
     console.log("Longueur de la caption:", caption ? caption.length : 0);
@@ -34,20 +37,38 @@ let commentsMemory: { postId: string; comment: string; caption: string; timestam
         caption,           // Assurer que la caption complète est stockée
         timestamp: new Date(),
         status: 'pending', // Ajout du statut initial par défaut
-      };
+        model: 'llama3.1'  // Ajout du modèle par défaut
+    };
       
-
     try {
         // S'assurer que la connexion est établie avant d'accéder à la collection
         await connectToDatabase();
-        const commentsCollection = getCommentsCollection();
         
-        // Vérifier que l'objet est correctement formé avant insertion
-        console.log("Données à insérer dans MongoDB:", JSON.stringify(commentData, null, 2));
+        let result;
         
-        // Ajouter le commentaire à la base de données
-        const result = await commentsCollection.insertOne(commentData);
-        console.log("Commentaire enregistré dans la base de données avec l'ID:", result.insertedId);
+        if (userId) {
+            // Si un userId est fourni, utiliser la collection spécifique à l'utilisateur
+            const userCollection = await getUserCollection(userId);
+            console.log(`Utilisation de la collection utilisateur pour userId: ${userId}`);
+            
+            // Vérifier que l'objet est correctement formé avant insertion
+            console.log("Données à insérer dans la collection utilisateur:", JSON.stringify(commentData, null, 2));
+            
+            // Ajouter le commentaire à la collection de l'utilisateur
+            result = await userCollection.insertOne(commentData);
+            console.log(`Commentaire enregistré dans la collection de l'utilisateur ${userId} avec l'ID:`, result.insertedId);
+        } else {
+            // Sinon, utiliser la collection générale des commentaires
+            const commentsCollection = getCommentsCollection();
+            
+            // Vérifier que l'objet est correctement formé avant insertion
+            console.log("Données à insérer dans la collection générale:", JSON.stringify(commentData, null, 2));
+            
+            // Ajouter le commentaire à la base de données générale
+            result = await commentsCollection.insertOne(commentData);
+            console.log("Commentaire enregistré dans la collection générale avec l'ID:", result.insertedId);
+        }
+        
         return true;
     } catch (error) {
         console.error("Erreur lors de l'enregistrement du commentaire dans la base de données:", error);
@@ -55,19 +76,32 @@ let commentsMemory: { postId: string; comment: string; caption: string; timestam
     }
 };
 
-// Function to retrieve all saved comments from MongoDB
-export const getAllComments = async () => {
+// Function to retrieve all saved comments from MongoDB, either from general or user-specific collection
+export const getAllComments = async (userId?: string) => {
     try {
         // S'assurer que la connexion est établie avant d'accéder à la collection
         await connectToDatabase();
-        const commentsCollection = getCommentsCollection();
-        const comments = await commentsCollection.find({}).toArray();
-        console.log("Commentaires récupérés:", comments.length);
+        
+        let comments;
+        
+        if (userId) {
+            // Si un userId est fourni, récupérer depuis la collection spécifique à l'utilisateur
+            const userCollection = await getUserCollection(userId);
+            comments = await userCollection.find({}).toArray();
+            console.log(`Commentaires récupérés de la collection utilisateur ${userId}:`, comments.length);
+        } else {
+            // Sinon, récupérer depuis la collection générale
+            const commentsCollection = getCommentsCollection();
+            comments = await commentsCollection.find({}).toArray();
+            console.log(`Commentaires récupérés de la collection générale:`, comments.length);
+        }
+        
         // Afficher un exemple pour vérifier si la caption complète est stockée
         if (comments.length > 0) {
             console.log("Exemple de caption stockée:", comments[0].caption);
             console.log("Longueur de cette caption:", comments[0].caption ? comments[0].caption.length : 0);
         }
+        
         return comments;
     } catch (error) {
         console.error("Erreur lors de la récupération des commentaires:", error);
@@ -85,7 +119,8 @@ const interactWithOllama = async (
     apiUrl: string = 'http://localhost:11434/api',
     format?: string,
     postId?: string,
-    caption?: string
+    caption?: string,
+    userId?: string  // Ajout du paramètre userId
 ): Promise<any> => {
     if (!apiUrl) {
         throw new Error('OLLAMA_API_URL is not set. Provide it via the apiUrl parameter or as an environment variable.');
@@ -121,44 +156,44 @@ const interactWithOllama = async (
                 const jsonResponse = response.data;
                 console.log("Raw API response:", jsonResponse);
                 
-                // If we have an Instagram post ID and a response
                 // Si nous avons un Instagram post ID et une réponse
-if (postId && format === 'json' && jsonResponse.response) {
-    try {
-        // Try to parse the JSON response
-        let parsedData;
-        try {
-            parsedData = JSON.parse(jsonResponse.response);
-        } catch (e) {
-            console.log("Response wasn't a JSON string, using direct object");
-            parsedData = jsonResponse;
-        }
-        
-        // Extract the comment according to the structure
-        let comment = '';
-        if (Array.isArray(parsedData) && parsedData[0]?.comment) {
-            comment = parsedData[0].comment;
-        } else if (parsedData?.comment) {
-            comment = parsedData.comment;
-        }
-        
-        // If a comment was extracted, save it
-        if (comment) {
-            try {
-                const saveResult = await saveInstagramComment(postId, comment, caption || '');
-                if (saveResult) {
-                    console.log("Generated and saved comment:", comment);
-                } else {
-                    console.log("Generated comment but failed to save:", comment);
+                if (postId && format === 'json' && jsonResponse.response) {
+                    try {
+                        // Try to parse the JSON response
+                        let parsedData;
+                        try {
+                            parsedData = JSON.parse(jsonResponse.response);
+                        } catch (e) {
+                            console.log("Response wasn't a JSON string, using direct object");
+                            parsedData = jsonResponse;
+                        }
+                        
+                        // Extract the comment according to the structure
+                        let comment = '';
+                        if (Array.isArray(parsedData) && parsedData[0]?.comment) {
+                            comment = parsedData[0].comment;
+                        } else if (parsedData?.comment) {
+                            comment = parsedData.comment;
+                        }
+                        
+                        // If a comment was extracted, save it
+                        if (comment) {
+                            try {
+                                // Utiliser le userId si disponible pour le stockage
+                                const saveResult = await saveInstagramComment(postId, comment, caption || '', userId);
+                                if (saveResult) {
+                                    console.log(`Generated and saved comment ${userId ? 'for user ' + userId : ''}:`, comment);
+                                } else {
+                                    console.log("Generated comment but failed to save:", comment);
+                                }
+                            } catch (error) {
+                                console.error("Error saving comment:", error);
+                            }
+                        }
+                    } catch (error) {
+                        console.error("Error processing and saving comment:", error);
+                    }
                 }
-            } catch (error) {
-                console.error("Error saving comment:", error);
-            }
-        }
-    } catch (error) {
-        console.error("Error processing and saving comment:", error);
-    }
-}
                 // Return the entire response object for further processing
                 return jsonResponse;
             }
@@ -190,4 +225,4 @@ if (postId && format === 'json' && jsonResponse.response) {
     }
 };
 
-export { interactWithOllama, encodeImageToBase64, defaultOutputHandler};
+export { interactWithOllama, encodeImageToBase64, defaultOutputHandler };

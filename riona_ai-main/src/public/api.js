@@ -1,4 +1,4 @@
-// API endpoints
+// API.js 
 const API_BASE_URL = '/api';
 const COMMENTS_ENDPOINT = `${API_BASE_URL}/comments`;
 
@@ -25,11 +25,9 @@ async function rejectComment(commentId) {
         'Content-Type': 'application/json',
       },
     });
-    
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    
     return await response.json();
   } catch (error) {
     console.error('Error rejecting comment:', error);
@@ -61,11 +59,9 @@ async function postComment(commentId) {
         'Content-Type': 'application/json',
       },
     });
-    
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    
     return await response.json();
   } catch (error) {
     console.error('Error posting comment by id:', error);
@@ -73,7 +69,7 @@ async function postComment(commentId) {
   }
 }
 
-// Update a comment's text (if this hasn't changed)
+// Update a comment's text
 async function updateComment(commentId, commentText) {
   try {
     const response = await fetch(`${COMMENTS_ENDPOINT}/${commentId}`, {
@@ -83,11 +79,9 @@ async function updateComment(commentId, commentText) {
       },
       body: JSON.stringify({ comment: commentText }),
     });
-    
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    
     return await response.json();
   } catch (error) {
     console.error('Error updating comment text:', error);
@@ -95,7 +89,7 @@ async function updateComment(commentId, commentText) {
   }
 }
 
-// Generate a new comment for a post (if unchanged)
+// Generate a new comment for a post
 async function generateComment(postId, caption) {
   try {
     const response = await fetch(`${COMMENTS_ENDPOINT}/generate`, {
@@ -105,11 +99,9 @@ async function generateComment(postId, caption) {
       },
       body: JSON.stringify({ postId, caption }),
     });
-    
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    
     return await response.json();
   } catch (error) {
     console.error('Error generating new comment:', error);
@@ -126,14 +118,30 @@ async function setInProgress(commentId) {
         'Content-Type': 'application/json',
       },
     });
-    
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    
     return await response.json();
   } catch (error) {
     console.error('Error setting comment to in progress:', error);
+    throw error;
+  }
+}
+
+// ----------------------------------------
+// Nouvelle fonction : Instagram Login
+// ----------------------------------------
+async function instagramLogin() {
+  try {
+    const response = await fetch(`${COMMENTS_ENDPOINT}/instagram/login`, { 
+      method: 'POST' 
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error during Instagram login:', error);
     throw error;
   }
 }
@@ -146,5 +154,6 @@ window.api = {
   postComment,
   updateComment,
   generateComment,
-  setInProgress,  // Add the new function to the exported API
+  setInProgress,
+  instagramLogin,  // Ajout de la fonction dans l'objet exporté
 };

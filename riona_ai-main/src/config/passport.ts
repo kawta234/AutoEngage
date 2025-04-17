@@ -1,44 +1,49 @@
-// config/passport.ts
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
-import { getUsersCollection } from './db';
 import { IUser, User } from '../models/user';
-import { ObjectId } from 'mongodb';
+import { ObjectId, Document, WithId } from 'mongodb';
 import logger from './logger';
+import { connectToDatabase } from './db';
 
-// Removed the import causing the error:
-// import { User as ExpressUser } from 'express-serve-static-core';
+// Define a type that represents the user as stored in MongoDB
+type UserDocument = WithId<Document> & IUser;
+
+// Added getUsersCollection function since it was missing
+async function getUsersCollection() {
+  const { db } = await connectToDatabase();
+  return db.collection<IUser>('users');
+}
 
 export function configurePassport(): void {
   // Local Strategy
   passport.use(
     new LocalStrategy(async (username, password, done) => {
       try {
-        const collection = getUsersCollection();
-  
+        const collection = await getUsersCollection();
+        
         // Trouver l'utilisateur par username ou email
         const user = await collection.findOne({
           $or: [{ username }, { email: username }],
-        });
-  
+        }) as UserDocument | null;
+        
         if (!user) {
           return done(null, false, { message: 'Incorrect username or password' });
         }
-  
+        
         // Vérifier que l'utilisateur est actif
         if (!user.isActive) {
           return done(null, false, { message: 'Account is disabled' });
         }
-  
+        
         // Ajoutez ici : instanciation et vérification du mot de passe
         const userInstance = new User(user);
         const isMatch = await userInstance.comparePassword(password);
-  
+        
         if (!isMatch) {
           return done(null, false, { message: 'Incorrect username or password' });
         }
-  
-        return done(null, user);
+        
+        return done(null, user as IUser);
       } catch (error) {
         logger.error('Passport authentication error:', error);
         return done(error);
@@ -46,30 +51,25 @@ export function configurePassport(): void {
     })
   );
   
-// Dans config/passport.ts
-
-  // Local Strategy reste inchangée
-  
-  // @ts-ignore - Ignorer les erreurs de typage pour ces fonctions
-  passport.serializeUser((user: IUser & { _id?: string }, done: (err: any, id?: string) => void) => {
-    done(null, user._id?.toString());
+  // Serialization with proper type handling
+  passport.serializeUser((user: Express.User, done) => {
+    const userWithId = user as unknown as UserDocument;
+    const userId = userWithId._id?.toString();
+    done(null, userId);
   });
   
-  passport.deserializeUser(async (id: string, done: (err: any, user?: IUser) => void) => {
+  // Deserialization with proper type handling
+  passport.deserializeUser(async (id: string, done) => {
     try {
-      const collection = getUsersCollection();
-      const user = await collection.findOne({ _id: new ObjectId(id) });
-      if (user === null) {
+      const collection = await getUsersCollection();
+      const user = await collection.findOne({ _id: new ObjectId(id) }) as UserDocument | null;
+      if (!user) {
         return done(null, undefined);
       }
-      done(null, user);
+      done(null, user as IUser);
     } catch (error) {
       logger.error('Passport deserialization error:', error);
       done(error);
     }
   });
-  
-  
-
-
 }

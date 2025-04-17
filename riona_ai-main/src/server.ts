@@ -10,6 +10,11 @@ import authRoutes from './routes/authRoutes';
 import commentRoutes from './routes/commentsRoutes';
 import { isAuthenticated } from './midleware/auth';
 import logger from './config/logger';
+// In server.ts
+import instagramRoutes from './routes/instaRoute';
+
+// Other routes...
+ // This makes the endpoint /api/instagram/login
 
 // Load environment variables
 dotenv.config();
@@ -41,6 +46,7 @@ app.use(passport.session());
 configurePassport();
 app.use('/api/auth', authRoutes);
 app.use('/api/comments', commentRoutes);
+app.use('/api/instagram', instagramRoutes);
 
 app.get('/login', (req, res) => {
   if (req.isAuthenticated()) {

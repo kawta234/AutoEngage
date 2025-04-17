@@ -1,81 +1,105 @@
+// src/controllers/queueProcessor.ts
+
 import { getCommentsCollection } from '../config/db';
 import { commentOnPostById } from './commentsControllers';
 import { ObjectId } from 'mongodb';
 import logger from '../config/logger';
 
-// Fonction d'attente (delay)
+// Delay helper
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-// Fonction pour générer un délai aléatoire en millisecondes (par défaut entre 3000 et 10000 ms)
-const getRandomDelay = (min = 3000, max = 10000): number => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
+// Random delay between min and max ms
+const getRandomDelay = (min = 3000, max = 10000): number =>
+  Math.floor(Math.random() * (max - min + 1)) + min;
 
 export async function processQueue(): Promise<void> {
   try {
     const collection = getCommentsCollection();
 
-    // Boucle pour traiter les commentaires en FIFO
     while (true) {
-      // Récupère le commentaire "processing" dont lastUpdated est le plus ancien
-      const comment = await collection.findOne(
+      // Find oldest “processing” comment
+      const queued = await collection.findOne(
         { status: 'processing' },
         { sort: { lastUpdated: 1 } }
       );
 
-      // Si aucun commentaire n'est trouvé, attend 5 minutes avant de retenter
-      if (!comment) {
+      if (!queued) {
         logger.info("Aucun commentaire en statut 'processing' à traiter.");
         logger.info("Attente de 2 minutes avant de vérifier à nouveau la file...");
-        await delay(2 * 60 * 1000); // 5 minutes
+        await delay(2 * 60 * 1000);
         continue;
       }
 
-      // Affichage des dates
-      if (comment.timestamp) {
-        logger.info(`Le commentaire ${comment._id} a été créé le ${comment.timestamp}`);
+      // Cast and rename to avoid shadowing
+      const queuedComment = queued as {
+        _id: ObjectId;
+        postId: string;
+        comment: string;
+        timestamp?: Date;
+        lastUpdated?: Date;
+        userId?: string;
+      };
+
+      // Log creation / update dates
+      if (queuedComment.timestamp) {
+        logger.info(`Comment ${queuedComment._id} créé le ${queuedComment.timestamp}`);
       }
-      if (comment.lastUpdated) {
-        logger.info(`Le commentaire ${comment._id} a été mis à jour le ${comment.lastUpdated}`);
+      if (queuedComment.lastUpdated) {
+        logger.info(`Comment ${queuedComment._id} mis à jour le ${queuedComment.lastUpdated}`);
       } else {
-        logger.info(`Le commentaire ${comment._id} n'a pas encore de date de mise à jour.`);
+        logger.info(`Comment ${queuedComment._id} n'a pas encore de date de mise à jour.`);
       }
 
-      logger.info(`Traitement du commentaire _id: ${comment._id}`);
+      logger.info(`Traitement du commentaire _id: ${queuedComment._id}`);
 
-      // Boucle pour retenter de poster le commentaire jusqu'au succès
-      let result;
+      // Try up to 3 times
       let attempt = 0;
       const maxAttempts = 3;
+      let result: { success: boolean; message: string } = { success: false, message: '' };
 
       while (attempt < maxAttempts) {
         attempt++;
-        logger.info(`Tentative ${attempt} pour le commentaire ${comment._id}`);
-        result = await commentOnPostById(comment.postId, comment.comment);
+        logger.info(`Tentative ${attempt} pour le commentaire ${queuedComment._id}`);
+
+        const userIdToUse = queuedComment.userId || 'system';
+        result = await commentOnPostById(
+          userIdToUse,
+          queuedComment.postId,
+          queuedComment.comment
+        );
 
         if (result.success) {
-          logger.info(`Le commentaire ${comment._id} a été posté avec succès à la tentative ${attempt}.`);
+          logger.info(
+            `Le commentaire ${queuedComment._id} a été posté avec succès à la tentative ${attempt}.`
+          );
           break;
         } else {
-          logger.error(`Tentative ${attempt} échouée pour le commentaire ${comment._id}: ${result.message}`);
-          if (attempt === maxAttempts) {
-            logger.error(`Le commentaire ${comment._id} n'a pas pu être posté après ${maxAttempts} tentatives.`);
-            break;
+          logger.error(
+            `Tentative ${attempt} échouée pour le commentaire ${queuedComment._id}: ${result.message}`
+          );
+          if (attempt < maxAttempts) {
+            const retryDelay = getRandomDelay();
+            logger.info(
+              `Attente de ${retryDelay} ms avant la prochaine tentative pour le commentaire ${queuedComment._id}`
+            );
+            await delay(retryDelay);
           }
-          // Attente aléatoire avant de retenter
-          const retryDelay = getRandomDelay();
-          logger.info(`Attente de ${retryDelay} ms avant la prochaine tentative pour le commentaire ${comment._id}`);
-          await delay(retryDelay);
         }
       }
 
-      // Mise à jour du statut et de la date de traitement
+      // Update status based on final result
       await collection.updateOne(
-        { _id: new ObjectId(comment._id) },
-        { $set: { status: 'posted', lastUpdated: new Date() } }
+        { _id: queuedComment._id },
+        {
+          $set: {
+            status: result.success ? 'posted' : 'failed',
+            lastUpdated: new Date(),
+            ...(result.success ? { postedAt: new Date() } : { error: result.message })
+          }
+        }
       );
 
-      // Attente aléatoire avant de traiter le commentaire suivant
+      // Wait a bit before the next item
       const waitDelay = getRandomDelay();
       logger.info(`Attente de ${waitDelay} ms avant de traiter le prochain commentaire`);
       await delay(waitDelay);
