@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Riona AI Instagram Manager</title>
+  <title>EPI-Engage</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
   <style>
@@ -86,17 +86,24 @@
       color: #6c757d;
       margin-bottom: 20px;
     }
+    .username-setup {
+      text-align: center;
+      padding: 50px 20px;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      margin-top: 30px;
+    }
   </style>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="#">Riona AI Instagram Manager</a>
+      <a class="navbar-brand" href="#">EPI-Engage</a>
       <div>
-        <button class="btn btn-outline-light ms-2" id="downloadJsonBtn">
-          <i class="bi bi-download"></i> Export JSON
+        <button class="btn btn-outline-light ms-2" id="usernameBtn" style="display: none;">
+          <i class="bi bi-person-circle"></i> Set Instagram Username
         </button>
-        <button class="btn btn-outline-light ms-2" id="instagramLoginBtn">
+        <button class="btn btn-outline-light ms-2" id="instagramLoginBtn" style="display: none;">
           <i class="bi bi-instagram"></i> Instagram Login
         </button>
         <button class="btn btn-outline-light ms-2" id="refreshBtn">
@@ -113,10 +120,38 @@
     <h1>Comment Review Dashboard</h1>
     
     <div class="alert alert-info" id="data-source-info">
-      Please connect your Instagram account to view comments.
+      Loading Instagram connection status...
     </div>
     
-    <!-- Content is now wrapped in a div that's hidden until Instagram login -->
+    <!-- Username setup section - shown when user needs to set Instagram username -->
+    <div id="username-setup" class="username-setup" style="display: none;">
+      <i class="bi bi-person-circle login-icon"></i>
+      <h3>Set Your Instagram Username</h3>
+      <p class="lead">Before connecting to Instagram, please provide your Instagram username.</p>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="input-group mb-3">
+            <span class="input-group-text">@</span>
+            <input type="text" class="form-control" id="instagramUsername" placeholder="Instagram username">
+          </div>
+          <button class="btn btn-primary btn-lg" id="saveUsernameBtn">
+            Save Username
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Login prompt - shown when username is set but Instagram account is not connected -->
+    <div id="login-prompt" class="login-prompt" style="display: none;">
+      <i class="bi bi-instagram login-icon"></i>
+      <h3>Connect Your Instagram Account</h3>
+      <p class="lead">Please connect your Instagram account <span id="username-display"></span> to manage comments.</p>
+      <button class="btn btn-primary btn-lg mt-3" id="loginPromptBtn">
+        <i class="bi bi-instagram"></i> Connect Instagram
+      </button>
+    </div>
+    
+    <!-- Dashboard content - shown when both username is set and Instagram is connected -->
     <div id="dashboard-content" style="display: none;">
       <!-- Statistics Section -->
       <div class="row statistics-row">
@@ -191,18 +226,8 @@
         <!-- Comments will be loaded here -->
       </div>
     </div>
-    
-    <!-- Login prompt - shown when no Instagram account is connected -->
-    <div id="login-prompt" class="login-prompt">
-      <i class="bi bi-instagram login-icon"></i>
-      <h3>Connect Your Instagram Account</h3>
-      <p class="lead">Please connect your Instagram account to manage comments.</p>
-      <button class="btn btn-primary btn-lg mt-3" id="loginPromptBtn">
-        <i class="bi bi-instagram"></i> Connect Instagram
-      </button>
-    </div>
   </div>
-
+  
   <!-- Edit Comment Modal -->
   <div class="modal fade" id="editCommentModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
@@ -235,7 +260,6 @@
       </div>
     </div>
   </div>
-
   <!-- New Manual Comment Modal -->
   <div class="modal fade" id="newCommentModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
@@ -259,6 +283,34 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
           <button type="button" class="btn btn-primary" id="generateCommentBtn">Generate Comment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Instagram Username Modal -->
+  <div class="modal fade" id="usernameModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Set Instagram Username</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="usernameForm">
+            <div class="mb-3">
+              <label for="modalInstagramUsername" class="form-label">Instagram Username</label>
+              <div class="input-group">
+                <span class="input-group-text">@</span>
+                <input type="text" class="form-control" id="modalInstagramUsername" placeholder="Enter your Instagram username" required />
+              </div>
+              <div class="form-text">Please enter the username without the @ symbol.</div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="saveModalUsernameBtn">Save Username</button>
         </div>
       </div>
     </div>
@@ -300,48 +352,77 @@
       const filterButtons = document.querySelectorAll('[data-filter]');
       const editModal = new bootstrap.Modal(document.getElementById('editCommentModal'));
       const newCommentModal = new bootstrap.Modal(document.getElementById('newCommentModal'));
+      const usernameModal = new bootstrap.Modal(document.getElementById('usernameModal'));
       const commentTextArea = document.getElementById('commentText');
       const postCaptionArea = document.getElementById('postCaption');
       const postIdInput = document.getElementById('postId');
       const editCommentIdInput = document.getElementById('editCommentId');
       const saveCommentBtn = document.getElementById('saveCommentBtn');
       const generateCommentBtn = document.getElementById('generateCommentBtn');
-      const downloadJsonBtn = document.getElementById('downloadJsonBtn');
       const refreshBtn = document.getElementById('refreshBtn');
       const dataSourceInfo = document.getElementById('data-source-info');
       const addNewCommentBtn = document.getElementById('addNewCommentBtn');
       const logoutBtn = document.getElementById('logoutBtn');
       const instagramLoginBtn = document.getElementById('instagramLoginBtn');
+      const usernameBtn = document.getElementById('usernameBtn');
       const loginStatusModal = new bootstrap.Modal(document.getElementById('instagramLoginStatusModal'));
       const loginStatus = document.getElementById('loginStatus');
       const dashboardContent = document.getElementById('dashboard-content');
       const loginPrompt = document.getElementById('login-prompt');
+      const usernameSetup = document.getElementById('username-setup');
       const loginPromptBtn = document.getElementById('loginPromptBtn');
+      const saveUsernameBtn = document.getElementById('saveUsernameBtn');
+      const saveModalUsernameBtn = document.getElementById('saveModalUsernameBtn');
+      const usernameDisplay = document.getElementById('username-display');
       
       let currentFilter = 'all';
       let comments = [];
       let isLoggedIn = false; // Track Instagram login status
+      let hasUsername = false; // Track if Instagram username is set
       const API_BASE_URL = '/api'; // Adjust based on your API configuration
+      
+      // Use localStorage for persistent storage across sessions
+      const AUTH_STORAGE_KEY = 'instagram_auth_status';
+      const USERNAME_STORAGE_KEY = 'instagram_username';
 
       // Updated API client
       const api = {
         async fetchComments() {
-          const response = await fetch(`${API_BASE_URL}/comments`);
-          if (!response.ok) throw new Error(`HTTP error ${response.status}`);
-          return await response.json();
-        },
+  const username = stateManager.getUsername();
+  if (!username) {
+    throw new Error('Username not set');
+  }
+  const response = await fetch(`${API_BASE_URL}/comments?username=${encodeURIComponent(username)}`);
+  if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+  return await response.json();
+},
         async getCommentById(id) {
           const response = await fetch(`${API_BASE_URL}/comments/${id}`);
           if (!response.ok) throw new Error(`HTTP error ${response.status}`);
           return await response.json();
         },
         async approveComment(id) {
-          const response = await fetch(`${API_BASE_URL}/comments/${id}/approve`, {
-            method: 'POST',
-          });
-          if (!response.ok) throw new Error(`HTTP error ${response.status}`);
-          return await response.json();
-        },
+  try {
+    // First, get the comment to find its username
+    const comment = await this.getCommentById(id);
+    const username = comment.username;
+    
+    // Now make the approve request with the username
+    const response = await fetch(`${API_BASE_URL}/comments/${id}/approve`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ userId: id }) // Using comment ID as userId as per your backend expectation
+    });
+    
+    if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+    return await response.json();
+  } catch (error) {
+    console.error('Error approving comment:', error);
+    throw error;
+  }
+},
         async rejectComment(id) {
           const response = await fetch(`${API_BASE_URL}/comments/${id}/reject`, {
             method: 'POST',
@@ -378,9 +459,13 @@
           if (!response.ok) throw new Error(`HTTP error ${response.status}`);
           return await response.json();
         },
-        async instagramLogin() {
+        async instagramLogin(username) {
           const response = await fetch(`${API_BASE_URL}/instagram/login`, { 
-            method: 'POST' 
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username }),
           });
           if (!response.ok) throw new Error(`HTTP error ${response.status}`);
           return await response.json();
@@ -389,62 +474,239 @@
           const response = await fetch(`${API_BASE_URL}/instagram/status`);
           if (!response.ok) throw new Error(`HTTP error ${response.status}`);
           return await response.json();
+        },
+        async setUsername(username) {
+          // This would be a new API endpoint to set the username on the server
+          const response = await fetch(`${API_BASE_URL}/instagram/username`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username }),
+          });
+          if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+          return await response.json();
         }
       };
       
-      // Check if user is logged in to Instagram
-      async function checkLoginStatus() {
+      // Helper functions for auth and username state management
+      const stateManager = {
+        saveLoginState(username) {
+          localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify({
+            loggedIn: true,
+            username: username || 'user',
+            timestamp: new Date().toISOString()
+          }));
+        },
+        
+        getLoginState() {
+          try {
+            const state = JSON.parse(localStorage.getItem(AUTH_STORAGE_KEY));
+            return state || { loggedIn: false };
+          } catch (error) {
+            console.error('Error parsing auth state:', error);
+            return { loggedIn: false };
+          }
+        },
+        
+        clearLoginState() {
+          localStorage.removeItem(AUTH_STORAGE_KEY);
+        },
+        
+        saveUsername(username) {
+          localStorage.setItem(USERNAME_STORAGE_KEY, username);
+          // Also update display wherever needed
+          if (usernameDisplay) {
+            usernameDisplay.textContent = username ? `(@${username})` : '';
+          }
+        },
+        
+        getUsername() {
+          return localStorage.getItem(USERNAME_STORAGE_KEY) || '';
+        },
+        
+        clearUsername() {
+          localStorage.removeItem(USERNAME_STORAGE_KEY);
+        }
+      };
+      
+      // Check initial state - first check localStorage, then verify with server
+      async function checkInitialState() {
         try {
-          const status = await api.checkLoginStatus();
-          isLoggedIn = status.loggedIn;
+          // First check local storage
+          const storedState = stateManager.getLoginState();
+          const storedUsername = stateManager.getUsername();
           
-          if (isLoggedIn) {
-            // Show dashboard content and load comments
-            loginPrompt.style.display = 'none';
-            dashboardContent.style.display = 'block';
-            dataSourceInfo.innerHTML = `
-              <div class="alert alert-success">
-                <i class="bi bi-check-circle"></i> Connected to Instagram as ${status.username || 'user'}
-              </div>
-            `;
-            loadComments();
+          // Show loading state
+          dataSourceInfo.innerHTML = `
+            <div class="alert alert-info">
+              <i class="bi bi-hourglass-split"></i> Checking connection status...
+            </div>
+          `;
+          
+          // Set hasUsername based on stored data
+          hasUsername = !!storedUsername;
+          if (hasUsername) {
+            usernameDisplay.textContent = `(@${storedUsername})`;
+          }
+          
+          // Then verify login with server
+          const serverStatus = await api.checkLoginStatus();
+          
+          // Update based on server response
+          if (serverStatus.loggedIn) {
+            // Server confirms we're logged in
+            isLoggedIn = true;
+            stateManager.saveLoginState(serverStatus.username); // Update stored state
+            
+            // Determine which UI state to show based on username presence
+            updateUIState();
+            
+            if (isLoggedIn && hasUsername) {
+              loadComments();
+            }
           } else {
-            // Show login prompt
-            loginPrompt.style.display = 'block';
-            dashboardContent.style.display = 'none';
+            // Server says we're not logged in
+            isLoggedIn = false;
+            stateManager.clearLoginState(); // Clear invalid stored state
+            updateUIState();
+          }
+        } catch (error) {
+          console.error('Error checking initial state:', error);
+          
+          // If server check fails but we have stored state, still use it
+          const storedState = stateManager.getLoginState();
+          const storedUsername = stateManager.getUsername();
+          
+          if (storedState.loggedIn) {
+            isLoggedIn = true;
+            hasUsername = !!storedUsername;
+            
             dataSourceInfo.innerHTML = `
               <div class="alert alert-warning">
-                <i class="bi bi-exclamation-triangle"></i> Please connect your Instagram account to view comments
+                <i class="bi bi-exclamation-triangle"></i> Could not verify login status with server. Using stored credentials.
+              </div>
+            `;
+            
+            updateUIState();
+            
+            if (isLoggedIn && hasUsername) {
+              loadComments();
+            }
+          } else {
+            isLoggedIn = false;
+            hasUsername = !!storedUsername;
+            updateUIState();
+            
+            dataSourceInfo.innerHTML = `
+              <div class="alert alert-danger">
+                <i class="bi bi-exclamation-triangle"></i> Error checking connection status: ${error.message}
               </div>
             `;
           }
-        } catch (error) {
-          console.error('Error checking login status:', error);
+        }
+      }
+      
+      // Helper function to determine and update UI state based on username and login status
+      function updateUIState() {
+        // First, hide all content sections
+        usernameSetup.style.display = 'none';
+        loginPrompt.style.display = 'none';
+        dashboardContent.style.display = 'none';
+        
+        // Show/hide appropriate navbar buttons
+        usernameBtn.style.display = hasUsername ? 'inline-block' : 'none';
+        instagramLoginBtn.style.display = (hasUsername && !isLoggedIn) ? 'inline-block' : 'none';
+        
+        // Then show appropriate section based on state
+        if (!hasUsername) {
+          // Step 1: Need to set username
+          usernameSetup.style.display = 'block';
           dataSourceInfo.innerHTML = `
-            <div class="alert alert-danger">
-              <i class="bi bi-exclamation-triangle"></i> Error checking Instagram connection: ${error.message}
+            <div class="alert alert-info">
+              <i class="bi bi-info-circle"></i> Please set your Instagram username to continue
             </div>
           `;
+        } else if (!isLoggedIn) {
+          // Step 2: Have username but need to connect Instagram
           loginPrompt.style.display = 'block';
-          dashboardContent.style.display = 'none';
+          dataSourceInfo.innerHTML = `
+            <div class="alert alert-warning">
+              <i class="bi bi-exclamation-triangle"></i> Please connect your Instagram account to view comments
+            </div>
+          `;
+        } else {
+          // Step 3: Have username and connected to Instagram
+          dashboardContent.style.display = 'block';
+          const username = stateManager.getUsername();
+          dataSourceInfo.innerHTML = `
+            <div class="alert alert-success">
+              <i class="bi bi-check-circle"></i> Connected to Instagram as @${username || 'user'}
+            </div>
+          `;
+        }
+      }
+      
+      // Save Instagram username
+      async function saveUsername(username) {
+        if (!username || username.trim() === '') {
+          alert('Please enter a valid Instagram username');
+          return;
+        }
+        
+        try {
+          // Clean username (remove @ if present)
+          username = username.trim().replace(/^@/, '');
+          
+          // Call API to save username on server
+          await api.setUsername(username);
+          
+          // Save locally
+          stateManager.saveUsername(username);
+          hasUsername = true;
+          
+          // Update UI
+          updateUIState();
+          
+          // Reset any username input fields
+          document.getElementById('instagramUsername').value = '';
+          document.getElementById('modalInstagramUsername').value = '';
+          
+          // Hide modals if open
+          try {
+            usernameModal.hide();
+          } catch (e) {
+            console.log('Modal was not open');
+          }
+          
+        } catch (error) {
+          console.error('Error saving username:', error);
+          alert(`Error saving username: ${error.message}`);
         }
       }
       
       // Instagram login functionality
       async function handleInstagramLogin() {
+        const username = stateManager.getUsername();
+        
+        if (!username) {
+          alert('Please set your Instagram username first');
+          return;
+        }
+        
         loginStatus.innerHTML = `
           <div class="d-flex justify-content-center">
             <div class="spinner-border text-primary" role="status">
               <span class="visually-hidden">Loading...</span>
             </div>
           </div>
-          <p class="text-center mt-2">Launching Instagram login browser...</p>
+          <p class="text-center mt-2">Launching Instagram login browser for @${username}...</p>
         `;
         
         loginStatusModal.show();
         
         try {
-          const result = await api.instagramLogin();
+          const result = await api.instagramLogin(username);
           
           loginStatus.innerHTML = `
             <div class="alert alert-success">
@@ -452,17 +714,14 @@
             </div>
           `;
           
+          // Update both local state and UI after successful login
+          stateManager.saveLoginState(username);
+          
           // Update UI after successful login
           setTimeout(() => {
             loginStatusModal.hide();
             isLoggedIn = true;
-            loginPrompt.style.display = 'none';
-            dashboardContent.style.display = 'block';
-            dataSourceInfo.innerHTML = `
-              <div class="alert alert-success">
-                <i class="bi bi-check-circle"></i> Connected to Instagram successfully!
-              </div>
-            `;
+            updateUIState();
             loadComments();
           }, 2000);
           
@@ -482,17 +741,21 @@
       
       // Load comments from API
       async function loadComments() {
-        if (!isLoggedIn) {
-          return; // Don't load comments if not logged in
+        if (!isLoggedIn || !hasUsername) {
+          return; // Don't load comments if not logged in or no username
         }
         
         try {
           comments = await api.fetchComments();
+          
+          // Update alert only if we successfully loaded comments
           dataSourceInfo.innerHTML = `
             <div class="alert alert-success">
-              Successfully loaded ${comments.length} comments from Instagram
+              <i class="bi bi-check-circle"></i> Connected to Instagram as @${stateManager.getUsername() || 'user'} 
+              <span class="badge bg-secondary">${comments.length} comments loaded</span>
             </div>
           `;
+          
           updateStatistics();
           renderComments();
         } catch (error) {
@@ -530,404 +793,333 @@
 
       // Render comments based on current filter
       function renderComments() {
-        if (!isLoggedIn) {
-          return; // Don't render if not logged in
-        }
+        commentsContainer.innerHTML = '';
         
-        if (comments.length === 0) {
-          commentsContainer.innerHTML = `
-            <div class="alert alert-info">
-              No comments found.
-            </div>
-          `;
-          return;
-        }
-        
-        let filteredComments = currentFilter === 'all' ? comments : comments.filter(c => c.status === currentFilter);
+        const filteredComments = currentFilter === 'all' 
+          ? comments 
+          : comments.filter(comment => comment.status === currentFilter);
         
         if (filteredComments.length === 0) {
           commentsContainer.innerHTML = `
             <div class="alert alert-info">
-              No ${currentFilter} comments found.
+              <i class="bi bi-info-circle"></i> No ${currentFilter === 'all' ? '' : currentFilter} comments found.
             </div>
           `;
           return;
         }
         
-        filteredComments.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-        let html = '';
-        
-        filteredComments.forEach((comment, index) => {
+        filteredComments.forEach(comment => {
+          const card = document.createElement('div');
+          card.className = `card comment-card ${comment.status}`;
+          card.dataset.id = comment.id;
+          
+          // Format date
           const date = new Date(comment.timestamp);
           const formattedDate = date.toLocaleString();
-          const modelBadge = comment.model ? `<span class="badge bg-info json-model-badge">${escapeHtml(comment.model)}</span>` : '';
-          const lastUpdated = comment.lastUpdated ? new Date(comment.lastUpdated).toLocaleString() : 'N/A';
           
-          html += `
-            <div class="card comment-card ${comment.status}" data-id="${comment._id || comment.id}">
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-start">
-                  <h5 class="card-title">Post #${index + 1} ${modelBadge}</h5>
-                  <span class="badge bg-${getStatusBadgeColor(comment.status)}">${comment.status}</span>
-                </div>
-                <span class="post-id">
-                  <strong>Post ID:</strong>
-                  <a class="post-id-badge" href="https://www.instagram.com/p/${escapeHtml(comment.postId || '')}/" target="_blank">
-                    https://www.instagram.com/p/${escapeHtml(comment.postId || '')}/
-                  </a>
-                </span>
+          // Determine badge color based on status
+          let badgeClass = 'bg-secondary';
+          if (comment.status === 'pending') badgeClass = 'bg-warning';
+          if (comment.status === 'approved') badgeClass = 'bg-success';
+          if (comment.status === 'processing') badgeClass = 'bg-primary';
+          if (comment.status === 'posted') badgeClass = 'bg-info';
+          if (comment.status === 'rejected') badgeClass = 'bg-danger';
+          if (comment.status === 'error') badgeClass = 'bg-warning text-dark';
+          
+          // Determine action buttons based on status
+          let actionButtons = '';
+          if (comment.status === 'pending') {
+            actionButtons = `
+              <button class="btn btn-sm btn-success approve-btn" data-id="${comment.id}">
+                <i class="bi bi-check-circle"></i> Approve
+              </button>
+              <button class="btn btn-sm btn-danger reject-btn" data-id="${comment.id}">
+                <i class="bi bi-x-circle"></i> Reject
+              </button>
+            `;
+          } else if (comment.status === 'approved') {
+            actionButtons = `
+              <button class="btn btn-sm btn-primary post-btn" data-id="${comment.id}">
+                <i class="bi bi-send"></i> Post Comment
+              </button>
+              <button class="btn btn-sm btn-danger reject-btn" data-id="${comment.id}">
+                <i class="bi bi-x-circle"></i> Reject
+              </button>
+            `;
+          } else if (comment.status === 'error') {
+            actionButtons = `
+              <button class="btn btn-sm btn-primary post-btn" data-id="${comment.id}">
+                <i class="bi bi-send"></i> Retry Post
+              </button>
+            `;
+          }
+          
+          // Build status history display
+          let statusHistory = '';
+          if (comment.history && comment.history.length > 0) {
+            statusHistory = `
+              <div class="status-history">
+                <small>
+                  <i class="bi bi-clock-history"></i> Status history:
+                  ${comment.history.map(h => `
+                    <span class="badge ${getStatusBadgeClass(h.status)}">${h.status}</span>
+                    <span>${new Date(h.timestamp).toLocaleString()}</span>
+                  `).join(' → ')}
+                </small>
+              </div>
+            `;
+          }
+          
+          // JSON/AI model badge
+          const modelBadge = comment.model 
+            ? `<span class="badge bg-secondary json-model-badge">${comment.model}</span>` 
+            : '';
+          
+          card.innerHTML = `
+            <div class="card-body">
+              <div class="post-id">
+  <a
+    href="https://www.instagram.com/p/${comment.postId}/"
+    target="_blank"
+    class="badge post-id-badge"
+  >
+    ${comment.postId}
+  </a>
+</div>
 
-                <div class="post-caption">"${escapeHtml(comment.postCaption || comment.caption)}"</div>
-                <div class="card-text mb-3">
-                  <strong>Comment:</strong> ${escapeHtml(comment.generatedComment || comment.comment)}
-                </div>
-                <div class="status-history">
-                  <small>Created: ${formattedDate} | Last Updated: ${lastUpdated}</small>
-                </div>
-                <div class="btn-toolbar">
-                  ${getActionButtons(comment)}
-                </div>
+              <p class="post-caption">${comment.postCaption}</p>
+              <p class="card-text">${comment.comment}</p>
+              <div class="timestamp">
+                ${formattedDate} ${modelBadge}
+              </div>
+              ${statusHistory}
+              <hr>
+              <div class="btn-toolbar">
+                <button class="btn btn-sm btn-outline-secondary edit-btn me-2" data-id="${comment.id}">
+                  <i class="bi bi-pencil"></i> Edit
+                </button>
+                ${actionButtons}
               </div>
             </div>
           `;
+          
+          commentsContainer.appendChild(card);
         });
         
-        commentsContainer.innerHTML = html;
-
-        // Add event listeners
-        addEventListeners();
-      }
-
-      // Add event listeners to buttons
-      function addEventListeners() {
+        // Add event listeners to action buttons
         document.querySelectorAll('.approve-btn').forEach(btn => {
-          btn.addEventListener('click', function (e) {
-            const id = e.target.dataset.id;
-            if (!confirm('Are you sure you want to approve this comment?')) return;
-            
-            api.approveComment(id)
-              .then(() => {
-                const commentIndex = comments.findIndex(c => c._id === id || c.id === id);
-                if (commentIndex !== -1) comments[commentIndex].status = 'approved';
-                updateStatistics();
-                renderComments();
-              })
-              .catch(err => alert(`Error approving comment: ${err.message}`));
-          });
-        });
-
-        document.querySelectorAll('.reject-btn').forEach(btn => {
-          btn.addEventListener('click', function (e) {
-            const id = e.target.dataset.id;
-            if (!confirm('Are you sure you want to reject this comment?')) return;
-            
-            api.rejectComment(id)
-              .then(() => {
-                comments = comments.filter(c => c._id !== id && c.id !== id);
-                updateStatistics();
-                renderComments();
-              })
-              .catch(err => alert(`Error rejecting comment: ${err.message}`));
-          });
-        });
-
-        document.querySelectorAll('.post-btn').forEach(btn => {
-          btn.addEventListener('click', function (e) {
-            const id = e.target.dataset.id;
-            if (!confirm('Are you sure you want to post this comment now?')) return;
-            
-            api.postComment(id)
-              .then(() => {
-                const commentIndex = comments.findIndex(c => c._id === id || c.id === id);
-                if (commentIndex !== -1) comments[commentIndex].status = 'processing';
-                updateStatistics();
-                renderComments();
-              })
-              .catch(err => alert(`Error posting comment: ${err.message}`));
-          });
-        });
-
-        document.querySelectorAll('.edit-btn').forEach(btn => {
-          btn.addEventListener('click', openEditModal);
-        });
-      }
-
-      // Helper function to get status badge color
-      function getStatusBadgeColor(status) {
-        switch (status) {
-          case 'pending': return 'warning';
-          case 'approved': return 'success';
-          case 'rejected': return 'danger';
-          case 'posted': return 'info';
-          case 'processing': return 'primary';
-          case 'error': return 'warning';
-          default: return 'secondary';
-        }
-      }
-
-      // Helper function to get action buttons based on comment status
-      function getActionButtons(comment) {
-        const id = comment._id || comment.id;
+  btn.addEventListener('click', async (e) => {
+    const id = e.target.closest('button').dataset.id;
+    try {
+      // Show loading state
+      const button = e.target.closest('button');
+      button.disabled = true;
+      button.innerHTML = '<i class="bi bi-hourglass"></i> Approving...';
+      
+      await api.approveComment(id);
+      loadComments(); // Reload comments after successful approval
+    } catch (error) {
+      alert(`Error approving comment: ${error.message}`);
+      // Reset button on error
+      const button = e.target.closest('button');
+      button.disabled = false;
+      button.innerHTML = '<i class="bi bi-check-circle"></i> Approve';
+    }
+  });
+});
         
-        switch (comment.status) {
-          case 'pending':
-            return `
-              <button class="btn btn-sm btn-success approve-btn" data-id="${id}">Approve</button>
-              <button class="btn btn-sm btn-danger reject-btn" data-id="${id}">Reject</button>
-              <button class="btn btn-sm btn-secondary edit-btn" data-id="${id}">Edit</button>
-            `;
-          case 'approved':
-            return `
-              <button class="btn btn-sm btn-primary post-btn" data-id="${id}">Post Now</button>
-              <button class="btn btn-sm btn-danger reject-btn" data-id="${id}">Reject</button>
-              <button class="btn btn-sm btn-secondary edit-btn" data-id="${id}">Edit</button>
-            `;
-          case 'rejected':
-            return `
-              <button class="btn btn-sm btn-success approve-btn" data-id="${id}">Approve</button>
-              <button class="btn btn-sm btn-secondary edit-btn" data-id="${id}">Edit</button>
-            `;
-          case 'processing':
-            return `
-              <button class="btn btn-sm btn-outline-secondary" disabled>
-                <span class="spinner-border spinner-border-sm"></span> Processing...
-              </button>
-            `;
-          case 'error':
-            return `
-              <button class="btn btn-sm btn-warning post-btn" data-id="${id}">Retry Posting</button>
-              <button class="btn btn-sm btn-secondary edit-btn" data-id="${id}">Edit</button>
-            `;
-          case 'posted':
-            return `<span class="badge bg-success">Posted to Instagram</span>`;
-          default:
-            return '';
+        document.querySelectorAll('.reject-btn').forEach(btn => {
+          btn.addEventListener('click', async (e) => {
+            const id = e.target.closest('button').dataset.id;
+            if (confirm('Are you sure you want to reject this comment?')) {
+              try {
+                await api.rejectComment(id);
+                loadComments(); // Reload all comments
+              } catch (error) {
+                alert(`Error rejecting comment: ${error.message}`);
+              }
+            }
+          });
+        });
+        
+        document.querySelectorAll('.post-btn').forEach(btn => {
+          btn.addEventListener('click', async (e) => {
+            const id = e.target.closest('button').dataset.id;
+            try {
+              const button = e.target.closest('button');
+              button.disabled = true;
+              button.innerHTML = '<i class="bi bi-hourglass"></i> Posting...';
+              
+              await api.postComment(id);
+              loadComments(); // Reload all comments
+            } catch (error) {
+              alert(`Error posting comment: ${error.message}`);
+              const button = e.target.closest('button');
+              button.disabled = false;
+              button.innerHTML = '<i class="bi bi-send"></i> Post Comment';
+            }
+          });
+        });
+        
+        document.querySelectorAll('.edit-btn').forEach(btn => {
+  btn.addEventListener('click', async (e) => {
+    const id = e.target.closest('button').dataset.id;
+    try {
+      const comment = await api.getCommentById(id);
+      
+     
+
+editCommentIdInput.value = comment.id;
+commentTextArea.value    = comment.comment;    // ← this is wrong
+postCaptionArea.value    = comment.postCaption;
+postIdInput.value        = comment.postId;
+
+      
+      editModal.show();
+    } catch (error) {
+      alert(`Error loading comment details: ${error.message}`);
+    }
+  });
+});
+      }
+      
+      // Helper function to get status badge class
+      function getStatusBadgeClass(status) {
+        switch (status) {
+          case 'pending': return 'bg-warning text-dark';
+          case 'approved': return 'bg-success';
+          case 'processing': return 'bg-primary';
+          case 'posted': return 'bg-info';
+          case 'rejected': return 'bg-danger';
+          case 'error': return 'bg-warning text-dark';
+          default: return 'bg-secondary';
         }
       }
-
-      // Open edit modal
-      function openEditModal(e) {
-        const id = e.target.dataset.id;
-        const comment = comments.find(c => (c._id === id || c.id === id));
-        if (comment) {
-          editCommentIdInput.value = id;
-          commentTextArea.value = comment.generatedComment || comment.comment;
-          postCaptionArea.value = comment.postCaption || comment.caption;
-          postIdInput.value = comment.postId || '';
-          editModal.show();
-        }
-      }
-
-      // Save edited comment
-      async function saveComment() {
+      
+      // Event listeners for filter buttons
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Update active state
+          document.querySelector('[data-filter].active').classList.remove('active');
+          button.classList.add('active');
+          
+          // Apply filter
+          currentFilter = button.dataset.filter;
+          renderComments();
+        });
+      });
+      
+      // Save comment button handler
+      saveCommentBtn.addEventListener('click', async () => {
         const id = editCommentIdInput.value;
-        const generatedComment = commentTextArea.value.trim();
-        if (!generatedComment) {
-          alert('Comment cannot be empty');
+        const comment = commentTextArea.value;
+        
+        if (!comment.trim()) {
+          alert('Comment text cannot be empty');
           return;
         }
         
         try {
-          await api.updateComment(id, generatedComment);
-          const commentIndex = comments.findIndex(c => c._id === id || c.id === id);
-          if (commentIndex !== -1) {
-            if ('generatedComment' in comments[commentIndex]) {
-              comments[commentIndex].generatedComment = generatedComment;
-            } else {
-              comments[commentIndex].comment = generatedComment;
-            }
-            comments[commentIndex].lastUpdated = new Date().toISOString();
-          }
-          renderComments();
+          await api.updateComment(id, comment);
           editModal.hide();
+          loadComments();
         } catch (error) {
-          alert(`Error saving comment: ${error.message}`);
+          alert(`Error updating comment: ${error.message}`);
         }
-      }// Generate new comment
-      async function generateNewComment() {
-        const postId = document.getElementById('newPostId').value.trim();
-        const caption = document.getElementById('newPostCaption').value.trim();
+      });
+      
+      // Generate new comment button handler
+      generateCommentBtn.addEventListener('click', async () => {
+        const postId = document.getElementById('newPostId').value;
+        const caption = document.getElementById('newPostCaption').value;
         
-        if (!postId || !caption) {
+        if (!postId.trim() || !caption.trim()) {
           alert('Post ID and caption are required');
           return;
         }
         
         try {
+          // Update button state
+          generateCommentBtn.disabled = true;
+          generateCommentBtn.innerHTML = '<i class="bi bi-hourglass"></i> Generating...';
+          
           const result = await api.generateComment(postId, caption);
-          comments.push(result);
-          updateStatistics();
-          renderComments();
           newCommentModal.hide();
           
           // Reset form
-          document.getElementById('newCommentForm').reset();
+          document.getElementById('newPostId').value = '';
+          document.getElementById('newPostCaption').value = '';
           
-          // Show success message
-          dataSourceInfo.innerHTML = `
-            <div class="alert alert-success">
-              <i class="bi bi-check-circle"></i> Successfully generated new comment!
-            </div>
-          `;
+          // Reset button
+          generateCommentBtn.disabled = false;
+          generateCommentBtn.innerHTML = 'Generate Comment';
+          
+          // Reload comments to show the new one
+          loadComments();
         } catch (error) {
           alert(`Error generating comment: ${error.message}`);
+          generateCommentBtn.disabled = false;
+          generateCommentBtn.innerHTML = 'Generate Comment';
         }
-      }
+      });
       
-      // Helper function to escape HTML
-      function escapeHtml(unsafe) {
-        if (!unsafe) return '';
-        return unsafe
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;")
-          .replace(/'/g, "&#039;");
-      }
-      
-      // Download JSON data
-      function downloadJson() {
-        const data = JSON.stringify(comments, null, 2);
-        const blob = new Blob([data], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-        
-        a.href = url;
-        a.download = `instagram-comments-${timestamp}.json`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-      }
-      
-      // Handle logout
-      async function handleLogout() {
-        if (!confirm('Are you sure you want to log out?')) return;
-        
+      // Refresh button handler
+      refreshBtn.addEventListener('click', async () => {
         try {
-          const response = await fetch(`${API_BASE_URL}/instagram/logout`, { 
-            method: 'POST' 
-          });
+          // Show loading state
+          refreshBtn.disabled = true;
+          refreshBtn.innerHTML = '<i class="bi bi-arrow-clockwise"></i> Loading...';
           
-          if (!response.ok) throw new Error(`HTTP error ${response.status}`);
-          
-          const result = await response.json();
-          
-          // Update UI for logged out state
-          isLoggedIn = false;
-          comments = [];
-          loginPrompt.style.display = 'block';
-          dashboardContent.style.display = 'none';
-          dataSourceInfo.innerHTML = `
-            <div class="alert alert-info">
-              <i class="bi bi-info-circle"></i> ${result.message || 'Logged out successfully'}
-            </div>
-          `;
+          await loadComments();
         } catch (error) {
-          console.error('Error during logout:', error);
-          alert(`Error logging out: ${error.message}`);
+          console.error('Error refreshing comments:', error);
+        } finally {
+          // Reset button state
+          refreshBtn.disabled = false;
+          refreshBtn.innerHTML = '<i class="bi bi-arrow-clockwise"></i> Refresh';
         }
-      }
-      
-      // Initialize filter buttons
-      filterButtons.forEach(button => {
-        button.addEventListener('click', function () {
-          filterButtons.forEach(btn => btn.classList.remove('active'));
-          this.classList.add('active');
-          currentFilter = this.dataset.filter;
-          renderComments();
-        });
       });
       
-      // Add event listeners for action buttons
-      saveCommentBtn.addEventListener('click', saveComment);
-      generateCommentBtn.addEventListener('click', generateNewComment);
-      addNewCommentBtn.addEventListener('click', () => newCommentModal.show());
-      downloadJsonBtn.addEventListener('click', downloadJson);
-      refreshBtn.addEventListener('click', loadComments);
+      // Add new comment button handler
+      addNewCommentBtn.addEventListener('click', () => {
+        newCommentModal.show();
+      });
+      
+      // Instagram login button handler
       instagramLoginBtn.addEventListener('click', handleInstagramLogin);
+      
+      // Login prompt button handler
       loginPromptBtn.addEventListener('click', handleInstagramLogin);
-      logoutBtn.addEventListener('click', handleLogout);
       
-      // Check login status on page load
-      checkLoginStatus();
-      
-      // Set up polling for updates (every 30 seconds)
-      setInterval(() => {
-        if (isLoggedIn) loadComments();
-      }, 30000);
-      
-      // Handle auth token expiration and background status checks
-      let statusCheckInterval;
-      
-      function startStatusChecks() {
-        if (statusCheckInterval) clearInterval(statusCheckInterval);
-        
-        statusCheckInterval = setInterval(async () => {
-          try {
-            const status = await api.checkLoginStatus();
-            
-            // Handle session expiration
-            if (isLoggedIn && !status.loggedIn) {
-              isLoggedIn = false;
-              loginPrompt.style.display = 'block';
-              dashboardContent.style.display = 'none';
-              dataSourceInfo.innerHTML = `
-                <div class="alert alert-warning">
-                  <i class="bi bi-exclamation-triangle"></i> Your Instagram session has expired. Please log in again.
-                </div>
-              `;
-              
-              // Clear interval to prevent spamming alerts
-              clearInterval(statusCheckInterval);
-            }
-          } catch (error) {
-            console.warn('Error checking login status:', error);
-          }
-        }, 60000); // Check every minute
-      }
-      
-      startStatusChecks();
-      
-      // Error handling and connectivity monitoring
-      window.addEventListener('online', () => {
-        if (isLoggedIn) loadComments();
-        dataSourceInfo.innerHTML = `
-          <div class="alert alert-success">
-            <i class="bi bi-wifi"></i> Connection restored. Refreshing data...
-          </div>
-        `;
+      // Username button handlers
+      usernameBtn.addEventListener('click', () => {
+        // Pre-fill with current username
+        document.getElementById('modalInstagramUsername').value = stateManager.getUsername();
+        usernameModal.show();
       });
       
-      window.addEventListener('offline', () => {
-        dataSourceInfo.innerHTML = `
-          <div class="alert alert-warning">
-            <i class="bi bi-wifi-off"></i> You are currently offline. Some features may not work correctly.
-          </div>
-        `;
+      saveUsernameBtn.addEventListener('click', () => {
+        const username = document.getElementById('instagramUsername').value;
+        saveUsername(username);
       });
       
-      // Add keyboard shortcuts
-      document.addEventListener('keydown', (e) => {
-        // Refresh data with F5 or Ctrl+R
-        if (e.key === 'F5' || (e.ctrlKey && e.key === 'r')) {
-          e.preventDefault();
-          loadComments();
-        }
-        
-        // Export JSON with Ctrl+S
-        if (e.ctrlKey && e.key === 's') {
-          e.preventDefault();
-          downloadJson();
-        }
-        
-        // New comment with Ctrl+N
-        if (e.ctrlKey && e.key === 'n') {
-          e.preventDefault();
-          newCommentModal.show();
+      saveModalUsernameBtn.addEventListener('click', () => {
+        const username = document.getElementById('modalInstagramUsername').value;
+        saveUsername(username);
+      });
+      
+      // Logout button handler
+      logoutBtn.addEventListener('click', () => {
+        if (confirm('Are you sure you want to log out?')) {
+          // Clear authentication state
+          stateManager.clearLoginState();
+          isLoggedIn = false;
+          updateUIState();
         }
       });
+
+      // Initialize the application
+      checkInitialState();
     });
   </script>
 </body>

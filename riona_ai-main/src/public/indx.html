@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Riona AI Instagram Manager</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <style>
+    .comment-card {
+      margin-bottom: 20px;
+      border-left: 5px solid #ccc;
+    }
+    .comment-card.pending {
+      border-left-color: #ffc107;
+    }
+    .comment-card.approved {
+      border-left-color: #28a745;
+    }
+    .comment-card.rejected {
+      border-left-color: #dc3545;
+    }
+    .comment-card.posted {
+      border-left-color: #007bff;
+    }
+    .comment-card.processing {
+      border-left-color: #6f42c1;
+    }
+    .comment-card.error {
+      border-left-color: #fd7e14;
+    }
+    .post-caption {
+      font-style: italic;
+      color: #666;
+      margin-bottom: 10px;
+    }
+    .timestamp {
+      font-size: 0.8rem;
+      color: #888;
+    }
+    .btn-toolbar {
+      justify-content: flex-end;
+    }
+    .json-model-badge {
+      margin-left: 8px;
+      font-size: 0.75rem;
+    }
+    .post-id {
+      font-size: 0.85rem;
+      color: #495057;
+      margin-top: 5px;
+      margin-bottom: 10px;
+    }
+    .post-id-badge {
+      background-color: #e9ecef;
+      color: #495057;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    .status-history {
+      font-size: 0.8rem;
+      color: #6c757d;
+      margin-bottom: 10px;
+    }
+    .statistics-row {
+      margin-bottom: 20px;
+    }
+    .stat-card {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    .login-prompt {
+      text-align: center;
+      padding: 50px 20px;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      margin-top: 30px;
+    }
+    .login-icon {
+      font-size: 4rem;
+      color: #6c757d;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Riona AI Instagram Manager</a>
+      <div>
+        <button class="btn btn-outline-light ms-2" id="downloadJsonBtn">
+          <i class="bi bi-download"></i> Export JSON
+        </button>
+        <button class="btn btn-outline-light ms-2" id="instagramLoginBtn">
+          <i class="bi bi-instagram"></i> Instagram Login
+        </button>
+        <button class="btn btn-outline-light ms-2" id="refreshBtn">
+          <i class="bi bi-arrow-clockwise"></i> Refresh
+        </button>
+        <button class="btn btn-outline-light ms-2" id="logoutBtn">
+          <i class="bi bi-box-arrow-right"></i> Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <h1>Comment Review Dashboard</h1>
+    
+    <div class="alert alert-info" id="data-source-info">
+      Please connect your Instagram account to view comments.
+    </div>
+    
+    <!-- Content is now wrapped in a div that's hidden until Instagram login -->
+    <div id="dashboard-content" style="display: none;">
+      <!-- Statistics Section -->
+      <div class="row statistics-row">
+        <div class="col-md-2">
+          <div class="card stat-card">
+            <div class="card-body">
+              <h6 class="card-title">Total</h6>
+              <div class="stat-number" id="stat-total">0</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card stat-card">
+            <div class="card-body">
+              <h6 class="card-title">Pending</h6>
+              <div class="stat-number text-warning" id="stat-pending">0</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card stat-card">
+            <div class="card-body">
+              <h6 class="card-title">Approved</h6>
+              <div class="stat-number text-success" id="stat-approved">0</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card stat-card">
+            <div class="card-body">
+              <h6 class="card-title">Processing</h6>
+              <div class="stat-number text-primary" id="stat-processing">0</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card stat-card">
+            <div class="card-body">
+              <h6 class="card-title">Posted</h6>
+              <div class="stat-number text-info" id="stat-posted">0</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card stat-card">
+            <div class="card-body">
+              <h6 class="card-title">Rejected</h6>
+              <div class="stat-number text-danger" id="stat-rejected">0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-4">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-outline-secondary active" data-filter="all">All</button>
+          <button type="button" class="btn btn-outline-warning" data-filter="pending">Pending</button>
+          <button type="button" class="btn btn-outline-success" data-filter="approved">Approved</button>
+          <button type="button" class="btn btn-outline-primary" data-filter="processing">Processing</button>
+          <button type="button" class="btn btn-outline-info" data-filter="posted">Posted</button>
+          <button type="button" class="btn btn-outline-danger" data-filter="rejected">Rejected</button>
+          <button type="button" class="btn btn-outline-warning" data-filter="error">Error</button>
+        </div>
+        <div class="float-end">
+          <button class="btn btn-primary" id="addNewCommentBtn">
+            <i class="bi bi-plus-circle"></i> New Comment
+          </button>
+        </div>
+      </div>
+      
+      <div id="comments-container">
+        <!-- Comments will be loaded here -->
+      </div>
+    </div>
+    
+    <!-- Login prompt - shown when no Instagram account is connected -->
+    <div id="login-prompt" class="login-prompt">
+      <i class="bi bi-instagram login-icon"></i>
+      <h3>Connect Your Instagram Account</h3>
+      <p class="lead">Please connect your Instagram account to manage comments.</p>
+      <button class="btn btn-primary btn-lg mt-3" id="loginPromptBtn">
+        <i class="bi bi-instagram"></i> Connect Instagram
+      </button>
+    </div>
+  </div>
+
+  <!-- Edit Comment Modal -->
+  <div class="modal fade" id="editCommentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Comment</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="editCommentForm">
+            <input type="hidden" id="editCommentId" />
+            
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="postId" class="form-label">Post ID</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-instagram"></i></span>
+                  <input type="text" class="form-control" id="postId" readonly />
+                </div>
+              </div>
+              
+              <div class="col-md-6">
+                <label for="commentStatus" class="form-label">Status</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-flag"></i></span>
+                  <input type="text" class="form-control" id="commentStatus" readonly />
+                </div>
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="postCaption" class="form-label">Post Caption</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-chat-quote"></i></span>
+                <textarea class="form-control" id="postCaption" rows="3" readonly></textarea>
+              </div>
+              <small class="form-text text-muted">Original Instagram post caption</small>
+            </div>
+            
+            <div class="mb-4">
+              <label for="commentText" class="form-label">Comment</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-pencil-square"></i></span>
+                <textarea class="form-control" id="commentText" rows="4" required></textarea>
+              </div>
+              <div class="d-flex justify-content-between mt-2">
+                <small class="form-text text-muted">Edit the AI-generated comment</small>
+                <small id="charCount" class="text-muted">0/2200 characters</small>
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="updateAllStatuses">
+                <label class="form-check-label" for="updateAllStatuses">
+                  Reset approval status after editing
+                </label>
+                <small class="form-text text-muted d-block">If checked, comment will be set back to "pending" status</small>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="saveCommentBtn">
+            <i class="bi bi-save"></i> Save Changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Manual Comment Modal -->
+  <div class="modal fade" id="newCommentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Generate New Comment</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="newCommentForm">
+            <div class="mb-3">
+              <label for="newPostId" class="form-label">Post ID</label>
+              <input type="text" class="form-control" id="newPostId" required />
+            </div>
+            <div class="mb-3">
+              <label for="newPostCaption" class="form-label">Post Caption</label>
+              <textarea class="form-control" id="newPostCaption" rows="3" required></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="generateCommentBtn">Generate Comment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Instagram Login Status Modal -->
+  <div class="modal fade" id="instagramLoginStatusModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Instagram Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-info">
+            <p><i class="bi bi-info-circle"></i> A browser window will open for you to log in to Instagram.</p>
+            <p>Please complete the login process in the browser. This window will update once the login is complete.</p>
+            <div id="loginStatus">
+              <div class="d-flex justify-content-center">
+                <div class="spinner-border text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+              <p class="text-center mt-2">Waiting for login process...</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const commentsContainer = document.getElementById('comments-container');
+      const filterButtons = document.querySelectorAll('[data-filter]');
+      const editModal = new bootstrap.Modal(document.getElementById('editCommentModal'));
+      const newCommentModal = new bootstrap.Modal(document.getElementById('newCommentModal'));
+      const commentTextArea = document.getElementById('commentText');
+      const postCaptionArea = document.getElementById('postCaption');
+      const postIdInput = document.getElementById('postId');
+      const editCommentIdInput = document.getElementById('editCommentId');
+      const saveCommentBtn = document.getElementById('saveCommentBtn');
+      const generateCommentBtn = document.getElementById('generateCommentBtn');
+      const downloadJsonBtn = document.getElementById('downloadJsonBtn');
+      const refreshBtn = document.getElementById('refreshBtn');
+      const dataSourceInfo = document.getElementById('data-source-info');
+      const addNewCommentBtn = document.getElementById('addNewCommentBtn');
+      const logoutBtn = document.getElementById('logoutBtn');
+      const instagramLoginBtn = document.getElementById('instagramLoginBtn');
+      const loginStatusModal = new bootstrap.Modal(document.getElementById('instagramLoginStatusModal'));
+      const loginStatus = document.getElementById('loginStatus');
+      const dashboardContent = document.getElementById('dashboard-content');
+      const loginPrompt = document.getElementById('login-prompt');
+      const loginPromptBtn = document.getElementById('loginPromptBtn');
+      
+      const commentStatusInput = document.getElementById('commentStatus');
+      const updateAllStatusesCheckbox = document.getElementById('updateAllStatuses');
+      const charCount = document.getElementById('charCount');
+      let currentFilter = 'all';
+      let comments = [];
+      let isLoggedIn = false; // Track Instagram login status
+      const API_BASE_URL = '/api'; // Adjust based on your API configuration
+
+      // Updated API client
+      const api = {
+        async fetchComments() {
+          const response = await fetch(`${API_BASE_URL}/comments`);
+          if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+          return await response.json();
+        },
+        async getCommentById(id) {
+          const response = await fetch(`${API_BASE_URL}/comments/${id}`);
+          if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+          return await response.json();
+        },
+        async approveComment(id) {
+          const response = await fetch(`${API_BASE_URL}/comments/${id}/approve`, {
+            method: 'POST',
+          });
+          if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+          return await response.json();
+        },
+        async rejectComment(id) {
+          const response = await fetch(`${API_BASE_URL}/comments/${id}/reject`, {
+            method: 'POST',
+          });
+          if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+          return await response.json();
+        },
+        async postComment(id) {
+          const response = await fetch(`${API_BASE_URL}/comments/${id}/comment`, {
+            method: 'POST',
+          });
+          if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+          return await response.json();
+        },
+        async updateComment(id, comment) {
+          const response = await fetch(`${API_BASE_URL}/comments/${id}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ comment }),
+          });
+          if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+          return await response.json();
+        },
+        async generateComment(postId, caption) {
+          const response = await fetch(`${API_BASE_URL}/comments/generate`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ postId, caption }),
+          });
+          if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+          return await response.json();
+        },
+        async instagramLogin() {
+          const response = await fetch(`${API_BASE_URL}/instagram/login`, { 
+            method: 'POST' 
+          });
+          if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+          return await response.json();
+        },
+        async checkLoginStatus() {
+          const response = await fetch(`${API_BASE_URL}/instagram/status`);
+          if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+          return await response.json();
+        }
+      };
+      
+      // Check if user is logged in to Instagram
+      async function checkLoginStatus() {
+        try {
+          const status = await api.checkLoginStatus();
+          isLoggedIn = status.loggedIn;
+          
+          if (isLoggedIn) {
+            // Show dashboard content and load comments
+            loginPrompt.style.display = 'none';
+            dashboardContent.style.display = 'block';
+            dataSourceInfo.innerHTML = `
+              <div class="alert alert-success">
+                <i class="bi bi-check-circle"></i> Connected to Instagram as ${status.username || 'user'}
+              </div>
+            `;
+            loadComments();
+          } else {
+            // Show login prompt
+            loginPrompt.style.display = 'block';
+            dashboardContent.style.display = 'none';
+            dataSourceInfo.innerHTML = `
+              <div class="alert alert-warning">
+                <i class="bi bi-exclamation-triangle"></i> Please connect your Instagram account to view comments
+              </div>
+            `;
+          }
+        } catch (error) {
+          console.error('Error checking login status:', error);
+          dataSourceInfo.innerHTML = `
+            <div class="alert alert-danger">
+              <i class="bi bi-exclamation-triangle"></i> Error checking Instagram connection: ${error.message}
+            </div>
+          `;
+          loginPrompt.style.display = 'block';
+          dashboardContent.style.display = 'none';
+        }
+      }
+      
+      // Instagram login functionality
+      async function handleInstagramLogin() {
+        loginStatus.innerHTML = `
+          <div class="d-flex justify-content-center">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          <p class="text-center mt-2">Launching Instagram login browser...</p>
+        `;
+        
+        loginStatusModal.show();
+        
+        try {
+          const result = await api.instagramLogin();
+          
+          loginStatus.innerHTML = `
+            <div class="alert alert-success">
+              <i class="bi bi-check-circle-fill"></i> ${result.message}
+            </div>
+          `;
+          
+          // Update UI after successful login
+          setTimeout(() => {
+            loginStatusModal.hide();
+            isLoggedIn = true;
+            loginPrompt.style.display = 'none';
+            dashboardContent.style.display = 'block';
+            dataSourceInfo.innerHTML = `
+              <div class="alert alert-success">
+                <i class="bi bi-check-circle"></i> Connected to Instagram successfully!
+              </div>
+            `;
+            loadComments();
+          }, 2000);
+          
+        } catch (error) {
+          console.error('Error during Instagram login:', error);
+          
+          loginStatus.innerHTML = `
+            <div class="alert alert-danger">
+              <i class="bi bi-exclamation-triangle-fill"></i> Error during Instagram login: ${error.message}
+              <button class="btn btn-sm btn-outline-danger mt-2" id="retryLoginBtn">Retry</button>
+            </div>
+          `;
+          
+          document.getElementById('retryLoginBtn')?.addEventListener('click', () => handleInstagramLogin());
+        }
+      }
+      
+      // Load comments from API
+      async function loadComments() {
+        if (!isLoggedIn) {
+          return; // Don't load comments if not logged in
+        }
+        
+        try {
+          comments = await api.fetchComments();
+          dataSourceInfo.innerHTML = `
+            <div class="alert alert-success">
+              Successfully loaded ${comments.length} comments from Instagram
+            </div>
+          `;
+          updateStatistics();
+          renderComments();
+        } catch (error) {
+          console.error('Error loading comments:', error);
+          dataSourceInfo.innerHTML = `
+            <div class="alert alert-danger">
+              <strong>Error:</strong> Failed to load comments from API.
+              <p>${error.message}</p>
+              <button class="btn btn-sm btn-primary" id="retryBtn">Retry</button>
+            </div>
+          `;
+          document.getElementById('retryBtn')?.addEventListener('click', loadComments);
+        }
+      }
+
+      // Update statistics
+      function updateStatistics() {
+        const stats = {
+          total: comments.length,
+          pending: comments.filter(c => c.status === 'pending').length,
+          approved: comments.filter(c => c.status === 'approved').length,
+          processing: comments.filter(c => c.status === 'processing').length,
+          posted: comments.filter(c => c.status === 'posted').length,
+          rejected: comments.filter(c => c.status === 'rejected').length,
+          error: comments.filter(c => c.status === 'error').length
+        };
+        
+        document.getElementById('stat-total').textContent = stats.total;
+        document.getElementById('stat-pending').textContent = stats.pending;
+        document.getElementById('stat-approved').textContent = stats.approved;
+        document.getElementById('stat-processing').textContent = stats.processing;
+        document.getElementById('stat-posted').textContent = stats.posted;
+        document.getElementById('stat-rejected').textContent = stats.rejected;
+      }
+
+      // Render comments based on current filter
+      function renderComments() {
+        if (!isLoggedIn) {
+          return; // Don't render if not logged in
+        }
+        
+        if (comments.length === 0) {
+          commentsContainer.innerHTML = `
+            <div class="alert alert-info">
+              No comments found.
+            </div>
+          `;
+          return;
+        }
+        
+        let filteredComments = currentFilter === 'all' ? comments : comments.filter(c => c.status === currentFilter);
+        
+        if (filteredComments.length === 0) {
+          commentsContainer.innerHTML = `
+            <div class="alert alert-info">
+              No ${currentFilter} comments found.
+            </div>
+          `;
+          return;
+        }
+        
+        filteredComments.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        let html = '';
+        
+        filteredComments.forEach((comment, index) => {
+          const date = new Date(comment.timestamp);
+          const formattedDate = date.toLocaleString();
+          const modelBadge = comment.model ? `<span class="badge bg-info json-model-badge">${escapeHtml(comment.model)}</span>` : '';
+          const lastUpdated = comment.lastUpdated ? new Date(comment.lastUpdated).toLocaleString() : 'N/A';
+          
+          html += `
+            <div class="card comment-card ${comment.status}" data-id="${comment._id || comment.id}">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                  <h5 class="card-title">Post #${index + 1} ${modelBadge}</h5>
+                  <span class="badge bg-${getStatusBadgeColor(comment.status)}">${comment.status}</span>
+                </div>
+                <span class="post-id">
+                  <strong>Post ID:</strong>
+                  <a class="post-id-badge" href="https://www.instagram.com/p/${escapeHtml(comment.postId || '')}/" target="_blank">
+                    https://www.instagram.com/p/${escapeHtml(comment.postId || '')}/
+                  </a>
+                </span>
+
+                <div class="post-caption">"${escapeHtml(comment.postCaption || comment.caption)}"</div>
+                <div class="card-text mb-3">
+                  <strong>Comment:</strong> ${escapeHtml(comment.generatedComment || comment.comment)}
+                </div>
+                <div class="status-history">
+                  <small>Created: ${formattedDate} | Last Updated: ${lastUpdated}</small>
+                </div>
+                <div class="btn-toolbar">
+                  ${getActionButtons(comment)}
+                </div>
+              </div>
+            </div>
+          `;
+        });
+        
+        commentsContainer.innerHTML = html;
+
+        // Add event listeners
+        addEventListeners();
+      }
+
+      // Add event listeners to buttons
+      function addEventListeners() {
+        document.querySelectorAll('.approve-btn').forEach(btn => {
+          btn.addEventListener('click', function (e) {
+            const id = e.target.dataset.id;
+            if (!confirm('Are you sure you want to approve this comment?')) return;
+            
+            api.approveComment(id)
+              .then(() => {
+                const commentIndex = comments.findIndex(c => c._id === id || c.id === id);
+                if (commentIndex !== -1) comments[commentIndex].status = 'approved';
+                updateStatistics();
+                renderComments();
+              })
+              .catch(err => alert(`Error approving comment: ${err.message}`));
+          });
+        });
+
+        document.querySelectorAll('.reject-btn').forEach(btn => {
+          btn.addEventListener('click', function (e) {
+            const id = e.target.dataset.id;
+            if (!confirm('Are you sure you want to reject this comment?')) return;
+            
+            api.rejectComment(id)
+              .then(() => {
+                comments = comments.filter(c => c._id !== id && c.id !== id);
+                updateStatistics();
+                renderComments();
+              })
+              .catch(err => alert(`Error rejecting comment: ${err.message}`));
+          });
+        });
+
+        document.querySelectorAll('.post-btn').forEach(btn => {
+          btn.addEventListener('click', function (e) {
+            const id = e.target.dataset.id;
+            if (!confirm('Are you sure you want to post this comment now?')) return;
+            
+            api.postComment(id)
+              .then(() => {
+                const commentIndex = comments.findIndex(c => c._id === id || c.id === id);
+                if (commentIndex !== -1) comments[commentIndex].status = 'processing';
+                updateStatistics();
+                renderComments();
+              })
+              .catch(err => alert(`Error posting comment: ${err.message}`));
+          });
+        });
+
+        document.querySelectorAll('.edit-btn').forEach(btn => {
+          btn.addEventListener('click', openEditModal);
+        });
+      }
+
+      // Helper function to get status badge color
+      function getStatusBadgeColor(status) {
+        switch (status) {
+          case 'pending': return 'warning';
+          case 'approved': return 'success';
+          case 'rejected': return 'danger';
+          case 'posted': return 'info';
+          case 'processing': return 'primary';
+          case 'error': return 'warning';
+          default: return 'secondary';
+        }
+      }
+
+      // Helper function to get action buttons based on comment status
+      function getActionButtons(comment) {
+        const id = comment._id || comment.id;
+        
+        switch (comment.status) {
+          case 'pending':
+            return `
+              <button class="btn btn-sm btn-success approve-btn" data-id="${id}">Approve</button>
+              <button class="btn btn-sm btn-danger reject-btn" data-id="${id}">Reject</button>
+              <button class="btn btn-sm btn-secondary edit-btn" data-id="${id}">Edit</button>
+            `;
+          case 'approved':
+            return `
+              <button class="btn btn-sm btn-primary post-btn" data-id="${id}">Post Now</button>
+              <button class="btn btn-sm btn-danger reject-btn" data-id="${id}">Reject</button>
+              <button class="btn btn-sm btn-secondary edit-btn" data-id="${id}">Edit</button>
+            `;
+          case 'rejected':
+            return `
+              <button class="btn btn-sm btn-success approve-btn" data-id="${id}">Approve</button>
+              <button class="btn btn-sm btn-secondary edit-btn" data-id="${id}">Edit</button>
+            `;
+          case 'processing':
+            return `
+              <button class="btn btn-sm btn-outline-secondary" disabled>
+                <span class="spinner-border spinner-border-sm"></span> Processing...
+              </button>
+            `;
+          case 'error':
+            return `
+              <button class="btn btn-sm btn-warning post-btn" data-id="${id}">Retry Posting</button>
+              <button class="btn btn-sm btn-secondary edit-btn" data-id="${id}">Edit</button>
+            `;
+          case 'posted':
+            return `<span class="badge bg-success">Posted to Instagram</span>`;
+          default:
+            return '';
+        }
+      }
+
+      // Open edit modal
+      function openEditModal(e) {
+        const id = e.target.dataset.id;
+        const comment = comments.find(c => (c._id === id || c.id === id));
+        if (comment) {
+          editCommentIdInput.value = id;
+          commentTextArea.value = comment.generatedComment || comment.comment;
+          postCaptionArea.value = comment.postCaption || comment.caption;
+          postIdInput.value = comment.postId || '';
+          editModal.show();
+        }
+      }
+
+      // Save edited comment
+      async function saveComment() {
+        const id = editCommentIdInput.value;
+        const generatedComment = commentTextArea.value.trim();
+        if (!generatedComment) {
+          alert('Comment cannot be empty');
+          return;
+        }
+        
+        try {
+          await api.updateComment(id, generatedComment);
+          const commentIndex = comments.findIndex(c => c._id === id || c.id === id);
+          if (commentIndex !== -1) {
+            if ('generatedComment' in comments[commentIndex]) {
+              comments[commentIndex].generatedComment = generatedComment;
+            } else {
+              comments[commentIndex].comment = generatedComment;
+            }
+            comments[commentIndex].lastUpdated = new Date().toISOString();
+          }
+          renderComments();
+          editModal.hide();
+        } catch (error) {
+          alert(`Error saving comment: ${error.message}`);
+        }
+      }// Generate new comment
+      async function generateNewComment() {
+        const postId = document.getElementById('newPostId').value.trim();
+        const caption = document.getElementById('newPostCaption').value.trim();
+        
+        if (!postId || !caption) {
+          alert('Post ID and caption are required');
+          return;
+        }
+        
+        try {
+          const result = await api.generateComment(postId, caption);
+          comments.push(result);
+          updateStatistics();
+          renderComments();
+          newCommentModal.hide();
+          
+          // Reset form
+          document.getElementById('newCommentForm').reset();
+          
+          // Show success message
+          dataSourceInfo.innerHTML = `
+            <div class="alert alert-success">
+              <i class="bi bi-check-circle"></i> Successfully generated new comment!
+            </div>
+          `;
+        } catch (error) {
+          alert(`Error generating comment: ${error.message}`);
+        }
+      }
+      
+      // Helper function to escape HTML
+      function escapeHtml(unsafe) {
+        if (!unsafe) return '';
+        return unsafe
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+      
+      // Download JSON data
+      function downloadJson() {
+        const data = JSON.stringify(comments, null, 2);
+        const blob = new Blob([data], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+        
+        a.href = url;
+        a.download = `instagram-comments-${timestamp}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+      
+      // Handle logout
+      async function handleLogout() {
+        if (!confirm('Are you sure you want to log out?')) return;
+        
+        try {
+          const response = await fetch(`${API_BASE_URL}/instagram/logout`, { 
+            method: 'POST' 
+          });
+          
+          if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+          
+          const result = await response.json();
+          
+          // Update UI for logged out state
+          isLoggedIn = false;
+          comments = [];
+          loginPrompt.style.display = 'block';
+          dashboardContent.style.display = 'none';
+          dataSourceInfo.innerHTML = `
+            <div class="alert alert-info">
+              <i class="bi bi-info-circle"></i> ${result.message || 'Logged out successfully'}
+            </div>
+          `;
+        } catch (error) {
+          console.error('Error during logout:', error);
+          alert(`Error logging out: ${error.message}`);
+        }
+      }
+      
+      // Initialize filter buttons
+      filterButtons.forEach(button => {
+        button.addEventListener('click', function () {
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          this.classList.add('active');
+          currentFilter = this.dataset.filter;
+          renderComments();
+        });
+      });
+      
+      // Add event listeners for action buttons
+      saveCommentBtn.addEventListener('click', saveComment);
+      generateCommentBtn.addEventListener('click', generateNewComment);
+      addNewCommentBtn.addEventListener('click', () => newCommentModal.show());
+      downloadJsonBtn.addEventListener('click', downloadJson);
+      refreshBtn.addEventListener('click', loadComments);
+      instagramLoginBtn.addEventListener('click', handleInstagramLogin);
+      loginPromptBtn.addEventListener('click', handleInstagramLogin);
+      logoutBtn.addEventListener('click', handleLogout);
+      
+      // Check login status on page load
+      checkLoginStatus();
+      
+      // Set up polling for updates (every 30 seconds)
+      setInterval(() => {
+        if (isLoggedIn) loadComments();
+      }, 30000);
+      
+      // Handle auth token expiration and background status checks
+      let statusCheckInterval;
+      
+      function startStatusChecks() {
+        if (statusCheckInterval) clearInterval(statusCheckInterval);
+        
+        statusCheckInterval = setInterval(async () => {
+          try {
+            const status = await api.checkLoginStatus();
+            
+            // Handle session expiration
+            if (isLoggedIn && !status.loggedIn) {
+              isLoggedIn = false;
+              loginPrompt.style.display = 'block';
+              dashboardContent.style.display = 'none';
+              dataSourceInfo.innerHTML = `
+                <div class="alert alert-warning">
+                  <i class="bi bi-exclamation-triangle"></i> Your Instagram session has expired. Please log in again.
+                </div>
+              `;
+              
+              // Clear interval to prevent spamming alerts
+              clearInterval(statusCheckInterval);
+            }
+          } catch (error) {
+            console.warn('Error checking login status:', error);
+          }
+        }, 60000); // Check every minute
+      }
+      
+      startStatusChecks();
+      
+      // Error handling and connectivity monitoring
+      window.addEventListener('online', () => {
+        if (isLoggedIn) loadComments();
+        dataSourceInfo.innerHTML = `
+          <div class="alert alert-success">
+            <i class="bi bi-wifi"></i> Connection restored. Refreshing data...
+          </div>
+        `;
+      });
+      
+      window.addEventListener('offline', () => {
+        dataSourceInfo.innerHTML = `
+          <div class="alert alert-warning">
+            <i class="bi bi-wifi-off"></i> You are currently offline. Some features may not work correctly.
+          </div>
+        `;
+      });
+      
+      // Add keyboard shortcuts
+      document.addEventListener('keydown', (e) => {
+        // Refresh data with F5 or Ctrl+R
+        if (e.key === 'F5' || (e.ctrlKey && e.key === 'r')) {
+          e.preventDefault();
+          loadComments();
+        }
+        
+        // Export JSON with Ctrl+S
+        if (e.ctrlKey && e.key === 's') {
+          e.preventDefault();
+          downloadJson();
+        }
+        
+        // New comment with Ctrl+N
+        if (e.ctrlKey && e.key === 'n') {
+          e.preventDefault();
+          newCommentModal.show();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,9 +1,8 @@
-// Dans le fichier index.ts
 import express, { Application } from 'express';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import helmet from 'helmet';
-import { runInstagram } from './client/Instagram';
+import { runInstagram } from './client/Instagram'; // Updated import path
 import logger, { setupErrorHandlers } from './config/logger';
 import { setup_HandleError } from './utils';
 import { connectToDatabase } from './config/db';
@@ -22,33 +21,36 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true, limit: '1kb' }));
 app.use(cookieParser());
 
-const runAgents = async () => {
+// Start the Instagram automation process
+const runInstagramAgent = async () => {
     try {
-        // Attendre que la connexion à la base de données soit établie
+        // Connect to database at startup
         await connectToDatabase();
         
         while (true) {
-            logger.info("Starting Instagram agent iteration...");
-            await runInstagram();
-            logger.info("Instagram agent iteration finished.");
+            logger.info("Starting Instagram automation iteration...");
+            await runInstagram(); // No userId parameter needed based on instagram_automation.ts
+            logger.info("Instagram automation iteration finished.");
 
             // Wait for 30 seconds before next iteration
             await new Promise(resolve => setTimeout(resolve, 30000));
         }
     } catch (error) {
-        setup_HandleError(error, "Error in runAgents:");
+        setup_HandleError(error, "Error in Instagram automation:");
     }
 };
 
-// Démarrer l'application de façon asynchrone
+// Start the application asynchronously
 const startApp = async () => {
     try {
-        await runAgents();
+        await runInstagramAgent();
     } catch (error) {
-        setup_HandleError(error, "Error running agents:");
+        setup_HandleError(error, "Error starting Instagram agent:");
     }
 };
 
+// Start the application
 startApp();
 
+// Export the Express app
 export default app;

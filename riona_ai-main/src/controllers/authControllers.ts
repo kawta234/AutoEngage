@@ -1,19 +1,23 @@
+// controllers/authController.ts
 import { Request, Response } from 'express';
-import { connectToDatabase } from '../config/db';
+import { connectToDatabase, getUsersCollection } from '../config/db';
 import { User, IUser } from '../models/user';
 import { ObjectId } from 'mongodb';
 import logger from '../config/logger';
 
-// Added getUsersCollection function since it was missing in db.ts
-async function getUsersCollection() {
-  const { db } = await connectToDatabase();
-  return db.collection<IUser>('users');
-}
-
 // Register a new user
 export const registerUser = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { username, email, password, displayName } = req.body;
+    const { 
+      username, 
+      email, 
+      password, 
+      firstName, 
+      familyName,
+      displayName,
+      phone,
+      country 
+    } = req.body;
     
     // Validate input
     if (!username || !email || !password) {
@@ -39,22 +43,30 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
       username,
       email,
       password: hashedPassword,
+      firstName,
+      familyName,
       displayName: displayName || username,
+      phone,
+      country,
       role: 'user' as const,
       createdAt: new Date(),
+      updatedAt: new Date(),
       isActive: true
     };
     
     // Create a new User instance and insert into the collection
     const newUser = new User(userData);
-    await collection.insertOne(newUser);
+    const result = await collection.insertOne(newUser);
     
     // Exclude the password when returning the new user data
     const { password: _, ...userWithoutPassword } = newUser;
     
     res.status(201).json({
       message: 'User registered successfully',
-      user: userWithoutPassword
+      user: {
+        ...userWithoutPassword,
+        _id: result.insertedId
+      }
     });
   } catch (error) {
     logger.error('Error registering user:', error);
@@ -78,6 +90,9 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
         id: (req.user as IUser)._id,
         username: (req.user as IUser).username,
         displayName: (req.user as IUser).displayName,
+        firstName: (req.user as IUser).firstName,
+        familyName: (req.user as IUser).familyName,
+        email: (req.user as IUser).email,
         role: (req.user as IUser).role
       }
     });
@@ -90,6 +105,9 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
         id: (req.user as IUser)._id,
         username: (req.user as IUser).username,
         displayName: (req.user as IUser).displayName,
+        firstName: (req.user as IUser).firstName,
+        familyName: (req.user as IUser).familyName,
+        email: (req.user as IUser).email,
         role: (req.user as IUser).role
       }
     });
@@ -108,6 +126,9 @@ export const getCurrentUser = (req: Request, res: Response): void => {
       id: (req.user as IUser)._id,
       username: (req.user as IUser).username,
       displayName: (req.user as IUser).displayName,
+      firstName: (req.user as IUser).firstName,
+      familyName: (req.user as IUser).familyName,
+      email: (req.user as IUser).email,
       role: (req.user as IUser).role
     }
   });
@@ -121,4 +142,38 @@ export const logoutUser = (req: Request, res: Response): void => {
     }
     return res.redirect('/login');
   });
+};
+
+// Update user profile
+export const updateUserProfile = async (req: Request, res: Response): Promise<void> => {
+  try {
+    if (!req.isAuthenticated()) {
+      res.status(401).json({ message: 'Not authenticated' });
+      return;
+    }
+    
+    const userId = (req.user as IUser)._id;
+    const { firstName, familyName, displayName, phone, country } = req.body;
+    
+    const collection = await getUsersCollection();
+    
+    await collection.updateOne(
+      { _id: new ObjectId(userId) },
+      { 
+        $set: { 
+          firstName,
+          familyName,
+          displayName: displayName || (req.user as IUser).displayName,
+          phone,
+          country,
+          updatedAt: new Date()
+        } 
+      }
+    );
+    
+    res.status(200).json({ message: 'Profile updated successfully' });
+  } catch (error) {
+    logger.error('Error updating user profile:', error);
+    res.status(500).json({ message: 'Failed to update profile' });
+  }
 };

@@ -1,49 +1,60 @@
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import { IUser, User } from '../models/user';
-import { ObjectId, Document, WithId } from 'mongodb';
+import { ObjectId } from 'mongodb';
 import logger from './logger';
-import { connectToDatabase } from './db';
+import { connectToDatabase, getUsersCollection } from './db';
 
-// Define a type that represents the user as stored in MongoDB
-type UserDocument = WithId<Document> & IUser;
+export async function configurePassport(): Promise<void> {
+  // Ensure database is connected before configuring passport
+  await connectToDatabase();
 
-// Added getUsersCollection function since it was missing
-async function getUsersCollection() {
-  const { db } = await connectToDatabase();
-  return db.collection<IUser>('users');
-}
-
-export function configurePassport(): void {
   // Local Strategy
   passport.use(
     new LocalStrategy(async (username, password, done) => {
       try {
-        const collection = await getUsersCollection();
+        const collection = getUsersCollection();
         
-        // Trouver l'utilisateur par username ou email
+        // Find user by username or email
         const user = await collection.findOne({
           $or: [{ username }, { email: username }],
-        }) as UserDocument | null;
+        });
         
         if (!user) {
           return done(null, false, { message: 'Incorrect username or password' });
         }
         
-        // Vérifier que l'utilisateur est actif
+        // Check if user is active
         if (!user.isActive) {
           return done(null, false, { message: 'Account is disabled' });
         }
         
-        // Ajoutez ici : instanciation et vérification du mot de passe
-        const userInstance = new User(user);
-        const isMatch = await userInstance.comparePassword(password);
-        
-        if (!isMatch) {
-          return done(null, false, { message: 'Incorrect username or password' });
+        // Make sure we have a proper hash to compare against
+        const passwordHash = user.password;
+        if (typeof passwordHash !== 'string') {
+          logger.error('Invalid password hash format in database');
+          return done(null, false, { message: 'Authentication error' });
         }
         
-        return done(null, user as IUser);
+        // Make sure password is a string
+        if (typeof password !== 'string') {
+          logger.error('Invalid password format provided');
+          return done(null, false, { message: 'Authentication error' });
+        }
+        
+        // Use the static comparePassword method
+        try {
+          const isMatch = await User.comparePassword(password, passwordHash);
+          
+          if (!isMatch) {
+            return done(null, false, { message: 'Incorrect username or password' });
+          }
+          
+          return done(null, user);
+        } catch (bcryptError) {
+          logger.error('Password comparison error:', bcryptError);
+          return done(null, false, { message: 'Authentication error' });
+        }
       } catch (error) {
         logger.error('Passport authentication error:', error);
         return done(error);
@@ -51,25 +62,40 @@ export function configurePassport(): void {
     })
   );
   
-  // Serialization with proper type handling
+  // Serialization
   passport.serializeUser((user: Express.User, done) => {
-    const userWithId = user as unknown as UserDocument;
-    const userId = userWithId._id?.toString();
+    const userId = (user as any)._id?.toString();
     done(null, userId);
   });
   
-  // Deserialization with proper type handling
+  // Deserialization
   passport.deserializeUser(async (id: string, done) => {
     try {
-      const collection = await getUsersCollection();
-      const user = await collection.findOne({ _id: new ObjectId(id) }) as UserDocument | null;
-      if (!user) {
-        return done(null, undefined);
+      if (!ObjectId.isValid(id)) {
+        return done(null, false);
       }
-      done(null, user as IUser);
+      
+      const collection = getUsersCollection();
+      const user = await collection.findOne({ _id: new ObjectId(id) });
+      
+      if (!user) {
+        return done(null, false);
+      }
+      
+      done(null, user);
     } catch (error) {
       logger.error('Passport deserialization error:', error);
       done(error);
     }
   });
+}
+
+// Function to initialize passport in your app
+export async function initializePassport(app: any): Promise<void> {
+  await configurePassport();
+  
+  app.use(passport.initialize());
+  app.use(passport.session());
+  
+  logger.info('Passport initialized successfully');
 }

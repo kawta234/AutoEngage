@@ -11,8 +11,12 @@ import commentRoutes from './routes/commentsRoutes';
 import { isAuthenticated } from './midleware/auth';
 import logger from './config/logger';
 // In server.ts
-import instagramRoutes from './routes/instaRoute';
 
+// If your file is named instaRoute.ts (singular)
+
+
+// If your file is named instaRoutes.ts (plural)
+import instagramRoutes from './routes/instaRoute';
 // Other routes...
  // This makes the endpoint /api/instagram/login
 

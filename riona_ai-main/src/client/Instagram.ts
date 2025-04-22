@@ -1,4 +1,3 @@
-// instagram_automation.ts
 import { Browser, DEFAULT_INTERCEPT_RESOLUTION_PRIORITY } from "puppeteer";
 import puppeteer from "puppeteer-extra";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
@@ -36,12 +35,93 @@ puppeteer.use(
   })
 );
 
-
-
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 const COOKIES_PATH = "./cookies/Instagramcookies.json";
 
-export async function runInstagram(): Promise<void> {
+// Function to get Instagram username from edit page
+export async function getInstagramUsername(page: any, usernameSelector?: string): Promise<string> {
+  try {
+    logger.info("Getting Instagram username from edit page...");
+    
+    // Navigate to the edit profile page
+    await page.goto("https://www.instagram.com/accounts/edit/", { waitUntil: "networkidle2" });
+    await delay(5000);
+    
+    // Use the provided selector if available, otherwise use our precise selector
+    // This targets specifically the span containing the username based on the HTML structure you shared
+    const selector = usernameSelector || 
+      'span[dir="auto"][style*="--lineHeight: 20px"]';
+    
+    // Wait for the element to be available
+    await page.waitForSelector(selector, { timeout: 15000 });
+    
+    // Extract the username
+    const username = await page.evaluate((sel: string) => {
+      const elements = document.querySelectorAll(sel);
+      // Loop through all matching elements to find the right one
+      for (let i = 0; i < elements.length; i++) {
+        const element = elements[i];
+        const text = element.textContent?.trim();
+        
+        // Skip empty elements or elements with "Accounts Center" text
+        if (!text || text.includes("Accounts Center")) {
+          continue;
+        }
+        
+        // Check if this text looks like a username (no spaces, reasonable length)
+        if (text.length > 2 && text.length <= 30 && !text.includes(" ")) {
+          return text;
+        }
+      }
+      return null;
+    }, selector);
+    
+    if (username) {
+      logger.info(`Username found from edit page: ${username}`);
+      return username; // This should now be "majesty___jewelry"
+    } else {
+      // If we couldn't find the username with our first approach, try a more specific selector
+      logger.warn("Username not found with primary selector, trying alternative...");
+      
+      // This more specific selector targets the exact span with the username
+      const alternativeSelector = 'div.x9f619 div.xamitd3 span[dir="auto"][style*="20px"]';
+      
+      try {
+        await page.waitForSelector(alternativeSelector, { timeout: 5000 });
+        
+        const altUsername = await page.evaluate((sel: string) => {
+          const element = document.querySelector(sel);
+          return element?.textContent?.trim() || null;
+        }, alternativeSelector);
+        
+        if (altUsername) {
+          logger.info(`Username found with alternative selector: ${altUsername}`);
+          return altUsername;
+        }
+      } catch (err) {
+        logger.warn("Alternative selector failed:", err);
+      }
+      
+      logger.warn("Username not found on edit page");
+      return "instagram_user";
+    }
+  } catch (error) {
+    logger.error("Error getting username from edit page:", error);
+    
+    try {
+      // For debugging purposes, save a screenshot
+      await page.screenshot({ path: 'instagram-username-error.png' });
+      logger.info("Debug screenshot saved");
+    } catch (e) {
+      // Ignore screenshot errors
+    }
+    
+    return "instagram_user";
+  }
+}
+
+
+export async function runInstagram(usernameSelector?: string): Promise<void> {
   // Start proxy server (optional)
   const proxyServer = new Server({ port: 8000 });
   await proxyServer.listen();
@@ -53,48 +133,44 @@ export async function runInstagram(): Promise<void> {
   });
   const page = await browser.newPage();
 
-  // Ensure we only log in via cookies
-  const cookiesExist = await Instagram_cookiesExist();
-  logger.info(`Cookies exist: ${cookiesExist}`);
-
-  if (!cookiesExist) {
-    logger.error("No Instagram cookies found; cannot log in.");
-    await browser.close();
-    await proxyServer.close(true);
-    return;
+  // 1) Wait until cookies file appears
+  while (!(await Instagram_cookiesExist())) {
+    logger.error("No Instagram cookies found; retrying in 5 minutes...");
+    await delay(5 * 60 * 1000);
   }
 
-  // Load and apply cookies
-  const cookies = await loadCookies(COOKIES_PATH);
-  await page.setCookie(...cookies);
-  logger.info("Instagram cookies loaded.");
+  // 2) Load/apply cookies and verify login, retrying on failure
+  let loggedIn = false;
+  while (!loggedIn) {
+    const cookies = await loadCookies(COOKIES_PATH);
+    await page.setCookie(...cookies);
+    logger.info("Instagram cookies loaded; checking login...");
 
-  // Verify cookie-based login
-  await page.goto("https://www.instagram.com/", { waitUntil: "networkidle2" });
-  const loggedInIndicator = await page.$("a[href='/direct/inbox/']");
-  if (!loggedInIndicator) {
-    logger.error("Cookies invalid or expired; please refresh your cookies file.");
-    await browser.close();
-    await proxyServer.close(true);
-    return;
+    await page.goto("https://www.instagram.com/", { waitUntil: "networkidle2" });
+    if (await page.$("a[href='/direct/inbox/']")) {
+      loggedIn = true;
+      logger.info("Logged into Instagram via cookies.");
+      await page.screenshot({ path: "logged_in.png" });
+    } else {
+      logger.error("Cookies invalid or expired; retrying in 5 minutes...");
+      await delay(5 * 60 * 1000);
+    }
   }
-  logger.info("Logged into Instagram via cookies.");
 
-  // Optional snapshot
-  await page.screenshot({ path: "logged_in.png" });
+  // 3) Récupérer le nom d'utilisateur du compte connecté avec le sélecteur fourni
+  const connectedUsername = await getInstagramUsername(page, usernameSelector);
+  logger.info(`Compte connecté: ${connectedUsername}`);
 
+  // 4) Main feed-processing loop
   const targetCount = 500;
   const processedIDs = new Set<string>();
 
   while (processedIDs.size < targetCount) {
-    // Ensure feed
     await page.goto("https://www.instagram.com/", { waitUntil: "networkidle2" });
     await delay(2000);
 
-    // Extract post IDs
     const postIDs = await extractPostIDs(page);
     const newIDs = postIDs.filter(id => !processedIDs.has(id));
-
     if (newIDs.length === 0) {
       logger.info("No new posts, scrolling...");
       await page.evaluate(() => window.scrollBy(0, window.innerHeight));
@@ -104,13 +180,12 @@ export async function runInstagram(): Promise<void> {
 
     for (const postId of newIDs) {
       if (processedIDs.size >= targetCount) break;
-      await generateCommentForPost(page, postId);
+      await generateCommentForPost(page, postId, connectedUsername);
       processedIDs.add(postId);
       logger.info(`Processed post ${postId} (${processedIDs.size}/${targetCount})`);
       await delay(5000);
     }
 
-    // Scroll for more
     await page.evaluate(() => window.scrollBy(0, window.innerHeight));
     await delay(3000);
   }
@@ -118,8 +193,6 @@ export async function runInstagram(): Promise<void> {
   await browser.close();
   await proxyServer.close(true);
 }
-
-//
 
 // ACTION 1 : Extraire les IDs des posts du fil d'actualité et les stocker dans un tableau
 async function extractPostIDs(page: any): Promise<string[]> {
@@ -157,7 +230,7 @@ async function extractPostIDs(page: any): Promise<string[]> {
 }
 
 // ACTION 2 : Ouvrir le post par son ID, liker le post et générer un commentaire pour sa légende
-async function generateCommentForPost(page: any, postId: string) {
+async function generateCommentForPost(page: any, postId: string, connectedUsername: string) {
   const postUrl = `https://www.instagram.com/p/${postId}/`;
   await page.goto(postUrl, { waitUntil: "networkidle2" });
   await delay(2000); // Attendre le chargement du contenu
@@ -201,12 +274,12 @@ async function generateCommentForPost(page: any, postId: string) {
   // Construction du prompt pour la génération de commentaire
   const prompt = `Respond only with valid JSON. No introduction or explanation.
 
-Read the ${caption} provided, which could be structured in various ways (bullet points, narratives, multi-language sections, etc.). Now, create an attractive, engaging comment that directly responds to the caption’s themes. The comment should:
+Read the ${caption} provided, which could be structured in various ways (bullet points, narratives, multi-language sections, etc.). Now, create an attractive, engaging comment that directly responds to the caption's themes. The comment should:
 
 • Reflect on the key ideas in a genuine and appealing tone.
 • Vary in structure and length—feel free to be brief or elaborate.
 • Optionally include a follow-up question to spark discussion, or simply offer an observation.
-• Embrace randomness in style, ensuring each comment is uniquely crafted while remaining relevant to the caption’s content.
+• Embrace randomness in style, ensuring each comment is uniquely crafted while remaining relevant to the caption's content.
 Your response must be a valid JSON array with exactly one object:
 
 [
@@ -222,6 +295,7 @@ Requirements:
 - "viralRate" must be a number (0-100)
 - "commentTokenCount" must accurately count tokens in comment
 - Response must be ONLY a JSON array with no additional text
+- Consider that this comment will be posted by the Instagram account: ${connectedUsername}
 
 Original Post: "${caption}"`;
 
@@ -236,8 +310,10 @@ Original Post: "${caption}"`;
       undefined,
       "json",
       postId,
-      caption
-    );
+      caption,
+      undefined,  // userId is undefined here
+      connectedUsername  // Pass username to be stored with comment
+  );
     // Extraire le commentaire généré
     let extractedComment = "";
     try {
@@ -252,12 +328,13 @@ Original Post: "${caption}"`;
       console.log("Impossible d'extraire le commentaire pour la journalisation");
     }
     if (extractedComment) {
-      console.log(`Commentaire généré pour le post ${postId} : "${extractedComment}"`);
+      console.log(`Commentaire généré pour le post ${postId} par ${connectedUsername}: "${extractedComment}"`);
     } else {
       console.log(`Commentaire généré pour le post ${postId}`);
     }
+    
+    // Ici, vous pourriez ajouter le code pour réellement poster le commentaire
   } catch (error) {
     console.error(`Erreur lors de la génération du commentaire pour le post ${postId} :`, error);
   }
 }
-
