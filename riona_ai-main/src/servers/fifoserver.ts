@@ -7,7 +7,7 @@ connectToDatabase()
   .then(() => {
     console.log('Connecté à MongoDB pour le traitement FIFO');
     // Lancer le traitement FIFO
-    processQueue();
+    //processQueue();
   })
   .catch((err) => {
     console.error('Échec de la connexion à MongoDB dans le FIFO', err);

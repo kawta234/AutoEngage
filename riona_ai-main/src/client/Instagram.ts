@@ -7,6 +7,7 @@ import { IGpassword, IGusername } from "../secret";
 import logger from "../config/logger";
 import { Instagram_cookiesExist, loadCookies, saveCookies } from "../utils";
 import { interactWithOllama } from "../ollama_interact"; // Ajustez le chemin si nécessaire
+import { checkTargetUsernameMatch, getInstagramCookiesByUsername } from "./agentcontroller";
 
 // --------------------------
 // Déclaration globale des sélecteurs
@@ -14,16 +15,10 @@ import { interactWithOllama } from "../ollama_interact"; // Ajustez le chemin si
 const postSelector = (index: number): string => `article:nth-of-type(${index + 1})`;
 
 const captionSelectors: string[] = [
-  'span.x193iq5w.xeuugli.x1fj9vlw.x13faqbe.x1vvkbs.xt0psk2.x1i0vuye.xvs91rp.xo1l8bm.x5n08af.x10wh9bi.x1wdrske.x8viiok.x18hxmgj',
-  'div.C4VMK > span'
-];
+  ' div.x9f619 > span.x193iq5w.xeuugli.x1fj9vlw.x13faqbe.x1vvkbs.xt0psk2.x1i0vuye.xvs91rp.xo1l8bm.x5n08af.x10wh9bi.x1wdrske.x8viiok.x18hxmgj',];
 
 const moreLinkSelector: string = 'span.x1lliihq';
 
-const commentBoxSelector: string = 'textarea[aria-label="Add a comment…"][placeholder="Add a comment…"]';
-
-// Nouveau : Sélecteur pour le bouton "Like" sur une page de post
-const likeButtonSelector: string = 'svg[aria-label="Like"]';
 
 // --------------------------
 // Initialisation des plugins Puppeteer
@@ -36,162 +31,121 @@ puppeteer.use(
 );
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-const COOKIES_PATH = "./cookies/Instagramcookies.json";
 
-// Function to get Instagram username from edit page
-export async function getInstagramUsername(page: any, usernameSelector?: string): Promise<string> {
+
+export async function runInstagram(username: string, minPort: number = 8000, maxPort: number = 9000): Promise<void> {
+  // Générer un port aléatoire entre minPort et maxPort
+  const port = Math.floor(Math.random() * (maxPort - minPort + 1)) + minPort;
+  
+  console.log(`Démarrage de la session pour ${username} sur le port ${port}`);
+  
+  let proxyServer: Server | null = null;
+  let browser: Browser | null = null;
+  
   try {
-    logger.info("Getting Instagram username from edit page...");
+    // Démarrer le serveur proxy sur le port généré
+    proxyServer = new Server({ port });
     
-    // Navigate to the edit profile page
-    await page.goto("https://www.instagram.com/accounts/edit/", { waitUntil: "networkidle2" });
-    await delay(5000);
-    
-    // Use the provided selector if available, otherwise use our precise selector
-    // This targets specifically the span containing the username based on the HTML structure you shared
-    const selector = usernameSelector || 
-      'span[dir="auto"][style*="--lineHeight: 20px"]';
-    
-    // Wait for the element to be available
-    await page.waitForSelector(selector, { timeout: 15000 });
-    
-    // Extract the username
-    const username = await page.evaluate((sel: string) => {
-      const elements = document.querySelectorAll(sel);
-      // Loop through all matching elements to find the right one
-      for (let i = 0; i < elements.length; i++) {
-        const element = elements[i];
-        const text = element.textContent?.trim();
-        
-        // Skip empty elements or elements with "Accounts Center" text
-        if (!text || text.includes("Accounts Center")) {
-          continue;
-        }
-        
-        // Check if this text looks like a username (no spaces, reasonable length)
-        if (text.length > 2 && text.length <= 30 && !text.includes(" ")) {
-          return text;
-        }
-      }
-      return null;
-    }, selector);
-    
-    if (username) {
-      logger.info(`Username found from edit page: ${username}`);
-      return username; // This should now be "majesty___jewelry"
-    } else {
-      // If we couldn't find the username with our first approach, try a more specific selector
-      logger.warn("Username not found with primary selector, trying alternative...");
+    // Attendre que le proxy soit prêt
+    await new Promise<void>((resolve, reject) => {
+      proxyServer!.listen(() => {
+        console.log(`Proxy démarré sur le port ${port}`);
+        resolve();
+      });
       
-      // This more specific selector targets the exact span with the username
-      const alternativeSelector = 'div.x9f619 div.xamitd3 span[dir="auto"][style*="20px"]';
-      
-      try {
-        await page.waitForSelector(alternativeSelector, { timeout: 5000 });
-        
-        const altUsername = await page.evaluate((sel: string) => {
-          const element = document.querySelector(sel);
-          return element?.textContent?.trim() || null;
-        }, alternativeSelector);
-        
-        if (altUsername) {
-          logger.info(`Username found with alternative selector: ${altUsername}`);
-          return altUsername;
-        }
-      } catch (err) {
-        logger.warn("Alternative selector failed:", err);
-      }
-      
-      logger.warn("Username not found on edit page");
-      return "instagram_user";
-    }
-  } catch (error) {
-    logger.error("Error getting username from edit page:", error);
+      proxyServer!.on('error', (err: Error) => {
+        reject(new Error(`Échec du démarrage du proxy sur le port ${port}: ${err.message}`));
+      });
+    });
     
-    try {
-      // For debugging purposes, save a screenshot
-      await page.screenshot({ path: 'instagram-username-error.png' });
-      logger.info("Debug screenshot saved");
-    } catch (e) {
-      // Ignore screenshot errors
+    const proxyUrl = `http://localhost:${port}`;
+    
+    // Lancer le navigateur avec la configuration du proxy
+    browser = await puppeteer.launch({
+      headless: true,
+      args: [
+        `--proxy-server=${proxyUrl}`,
+        '--disable-web-security',
+        '--disable-features=IsolateOrigins,site-per-process'
+      ]
+    });
+    
+    const page = await browser.newPage();
+    
+    // Get Instagram cookies for the provided username
+    const cookiesData = await getInstagramCookiesByUsername(username);
+    if (!cookiesData || !cookiesData.cookies) {
+      throw new Error("Could not retrieve Instagram cookies");
     }
     
-    return "instagram_user";
-  }
-}
+    const cookies = cookiesData.cookies;
+    
+    logger.info(`Started proxy server for ${username} on port ${port}`);
 
-
-export async function runInstagram(usernameSelector?: string): Promise<void> {
-  // Start proxy server (optional)
-  const proxyServer = new Server({ port: 8000 });
-  await proxyServer.listen();
-  const proxyUrl = `http://localhost:8000`;
-
-  const browser = await puppeteer.launch({
-    headless: true,
-    args: [`--proxy-server=${proxyUrl}`],
-  });
-  const page = await browser.newPage();
-
-  // 1) Wait until cookies file appears
-  while (!(await Instagram_cookiesExist())) {
-    logger.error("No Instagram cookies found; retrying in 5 minutes...");
-    await delay(5 * 60 * 1000);
-  }
-
-  // 2) Load/apply cookies and verify login, retrying on failure
-  let loggedIn = false;
-  while (!loggedIn) {
-    const cookies = await loadCookies(COOKIES_PATH);
+    // First navigate to Instagram without cookies
+    logger.info(`Navigating to Instagram homepage for ${username}...`);
+    await page.goto("https://www.instagram.com/", { 
+      waitUntil: "networkidle2",
+      timeout: 60000 // Increase timeout to 60 seconds
+    });
+    
+    // Apply cookies
+    logger.info(`Applying cookies for ${username}...`);
     await page.setCookie(...cookies);
-    logger.info("Instagram cookies loaded; checking login...");
-
-    await page.goto("https://www.instagram.com/", { waitUntil: "networkidle2" });
-    if (await page.$("a[href='/direct/inbox/']")) {
-      loggedIn = true;
-      logger.info("Logged into Instagram via cookies.");
-      await page.screenshot({ path: "logged_in.png" });
-    } else {
-      logger.error("Cookies invalid or expired; retrying in 5 minutes...");
-      await delay(5 * 60 * 1000);
+    logger.info(`Cookies applied successfully for ${username}`);
+    
+    // Reload the page to use the cookies
+    await page.reload({ waitUntil: "networkidle2" });
+    
+    // Wait for a clear indication that we're logged in
+    try {
+      await page.waitForSelector("a[href='/direct/inbox/']", { timeout: 10000 });
+      logger.info(`Logged into Instagram as ${username} via cookies.`);
+    } catch (e) {
+      logger.error(`Cookies invalid or expired for ${username}`);
+      throw new Error(`Failed to log in as ${username}`);
     }
-  }
+    while (true) {
+    // Main feed-processing loop
+    const targetCount = 500;
+    const processedIDs = new Set<string>();
 
-  // 3) Récupérer le nom d'utilisateur du compte connecté avec le sélecteur fourni
-  const connectedUsername = await getInstagramUsername(page, usernameSelector);
-  logger.info(`Compte connecté: ${connectedUsername}`);
+    while (processedIDs.size < targetCount) {
+      await page.goto("https://www.instagram.com/", { waitUntil: "networkidle2" });
+      await delay(2000);
 
-  // 4) Main feed-processing loop
-  const targetCount = 500;
-  const processedIDs = new Set<string>();
+      const postIDs = await extractPostIDs(page);
+      const newIDs = postIDs.filter(id => !processedIDs.has(id));
+      
+      if (newIDs.length === 0) {
+        logger.info("No new posts, scrolling...");
+        await page.evaluate(() => window.scrollBy(0, window.innerHeight));
+        await delay(3000);
+        continue;
+      }
 
-  while (processedIDs.size < targetCount) {
-    await page.goto("https://www.instagram.com/", { waitUntil: "networkidle2" });
-    await delay(2000);
+      for (const postId of newIDs) {
+        if (processedIDs.size >= targetCount) break;
+        
+        await generateCommentForPost(page, postId, username);
+        processedIDs.add(postId);
+        logger.info(`Processed post ${postId} as ${username} (${processedIDs.size}/${targetCount})`);
+        await delay(5000);
+      }
 
-    const postIDs = await extractPostIDs(page);
-    const newIDs = postIDs.filter(id => !processedIDs.has(id));
-    if (newIDs.length === 0) {
-      logger.info("No new posts, scrolling...");
       await page.evaluate(() => window.scrollBy(0, window.innerHeight));
       await delay(3000);
-      continue;
     }
-
-    for (const postId of newIDs) {
-      if (processedIDs.size >= targetCount) break;
-      await generateCommentForPost(page, postId, connectedUsername);
-      processedIDs.add(postId);
-      logger.info(`Processed post ${postId} (${processedIDs.size}/${targetCount})`);
-      await delay(5000);
-    }
-
-    await page.evaluate(() => window.scrollBy(0, window.innerHeight));
-    await delay(3000);
+    logger.info(`Completed a batch of ${targetCount} posts for ${username}. Starting a new batch...`);
   }
-
-  await browser.close();
-  await proxyServer.close(true);
+} catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+    logger.error(`Instagram agent error: ${errorMessage}`);
+  } finally {
+    // Cleanup resources
+    if (browser) await browser.close();
+    if (proxyServer) await proxyServer.close(true);
+  }
 }
 
 // ACTION 1 : Extraire les IDs des posts du fil d'actualité et les stocker dans un tableau
@@ -234,7 +188,60 @@ async function generateCommentForPost(page: any, postId: string, connectedUserna
   const postUrl = `https://www.instagram.com/p/${postId}/`;
   await page.goto(postUrl, { waitUntil: "networkidle2" });
   await delay(2000); // Attendre le chargement du contenu
+  let postUsername = "";
+  const usernameSelectors = [
+    'a[href*="/"][role="link"]', // Sélecteur général basé sur votre HTML
+    'h2.x6s0dn4 a', // Sélecteur spécifique basé sur votre exemple
+    'span.xt0psk2 a', // Alternative basée sur votre HTML
+    '.x1i10hfl.xjqpnuy.xa49m3k[role="link"]', // Sélecteur de classe détaillé basé sur votre HTML
+    'article header a[role="link"]' // Autre possibilité de structure
+  ];
 
+  // Essayer chaque sélecteur de nom d'utilisateur jusqu'à obtenir un résultat non vide
+  for (const sel of usernameSelectors) {
+    try {
+      const usernameElement = await page.$(sel);
+      if (usernameElement) {
+        postUsername = await usernameElement.evaluate((el: HTMLElement) => el.innerText.trim());
+        if (postUsername && postUsername.trim().length > 0) {
+          logger.info(`Nom d'utilisateur du post trouvé avec le sélecteur "${sel}" : ${postUsername}`);
+          break;
+        }
+      }
+    } catch (error) {
+      // Continue avec le prochain sélecteur en cas d'erreur
+      continue;
+    }
+  }
+
+  // Si aucun sélecteur n'a fonctionné, essayer l'extraction via le titre de la page
+  if (!postUsername || postUsername.trim().length === 0) {
+    try {
+      postUsername = await page.evaluate(() => {
+        const titleText = document.title;
+        // Format typique: "Nom d'utilisateur sur Instagram: "caption du post""
+        const match = titleText.match(/^([^:]+) on Instagram/);
+        return match ? match[1].trim() : "";
+      });
+      
+      if (postUsername && postUsername.trim().length > 0) {
+        logger.info(`Nom d'utilisateur du post extrait du titre de la page : ${postUsername}`);
+      }
+    } catch (error) {
+      logger.warn("Erreur lors de l'extraction du nom d'utilisateur du post via le titre:", error);
+    }
+  }
+  const { matched, accountData } = await checkTargetUsernameMatch(postUsername);
+  
+  if (!matched) {
+    logger.info(`Post username "${postUsername}" is not in our target list. Skipping...`);
+    return;
+  }
+
+  logger.info(`Post username "${postUsername}" is in our target list. Proceeding...`);
+
+  // Rest of your existing code for caption extraction and comment generation...
+  
   let caption = "";
   // Essayer chaque sélecteur de légende jusqu'à obtenir une légende non vide
   for (const sel of captionSelectors) {
@@ -311,7 +318,8 @@ Original Post: "${caption}"`;
       "json",
       postId,
       caption,
-      undefined,  // userId is undefined here
+      undefined, 
+      postUsername,   // userId is undefined here
       connectedUsername  // Pass username to be stored with comment
   );
     // Extraire le commentaire généré

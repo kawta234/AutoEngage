@@ -228,7 +228,7 @@ export const saveScrapedData = async function (link: string, content: string): P
 
 async function main() {
     try {
-        await runInstagram();
+        //await runInstagram();
     } catch (error) {
         logger.error('Error running application:', error);
         process.exit(1);

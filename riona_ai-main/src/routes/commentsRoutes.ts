@@ -5,8 +5,7 @@ import {
   rejectComment, 
   approveComment,  
   postComment,
-  updateComment,
-  instagramLogin  // Ajout de l'import pour la fonction de login
+  updateComment
 } from '../controllers/commentsControllers';
 // Import de la fonction processQueue depuis le fichier FIFO
 import { processQueue } from '../controllers/fifoProcessComments';
@@ -30,15 +29,30 @@ router.post('/:id/approve', approveComment);
 
 // Poster un commentaire (sans modifier le statut dans la base de données)
 router.post('/:id/comment', postComment);
+// Endpoint pour définir les filtres Instagram
 
 // Endpoint pour déclencher manuellement le processus FIFO (optionnel)
-router.post('/trigger-fifo', async (_req, res) => {
+router.post('/trigger-fifo', async (_req, res, _next) => {
   try {
-    processQueue();
-    res.status(200).json({ message: 'Le processus FIFO a été déclenché.' });
+    const { username, port } = _req.body;
+    
+    // If port is not provided, use a default port
+    const portToUse = port || 3000; // or whatever default you want to use
+    
+    await processQueue(username, portToUse);
+    res.status(200).send({ 
+      message: `Instagram process started successfully for ${username}`,
+      port: portToUse
+    });
   } catch (error) {
-    res.status(500).json({ message: (error as Error).message || 'Erreur lors du déclenchement du FIFO' });
+    console.error('Error in trigger-fifo endpoint:', error);
+    res.status(500).send({ 
+      message: 'Failed to start Instagram process',
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
   }
 });
-router.post('/instagram/login', instagramLogin);
+
+// Filtered Users Routes
+
 export default router;

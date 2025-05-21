@@ -29,7 +29,7 @@ const runInstagramAgent = async () => {
         
         while (true) {
             logger.info("Starting Instagram automation iteration...");
-            await runInstagram(); // No userId parameter needed based on instagram_automation.ts
+            //await runInstagram(); // No userId parameter needed based on instagram_automation.ts
             logger.info("Instagram automation iteration finished.");
 
             // Wait for 30 seconds before next iteration

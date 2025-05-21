@@ -28,21 +28,20 @@ const encodeImageToBase64 = (imagePath: string): string => {
 };
 
 /**
- * Send a prompt or chat to Ollama, optionally stream the result, and
- * if a postId+format==='json' is provided, parse & save the comment
- * under the correct Instagram account.
+ * Save an Instagram comment to the database
+ * Stores the comment in either a user-specific collection or the general comments collection
  */
-// Modification to saveInstagramComment function in ollama_interact.ts
 export const saveInstagramComment = async (
   postId: string, 
   comment: string, 
   caption: string, 
   userId?: string,
-  username?: string
+  username?: string,
+  postUsername?: string  // Added postUsername parameter
 ) => {
-  // Vérifier que la caption n'est pas tronquée
-  console.log("Caption reçue pour sauvegarde:", caption);
-  console.log("Longueur de la caption:", caption ? caption.length : 0);
+  // Verify caption is not truncated
+  console.log("Caption received for saving:", caption);
+  console.log("Caption length:", caption ? caption.length : 0);
   
   const commentData = {
       postId,
@@ -51,46 +50,50 @@ export const saveInstagramComment = async (
       timestamp: new Date(),
       status: 'pending',
       model: 'llama3.1',
-      username: username || 'unknown_user'
+      username: username || 'unknown_user',
+      postUsername: postUsername || 'unknown_post_user'  // Store the post author username
   };
     
   try {
-      // S'assurer que la connexion est établie avant d'accéder à la collection
+      // Ensure the connection is established before accessing the collection
       await connectToDatabase();
       
       let result;
       
       if (userId) {
-          // Si un userId est fourni, utiliser la collection spécifique à l'utilisateur
-          const userCollection = getUserCollectionByUserId(userId); // Use the new function
-          console.log(`Utilisation de la collection utilisateur pour userId: ${userId}`);
+          // If a userId is provided, use the user-specific collection
+          const userCollection = getUserCollectionByUserId(userId);
+          console.log(`Using user collection for userId: ${userId}`);
           
-          // Vérifier que l'objet est correctement formé avant insertion
-          console.log("Données à insérer dans la collection utilisateur:", JSON.stringify(commentData, null, 2));
+          // Verify the object is properly formed before insertion
+          console.log("Data to insert in user collection:", JSON.stringify(commentData, null, 2));
           
-          // Ajouter le commentaire à la collection de l'utilisateur
+          // Add the comment to the user's collection
           result = await userCollection.insertOne(commentData);
-          console.log(`Commentaire enregistré dans la collection de l'utilisateur ${userId} avec l'ID:`, result.insertedId);
+          console.log(`Comment saved in user ${userId}'s collection with ID:`, result.insertedId);
       } else {
-          // Sinon, utiliser la collection générale des commentaires
+          // Otherwise, use the general comments collection
           const commentsCollection = getCommentsCollection();
           
-          // Vérifier que l'objet est correctement formé avant insertion
-          console.log("Données à insérer dans la collection générale:", JSON.stringify(commentData, null, 2));
+          // Verify the object is properly formed before insertion
+          console.log("Data to insert in general collection:", JSON.stringify(commentData, null, 2));
           
-          // Ajouter le commentaire à la base de données générale
+          // Add the comment to the general database
           result = await commentsCollection.insertOne(commentData);
-          console.log("Commentaire enregistré dans la collection générale avec l'ID:", result.insertedId);
+          console.log("Comment saved in general collection with ID:", result.insertedId);
       }
       
       return true;
   } catch (error) {
-      console.error("Erreur lors de l'enregistrement du commentaire dans la base de données:", error);
+      console.error("Error while saving comment to database:", error);
       return false;
   }
 };
 
-// Modify the interactWithOllama function to accept username parameter
+/**
+ * Interact with the Ollama API to generate content
+ * Can be used for generating comments, responding to prompts, etc.
+ */
 const interactWithOllama = async (
   prompt?: string,
   messages?: MessageType,
@@ -103,7 +106,8 @@ const interactWithOllama = async (
   postId?: string,
   caption?: string,
   userId?: string,
-  username?: string  // Add username parameter
+  postUsername?: string,
+  username?: string  // Username of the post author
 ): Promise<any> => {
   if (!apiUrl) {
       throw new Error('OLLAMA_API_URL is not set. Provide it via the apiUrl parameter or as an environment variable.');
@@ -139,7 +143,7 @@ const interactWithOllama = async (
               const jsonResponse = response.data;
               console.log("Raw API response:", jsonResponse);
               
-              // Si nous avons un Instagram post ID et une réponse
+              // If we have an Instagram post ID and a response
               if (postId && format === 'json' && jsonResponse.response) {
                   try {
                       // Try to parse the JSON response
@@ -158,20 +162,21 @@ const interactWithOllama = async (
                       } else if (parsedData?.comment) {
                           comment = parsedData.comment;
                       }
-                      
+                     
                       // If a comment was extracted, save it
                       if (comment) {
                           try {
-                              // Pass username to saveInstagramComment
+                              // Pass both usernames to saveInstagramComment
                               const saveResult = await saveInstagramComment(
                                   postId, 
                                   comment, 
                                   caption || '', 
                                   userId,
-                                  username // Pass the username to save with comment
+                                  username,  // Username of commenter
+                                  postUsername  // Username of post author
                               );
                               if (saveResult) {
-                                  console.log(`Generated and saved comment ${username ? 'for Instagram user ' + username : ''} ${userId ? '(userId: ' + userId + ')' : ''}:`, comment);
+                                  console.log(`Generated and saved comment by ${username || 'unknown user'} on ${postUsername || 'unknown'}'s post ${userId ? '(userId: ' + userId + ')' : ''}:`, comment);
                               } else {
                                   console.log("Generated comment but failed to save:", comment);
                               }
@@ -213,4 +218,5 @@ const interactWithOllama = async (
       return "";
   }
 };
+
 export { interactWithOllama, encodeImageToBase64, defaultOutputHandler };

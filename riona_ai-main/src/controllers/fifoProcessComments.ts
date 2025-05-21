@@ -1,4 +1,4 @@
-
+import { Server } from "proxy-chain";
 import { Request, Response } from 'express';
 import { ObjectId } from 'mongodb';
 import puppeteer from 'puppeteer-extra';
@@ -10,6 +10,7 @@ import fs from 'fs';
 import { connectToDatabase, getCommentsCollection, getAccountsCollection, upsertAccount } from '../config/db';
 import { IUser } from '../models/user';
 import { Instagram_cookiesExist, loadCookies, saveCookies } from "../utils";
+import { getInstagramCookiesByUsername } from "../client/agentcontroller";
 const popupCloseSelector: string = 'button[class*="dismiss"]';
 const commentBoxSelector: string = 'textarea[aria-label="Add a comment…"][placeholder="Add a comment…"]';
 const likeButtonSelector = 'svg.x1lliihq.x1n2onr6.xyb1xck[aria-label="Like"]';
@@ -31,145 +32,87 @@ const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 const getRandomDelay = (min = 3000, max = 10000): number =>
   Math.floor(Math.random() * (max - min + 1)) + min;
 
-let browser: Browser | null = null;
-let page: Page | null = null;
 
-async function initBrowser(): Promise<{ browser: Browser; page: Page }> {
-  if (browser && page) {
-    return { browser, page };
-  }
-  browser = await puppeteer.launch({ headless: true });
-  page = await browser.newPage();
-  return { browser, page };
-}
+
+
 
 // Helper function to get Instagram username
-export async function getInstagramUsername(page: any, usernameSelector?: string): Promise<string> {
-  try {
-    logger.info("Getting Instagram username from edit page...");
-    
-    // Navigate to the edit profile page
-    await page.goto("https://www.instagram.com/accounts/edit/", { waitUntil: "networkidle2" });
-    await delay(5000);
-    
-    // Use the provided selector if available, otherwise use our precise selector
-    // This targets specifically the span containing the username based on the HTML structure you shared
-    const selector = usernameSelector || 
-      'span[dir="auto"][style*="--lineHeight: 20px"]';
-    
-    // Wait for the element to be available
-    await page.waitForSelector(selector, { timeout: 15000 });
-    
-    // Extract the username
-    const username = await page.evaluate((sel: string) => {
-      const elements = document.querySelectorAll(sel);
-      // Loop through all matching elements to find the right one
-      for (let i = 0; i < elements.length; i++) {
-        const element = elements[i];
-        const text = element.textContent?.trim();
-        
-        // Skip empty elements or elements with "Accounts Center" text
-        if (!text || text.includes("Accounts Center")) {
-          continue;
-        }
-        
-        // Check if this text looks like a username (no spaces, reasonable length)
-        if (text.length > 2 && text.length <= 30 && !text.includes(" ")) {
-          return text;
-        }
-      }
-      return null;
-    }, selector);
-    
-    if (username) {
-      logger.info(`Username found from edit page: ${username}`);
-      return username; // This should now be "majesty___jewelry"
-    } else {
-      // If we couldn't find the username with our first approach, try a more specific selector
-      logger.warn("Username not found with primary selector, trying alternative...");
-      
-      // This more specific selector targets the exact span with the username
-      const alternativeSelector = 'div.x9f619 div.xamitd3 span[dir="auto"][style*="20px"]';
-      
-      try {
-        await page.waitForSelector(alternativeSelector, { timeout: 5000 });
-        
-        const altUsername = await page.evaluate((sel: string) => {
-          const element = document.querySelector(sel);
-          return element?.textContent?.trim() || null;
-        }, alternativeSelector);
-        
-        if (altUsername) {
-          logger.info(`Username found with alternative selector: ${altUsername}`);
-          return altUsername;
-        }
-      } catch (err) {
-        logger.warn("Alternative selector failed:", err);
-      }
-      
-      logger.warn("Username not found on edit page");
-      return "instagram_user";
-    }
-  } catch (error) {
-    logger.error("Error getting username from edit page:", error);
-    
-    try {
-      // For debugging purposes, save a screenshot
-      await page.screenshot({ path: 'instagram-username-error.png' });
-      logger.info("Debug screenshot saved");
-    } catch (e) {
-      // Ignore screenshot errors
-    }
-    
-    return "instagram_user";
-  }
-}
 
 
-export async function processQueue(): Promise<void> {
+
+export async function processQueue(username: string, minPort: number = 8000, maxPort: number = 9000): Promise<void> {
+  // Générer un port aléatoire entre minPort et maxPort
+  const port = Math.floor(Math.random() * (maxPort - minPort + 1)) + minPort;
+  
+  console.log(`Démarrage de la session pour ${username} sur le port ${port}`);
+  
+  let proxyServer: Server | null = null;
   let browser: Browser | null = null;
-  let page: Page | null = null;
-
+  
   try {
-    // 1. Initialize the browser only once for the entire session
-    const browserResult = await initBrowser();
-    browser = browserResult.browser;
-    page = browserResult.page;
+    // Démarrer le serveur proxy sur le port généré
+    proxyServer = new Server({ port });
     
-    // Load cookies
-    const cookiesPath = './cookies/Instagramcookies.json';
-    while (!(await Instagram_cookiesExist())) {
-      logger.error("No Instagram cookies found; retrying in 5 minutes...");
-      await delay(5 * 60 * 1000);
-    }
-  
-    // 2) Load/apply cookies and verify login, retrying on failure
-    let loggedIn = false;
-    while (!loggedIn) {
-      const cookies = await loadCookies(cookiesPath);
-      await page.setCookie(...cookies);
-      logger.info("Instagram cookies loaded; checking login...");
-  
-      await page.goto("https://www.instagram.com/", { waitUntil: "networkidle2" });
-      if (await page.$("a[href='/direct/inbox/']")) {
-        loggedIn = true;
-        logger.info("Logged into Instagram via cookies.");
-        await page.screenshot({ path: "logged_in.png" });
-      } else {
-        logger.error("Cookies invalid or expired; retrying in 5 minutes...");
-        await delay(5 * 60 * 1000);
-      }
-    }
-    // 2. Extract Instagram username directly here
-    await page.goto('https://www.instagram.com/', { waitUntil: 'networkidle2' });
-    logger.info('Navigated to Instagram.');
+    // Attendre que le proxy soit prêt
+    await new Promise<void>((resolve, reject) => {
+      proxyServer!.listen(() => {
+        console.log(`Proxy démarré sur le port ${port}`);
+        resolve();
+      });
+      
+      proxyServer!.on('error', (err: Error) => {
+        reject(new Error(`Échec du démarrage du proxy sur le port ${port}: ${err.message}`));
+      });
+    });
     
-    const username = await getInstagramUsername(page);
-    if (!username) {
-      logger.error('Failed to retrieve Instagram username');
-      return;
+    const proxyUrl = `http://localhost:${port}`;
+    
+    // Lancer le navigateur avec la configuration du proxy
+    browser = await puppeteer.launch({
+      headless: true,
+      args: [
+        `--proxy-server=${proxyUrl}`,
+        '--disable-web-security',
+        '--disable-features=IsolateOrigins,site-per-process'
+      ]
+    });
+    
+    const page = await browser.newPage();
+    
+    // Get Instagram cookies for the provided username
+    const cookiesData = await getInstagramCookiesByUsername(username);
+    if (!cookiesData || !cookiesData.cookies) {
+      throw new Error("Could not retrieve Instagram cookies");
     }
-    logger.info(`Using Instagram username: ${username}`);
+    
+    const cookies = cookiesData.cookies;
+    
+    logger.info(`Started proxy server for ${username} on port ${port}`);
+
+    // First navigate to Instagram without cookies
+    logger.info(`Navigating to Instagram homepage for ${username}...`);
+    await page.goto("https://www.instagram.com/", { 
+      waitUntil: "networkidle2",
+      timeout: 60000 // Increase timeout to 60 seconds
+    });
+    
+    // Apply cookies
+    logger.info(`Applying cookies for ${username}...`);
+    await page.setCookie(...cookies);
+    logger.info(`Cookies applied successfully for ${username}`);
+    
+    // Reload the page to use the cookies
+    await page.reload({ waitUntil: "networkidle2" });
+    
+    // Wait for a clear indication that we're logged in
+    try {
+      await page.waitForSelector("a[href='/direct/inbox/']", { timeout: 10000 });
+      logger.info(`Logged into Instagram as ${username} via cookies.`);
+    } catch (e) {
+      logger.error(`Cookies invalid or expired for ${username}`);
+      throw new Error(`Failed to log in as ${username}`);
+    }
+
 
     const collection = getCommentsCollection();
 
@@ -182,7 +125,7 @@ export async function processQueue(): Promise<void> {
 
       if (!comment) {
         logger.info("No more 'processing' comments for this user. Waiting 2 minutes...");
-        await delay(2 * 60 * 1000);
+        await delay(3 * 60 * 1000);
         continue;
       }
 
@@ -318,7 +261,7 @@ export async function processQueue(): Promise<void> {
     }
     
     // Restart processing (recursion)
-    processQueue();
+    processQueue('default_username'); // Replace 'default_username' with an actual username
   } finally {
     // Ensure the browser is always closed on exit
     if (browser && browser.isConnected()) {

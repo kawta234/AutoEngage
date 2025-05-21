@@ -11,7 +11,7 @@ import commentRoutes from './routes/commentsRoutes';
 import { isAuthenticated } from './midleware/auth';
 import logger from './config/logger';
 // In server.ts
-
+import { processQueue } from './controllers/fifoProcessComments';
 // If your file is named instaRoute.ts (singular)
 
 

@@ -1,0 +1,91 @@
+.comment-card {
+  margin-bottom: 20px;
+  border-left: 5px solid #ccc;
+}
+.comment-card.pending {
+  border-left-color: #ffc107;
+}
+.comment-card.approved {
+  border-left-color: #28a745;
+}
+.comment-card.rejected {
+  border-left-color: #dc3545;
+}
+.comment-card.posted {
+  border-left-color: #007bff;
+}
+.comment-card.processing {
+  border-left-color: #6f42c1;
+}
+.comment-card.error {
+  border-left-color: #fd7e14;
+}
+.post-caption {
+  font-style: italic;
+  color: #666;
+  margin-bottom: 10px;
+}
+.timestamp {
+  font-size: 0.8rem;
+  color: #888;
+}
+.btn-toolbar {
+  justify-content: flex-end;
+}
+.json-model-badge {
+  margin-left: 8px;
+  font-size: 0.75rem;
+}
+.post-id {
+  font-size: 0.85rem;
+  color: #495057;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.post-id-badge {
+  background-color: #e9ecef;
+  color: #495057;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+.status-history {
+  font-size: 0.8rem;
+  color: #6c757d;
+  margin-bottom: 10px;
+}
+.statistics-row {
+  margin-bottom: 20px;
+}
+.stat-card {
+  text-align: center;
+  margin-bottom: 15px;
+}
+.stat-number {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+.section-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+.login-prompt {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin-top: 30px;
+}
+.login-icon {
+  font-size: 4rem;
+  color: #6c757d;
+  margin-bottom: 20px;
+}
+.username-setup {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin-top: 30px;
+}

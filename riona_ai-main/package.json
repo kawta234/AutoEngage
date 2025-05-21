@@ -2,18 +2,14 @@
   "name": "riona-ai-agent",
   "version": "1.0.0",
   "main": "src/index.ts",
- 
   "scripts": {
     "start": "tsc && npm run postbuild && node build/index.js",
     "postbuild": "copyfiles -u 3 src/Agent/characters/*.json build/Agent/characters",
     "train-model": "tsc && node build/Agent/training/Model.js",
     "train:link": "tsc && node build/Agent/training/WebsiteScraping.js",
     "dev": "nodemon --ext ts --exec ts-node src/server.ts",
-   
     "train:audio": "tsc && node build/Agent/training/TrainWithAudio.js"
   },
- 
-  
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -51,13 +47,14 @@
     "pdf-parse": "^1.1.1",
     "playwright": "^1.49.1",
     "proxy-chain": "^2.5.6",
-    "puppeteer": "^24.5.0",
+    "puppeteer": "^24.9.0",
     "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-adblocker": "^2.13.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2",
     "readline-sync": "^1.4.10",
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
+    "requirements": "^2.0.2",
     "socket.io": "^4.8.1",
     "textract": "^2.5.0",
     "twitter-api-v2": "^1.19.0",

@@ -1,7 +1,7 @@
 // controllers/commentsControllers.ts
 
 import { Request, Response } from 'express';
-import { ObjectId } from 'mongodb';
+import { ObjectId,PushOperator,UpdateFilter  } from 'mongodb';
 import puppeteer from 'puppeteer-extra';
 import { Browser, Page } from 'puppeteer';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
@@ -10,7 +10,7 @@ import logger from '../config/logger';
 import fs from 'fs';
 import { connectToDatabase, getCommentsCollection, getAccountsCollection, upsertAccount } from '../config/db';
 import { IUser } from '../models/user';
-import { getInstagramUsername } from '../client/Instagram';
+
 // -------------------------------------------------------
 // Déclaration des sélecteurs utilisés dans ce module
 // -------------------------------------------------------
@@ -42,7 +42,86 @@ async function initBrowser(): Promise<{ browser: Browser; page: Page }> {
   page = await browser.newPage();
   return { browser, page };
 }
-
+export async function getInstagramUsername(page: any, usernameSelector?: string): Promise<string> {
+  try {
+    logger.info("Getting Instagram username from edit page...");
+    
+    // Navigate to the edit profile page
+    await page.goto("https://www.instagram.com/accounts/edit/", { waitUntil: "networkidle2" });
+    await delay(5000);
+    
+    // Use the provided selector if available, otherwise use our precise selector
+    // This targets specifically the span containing the username based on the HTML structure you shared
+    const selector = usernameSelector || 
+      'span[dir="auto"][style*="--lineHeight: 20px"]';
+    
+    // Wait for the element to be available
+    await page.waitForSelector(selector, { timeout: 15000 });
+    
+    // Extract the username
+    const username = await page.evaluate((sel: string) => {
+      const elements = document.querySelectorAll(sel);
+      // Loop through all matching elements to find the right one
+      for (let i = 0; i < elements.length; i++) {
+        const element = elements[i];
+        const text = element.textContent?.trim();
+        
+        // Skip empty elements or elements with "Accounts Center" text
+        if (!text || text.includes("Accounts Center")) {
+          continue;
+        }
+        
+        // Check if this text looks like a username (no spaces, reasonable length)
+        if (text.length > 2 && text.length <= 30 && !text.includes(" ")) {
+          return text;
+        }
+      }
+      return null;
+    }, selector);
+    
+    if (username) {
+      logger.info(`Username found from edit page: ${username}`);
+      return username; 
+    } else {
+      // If we couldn't find the username with our first approach, try a more specific selector
+      logger.warn("Username not found with primary selector, trying alternative...");
+      
+      // This more specific selector targets the exact span with the username
+      const alternativeSelector = 'div.x9f619 div.xamitd3 span[dir="auto"][style*="20px"]';
+      
+      try {
+        await page.waitForSelector(alternativeSelector, { timeout: 5000 });
+        
+        const altUsername = await page.evaluate((sel: string) => {
+          const element = document.querySelector(sel);
+          return element?.textContent?.trim() || null;
+        }, alternativeSelector);
+        
+        if (altUsername) {
+          logger.info(`Username found with alternative selector: ${altUsername}`);
+          return altUsername;
+        }
+      } catch (err) {
+        logger.warn("Alternative selector failed:", err);
+      }
+      
+      logger.warn("Username not found on edit page");
+      return "instagram_user";
+    }
+  } catch (error) {
+    logger.error("Error getting username from edit page:", error);
+    
+    try {
+      // For debugging purposes, save a screenshot
+      await page.screenshot({ path: 'instagram-username-error.png' });
+      logger.info("Debug screenshot saved");
+    } catch (e) {
+      // Ignore screenshot errors
+    }
+    
+    return "instagram_user";
+  }
+}
 // Helper function to get username from userId
 async function getUsernameFromUserId(userId: string): Promise<string | null> {
   try {
@@ -143,8 +222,7 @@ export async function fetchInstagramUsername(
       await page.goto(postUrl, { waitUntil: 'networkidle2' });
       await delay(3000);
   
-      // Prendre une capture d'écran tôt pour le débogage
-      await page.screenshot({ path: `before_action_${screenshotPath}` });
+      
   
       // Fermer le popup si présent
       const popupEl = await page.$(popupCloseSelector);
@@ -156,12 +234,22 @@ export async function fetchInstagramUsername(
   
       // Liker le post (code existant)
       // ...
-  
+      const likeButton = await page.$(likeButtonSelector);
+      if (likeButton) {
+        const ariaLabel = await likeButton.evaluate(el => el.getAttribute("aria-label"));
+        if (ariaLabel === "Like") {
+          await page.evaluate(button => {
+            button.scrollIntoView({ behavior: "instant", block: "center" });
+            button.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+          }, likeButton);
+          logger.info(`Post ${postId} liked.`);
+        }
+      }
       // Zone de commentaire
       const commentBox = await page.$(commentBoxSelector);
       if (!commentBox) {
         logger.error("Comment box not found.");
-        await page.screenshot({ path: `error_no_commentbox_${screenshotPath}` });
+        
         return { success: false, message: 'Comment box not found' };
       }
   
@@ -171,7 +259,7 @@ export async function fetchInstagramUsername(
       logger.info(`Posting comment: "${comment}"`);
   
       // Capture d'écran avant de cliquer sur Post
-      await page.screenshot({ path: `before_post_${screenshotPath}` });
+      
   
       // Rechercher et cliquer sur le bouton "Post"
       const postButtonHandle = await page.evaluateHandle(() => {
@@ -189,13 +277,12 @@ export async function fetchInstagramUsername(
         // Attendre et vérifier que le commentaire est bien posté
         await delay(2000);
         
-        // Capture d'écran après avoir posté
-        await page.screenshot({ path: `after_post_${screenshotPath}` });
+        
         
         return { success: true, message: 'Comment posted successfully' };
       } else {
         logger.error('Post button not found');
-        await page.screenshot({ path: `error_no_postbutton_${screenshotPath}` });
+      
         return { success: false, message: 'Post button not found' };
       }
     } catch (error) {
@@ -204,7 +291,7 @@ export async function fetchInstagramUsername(
       // Ne prendre une capture d'écran que si la page est toujours valide
       try {
         if (page && browser && browser.isConnected()) {
-          await page.screenshot({ path: `error_${screenshotPath}` });
+          
         }
       } catch (screenshotError) {
         logger.error(`Failed to take error screenshot: ${screenshotError}`);
@@ -241,71 +328,34 @@ export const getAllComments = async (req: Request, res: Response): Promise<void>
     
     const commentsCollection = getCommentsCollection();
     
-    // Option 1: First approach - find comments that have the username field directly
+    // Query comments directly using the username field
     const comments = await commentsCollection
-      .find({ username })
+      .find({ username }) // Find comments by the username
       .toArray();
     
-    // If no comments found with direct username, try the second approach
+    // If no comments found
     if (comments.length === 0) {
-      // Option 2: Second approach - find account by username, then find comments by userId
-      const accountsCollection = getAccountsCollection();
-      const account = await accountsCollection.findOne({ 
-        username, 
-        platform: 'instagram' 
-      });
-      
-      if (account) {
-        const commentsByUserId = await commentsCollection
-          .find({ userId: account.userId.toString() })
-          .toArray();
-        
-        if (commentsByUserId.length > 0) {
-          const formatted = commentsByUserId.map(c => ({
-            id: c._id.toString(),
-            userId: c.userId,
-            accountId: account._id.toString(),
-            postId: c.postId,
-            postCaption: c.caption ?? c.Caption,
-            comment: c.comment,
-            timestamp: c.timestamp ?? c.createdAt,
-            status: c.status ?? 'pending',
-            model: c.model ?? 'llama3.1',
-            username: username,
-            history: c.history || []
-          }));
-          
-          res.status(200).json(formatted);
-          return;
-        }
-      }
-    }
-    
-    // Format comments if found through direct username
-    if (comments.length > 0) {
-      const formatted = comments.map(c => ({
-        id: c._id.toString(),
-        userId: c.userId,
-        postId: c.postId,
-        postCaption: c.caption ?? c.Caption,
-        comment: c.comment,
-        timestamp: c.timestamp ?? c.createdAt,
-        status: c.status ?? 'pending',
-        model: c.model ?? 'llama3.1',
-        username: c.username,
-        history: c.history || []
-      }));
-      
-      res.status(200).json(formatted);
+      res.status(404).json({ message: `No comments found for username: ${username}` });
       return;
     }
-    
-    // If no comments found with either approach
-    res.status(404).json({ 
-      message: 'No comments found for this username',
-      username: username
-    });
-    
+
+    // Format the comments before sending back to the client
+    const formatted = comments.map(c => ({
+      id: c._id.toString(), // Convert _id to string
+      userId: c.userId,
+      postId: c.postId,
+      postUsername: c.postUsername,
+      postCaption: c.caption ?? c.Caption,
+      comment: c.comment,
+      timestamp: c.timestamp ?? c.createdAt,
+      status: c.status ?? 'pending',
+      model: c.model ?? 'llama3.1',
+      username: c.username,
+      history: c.history || []
+    }));
+
+    res.status(200).json(formatted);
+
   } catch (error) {
     logger.error('Error fetching comments:', error);
     res.status(500).json({ message: 'Failed to fetch comments' });
@@ -341,11 +391,12 @@ export const getCommentById = async (req: Request, res: Response): Promise<void>
       userId:      c.userId,
       postId:      c.postId,
       postCaption: c.caption,
-      comment:     c.comment,              // ← renamed from generatedComment
+      comment:     c.comment,             
       timestamp:   c.timestamp,
       status:      c.status   ?? 'pending',
       model:       c.model    ?? 'llama3.1',
       username
+
     });
   } catch (e) {
     logger.error('Error fetching comment:', e);
@@ -353,8 +404,16 @@ export const getCommentById = async (req: Request, res: Response): Promise<void>
   }
 };
 
-export const instagramLogin = async (_req: Request, res: Response): Promise<void> => {
+export const instagramLogin = async (req: Request, res: Response): Promise<void> => {
   try {
+    // Extract username from request body or query parameters
+    const { username } = req.body || req.query;
+    
+    if (!username) {
+      res.status(400).json({ message: "Username is required" });
+      return;
+    }
+
     // Lancement du navigateur en mode non-headless avec options utiles
     const instBrowser: Browser = await puppeteer.launch({
       headless: false,
@@ -379,19 +438,51 @@ export const instagramLogin = async (_req: Request, res: Response): Promise<void
 
     // Sauvegarde des cookies (contenant les informations de connexion)
     const cookies = await instPage.cookies();
+    
+    // 1. Save cookies to file as backup
     fs.writeFileSync('./cookies/Instagramcookies.json', JSON.stringify(cookies, null, 2));
-    logger.info("Cookies Instagram sauvegardés avec succès.");
+    logger.info("Cookies Instagram sauvegardés dans un fichier avec succès.");
+
+    // 2. Save cookies to database with the username
+    try {
+      const db = await connectToDatabase();
+   
+      const accountsCollection = getAccountsCollection();
+      
+      // Update the account document with Instagram cookies
+      // Using upsert to create a new document if the username doesn't exist
+      const result = await accountsCollection.updateOne(
+        { username: username },
+        { 
+          $set: { 
+            instagramCookies: cookies,
+            instagramLastUpdate: new Date()
+          }
+        },
+        { upsert: true }
+      );
+      
+      logger.info(`Cookies Instagram sauvegardés en base de données pour l'utilisateur ${username}.`);
+      logger.debug(`Résultat de l'opération DB: ${result.modifiedCount} document(s) modifié(s), ${result.upsertedCount} document(s) créé(s).`);
+    } catch (dbError) {
+      logger.error("Erreur lors de la sauvegarde des cookies en base de données:", dbError);
+      // We continue execution even if DB save fails, as we have the file backup
+    }
 
     // Fermer le navigateur après la connexion
     await instBrowser.close();
 
-    res.status(200).json({ message: "Instagram login completed. Cookies saved." });
+    res.status(200).json({ 
+      message: "Instagram login completed. Cookies saved.",
+      username: username
+    });
   } catch (error) {
     const errMsg = error instanceof Error ? error.message : String(error);
     logger.error("Erreur lors de la connexion à Instagram:", errMsg);
     res.status(500).json({ message: "Échec de la connexion à Instagram.", error: errMsg });
   }
 };
+
 
 export const setInstagramUsername = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -652,5 +743,221 @@ export const approveComment = async (req: Request, res: Response): Promise<void>
   } catch (e) {
     logger.error('Error approving comment:', e);
     res.status(500).json({ message: 'Failed to approve comment' });
+  }
+};
+// Flexible typing for filtered users to match your schema
+interface FilteredUser {
+  _id: ObjectId;
+  targetUsername: string;
+  createdAt: Date;
+  updatedAt: Date;
+  isActive: boolean;
+  lastChecked: Date | null;
+}
+
+interface Account extends Document {
+  _id?: ObjectId;
+  userId: string;
+  platform: string;
+  username?: string;
+  filteredUsers?: FilteredUser[];
+}
+
+// Utility function to safely convert user ID
+function safeUserIdToString(user: IUser | undefined): string | undefined {
+  return user?._id?.toString();
+}
+
+export const saveFilteredUser = async (req: Request, res: Response): Promise<void> => {
+  try {
+    // Get targetUsername from request body (sent from frontend)
+    const { targetUsername: rawTarget, username } = req.body as {
+      targetUsername?: string;
+      username?: string;
+    };
+
+    console.log(req.body);
+
+    // Validate targetUsername
+    if (!rawTarget) {
+      res.status(400).json({ success: false, message: 'Target username is required' });
+      return;
+    }
+
+    // Normalize target username
+    const targetUsername = rawTarget.trim().replace(/^@/, '').toLowerCase();
+
+    // Validate main username (from frontend stateManager)
+    if (!username) {
+      res.status(400).json({ success: false, message: 'Instagram username is required' });
+      return;
+    }
+
+    // Removed authentication check as requested
+    
+    await connectToDatabase();
+    const accounts = getAccountsCollection();
+
+    // Find the account directly using username
+    const account = await accounts.findOne({ 
+      platform: 'instagram',
+      username 
+    });
+
+    if (!account) {
+      res.status(400).json({ 
+        success: false, 
+        message: `No Instagram account found for username: ${username}` 
+      });
+      return;
+    }
+
+    // Check for existing filter
+    const existingFilters = account.filteredUsers ?? [];
+    if (existingFilters.some((f: FilteredUser) => f.targetUsername === targetUsername)) {
+      res.status(400).json({ 
+        success: false, 
+        message: `Youre already tracking @${targetUsername}` 
+      });
+      return;
+    }
+
+    // Create new filter
+    const newFilter: FilteredUser = {
+      _id: new ObjectId(),
+      targetUsername,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      isActive: true,
+      lastChecked: null
+    };
+
+    // Update database - using username as identifier instead of userId
+    const result = await accounts.updateOne(
+      { platform: 'instagram', username },
+      {
+        $push: { filteredUsers: newFilter } as unknown as PushOperator<FilteredUser>,
+        $set: { updatedAt: new Date() }
+      }
+    );
+
+    if (result.modifiedCount === 0) {
+      res.status(500).json({ success: false, message: 'Failed to add filtered user' });
+      return;
+    }
+
+    logger.info(`User ${username} added filtered user: ${targetUsername}`);
+    res.status(200).json({
+      success: true,
+      message: `Successfully added @${targetUsername} to your filters`,
+      id: newFilter._id.toString()
+    });
+
+    console.log("flag")
+
+  } catch (error) {
+    const msg = error instanceof Error ? error.message : String(error);
+    logger.error(`Error saving filtered user: ${msg}`);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Failed to save filtered user', 
+      error: msg 
+    });
+  }
+};
+
+export const getFilteredUsers = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const username = typeof req.query.username === 'string' ? req.query.username : undefined;
+    console.log(req.query);
+    if (!username) {
+      res.status(400).json({ message: 'username parameter is required' });
+      return;
+    }
+
+    await connectToDatabase();
+    const accounts = getAccountsCollection();
+
+    // Find account by username
+    const account = await accounts.findOne({ username, platform: 'instagram' });
+    
+    if (!account) {
+      res.status(404).json({ message: 'Account not found for username: ' + username });
+      return;
+    }
+    
+    // Extract just the targetUsernames from filteredUsers array
+    const targetUsernames = account.filteredUsers?.map((user: any) => user.targetUsername) || [];
+
+    res.status(200).json({ targetUsernames });
+
+  } catch (error) {
+    const msg = error instanceof Error ? error.message : String(error);
+    logger.error(`Error fetching target usernames: ${msg}`);
+    res.status(500).json({ message: 'Failed to fetch target usernames', error: msg });
+  }
+};
+export const deleteFilteredUser = async (req: Request, res: Response): Promise<void> => {
+  try {
+    // Get the targetUsername from params
+    const { targetUsername } = req.params;
+    if (!targetUsername) {
+      res.status(400).json({ success: false, message: 'Target username is required' });
+      return;
+    }
+
+    // Get username from query parameters using the exact method provided
+    const username = typeof req.query.username === 'string' ? req.query.username : undefined;
+    console.log(req.query);
+    if (!username) {
+      res.status(400).json({ message: 'username parameter is required' });
+      return;
+    }
+
+    await connectToDatabase();
+    const accounts = getAccountsCollection();
+
+    // Find account by username
+    const account = await accounts.findOne({ username, platform: 'instagram' });
+    
+    if (!account) {
+      res.status(404).json({ 
+        success: false, 
+        message: `Account with username "${username}" not found` 
+      });
+      return;
+    }
+
+    // Update the account to remove the targetUsername from filteredUsers
+    // Fixed $pull operator syntax
+    const result = await accounts.updateOne(
+      { _id: account._id },
+      { 
+        $pull: { filteredUsers: { targetUsername } } as any,
+        $set: { updatedAt: new Date() }
+      }
+    );
+
+    if (result.modifiedCount === 0) {
+      res.status(404).json({ 
+        success: false, 
+        message: `User "${targetUsername}" not found in filtered list` 
+      });
+      return;
+    }
+
+    res.status(200).json({ 
+      success: true, 
+      message: `User "${targetUsername}" removed successfully from filtered users` 
+    });
+
+  } catch (error) {
+    const msg = error instanceof Error ? error.message : String(error);
+    logger.error(`Error deleting filtered user by username: ${msg}`);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Failed to delete filtered user', 
+      error: msg 
+    });
   }
 };
