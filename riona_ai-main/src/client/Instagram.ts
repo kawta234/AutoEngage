@@ -34,7 +34,8 @@ const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 
 export async function runInstagram(username: string, minPort: number = 8000, maxPort: number = 9000): Promise<void> {
-  // Générer un port aléatoire entre minPort et maxPort
+  // Générer un
+  // aléatoire entre minPort et maxPort
   const port = Math.floor(Math.random() * (maxPort - minPort + 1)) + minPort;
   
   console.log(`Démarrage de la session pour ${username} sur le port ${port}`);
@@ -298,7 +299,7 @@ Your response must be a valid JSON array with exactly one object:
 ]
 
 Requirements:
-- "comment" must be between 15-25 characters, relevant to caption
+- "comment" must be between 15-25 characters, relevant to caption 
 - "viralRate" must be a number (0-100)
 - "commentTokenCount" must accurately count tokens in comment
 - Response must be ONLY a JSON array with no additional text

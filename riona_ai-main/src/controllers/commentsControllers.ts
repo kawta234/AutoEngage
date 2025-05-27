@@ -405,6 +405,8 @@ export const getCommentById = async (req: Request, res: Response): Promise<void>
 };
 
 export const instagramLogin = async (req: Request, res: Response): Promise<void> => {
+  let instBrowser: Browser | null = null;
+  
   try {
     // Extract username from request body or query parameters
     const { username } = req.body || req.query;
@@ -414,20 +416,80 @@ export const instagramLogin = async (req: Request, res: Response): Promise<void>
       return;
     }
 
-    // Lancement du navigateur en mode non-headless avec options utiles
-    const instBrowser: Browser = await puppeteer.launch({
+    // Enhanced browser launch options for cross-environment compatibility
+    const browserOptions = {
       headless: false,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
-    });
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-accelerated-2d-canvas',
+        '--no-first-run',
+        '--no-zygote',
+        '--disable-gpu',
+        '--disable-web-security',
+        '--disable-features=secure',
+        '--allow-running-insecure-content',
+        '--disable-blink-features=AutomationControlled',
+        '--disable-extensions',
+        '--disable-plugins',
+        '--disable-images',
+        '--disable-javascript-harmony-shipping',
+        '--disable-client-side-phishing-detection',
+        '--disable-sync',
+        '--disable-default-apps',
+        '--hide-scrollbars',
+        '--disable-hang-monitor',
+        '--disable-prompt-on-repost',
+        '--disable-backgrounding-occluded-windows',
+        '--disable-renderer-backgrounding',
+        '--force-fieldtrials=*BackgroundTracing/default/',
+        '--no-default-browser-check',
+        '--no-pings',
+        '--password-store=basic',
+        '--use-mock-keychain'
+      ],
+      ignoreDefaultArgs: ['--enable-automation'],
+      // Set executable path if needed (uncomment and adjust for your system)
+      // executablePath: '/usr/bin/google-chrome-stable', // Linux
+      // executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', // macOS
+    };
+
+    // Add Windows-specific options if running on Windows
+    if (process.platform === 'win32') {
+      browserOptions.args.push('--disable-gpu-sandbox');
+    }
+
+    // Launch browser with enhanced options
+    instBrowser = await puppeteer.launch(browserOptions);
     const instPage = await instBrowser.newPage();
+
+    // Set a realistic viewport and user agent
+    await instPage.setViewport({ width: 1366, height: 768 });
+    await instPage.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
+
+    // Set additional page properties to avoid detection
+    await instPage.evaluateOnNewDocument(() => {
+      delete (window as any).navigator.webdriver;
+      Object.defineProperty(navigator, 'plugins', {
+        get: () => [1, 2, 3, 4, 5],
+      });
+      Object.defineProperty(navigator, 'languages', {
+        get: () => ['en-US', 'en'],
+      });
+    });
+
+    // Set extra HTTP headers
+    await instPage.setExtraHTTPHeaders({
+      'Accept-Language': 'en-US,en;q=0.9',
+      'Accept-Encoding': 'gzip, deflate, br',
+      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+    });
 
     // Accès à la page de login d'Instagram
     await instPage.goto("https://www.instagram.com/accounts/login/", { waitUntil: 'networkidle2' });
-    await instPage.waitForSelector('input[name="username"]', { timeout: 60000 });
-    logger.info("Page de connexion Instagram chargée. Veuillez vous connecter manuellement.");
 
-    // Attente de la connexion manuelle de l'utilisateur.
-    // Ici, nous attendons la présence du lien vers la messagerie comme preuve de connexion.
+    // Wait for manual login
     try {
       await instPage.waitForSelector("a[href='/direct/inbox/']", { timeout: 60000 });
       logger.info("Connexion détectée (lien de messagerie présent).");
@@ -439,18 +501,13 @@ export const instagramLogin = async (req: Request, res: Response): Promise<void>
     // Sauvegarde des cookies (contenant les informations de connexion)
     const cookies = await instPage.cookies();
     
-    // 1. Save cookies to file as backup
-    fs.writeFileSync('./cookies/Instagramcookies.json', JSON.stringify(cookies, null, 2));
-    logger.info("Cookies Instagram sauvegardés dans un fichier avec succès.");
-
+   
     // 2. Save cookies to database with the username
     try {
       const db = await connectToDatabase();
-   
       const accountsCollection = getAccountsCollection();
       
       // Update the account document with Instagram cookies
-      // Using upsert to create a new document if the username doesn't exist
       const result = await accountsCollection.updateOne(
         { username: username },
         { 
@@ -466,7 +523,6 @@ export const instagramLogin = async (req: Request, res: Response): Promise<void>
       logger.debug(`Résultat de l'opération DB: ${result.modifiedCount} document(s) modifié(s), ${result.upsertedCount} document(s) créé(s).`);
     } catch (dbError) {
       logger.error("Erreur lors de la sauvegarde des cookies en base de données:", dbError);
-      // We continue execution even if DB save fails, as we have the file backup
     }
 
     // Fermer le navigateur après la connexion
@@ -479,6 +535,16 @@ export const instagramLogin = async (req: Request, res: Response): Promise<void>
   } catch (error) {
     const errMsg = error instanceof Error ? error.message : String(error);
     logger.error("Erreur lors de la connexion à Instagram:", errMsg);
+    
+    // Ensure browser is closed even on error
+    if (instBrowser) {
+      try {
+        await instBrowser.close();
+      } catch (closeError) {
+        logger.error("Error closing browser:", closeError);
+      }
+    }
+    
     res.status(500).json({ message: "Échec de la connexion à Instagram.", error: errMsg });
   }
 };

@@ -29,7 +29,7 @@ puppeteer.use(
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 // helper to generate a random delay between retries
-const getRandomDelay = (min = 3000, max = 10000): number =>
+const getRandomDelay = (min = 30000, max = 100000): number =>
   Math.floor(Math.random() * (max - min + 1)) + min;
 
 
@@ -260,8 +260,7 @@ export async function processQueue(username: string, minPort: number = 8000, max
       }
     }
     
-    // Restart processing (recursion)
-    processQueue('default_username'); // Replace 'default_username' with an actual username
+   // Replace 'default_username' with an actual username
   } finally {
     // Ensure the browser is always closed on exit
     if (browser && browser.isConnected()) {
