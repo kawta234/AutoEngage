@@ -129,6 +129,9 @@ export async function runInstagram(username: string, minPort: number = 8000, max
         if (processedIDs.size >= targetCount) break;
         
         await generateCommentForPost(page, postId, username);
+        await delay(2000); // Délai entre les deux générations
+        await generateCommentForPost(page, postId, username);
+        
         processedIDs.add(postId);
         logger.info(`Processed post ${postId} as ${username} (${processedIDs.size}/${targetCount})`);
         await delay(5000);
@@ -305,7 +308,7 @@ Requirements:
 - Response must be ONLY a JSON array with no additional text
 - Consider that this comment will be posted by the Instagram account: ${connectedUsername}
 
-Original Post: "${caption}"`;
+Original Post: "${caption}`;
 
   try {
     const result = await interactWithOllama(
