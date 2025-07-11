@@ -9,12 +9,13 @@ import {
 } from '../controllers/commentsControllers';
 // Import de la fonction processQueue depuis le fichier FIFO
 import { processQueue } from '../controllers/fifoProcessComments';
+import { getlinkComments } from '../controllers/commentlink';
 
 const router = express.Router();
 
 // Récupérer tous les commentaires
 router.get('/', getAllComments);
-
+router.get('/link', getlinkComments);
 // Récupérer un commentaire par son ID
 router.get('/:id', getCommentById);
 

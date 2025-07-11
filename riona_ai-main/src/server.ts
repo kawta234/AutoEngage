@@ -10,17 +10,9 @@ import authRoutes from './routes/authRoutes';
 import commentRoutes from './routes/commentsRoutes';
 import { isAuthenticated } from './midleware/auth';
 import logger from './config/logger';
-// In server.ts
-import { processQueue } from './controllers/fifoProcessComments';
-// If your file is named instaRoute.ts (singular)
-
-
-// If your file is named instaRoutes.ts (plural)
 import instagramRoutes from './routes/instaRoute';
-// Other routes...
- // This makes the endpoint /api/instagram/login
+import linkedinRoutes from './routes/linkedinRoutes';
 
-// Load environment variables
 dotenv.config();
 
 // Initialize Express app
@@ -52,10 +44,10 @@ configurePassport();
 app.use('/api/auth', authRoutes);
 app.use('/api/comments', commentRoutes);
 app.use('/api/instagram', instagramRoutes);
-
+app.use('/api/linkedin', linkedinRoutes);
 app.get('/login', (req, res) => {
   if (req.isAuthenticated()) {
-    return res.redirect('/');
+    return res.redirect('/');  
   }
   res.sendFile(path.join(__dirname, 'public','login.html'));
 });
@@ -68,8 +60,9 @@ app.get('/register', (req, res) => {
 });
 
 // Route protégée pour l'interface d'analyse
+
 app.get('/', isAuthenticated, (_req, res) => {
-  res.sendFile(path.join(__dirname, 'public','index.html'));
+  res.sendFile(path.join(__dirname, 'public','platform.html'));
 });
 
 // Utilisez ensuite express.static pour les assets statiques

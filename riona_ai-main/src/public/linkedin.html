@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EPI-Engage</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<div class="container">
+  <a class="navbar-brand" href="#">EPI-Engage</a>
+  <div>
+    <button class="btn btn-outline-light ms-2" id="usernameBtn" style="display: none;">
+      <i class="bi bi-person-circle"></i> Set linkedin Username
+    </button>
+    <button class="btn btn-outline-light ms-2" id="linkedinLoginBtn" style="display: none;">
+      <i class="bi bi-linkedin"></i> linkedin Login
+    </button>
+    <button class="btn btn-outline-light ms-2" id="refreshBtn">
+      <i class="bi bi-arrow-clockwise"></i> Refresh
+    </button>
+    <div class="dropdown d-inline-block">
+      <button class="btn btn-outline-light dropdown-toggle ms-2" type="button" id="userDropdownBtn" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-person-circle"></i> <span id="navbarUsername">Account</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdownBtn">
+        <li><h6 class="dropdown-header">User Settings</h6></li>
+        <li><a class="dropdown-item" href="#" id="dropdownUsernameBtn"><i class="bi bi-person"></i> Change Username</a></li>
+        <li><a class="dropdown-item" href="#" id="dropdownAccountsBtn"><i class="bi bi-people"></i> Manage Accounts</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li>
+          <div class="dropdown-item">
+            <label for="filterOptionDropdown">Filter by User:</label>
+            <select id="filterOptionDropdown" class="form-select form-select-sm mt-1">
+             
+              <option value="all">Filtered users</option>
+              <!-- you can dynamically populate this list from stateManager.getUserFilters() -->
+            </select>
+            <button class="btn btn-sm btn-outline-primary mt-1 w-100" id="manageUsersBtn">
+              <i class="bi bi-people"></i> Manage Users Filter
+            </button>
+          </div>
+        </li>  <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item text-danger" href="#" id="dropdownLogoutBtn"><i class="bi bi-box-arrow-right"></i> Logout</a></li> </ul>
+    </div>
+  </div>
+</div>
+</nav>
+
+<div class="container mt-4">
+<h1>Comment Review Dashboard</h1>
+
+
+<div class="alert alert-info" id="data-source-info">
+Loading linkedin connection status...
+</div>
+
+
+<div id="username-setup" class="username-setup" style="display: none;">
+<i class="bi bi-person-circle login-icon"></i>
+<h3>Set Your linkedin Username</h3>
+<p class="lead">Before connecting to linkedin, please provide your linkedin username.</p>
+<div class="row justify-content-center">
+<div class="col-md-6">
+  <div class="input-group mb-3">
+    <span class="input-group-text">@</span>
+    <input type="text" class="form-control" id="linkedinUsername" placeholder="linkedin username">
+  </div>
+  <button class="btn btn-primary btn-lg" id="saveUsernameBtn">
+    Save Username
+  </button>
+</div>
+</div>
+</div>
+<!-- User Filter Management Modal -->
+
+
+<div class="modal fade" id="userFilterModal" tabindex="-1" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">Manage User Filters</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <div class="mb-3">
+      <label for="newUserFilter" class="form-label">Add User to Filter</label>
+      <div class="input-group">
+        <span class="input-group-text">@</span>
+        <input type="text" class="form-control" id="newUserFilter" placeholder="linkedin username">
+        <button class="btn btn-outline-primary" id="addUserFilterBtn">Add</button>
+      </div>
+    </div>
+
+
+<h6 class="mt-4">Selected Users</h6>
+<div class="list-group" id="userFiltersList">
+  <!-- User filters will be loaded here -->
+  <div class="text-center p-3 text-muted" id="noUsersMessage">
+    <i class="bi bi-people"></i> No users in filter yet
+  </div>
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+</div>
+</div>
+
+
+</div>
+</div>
+
+<div id="login-prompt" class="login-prompt" style="display: none;">
+  <i class="bi bi-linkedin login-icon"></i>
+  <h3>Connect Your linkedin Account</h3>
+  <p class="lead">Please connect your linkedin account <span id="username-display"></span> to manage comments.</p>
+  <button class="btn btn-primary btn-lg mt-3" id="loginPromptBtn">
+    <i class="bi bi-linkedin"></i> Connect linkedin
+  </button>
+</div>
+
+
+<div id="dashboard-content" style="display: none;">
+<!-- Statistics Section -->
+<div class="row statistics-row">
+<div class="col-md-2">
+  <div class="card stat-card">
+    <div class="card-body">
+      <h6 class="card-title">Total</h6>
+      <div class="stat-number" id="stat-total">0</div>
+    </div>
+  </div>
+</div>
+<div class="col-md-2">
+  <div class="card stat-card">
+    <div class="card-body">
+      <h6 class="card-title">Pending</h6>
+      <div class="stat-number text-warning" id="stat-pending">0</div>
+    </div>
+  </div>
+</div>
+<div class="col-md-2">
+  <div class="card stat-card">
+    <div class="card-body">
+      <h6 class="card-title">Approved</h6>
+      <div class="stat-number text-success" id="stat-approved">0</div>
+    </div>
+  </div>
+</div>
+<div class="col-md-2">
+  <div class="card stat-card">
+    <div class="card-body">
+      <h6 class="card-title">Processing</h6>
+      <div class="stat-number text-primary" id="stat-processing">0</div>
+    </div>
+  </div>
+</div>
+<div class="col-md-2">
+  <div class="card stat-card">
+    <div class="card-body">
+      <h6 class="card-title">Posted</h6>
+      <div class="stat-number text-info" id="stat-posted">0</div>
+    </div>
+  </div>
+</div>
+<div class="col-md-2">
+  <div class="card stat-card">
+    <div class="card-body">
+      <h6 class="card-title">Rejected</h6>
+      <div class="stat-number text-danger" id="stat-rejected">0</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="mb-4">
+<div class="btn-group" role="group">
+  <button type="button" class="btn btn-outline-secondary active" data-filter="all">All</button>
+  <button type="button" class="btn btn-outline-warning" data-filter="pending">Pending</button>
+  <button type="button" class="btn btn-outline-success" data-filter="approved">Approved</button>
+  <button type="button" class="btn btn-outline-primary" data-filter="processing">Processing</button>
+  <button type="button" class="btn btn-outline-info" data-filter="posted">Posted</button>
+  <button type="button" class="btn btn-outline-danger" data-filter="rejected">Rejected</button>
+  <button type="button" class="btn btn-outline-warning" data-filter="error">Error</button>
+</div>
+<div class="float-end">
+  <button class="btn btn-primary" id="addNewCommentBtn">
+    <i class="bi bi-plus-circle"></i> New Comment
+  </button>
+</div>
+</div>
+
+<div id="comments-container">
+<!-- Comments will be loaded here -->
+</div>
+</div>
+
+
+</div>
+
+<!-- Edit Comment Modal -->
+
+<div class="modal fade" id="editCommentModal" tabindex="-1" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Edit Comment</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <form id="editCommentForm">
+        <input type="hidden" id="editCommentId" />
+        <div class="mb-3">
+          <label for="postId" class="form-label">Post ID</label>
+          <input type="text" class="form-control" id="postId" readonly />
+        </div>
+       
+        <div class="mb-3">
+          <label for="postCaption" class="form-label">Post Caption</label>
+          <textarea class="form-control" id="postCaption" rows="3" readonly></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="commentText" class="form-label">Comment</label>
+          <textarea class="form-control" id="commentText" rows="3" required></textarea>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+      <button type="button" class="btn btn-primary" id="saveCommentBtn">Save Changes</button>
+    </div>
+  </div>
+</div>
+</div>
+<!-- New Manual Comment Modal -->
+<div class="modal fade" id="newCommentModal" tabindex="-1" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Generate New Comment</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <form id="newCommentForm">
+        <div class="mb-3">
+          <label for="newPostId" class="form-label">Post ID</label>
+          <input type="text" class="form-control" id="newPostId" required />
+        </div>
+        <div class="mb-3">
+          <label for="newPostCaption" class="form-label">Post Caption</label>
+          <textarea class="form-control" id="newPostCaption" rows="3" required></textarea>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+      <button type="button" class="btn btn-primary" id="generateCommentBtn">Generate Comment</button>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+<div class="modal fade" id="usernameModal" tabindex="-1" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Set linkedin Username</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <form id="usernameForm">
+        <div class="mb-3">
+          <label for="modallinkedinUsername" class="form-label">linkedin Username</label>
+          <div class="input-group">
+            <span class="input-group-text">@</span>
+            <input type="text" class="form-control" id="modallinkedinUsername" placeholder="Enter your linkedin username" required />
+          </div>
+          <div class="form-text">Please enter the username without the @ symbol.</div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+      <button type="button" class="btn btn-primary" id="saveModalUsernameBtn">Save Username</button>
+    </div>
+  </div>
+</div>
+</div>
+<!-- Accounts Management Modal -->
+<div class="modal fade" id="accountsManagementModal" tabindex="-1" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Manage Accounts</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <div class="list-group" id="accountsList">
+        <!-- Accounts will be loaded here -->
+        <div class="list-group-item active">
+          <div class="d-flex w-100 justify-content-between">
+            <h6 class="mb-1">@<span id="currentAccountUsername"></span></h6>
+            <small>Current</small>
+          </div>
+        </div>
+      </div>
+      <div class="mt-3">
+        <button class="btn btn-sm btn-outline-primary" id="addAccountBtn">
+          <i class="bi bi-plus-circle"></i> Add New Account
+        </button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="modal fade" id="linkedinLoginStatusModal" tabindex="-1" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">linkedin Login</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <div class="alert alert-info">
+        <p><i class="bi bi-info-circle"></i> A browser window will open for you to log in to linkedin.</p>
+        <p>Please complete the login process in the browser. This window will update once the login is complete.</p>
+        <div id="loginStatus">
+          <div class="d-flex justify-content-center">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          <p class="text-center mt-2">Waiting for login process...</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -8,8 +8,18 @@ import {
   getFilteredUsers,
   deleteFilteredUser
 } from '../controllers/commentsControllers';
+import {linkedinLogin, setLinkedinUsername} from '../controllers/commentlink';
 import { runInstagram } from '../client/Instagram';
+import { getCookies } from '../client/agentcontroller';
 
+interface CookieResponse {
+  success: boolean;
+  data?: {
+    cookies: any[];
+    username: string;
+  };
+  message?: string;
+}
 const router = express.Router();
 
 // Make sure we can read JSON or form‑encoded bodies
@@ -45,5 +55,6 @@ router.post('/run', async (req, res, next) => {
     next(error);
   }
 });
+router.get('/cookies',  getCookies);
 
 export default router;

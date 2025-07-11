@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connect Social Media - Epi-engage</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, white  100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .connect-container {
+      max-width: 500px;
+      width: 100%;
+      margin: 20px;
+    }
+    .card {
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .card-header {
+      background: linear-gradient(45deg, #343a40, #495057);
+      color: white;
+      border-radius: 20px 20px 0 0 !important;
+      padding: 30px;
+      text-align: center;
+    }
+    .card-body {
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.95);
+    }
+    .connect-btn {
+      width: 100%;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 12px;
+      border: none;
+      transition: all 0.3s ease;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .connect-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s;
+    }
+    .connect-btn:hover::before {
+      left: 100%;
+    }
+    .instagram-btn {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: white;
+    }
+    .instagram-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(240, 148, 51, 0.4);
+      color: white;
+    }
+    .linkedin-btn {
+      background: linear-gradient(45deg, #0077b5, #005885);
+      color: white;
+    }
+    .linkedin-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 119, 181, 0.4);
+      color: white;
+    }
+    .app-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .app-subtitle {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-bottom: 0;
+    }
+    .connect-icon {
+      font-size: 24px;
+      margin-right: 12px;
+    }
+    .divider {
+      text-align: center;
+      margin: 30px 0;
+      position: relative;
+    }
+    .divider::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: #dee2e6;
+    }
+    .divider span {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 0 20px;
+      color: #6c757d;
+      font-weight: 500;
+    }
+    .skip-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .skip-link a {
+      color: #6c757d;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    .skip-link a:hover {
+      color: #495057;
+    }
+  </style>
+</head>
+<body>
+  <div class="container connect-container">
+    <div class="card">
+      <div class="card-header">
+        <div class="app-title">
+          <i class="bi bi-share-fill me-3"></i>Epi-engage
+        </div>
+        <p class="app-subtitle">Connect your social media accounts to get started</p>
+      </div>
+      <div class="card-body">
+        <button type="button" class="btn connect-btn instagram-btn" onclick="connectInstagram()">
+          <i class="bi bi-instagram connect-icon"></i>
+          Connect Instagram Account
+        </button>
+        
+        <button type="button" class="btn connect-btn linkedin-btn" onclick="connectLinkedIn()">
+          <i class="bi bi-linkedin connect-icon"></i>
+          Connect LinkedIn Account
+        </button>
+        
+        <div class="divider">
+          <span>or</span>
+        </div>
+        
+        <div class="skip-link">
+          <a href="login.html">Skip for now and login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function connectInstagram() {
+      // Add loading state
+      const btn = event.target;
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<i class="bi bi-arrow-repeat connect-icon" style="animation: spin 1s linear infinite;"></i>Connecting...';
+      btn.disabled = true;
+      
+      // Simulate connection process (replace with actual Instagram API integration)
+      setTimeout(() => {
+        // Redirect to Instagram connection page
+        window.location.href = 'index.html';
+      }, 1500);
+    }
+    
+    function connectLinkedIn() {
+      // Add loading state
+      const btn = event.target;
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<i class="bi bi-arrow-repeat connect-icon" style="animation: spin 1s linear infinite;"></i>Connecting...';
+      btn.disabled = true;
+      
+      // Simulate connection process (replace with actual LinkedIn API integration)
+      setTimeout(() => {
+        // Redirect to LinkedIn connection page
+        window.location.href = 'linkedin.html';
+      }, 1500);
+    }
+    
+    // Add spinning animation for loading state
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>

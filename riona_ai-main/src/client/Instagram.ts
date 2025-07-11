@@ -15,7 +15,7 @@ import { checkTargetUsernameMatch, getInstagramCookiesByUsername } from "./agent
 const postSelector = (index: number): string => `article:nth-of-type(${index + 1})`;
 
 const captionSelectors: string[] = [
-  ' div.x9f619 > span.x193iq5w.xeuugli.x1fj9vlw.x13faqbe.x1vvkbs.xt0psk2.x1i0vuye.xvs91rp.xo1l8bm.x5n08af.x10wh9bi.x1wdrske.x8viiok.x18hxmgj',];
+  'span.x193iq5w.xeuugli.x13faqbe.x1vvkbs.xt0psk2.x1i0vuye.xvs91rp.xo1l8bm.x5n08af.x10wh9bi.xpm28yp.x8viiok.x1o7cslx.x126k92a',];
 
 const moreLinkSelector: string = 'span.x1lliihq';
 
@@ -324,7 +324,7 @@ Original Post: "${caption}`;
       caption,
       undefined, 
       postUsername,   // userId is undefined here
-      connectedUsername  // Pass username to be stored with comment
+      connectedUsername  
   );
     // Extraire le commentaire généré
     let extractedComment = "";
