@@ -1263,8 +1263,8 @@ if (userFilters.length > 0) {
 }
 }
 filtered.sort((a, b) => {
-  const dateA = new Date(a.createdAt);
-  const dateB = new Date(b.createdAt);
+  const dateA = new Date(a.timestamp);
+  const dateB = new Date(b.timestamp);
   return dateB - dateA; // Descending order (newest first)
 });
 // 4) Render "no results" or the cards
