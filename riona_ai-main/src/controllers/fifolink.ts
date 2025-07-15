@@ -12,9 +12,10 @@ import { IUser } from '../models/user';
 import { Instagram_cookiesExist, loadCookies, saveCookies } from "../utils";
 import { getInstagramCookiesByUsername } from "../client/agentcontroller";
 import { getLinkedInCookiesByUsername } from "../client/linkedin/agentlinkedin";
+
 const popupCloseSelector: string = 'button[class*="dismiss"]';
-const commentBoxSelector: string = '#ember63 > div > form > div > div > div.comments-comment-box-comment__text-editor > div';
-const likeButtonSelector = '#ember45';
+const commentBoxSelector: string = 'div[aria-label="Text editor for creating content"][contenteditable="true"]';
+const likeButtonSelector = 'button[aria-label="React Like"]';
 
 // -------------------------------------------------------
 // Puppeteer Setup
@@ -32,6 +33,7 @@ const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 // helper to generate a random delay between retries
 const getRandomDelay = (min = 30000, max = 100000): number =>
   Math.floor(Math.random() * (max - min + 1)) + min;
+
 export async function processQueue(username: string, minPort: number = 8000, maxPort: number = 9000): Promise<void> {
   // Générer un port aléatoire entre minPort et maxPort
   const port = Math.floor(Math.random() * (maxPort - minPort + 1)) + minPort;
@@ -72,7 +74,7 @@ export async function processQueue(username: string, minPort: number = 8000, max
     const page = await browser.newPage();
     const cookiesData = await getLinkedInCookiesByUsername(username);
     if (!cookiesData || !cookiesData.cookies) {
-      throw new Error("Could not retrieve Instagram cookies");
+      throw new Error("Could not retrieve LinkedIn cookies");
     }
     
     const cookies = cookiesData.cookies;
@@ -300,27 +302,29 @@ export async function processQueue(username: string, minPort: number = 8000, max
           logger.info(`Posting comment: "${comment.comment}"`);
           
           // Find and click the Post button
-          const postButtonHandle = await page.evaluateHandle(() => {
-            const buttons = Array.from(document.querySelectorAll('#ember342'));
-            return buttons.find(
-              (button) => button.textContent?.trim() === 'Post' && !button.hasAttribute('disabled')
+          try {
+            // Wait up to 10 seconds for the button to become clickable
+            const postButton = await page.waitForSelector(
+              'button.comments-comment-box__submit-button--cr',
+              { visible: true, timeout: 10000 }
             );
-          });
+            if (!postButton) throw new Error('Post button not found');
           
-          if (postButtonHandle) {
-            logger.info(`Clicking Post button for post ${comment.postId}...`);
-            await (postButtonHandle as any).click();
-            logger.info(`Comment successfully posted on post ${comment.postId}.`);
-            
-            // Wait for the comment to be posted
-            await delay(2000);
+            // Click it via evaluate (like execute_script)
+            await page.evaluate(btn => (btn as HTMLElement).click(), postButton);
+          
+            // Pause for a random 2–4 seconds
+            await delay(Math.random() * (4000 - 2000) + 2000);
+          
+            console.log('✅ Comment Posted Successfully!');
             success = true;
-            break; // Exit the retry loop if successful
-          } else {
-            throw new Error("Post button not found");
+            break; // Exit the retry loop on success
+          } catch (err) {
+            console.warn('⚠️ Failed to post comment.', err);
+            throw err; // Re-throw to trigger retry logic
           }
           
-        }catch (error) {
+        } catch (error) {
           logger.error(`Attempt ${attempt} failed for comment ${comment._id}:`, error);
           
           if (error instanceof Error) {
@@ -335,7 +339,6 @@ export async function processQueue(username: string, minPort: number = 8000, max
             await delay(retryDelay);
           }
         }
-        
       }
       
       // 5. Update the comment status in the database
@@ -355,29 +358,32 @@ export async function processQueue(username: string, minPort: number = 8000, max
       logger.info(`Waiting ${waitDelay} ms before processing next comment`);
       await delay(waitDelay);
     }
+    
   } catch (error) {
     logger.error('Error during processing queue:', error);
     // Wait before restarting the queue processing
     await delay(120000);
     
-    // If the browser is still alive, close it before restarting
-    if (browser && browser.isConnected()) {
-      try {
-        await browser.close();
-      } catch (closeError) {
-        logger.error('Error closing browser:', closeError);
-      }
-    }
+    // Restart the queue processing by calling the function recursively
+    await processQueue(username, minPort, maxPort);
     
-   // Replace 'default_username' with an actual username
   } finally {
-    // Ensure the browser is always closed on exit
+    // Clean up resources
     if (browser && browser.isConnected()) {
       try {
         await browser.close();
         logger.info('Browser closed at the end of queue processing');
       } catch (closeError) {
         logger.error('Error closing browser:', closeError);
+      }
+    }
+    
+    if (proxyServer) {
+      try {
+        await proxyServer.close(true);
+        logger.info('Proxy server closed');
+      } catch (closeError) {
+        logger.error('Error closing proxy server:', closeError);
       }
     }
   }

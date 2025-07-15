@@ -1,0 +1,632 @@
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"10:46:25 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"10:46:25 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"10:46:25 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username updated for user 683720529b99dc1e616b574d: leboss.csa@gmail.com","timestamp":"10:47:47 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connexion LinkedIn détectée (navigation principale présente).","timestamp":"10:48:16 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Cookies LinkedIn sauvegardés en base de données pour l'utilisateur leboss.csa@gmail.com.","timestamp":"10:48:16 AM"}
+{"level":"\u001b[34mdebug\u001b[39m","message":"Résultat de l'opération DB: 1 document(s) modifié(s), 0 document(s) créé(s).","timestamp":"10:48:16 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Retrieved 12 cookies for leboss.csa@gmail.com","timestamp":"10:48:17 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started browser for leboss.csa@gmail.com","timestamp":"10:48:17 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to LinkedIn homepage for leboss.csa@gmail.com...","timestamp":"10:48:17 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Current URL after navigation: https://www.linkedin.com/","timestamp":"10:48:21 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying 12 cookies for leboss.csa@gmail.com...","timestamp":"10:48:21 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Filtered to 12 valid LinkedIn cookies","timestamp":"10:48:21 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Cookies applied successfully for leboss.csa@gmail.com","timestamp":"10:48:21 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Reloading page to apply cookies...","timestamp":"10:48:21 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Vérification de la connexion pour leboss.csa@gmail.com...","timestamp":"10:48:29 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Me nav (.global-nav__me)","timestamp":"10:48:29 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Logged into LinkedIn as leboss.csa@gmail.com (detected: Me nav)","timestamp":"10:48:30 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to LinkedIn feed for leboss.csa@gmail.com...","timestamp":"10:48:30 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"🚀 Starting main automation loop for leboss.csa@gmail.com","timestamp":"10:48:37 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/activity-7348798020462784515-za2W?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:49:32 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/activity-7348798020462784515-za2W?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:49:32 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author found: Celestine N.","timestamp":"10:49:41 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"Celestine N.\" matches any target usernames in our database","timestamp":"10:49:41 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"Celestine N.\" in our target list","timestamp":"10:49:41 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author \"Celestine N.\" is not in our target list. Skipping...","timestamp":"10:49:41 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed 1/50","timestamp":"10:49:41 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/bqotd%2Ecom_activity-7348779787517112322-Wb_R?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:49:56 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/bqotd%2Ecom_activity-7348779787517112322-Wb_R?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:49:56 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User leboss.csa@gmail.com added filtered user: best quotes of the day","timestamp":"10:50:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author found: Best Quotes of the Day","timestamp":"10:50:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"Best Quotes of the Day\" matches any target usernames in our database","timestamp":"10:50:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"Best Quotes of the Day\" in our target list","timestamp":"10:50:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author \"Best Quotes of the Day\" is not in our target list. Skipping...","timestamp":"10:50:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed 2/50","timestamp":"10:50:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/elastic-co_white-paper-a-technical-guide-to-the-foundations-activity-7229568570567892992-Zh4W?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:50:20 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/elastic-co_white-paper-a-technical-guide-to-the-foundations-activity-7229568570567892992-Zh4W?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:50:20 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author found: Elastic","timestamp":"10:50:28 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"Elastic\" matches any target usernames in our database","timestamp":"10:50:28 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"Elastic\" in our target list","timestamp":"10:50:28 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author \"Elastic\" is not in our target list. Skipping...","timestamp":"10:50:28 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed 3/50","timestamp":"10:50:28 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User leboss.csa@gmail.com added filtered user: william m.","timestamp":"10:50:34 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Not on feed page, navigating to feed...","timestamp":"10:50:51 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User leboss.csa@gmail.com added filtered user: kelly mizell 🌟","timestamp":"10:50:52 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User leboss.csa@gmail.com added filtered user: pierre poilievre","timestamp":"10:51:27 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/muhammad-waseem-556154319_leadership-luxury-inspiration-activity-7348562815298789376-cuXL?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:52:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/muhammad-waseem-556154319_leadership-luxury-inspiration-activity-7348562815298789376-cuXL?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:52:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author found: Muhammad Waseem","timestamp":"10:52:09 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"Muhammad Waseem\" matches any target usernames in our database","timestamp":"10:52:09 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"Muhammad Waseem\" in our target list","timestamp":"10:52:09 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author \"Muhammad Waseem\" is not in our target list. Skipping...","timestamp":"10:52:09 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed 4/50","timestamp":"10:52:09 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/storytapvideo_get-the-guide-to-video-testimonials-in-2025-activity-7339064684228026371-DHn1?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:52:24 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/storytapvideo_get-the-guide-to-video-testimonials-in-2025-activity-7339064684228026371-DHn1?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:52:24 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author found: StoryTap","timestamp":"10:52:31 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"StoryTap\" matches any target usernames in our database","timestamp":"10:52:31 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"StoryTap\" in our target list","timestamp":"10:52:31 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author \"StoryTap\" is not in our target list. Skipping...","timestamp":"10:52:31 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed 5/50","timestamp":"10:52:31 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/thinkpositivelivebetter_activity-7348795162824704000-CfDe?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:52:46 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/thinkpositivelivebetter_activity-7348795162824704000-CfDe?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:52:46 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User leboss.csa@gmail.com added filtered user: storytap","timestamp":"10:52:51 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author found: 📍𝐓𝐡𝐢𝐧𝐤 𝐏𝐨𝐬𝐢𝐭𝐢𝐯𝐞 𝐀𝐥𝐰𝐚𝐲𝐬.𝐜𝐨𝐦📌","timestamp":"10:52:54 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"📍𝐓𝐡𝐢𝐧𝐤 𝐏𝐨𝐬𝐢𝐭𝐢𝐯𝐞 𝐀𝐥𝐰𝐚𝐲𝐬.𝐜𝐨𝐦📌\" matches any target usernames in our database","timestamp":"10:52:54 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"📍𝐓𝐡𝐢𝐧𝐤 𝐏𝐨𝐬𝐢𝐭𝐢𝐯𝐞 𝐀𝐥𝐰𝐚𝐲𝐬.𝐜𝐨𝐦📌\" in our target list","timestamp":"10:52:54 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author \"📍𝐓𝐡𝐢𝐧𝐤 𝐏𝐨𝐬𝐢𝐭𝐢𝐯𝐞 𝐀𝐥𝐰𝐚𝐲𝐬.𝐜𝐨𝐦📌\" is not in our target list. Skipping...","timestamp":"10:52:54 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed 6/50","timestamp":"10:52:54 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Not on feed page, navigating to feed...","timestamp":"10:53:17 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User leboss.csa@gmail.com added filtered user: 📍𝐓𝐡𝐢𝐧𝐤 𝐏𝐨𝐬𝐢𝐭𝐢𝐯𝐞 𝐀𝐥𝐰𝐚𝐲𝐬.𝐜𝐨𝐦📌","timestamp":"10:53:20 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/jwmba_you-need-7-types-of-rest-to-avoid-burnout-activity-7348326543674294272-Z_RW?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:54:25 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/jwmba_you-need-7-types-of-rest-to-avoid-burnout-activity-7348326543674294272-Z_RW?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:54:25 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author found: Justin Wright","timestamp":"10:54:35 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"Justin Wright\" matches any target usernames in our database","timestamp":"10:54:35 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"Justin Wright\" in our target list","timestamp":"10:54:35 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author \"Justin Wright\" is not in our target list. Skipping...","timestamp":"10:54:35 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed 7/50","timestamp":"10:54:35 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/saveonenergy-ontario_access-no-cost-webinars-workshops-coaching-activity-7332881265739603968-hG-h?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:54:50 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/saveonenergy-ontario_access-no-cost-webinars-workshops-coaching-activity-7332881265739603968-hG-h?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:54:50 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author found: SaveonEnergy Ontario","timestamp":"10:54:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"SaveonEnergy Ontario\" matches any target usernames in our database","timestamp":"10:54:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"SaveonEnergy Ontario\" in our target list","timestamp":"10:54:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author \"SaveonEnergy Ontario\" is not in our target list. Skipping...","timestamp":"10:54:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed 8/50","timestamp":"10:54:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_heroes-gives-us-inspiration-they-fuel-us-activity-7348889336651665408-IfBE?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:55:13 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_heroes-gives-us-inspiration-they-fuel-us-activity-7348889336651665408-IfBE?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:55:13 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author found: Kelly Mizell 🌟","timestamp":"10:55:22 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"Kelly Mizell 🌟\" matches any target usernames in our database","timestamp":"10:55:22 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"Kelly Mizell 🌟\" in our target list","timestamp":"10:55:22 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author \"Kelly Mizell 🌟\" is not in our target list. Skipping...","timestamp":"10:55:22 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed 9/50","timestamp":"10:55:22 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Not on feed page, navigating to feed...","timestamp":"10:55:45 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/the-best-of-the-brutal-truth-about-sales-podcast_leadership-sales-activity-7344473357934809089-rMT8?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:56:48 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/the-best-of-the-brutal-truth-about-sales-podcast_leadership-sales-activity-7344473357934809089-rMT8?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:56:48 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author found: The Best of The Brutal Truth about Sales PodCast","timestamp":"10:56:56 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"The Best of The Brutal Truth about Sales PodCast\" matches any target usernames in our database","timestamp":"10:56:56 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"The Best of The Brutal Truth about Sales PodCast\" in our target list","timestamp":"10:56:56 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author \"The Best of The Brutal Truth about Sales PodCast\" is not in our target list. Skipping...","timestamp":"10:56:56 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed 10/50","timestamp":"10:56:56 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/prashant-kumar-9a28761_invisibleleadership-trustinmotion-teamrhythm-activity-7348187480728268800-fRta?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:57:11 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/prashant-kumar-9a28761_invisibleleadership-trustinmotion-teamrhythm-activity-7348187480728268800-fRta?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:57:11 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author found: Prashant Kumar","timestamp":"10:57:19 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"Prashant Kumar\" matches any target usernames in our database","timestamp":"10:57:19 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"Prashant Kumar\" in our target list","timestamp":"10:57:19 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author \"Prashant Kumar\" is not in our target list. Skipping...","timestamp":"10:57:19 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed 11/50","timestamp":"10:57:19 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/meridian-manufacturing-inc-_engineered-storage-solutions-for-the-craft-activity-7344051012325777410-8lQF?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:57:34 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/meridian-manufacturing-inc-_engineered-storage-solutions-for-the-craft-activity-7344051012325777410-8lQF?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:57:34 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author found: Meridian Manufacturing Inc.","timestamp":"10:57:41 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"Meridian Manufacturing Inc.\" matches any target usernames in our database","timestamp":"10:57:41 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"Meridian Manufacturing Inc.\" in our target list","timestamp":"10:57:41 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author \"Meridian Manufacturing Inc.\" is not in our target list. Skipping...","timestamp":"10:57:41 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed 12/50","timestamp":"10:57:41 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Not on feed page, navigating to feed...","timestamp":"10:58:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/thinkpositivelivebetter_activity-7348727662250487808-OtP7?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:59:11 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/thinkpositivelivebetter_activity-7348727662250487808-OtP7?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"10:59:11 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author found: 📍𝐓𝐡𝐢𝐧𝐤 𝐏𝐨𝐬𝐢𝐭𝐢𝐯𝐞 𝐀𝐥𝐰𝐚𝐲𝐬.𝐜𝐨𝐦📌","timestamp":"10:59:19 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"📍𝐓𝐡𝐢𝐧𝐤 𝐏𝐨𝐬𝐢𝐭𝐢𝐯𝐞 𝐀𝐥𝐰𝐚𝐲𝐬.𝐜𝐨𝐦📌\" matches any target usernames in our database","timestamp":"10:59:19 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found a match! Post username \"📍𝐓𝐡𝐢𝐧𝐤 𝐏𝐨𝐬𝐢𝐭𝐢𝐯𝐞 𝐀𝐥𝐰𝐚𝐲𝐬.𝐜𝐨𝐦📌\" is in our target list","timestamp":"10:59:19 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author \"📍𝐓𝐡𝐢𝐧𝐤 𝐏𝐨𝐬𝐢𝐭𝐢𝐯𝐞 𝐀𝐥𝐰𝐚𝐲𝐬.𝐜𝐨𝐦📌\" is in our target list. Proceeding with content analysis...","timestamp":"10:59:19 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post content found with selector \".update-components-text span[dir=\"ltr\"]\"","timestamp":"10:59:19 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Expanding post content for https://www.linkedin.com/posts/thinkpositivelivebetter_activity-7348727662250487808-OtP7?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28...","timestamp":"10:59:19 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final post content (13 characters): Absolutely 💯...","timestamp":"10:59:22 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Comment generated for post https://www.linkedin.com/posts/thinkpositivelivebetter_activity-7348727662250487808-OtP7?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28 by leboss.csa@gmail.com: \"A simple yet powerful acknowledgment of the importance of self-awareness in leadership. What strategies do you use to encourage introspection among your team members?\"","timestamp":"11:00:28 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed 13/50","timestamp":"11:00:28 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/redoaksoftware_choosing-the-right-ai-tool-start-with-this-activity-7327424060651446273-QIhl?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"11:00:43 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/redoaksoftware_choosing-the-right-ai-tool-start-with-this-activity-7327424060651446273-QIhl?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"11:00:43 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author found: Red Oak","timestamp":"11:00:49 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"Red Oak\" matches any target usernames in our database","timestamp":"11:00:49 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"Red Oak\" in our target list","timestamp":"11:00:50 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author \"Red Oak\" is not in our target list. Skipping...","timestamp":"11:00:50 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed 14/50","timestamp":"11:00:50 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/mohammad-alsaheb-mib-pmp%C2%AE-b158338a_future-housing-modular-activity-7347942467054321664-ZfpV?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"11:01:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/mohammad-alsaheb-mib-pmp%C2%AE-b158338a_future-housing-modular-activity-7347942467054321664-ZfpV?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"11:01:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author found: Mohammad ALSAHEB, MIB, PMP®","timestamp":"11:01:12 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"Mohammad ALSAHEB, MIB, PMP®\" matches any target usernames in our database","timestamp":"11:01:12 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"Mohammad ALSAHEB, MIB, PMP®\" in our target list","timestamp":"11:01:12 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author \"Mohammad ALSAHEB, MIB, PMP®\" is not in our target list. Skipping...","timestamp":"11:01:12 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed 15/50","timestamp":"11:01:12 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Not on feed page, navigating to feed...","timestamp":"11:01:35 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"11:03:18 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"11:03:18 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"11:03:18 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username updated for user 683720529b99dc1e616b574d: leboss.csa@gmail.com","timestamp":"11:03:34 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connexion LinkedIn détectée (navigation principale présente).","timestamp":"11:03:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Cookies LinkedIn sauvegardés en base de données pour l'utilisateur leboss.csa@gmail.com.","timestamp":"11:03:58 AM"}
+{"level":"\u001b[34mdebug\u001b[39m","message":"Résultat de l'opération DB: 1 document(s) modifié(s), 0 document(s) créé(s).","timestamp":"11:03:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Retrieved 12 cookies for leboss.csa@gmail.com","timestamp":"11:03:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started browser for leboss.csa@gmail.com","timestamp":"11:03:59 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to LinkedIn homepage for leboss.csa@gmail.com...","timestamp":"11:03:59 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Current URL after navigation: https://www.linkedin.com/","timestamp":"11:04:03 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying 12 cookies for leboss.csa@gmail.com...","timestamp":"11:04:03 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Filtered to 12 valid LinkedIn cookies","timestamp":"11:04:03 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Cookies applied successfully for leboss.csa@gmail.com","timestamp":"11:04:03 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Reloading page to apply cookies...","timestamp":"11:04:03 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Vérification de la connexion pour leboss.csa@gmail.com...","timestamp":"11:04:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Me nav (.global-nav__me)","timestamp":"11:04:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Logged into LinkedIn as leboss.csa@gmail.com (detected: Me nav)","timestamp":"11:04:11 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to LinkedIn feed for leboss.csa@gmail.com...","timestamp":"11:04:11 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"🚀 Starting main automation loop for leboss.csa@gmail.com","timestamp":"11:04:19 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_jealousy-is-when-you-count-someone-else-activity-7348646366694342658-Wr8d?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"11:05:19 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_jealousy-is-when-you-count-someone-else-activity-7348646366694342658-Wr8d?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"11:05:19 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author found: Kelly Mizell 🌟","timestamp":"11:05:28 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"Kelly Mizell 🌟\" matches any target usernames in our database","timestamp":"11:05:28 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"Kelly Mizell 🌟\" in our target list","timestamp":"11:05:28 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author \"Kelly Mizell 🌟\" is not in our target list. Skipping...","timestamp":"11:05:28 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed 1/50","timestamp":"11:05:28 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/guidance-college_advance-your-career-with-online-islamic-studies-activity-7345070307629498368-KRIb?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"11:05:43 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/guidance-college_advance-your-career-with-online-islamic-studies-activity-7345070307629498368-KRIb?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"11:05:43 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author found: Guidance College","timestamp":"11:05:52 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"Guidance College\" matches any target usernames in our database","timestamp":"11:05:52 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"Guidance College\" in our target list","timestamp":"11:05:52 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author \"Guidance College\" is not in our target list. Skipping...","timestamp":"11:05:52 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed 2/50","timestamp":"11:05:52 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/thinkpositivelivebetter_activity-7348855994417840128-uMz_?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"11:06:07 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/thinkpositivelivebetter_activity-7348855994417840128-uMz_?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"11:06:07 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author found: 📍𝐓𝐡𝐢𝐧𝐤 𝐏𝐨𝐬𝐢𝐭𝐢𝐯𝐞 𝐀𝐥𝐰𝐚𝐲𝐬.𝐜𝐨𝐦📌","timestamp":"11:06:15 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"📍𝐓𝐡𝐢𝐧𝐤 𝐏𝐨𝐬𝐢𝐭𝐢𝐯𝐞 𝐀𝐥𝐰𝐚𝐲𝐬.𝐜𝐨𝐦📌\" matches any target usernames in our database","timestamp":"11:06:15 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found a match! Post username \"📍𝐓𝐡𝐢𝐧𝐤 𝐏𝐨𝐬𝐢𝐭𝐢𝐯𝐞 𝐀𝐥𝐰𝐚𝐲𝐬.𝐜𝐨𝐦📌\" is in our target list","timestamp":"11:06:15 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author \"📍𝐓𝐡𝐢𝐧𝐤 𝐏𝐨𝐬𝐢𝐭𝐢𝐯𝐞 𝐀𝐥𝐰𝐚𝐲𝐬.𝐜𝐨𝐦📌\" is in our target list. Proceeding with content analysis...","timestamp":"11:06:15 AM"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"No content found for post https://www.linkedin.com/posts/thinkpositivelivebetter_activity-7348855994417840128-uMz_?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28. Skipping comment generation.","timestamp":"11:06:15 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed 3/50","timestamp":"11:06:15 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Not on feed page, navigating to feed...","timestamp":"11:06:38 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"11:27:57 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"11:27:57 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"11:27:57 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"11:29:20 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"11:29:21 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"11:29:21 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username updated for user 683720529b99dc1e616b574d: majesty___jewelry","timestamp":"11:30:50 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started proxy server for majesty___jewelry on port 7535","timestamp":"11:30:51 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to Instagram homepage for majesty___jewelry...","timestamp":"11:30:51 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying cookies for majesty___jewelry...","timestamp":"11:30:54 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Cookies applied successfully for majesty___jewelry","timestamp":"11:30:54 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Logged into Instagram as majesty___jewelry via cookies.","timestamp":"11:31:01 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No more 'processing' comments for this user. Waiting 2 minutes...","timestamp":"11:31:01 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connexion détectée (lien de messagerie présent).","timestamp":"11:31:25 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Cookies Instagram sauvegardés en base de données pour l'utilisateur majesty___jewelry.","timestamp":"11:31:25 AM"}
+{"level":"\u001b[34mdebug\u001b[39m","message":"Résultat de l'opération DB: 1 document(s) modifié(s), 0 document(s) créé(s).","timestamp":"11:31:25 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started proxy server for majesty___jewelry on port 8644","timestamp":"11:31:26 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to Instagram homepage for majesty___jewelry...","timestamp":"11:31:26 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying cookies for majesty___jewelry...","timestamp":"11:31:28 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Cookies applied successfully for majesty___jewelry","timestamp":"11:31:28 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Logged into Instagram as majesty___jewelry via cookies.","timestamp":"11:31:32 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : rihab.ck","timestamp":"11:31:45 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"rihab.ck\" matches any target usernames in our database","timestamp":"11:31:45 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"rihab.ck\" in our target list","timestamp":"11:31:45 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"rihab.ck\" is not in our target list. Skipping...","timestamp":"11:31:45 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : rihab.ck","timestamp":"11:31:53 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"rihab.ck\" matches any target usernames in our database","timestamp":"11:31:53 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"rihab.ck\" in our target list","timestamp":"11:31:53 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"rihab.ck\" is not in our target list. Skipping...","timestamp":"11:31:53 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed post DL5EDibo_6rqdYxshW8QMEtt95YMu3sv1id1lQ0 as majesty___jewelry (1/500)","timestamp":"11:31:53 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : dave.asprey","timestamp":"11:32:04 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"dave.asprey\" matches any target usernames in our database","timestamp":"11:32:04 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found a match! Post username \"dave.asprey\" is in our target list","timestamp":"11:32:04 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"dave.asprey\" is in our target list. Proceeding...","timestamp":"11:32:04 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No more 'processing' comments for this user. Waiting 2 minutes...","timestamp":"11:34:01 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : dave.asprey","timestamp":"11:35:21 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"dave.asprey\" matches any target usernames in our database","timestamp":"11:35:21 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found a match! Post username \"dave.asprey\" is in our target list","timestamp":"11:35:21 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"dave.asprey\" is in our target list. Proceeding...","timestamp":"11:35:21 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No more 'processing' comments for this user. Waiting 2 minutes...","timestamp":"11:37:01 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed post DL5CMT9MQqA as majesty___jewelry (2/500)","timestamp":"11:38:08 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : outmani_tima","timestamp":"11:38:18 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"outmani_tima\" matches any target usernames in our database","timestamp":"11:38:18 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"outmani_tima\" in our target list","timestamp":"11:38:18 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"outmani_tima\" is not in our target list. Skipping...","timestamp":"11:38:18 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : outmani_tima","timestamp":"11:38:26 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"outmani_tima\" matches any target usernames in our database","timestamp":"11:38:26 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"outmani_tima\" in our target list","timestamp":"11:38:26 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"outmani_tima\" is not in our target list. Skipping...","timestamp":"11:38:26 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed post DLxqXTdM8OQ4dAuqbXkJjQjqPjmzP6HpmNoqgQ0 as majesty___jewelry (3/500)","timestamp":"11:38:26 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : dave.asprey","timestamp":"11:38:47 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"dave.asprey\" matches any target usernames in our database","timestamp":"11:38:47 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found a match! Post username \"dave.asprey\" is in our target list","timestamp":"11:38:47 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"dave.asprey\" is in our target list. Proceeding...","timestamp":"11:38:47 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No more 'processing' comments for this user. Waiting 2 minutes...","timestamp":"11:40:01 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : dave.asprey","timestamp":"11:40:29 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"dave.asprey\" matches any target usernames in our database","timestamp":"11:40:29 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found a match! Post username \"dave.asprey\" is in our target list","timestamp":"11:40:29 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"dave.asprey\" is in our target list. Proceeding...","timestamp":"11:40:29 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed post DL3Du5zuD-1 as majesty___jewelry (4/500)","timestamp":"11:40:41 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : hem.officiel","timestamp":"11:40:52 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"hem.officiel\" matches any target usernames in our database","timestamp":"11:40:52 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"hem.officiel\" in our target list","timestamp":"11:40:52 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"hem.officiel\" is not in our target list. Skipping...","timestamp":"11:40:52 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : hem.officiel","timestamp":"11:41:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"hem.officiel\" matches any target usernames in our database","timestamp":"11:41:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"hem.officiel\" in our target list","timestamp":"11:41:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"hem.officiel\" is not in our target list. Skipping...","timestamp":"11:41:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed post DLkYlLHgnbe as majesty___jewelry (5/500)","timestamp":"11:41:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : brysonfinancial","timestamp":"11:41:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"brysonfinancial\" matches any target usernames in our database","timestamp":"11:41:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"brysonfinancial\" in our target list","timestamp":"11:41:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"brysonfinancial\" is not in our target list. Skipping...","timestamp":"11:41:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : brysonfinancial","timestamp":"11:41:18 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"brysonfinancial\" matches any target usernames in our database","timestamp":"11:41:18 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"brysonfinancial\" in our target list","timestamp":"11:41:18 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"brysonfinancial\" is not in our target list. Skipping...","timestamp":"11:41:18 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed post DLh7ALFtx_Y as majesty___jewelry (6/500)","timestamp":"11:41:18 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : zineb.krim","timestamp":"11:41:28 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"zineb.krim\" matches any target usernames in our database","timestamp":"11:41:28 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"zineb.krim\" in our target list","timestamp":"11:41:28 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"zineb.krim\" is not in our target list. Skipping...","timestamp":"11:41:28 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : zineb.krim","timestamp":"11:41:36 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"zineb.krim\" matches any target usernames in our database","timestamp":"11:41:36 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"zineb.krim\" in our target list","timestamp":"11:41:36 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"zineb.krim\" is not in our target list. Skipping...","timestamp":"11:41:36 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed post DL2qq-NCTrE as majesty___jewelry (7/500)","timestamp":"11:41:36 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : maryam_bakkioui","timestamp":"11:41:55 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"maryam_bakkioui\" matches any target usernames in our database","timestamp":"11:41:55 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"maryam_bakkioui\" in our target list","timestamp":"11:41:55 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"maryam_bakkioui\" is not in our target list. Skipping...","timestamp":"11:41:55 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : maryam_bakkioui","timestamp":"11:42:03 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"maryam_bakkioui\" matches any target usernames in our database","timestamp":"11:42:03 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"maryam_bakkioui\" in our target list","timestamp":"11:42:03 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"maryam_bakkioui\" is not in our target list. Skipping...","timestamp":"11:42:03 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed post DLdM3iLIH47 as majesty___jewelry (8/500)","timestamp":"11:42:03 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : alakhawayn_university","timestamp":"11:42:22 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"alakhawayn_university\" matches any target usernames in our database","timestamp":"11:42:22 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"alakhawayn_university\" in our target list","timestamp":"11:42:22 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"alakhawayn_university\" is not in our target list. Skipping...","timestamp":"11:42:22 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : alakhawayn_university","timestamp":"11:42:29 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"alakhawayn_university\" matches any target usernames in our database","timestamp":"11:42:29 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"alakhawayn_university\" in our target list","timestamp":"11:42:29 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"alakhawayn_university\" is not in our target list. Skipping...","timestamp":"11:42:29 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed post DLsLI9vgiC9 as majesty___jewelry (9/500)","timestamp":"11:42:29 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : bank_of_africa","timestamp":"11:42:49 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"bank_of_africa\" matches any target usernames in our database","timestamp":"11:42:49 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"bank_of_africa\" in our target list","timestamp":"11:42:49 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"bank_of_africa\" is not in our target list. Skipping...","timestamp":"11:42:49 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : bank_of_africa","timestamp":"11:42:56 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"bank_of_africa\" matches any target usernames in our database","timestamp":"11:42:56 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"bank_of_africa\" in our target list","timestamp":"11:42:56 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"bank_of_africa\" is not in our target list. Skipping...","timestamp":"11:42:56 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed post DKjp7JSA7U0 as majesty___jewelry (10/500)","timestamp":"11:42:56 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No more 'processing' comments for this user. Waiting 2 minutes...","timestamp":"11:43:01 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : broadwayinstitute","timestamp":"11:43:17 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"broadwayinstitute\" matches any target usernames in our database","timestamp":"11:43:17 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"broadwayinstitute\" in our target list","timestamp":"11:43:17 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"broadwayinstitute\" is not in our target list. Skipping...","timestamp":"11:43:17 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : broadwayinstitute","timestamp":"11:43:24 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"broadwayinstitute\" matches any target usernames in our database","timestamp":"11:43:24 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"broadwayinstitute\" in our target list","timestamp":"11:43:24 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"broadwayinstitute\" is not in our target list. Skipping...","timestamp":"11:43:24 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed post DKuMdLzAPE4 as majesty___jewelry (11/500)","timestamp":"11:43:24 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : residencegardenspace","timestamp":"11:43:44 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"residencegardenspace\" matches any target usernames in our database","timestamp":"11:43:44 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"residencegardenspace\" in our target list","timestamp":"11:43:44 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"residencegardenspace\" is not in our target list. Skipping...","timestamp":"11:43:44 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : residencegardenspace","timestamp":"11:43:52 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"residencegardenspace\" matches any target usernames in our database","timestamp":"11:43:52 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"residencegardenspace\" in our target list","timestamp":"11:43:52 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"residencegardenspace\" is not in our target list. Skipping...","timestamp":"11:43:52 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed post DLnD9V0M8hl as majesty___jewelry (12/500)","timestamp":"11:43:52 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : dave.asprey","timestamp":"11:44:12 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"dave.asprey\" matches any target usernames in our database","timestamp":"11:44:12 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found a match! Post username \"dave.asprey\" is in our target list","timestamp":"11:44:12 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"dave.asprey\" is in our target list. Proceeding...","timestamp":"11:44:12 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : dave.asprey","timestamp":"11:45:44 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"dave.asprey\" matches any target usernames in our database","timestamp":"11:45:44 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found a match! Post username \"dave.asprey\" is in our target list","timestamp":"11:45:44 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"dave.asprey\" is in our target list. Proceeding...","timestamp":"11:45:44 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed post DL5ocYNMAdi as majesty___jewelry (13/500)","timestamp":"11:45:59 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No more 'processing' comments for this user. Waiting 2 minutes...","timestamp":"11:46:01 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : kopyapp","timestamp":"11:46:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"kopyapp\" matches any target usernames in our database","timestamp":"11:46:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"kopyapp\" in our target list","timestamp":"11:46:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"kopyapp\" is not in our target list. Skipping...","timestamp":"11:46:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : kopyapp","timestamp":"11:46:18 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"kopyapp\" matches any target usernames in our database","timestamp":"11:46:18 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"kopyapp\" in our target list","timestamp":"11:46:18 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"kopyapp\" is not in our target list. Skipping...","timestamp":"11:46:18 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed post DEoRyaIMiZG as majesty___jewelry (14/500)","timestamp":"11:46:18 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No new posts, scrolling...","timestamp":"11:46:32 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"\" matches any target usernames in our database","timestamp":"11:46:47 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"\" in our target list","timestamp":"11:46:48 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"\" is not in our target list. Skipping...","timestamp":"11:46:48 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"11:51:21 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"11:51:21 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"11:51:21 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username updated for user 683720529b99dc1e616b574d: leboss.csa@gmail.com","timestamp":"11:51:30 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connexion LinkedIn détectée (navigation principale présente).","timestamp":"11:51:56 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Cookies LinkedIn sauvegardés en base de données pour l'utilisateur leboss.csa@gmail.com.","timestamp":"11:51:56 AM"}
+{"level":"\u001b[34mdebug\u001b[39m","message":"Résultat de l'opération DB: 1 document(s) modifié(s), 0 document(s) créé(s).","timestamp":"11:51:56 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Retrieved 12 cookies for leboss.csa@gmail.com","timestamp":"11:51:57 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started browser for leboss.csa@gmail.com","timestamp":"11:51:57 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to LinkedIn homepage for leboss.csa@gmail.com...","timestamp":"11:51:57 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Current URL after navigation: https://www.linkedin.com/","timestamp":"11:52:01 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying 12 cookies for leboss.csa@gmail.com...","timestamp":"11:52:01 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Filtered to 12 valid LinkedIn cookies","timestamp":"11:52:01 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Cookies applied successfully for leboss.csa@gmail.com","timestamp":"11:52:01 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Reloading page to apply cookies...","timestamp":"11:52:01 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Vérification de la connexion pour leboss.csa@gmail.com...","timestamp":"11:52:08 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Me nav (.global-nav__me)","timestamp":"11:52:08 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Logged into LinkedIn as leboss.csa@gmail.com (detected: Me nav)","timestamp":"11:52:09 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to LinkedIn feed for leboss.csa@gmail.com...","timestamp":"11:52:09 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"🚀 Starting main automation loop for leboss.csa@gmail.com","timestamp":"11:52:17 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"11:53:02 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"11:53:02 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"11:53:02 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"11:53:44 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"11:53:44 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"11:53:44 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"12:15:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"12:29:43 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"12:29:43 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"12:29:43 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username updated for user 683720529b99dc1e616b574d: leboss.csa@gmail.com","timestamp":"12:29:59 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error during processing queue: Could not retrieve Instagram cookies","stack":"Error: Could not retrieve Instagram cookies\n    at processQueue (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\controllers\\fifoProcessComments.ts:76:13)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\routes\\commentsRoutes.ts:43:5","timestamp":"12:30:00 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"12:30:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"12:30:45 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"12:30:45 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username updated for user 683720529b99dc1e616b574d: leboss.csa@gmail.com","timestamp":"12:30:54 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started proxy server for leboss.csa@gmail.com on port 3621","timestamp":"12:30:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to Instagram homepage for leboss.csa@gmail.com...","timestamp":"12:30:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying cookies for leboss.csa@gmail.com...","timestamp":"12:30:59 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Cookies applied successfully for leboss.csa@gmail.com","timestamp":"12:30:59 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error during processing queue: Navigation timeout of 30000 ms exceeded","name":"TimeoutError","stack":"TimeoutError: Navigation timeout of 30000 ms exceeded\n    at new Deferred (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\util\\Deferred.ts:74:28)\n    at Function.create (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\util\\Deferred.ts:29:12)\n    at new LifecycleWatcher (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\cdp\\LifecycleWatcher.ts:148:42)\n    at CdpFrame.waitForNavigation (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\cdp\\Frame.ts:233:21)\n    at CdpFrame.<anonymous> (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\util\\decorators.ts:63:21)\n    at CdpPage.waitForNavigation (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\api\\Page.ts:1774:35)\n    at CdpPage.reload (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\cdp\\Page.ts:874:12)\n    at processQueue (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\controllers\\fifolink.ts:97:16)\n    at async C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\routes\\linkedinRoutes.ts:63:5","timestamp":"12:31:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"12:36:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"12:36:38 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"12:36:38 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username updated for user 683720529b99dc1e616b574d: leboss.csa@gmail.com","timestamp":"12:36:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started proxy server for leboss.csa@gmail.com on port 7118","timestamp":"12:36:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to Instagram homepage for leboss.csa@gmail.com...","timestamp":"12:36:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying cookies for leboss.csa@gmail.com...","timestamp":"12:36:56 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Cookies applied successfully for leboss.csa@gmail.com","timestamp":"12:36:56 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error during processing queue: Navigation timeout of 30000 ms exceeded","name":"TimeoutError","stack":"TimeoutError: Navigation timeout of 30000 ms exceeded\n    at new Deferred (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\util\\Deferred.ts:74:28)\n    at Function.create (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\util\\Deferred.ts:29:12)\n    at new LifecycleWatcher (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\cdp\\LifecycleWatcher.ts:148:42)\n    at CdpFrame.waitForNavigation (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\cdp\\Frame.ts:233:21)\n    at CdpFrame.<anonymous> (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\util\\decorators.ts:63:21)\n    at CdpPage.waitForNavigation (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\api\\Page.ts:1774:35)\n    at CdpPage.reload (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\cdp\\Page.ts:874:12)\n    at processQueue (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\controllers\\fifolink.ts:97:16)\n    at async C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\routes\\linkedinRoutes.ts:63:5","timestamp":"12:37:26 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"12:40:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"12:40:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"12:40:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username updated for user 683720529b99dc1e616b574d: leboss.csa@gmail.com","timestamp":"12:40:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Retrieved 11 cookies for leboss.csa@gmail.com","timestamp":"12:40:23 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started browser for leboss.csa@gmail.com","timestamp":"12:40:25 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to LinkedIn homepage for leboss.csa@gmail.com...","timestamp":"12:40:25 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Current URL after navigation: https://www.linkedin.com/","timestamp":"12:40:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying 11 cookies for leboss.csa@gmail.com...","timestamp":"12:40:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Filtered to 11 valid LinkedIn cookies","timestamp":"12:40:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Cookies applied successfully for leboss.csa@gmail.com","timestamp":"12:40:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Reloading page to apply cookies...","timestamp":"12:40:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Vérification de la connexion pour leboss.csa@gmail.com...","timestamp":"12:40:48 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Me nav (.global-nav__me)","timestamp":"12:40:48 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Logged into LinkedIn as leboss.csa@gmail.com (detected: Me nav)","timestamp":"12:40:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No more 'processing' comments for this user. Waiting 2 minutes...","timestamp":"12:40:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connexion LinkedIn détectée (navigation principale présente).","timestamp":"12:41:31 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Cookies LinkedIn sauvegardés en base de données pour l'utilisateur leboss.csa@gmail.com.","timestamp":"12:41:31 PM"}
+{"level":"\u001b[34mdebug\u001b[39m","message":"Résultat de l'opération DB: 1 document(s) modifié(s), 0 document(s) créé(s).","timestamp":"12:41:31 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Retrieved 12 cookies for leboss.csa@gmail.com","timestamp":"12:41:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started browser for leboss.csa@gmail.com","timestamp":"12:41:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to LinkedIn homepage for leboss.csa@gmail.com...","timestamp":"12:41:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Current URL after navigation: https://www.linkedin.com/","timestamp":"12:41:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying 12 cookies for leboss.csa@gmail.com...","timestamp":"12:41:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Filtered to 12 valid LinkedIn cookies","timestamp":"12:41:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Cookies applied successfully for leboss.csa@gmail.com","timestamp":"12:41:38 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Reloading page to apply cookies...","timestamp":"12:41:38 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Vérification de la connexion pour leboss.csa@gmail.com...","timestamp":"12:41:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Me nav (.global-nav__me)","timestamp":"12:41:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Logged into LinkedIn as leboss.csa@gmail.com (detected: Me nav)","timestamp":"12:41:56 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to LinkedIn feed for leboss.csa@gmail.com...","timestamp":"12:41:56 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"🚀 Starting main automation loop for leboss.csa@gmail.com","timestamp":"12:42:06 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/mukul-singhal-4188258_startuplife-foundersmindset-entrepreneurship-activity-7347827217336365057-KR7J?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"12:43:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/mukul-singhal-4188258_startuplife-foundersmindset-entrepreneurship-activity-7347827217336365057-KR7J?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"12:43:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author found: Mukul Singhal","timestamp":"12:43:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"Mukul Singhal\" matches any target usernames in our database","timestamp":"12:43:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"Mukul Singhal\" in our target list","timestamp":"12:43:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author \"Mukul Singhal\" is not in our target list. Skipping...","timestamp":"12:43:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed 1/50","timestamp":"12:43:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/electronic-products-recycling-association-epra_book-it-schedule-a-pick-up-today-right-here-activity-7340560342101491713-Zsz3?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"12:43:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/electronic-products-recycling-association-epra_book-it-schedule-a-pick-up-today-right-here-activity-7340560342101491713-Zsz3?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"12:43:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 686f8f3bc5404acedbb493f8 created on Thu Jul 10 2025 11:00:27 GMT+0100 (UTC+01:00)","timestamp":"12:43:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 686f8f3bc5404acedbb493f8 last updated on Thu Jul 10 2025 12:41:40 GMT+0100 (UTC+01:00)","timestamp":"12:43:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Attempt 1 for comment 686f8f3bc5404acedbb493f8","timestamp":"12:43:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/thinkpositivelivebetter_activity-7348727662250487808-OtP7?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"12:43:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author found: Electronic Products Recycling Association (EPRA)","timestamp":"12:43:58 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"Electronic Products Recycling Association (EPRA)\" matches any target usernames in our database","timestamp":"12:43:58 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"Electronic Products Recycling Association (EPRA)\" in our target list","timestamp":"12:43:58 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author \"Electronic Products Recycling Association (EPRA)\" is not in our target list. Skipping...","timestamp":"12:43:58 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed 2/50","timestamp":"12:43:58 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Attempt 1 failed for comment 686f8f3bc5404acedbb493f8: Comment box not found","stack":"Error: Comment box not found\n    at processQueue (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\controllers\\fifolink.ts:292:19)\n    at async C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\routes\\linkedinRoutes.ts:63:5","timestamp":"12:44:12 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 63667 ms before retrying","timestamp":"12:44:12 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/activity-7349033176876429312-APMY?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"12:44:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/activity-7349033176876429312-APMY?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"12:44:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author found: Loralee Southern","timestamp":"12:44:26 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"Loralee Southern\" matches any target usernames in our database","timestamp":"12:44:26 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"Loralee Southern\" in our target list","timestamp":"12:44:26 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author \"Loralee Southern\" is not in our target list. Skipping...","timestamp":"12:44:26 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed 3/50","timestamp":"12:44:26 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Not on feed page, navigating to feed...","timestamp":"12:44:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Attempt 2 for comment 686f8f3bc5404acedbb493f8","timestamp":"12:45:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/thinkpositivelivebetter_activity-7348727662250487808-OtP7?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"12:45:15 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Attempt 2 failed for comment 686f8f3bc5404acedbb493f8: Navigating frame was detached","stack":"Error: Navigating frame was detached\n    at LifecycleWatcher.#onFrameDetached (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\cdp\\LifecycleWatcher.ts:188:9)\n    at C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\lib\\cjs\\third_party\\mitt\\mitt.js:62:7\n    at Array.map (<anonymous>)\n    at Object.emit (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\lib\\cjs\\third_party\\mitt\\mitt.js:61:20)\n    at CdpFrame.emit (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\common\\EventEmitter.ts:135:19)\n    at FrameManager.#removeFramesRecursively (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\cdp\\FrameManager.ts:572:11)\n    at FrameManager.#onClientDisconnect (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\cdp\\FrameManager.ts:127:36)","timestamp":"12:45:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 51038 ms before retrying","timestamp":"12:45:24 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error in loop: Error: Attempted to use detached Frame '6DDD03A7236E505A38F3FB29C88CA98F'.","timestamp":"12:45:27 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"12:48:56 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"12:48:56 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"12:48:56 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username updated for user 683720529b99dc1e616b574d: leboss.csa@gmail.com","timestamp":"12:49:31 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Retrieved 12 cookies for leboss.csa@gmail.com","timestamp":"12:49:31 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started browser for leboss.csa@gmail.com","timestamp":"12:49:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to LinkedIn homepage for leboss.csa@gmail.com...","timestamp":"12:49:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Current URL after navigation: https://www.linkedin.com/","timestamp":"12:49:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying 12 cookies for leboss.csa@gmail.com...","timestamp":"12:49:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Filtered to 12 valid LinkedIn cookies","timestamp":"12:49:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Cookies applied successfully for leboss.csa@gmail.com","timestamp":"12:49:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Reloading page to apply cookies...","timestamp":"12:49:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Vérification de la connexion pour leboss.csa@gmail.com...","timestamp":"12:49:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Me nav (.global-nav__me)","timestamp":"12:49:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Logged into LinkedIn as leboss.csa@gmail.com (detected: Me nav)","timestamp":"12:49:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 686f8f3bc5404acedbb493f8 created on Thu Jul 10 2025 11:00:27 GMT+0100 (UTC+01:00)","timestamp":"12:49:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 686f8f3bc5404acedbb493f8 last updated on Thu Jul 10 2025 12:41:40 GMT+0100 (UTC+01:00)","timestamp":"12:49:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Attempt 1 for comment 686f8f3bc5404acedbb493f8","timestamp":"12:49:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/thinkpositivelivebetter_activity-7348727662250487808-OtP7?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"12:49:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found like button for post https://www.linkedin.com/posts/thinkpositivelivebetter_activity-7348727662250487808-OtP7?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28.","timestamp":"12:50:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment box for post https://www.linkedin.com/posts/thinkpositivelivebetter_activity-7348727662250487808-OtP7?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28.","timestamp":"12:50:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Posting comment: \"A simple yet powerful acknowledgment of the importance of self-awareness in leadership. What strategies do you use to encourage introspection among your team members?\"","timestamp":"12:50:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Clicking Post button for post https://www.linkedin.com/posts/thinkpositivelivebetter_activity-7348727662250487808-OtP7?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28...","timestamp":"12:50:16 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Attempt 1 failed for comment 686f8f3bc5404acedbb493f8: postButtonHandle.click is not a function","stack":"TypeError: postButtonHandle.click is not a function\n    at processQueue (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\controllers\\fifolink.ts:310:45)\n    at async C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\routes\\linkedinRoutes.ts:63:5","timestamp":"12:50:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 62857 ms before retrying","timestamp":"12:50:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Attempt 2 for comment 686f8f3bc5404acedbb493f8","timestamp":"12:51:19 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/thinkpositivelivebetter_activity-7348727662250487808-OtP7?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"12:51:19 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Attempt 2 failed for comment 686f8f3bc5404acedbb493f8: Navigating frame was detached","stack":"Error: Navigating frame was detached\n    at LifecycleWatcher.#onFrameDetached (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\cdp\\LifecycleWatcher.ts:188:9)\n    at C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\lib\\cjs\\third_party\\mitt\\mitt.js:62:7\n    at Array.map (<anonymous>)\n    at Object.emit (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\lib\\cjs\\third_party\\mitt\\mitt.js:61:20)\n    at CdpFrame.emit (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\common\\EventEmitter.ts:135:19)\n    at FrameManager.#removeFramesRecursively (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\cdp\\FrameManager.ts:572:11)\n    at FrameManager.#onClientDisconnect (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\cdp\\FrameManager.ts:127:36)","timestamp":"12:51:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 90729 ms before retrying","timestamp":"12:51:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Attempt 3 for comment 686f8f3bc5404acedbb493f8","timestamp":"12:53:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/thinkpositivelivebetter_activity-7348727662250487808-OtP7?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"12:53:05 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Attempt 3 failed for comment 686f8f3bc5404acedbb493f8: Attempted to use detached Frame 'A01264E7FC9CAE8E28C020ABE98FDBC0'.","stack":"Error: Attempted to use detached Frame 'A01264E7FC9CAE8E28C020ABE98FDBC0'.\n    at CdpFrame.<anonymous> (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\util\\decorators.ts:61:15)\n    at CdpPage.goto (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\api\\Page.ts:1730:35)\n    at processQueue (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\controllers\\fifolink.ts:260:22)\n    at async C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\routes\\linkedinRoutes.ts:63:5","timestamp":"12:53:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 95071 ms before processing next comment","timestamp":"12:53:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"12:56:06 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"12:56:06 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"12:56:06 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username updated for user 683720529b99dc1e616b574d: leboss.csa@gmail.com","timestamp":"12:57:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Retrieved 12 cookies for leboss.csa@gmail.com","timestamp":"12:57:12 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started browser for leboss.csa@gmail.com","timestamp":"12:57:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to LinkedIn homepage for leboss.csa@gmail.com...","timestamp":"12:57:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Current URL after navigation: https://www.linkedin.com/","timestamp":"12:57:17 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying 12 cookies for leboss.csa@gmail.com...","timestamp":"12:57:17 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Filtered to 12 valid LinkedIn cookies","timestamp":"12:57:17 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Cookies applied successfully for leboss.csa@gmail.com","timestamp":"12:57:17 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Reloading page to apply cookies...","timestamp":"12:57:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Vérification de la connexion pour leboss.csa@gmail.com...","timestamp":"12:57:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Me nav (.global-nav__me)","timestamp":"12:57:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Logged into LinkedIn as leboss.csa@gmail.com (detected: Me nav)","timestamp":"12:57:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No more 'processing' comments for this user. Waiting 2 minutes...","timestamp":"12:57:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No more 'processing' comments for this user. Waiting 2 minutes...","timestamp":"1:00:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 686f8f3bc5404acedbb493f8 created on Thu Jul 10 2025 11:00:27 GMT+0100 (UTC+01:00)","timestamp":"1:03:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 686f8f3bc5404acedbb493f8 last updated on Thu Jul 10 2025 12:53:05 GMT+0100 (UTC+01:00)","timestamp":"1:03:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Attempt 1 for comment 686f8f3bc5404acedbb493f8","timestamp":"1:03:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/thinkpositivelivebetter_activity-7348727662250487808-OtP7?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"1:03:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found like button for post https://www.linkedin.com/posts/thinkpositivelivebetter_activity-7348727662250487808-OtP7?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28.","timestamp":"1:03:52 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Attempt 1 failed for comment 686f8f3bc5404acedbb493f8: Comment box not found","stack":"Error: Comment box not found\n    at processQueue (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\controllers\\fifolink.ts:292:19)\n    at async C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\routes\\linkedinRoutes.ts:63:5","timestamp":"1:03:52 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 47552 ms before retrying","timestamp":"1:03:52 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Attempt 2 for comment 686f8f3bc5404acedbb493f8","timestamp":"1:04:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/thinkpositivelivebetter_activity-7348727662250487808-OtP7?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"1:04:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found like button for post https://www.linkedin.com/posts/thinkpositivelivebetter_activity-7348727662250487808-OtP7?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28.","timestamp":"1:04:57 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment box for post https://www.linkedin.com/posts/thinkpositivelivebetter_activity-7348727662250487808-OtP7?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28.","timestamp":"1:04:57 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Posting comment: \"A simple yet powerful acknowledgment of the importance of self-awareness in leadership. What strategies do you use to encourage introspection among your team members?\"","timestamp":"1:05:01 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Clicking Post button for post https://www.linkedin.com/posts/thinkpositivelivebetter_activity-7348727662250487808-OtP7?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28...","timestamp":"1:05:01 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Attempt 2 failed for comment 686f8f3bc5404acedbb493f8: postButtonHandle.click is not a function","stack":"TypeError: postButtonHandle.click is not a function\n    at processQueue (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\controllers\\fifolink.ts:310:45)\n    at async C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\routes\\linkedinRoutes.ts:63:5","timestamp":"1:05:01 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 77116 ms before retrying","timestamp":"1:05:01 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Attempt 3 for comment 686f8f3bc5404acedbb493f8","timestamp":"1:06:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/thinkpositivelivebetter_activity-7348727662250487808-OtP7?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"1:06:18 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Attempt 3 failed for comment 686f8f3bc5404acedbb493f8: Navigation timeout of 30000 ms exceeded","name":"TimeoutError","stack":"TimeoutError: Navigation timeout of 30000 ms exceeded\n    at new Deferred (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\util\\Deferred.ts:74:28)\n    at Function.create (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\util\\Deferred.ts:29:12)\n    at new LifecycleWatcher (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\cdp\\LifecycleWatcher.ts:148:42)\n    at CdpFrame.goto (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\cdp\\Frame.ts:160:21)\n    at CdpFrame.<anonymous> (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\util\\decorators.ts:63:21)\n    at CdpPage.goto (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\api\\Page.ts:1730:35)\n    at processQueue (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\controllers\\fifolink.ts:260:22)\n    at async C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\routes\\linkedinRoutes.ts:63:5","timestamp":"1:06:48 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 37244 ms before processing next comment","timestamp":"1:06:48 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No more 'processing' comments for this user. Waiting 2 minutes...","timestamp":"1:07:26 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"2:09:42 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"2:09:42 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"2:09:42 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username updated for user 683720529b99dc1e616b574d: leboss.csa@gmail.com","timestamp":"2:10:00 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Retrieved 11 cookies for leboss.csa@gmail.com","timestamp":"2:10:00 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started browser for leboss.csa@gmail.com","timestamp":"2:10:03 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to LinkedIn homepage for leboss.csa@gmail.com...","timestamp":"2:10:03 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Current URL after navigation: https://www.linkedin.com/","timestamp":"2:10:07 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying 11 cookies for leboss.csa@gmail.com...","timestamp":"2:10:07 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Filtered to 11 valid LinkedIn cookies","timestamp":"2:10:07 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Cookies applied successfully for leboss.csa@gmail.com","timestamp":"2:10:07 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Reloading page to apply cookies...","timestamp":"2:10:07 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Vérification de la connexion pour leboss.csa@gmail.com...","timestamp":"2:10:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Me nav (.global-nav__me)","timestamp":"2:10:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"❌ Login check failed for: Me nav","timestamp":"2:10:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Feed identity (.feed-identity-module)","timestamp":"2:10:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"❌ Login check failed for: Feed identity","timestamp":"2:10:40 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Profile picture ([data-control-name=\"identity.profile_picture\"])","timestamp":"2:10:40 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connexion LinkedIn détectée (navigation principale présente).","timestamp":"2:10:42 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Cookies LinkedIn sauvegardés en base de données pour l'utilisateur leboss.csa@gmail.com.","timestamp":"2:10:42 PM"}
+{"level":"\u001b[34mdebug\u001b[39m","message":"Résultat de l'opération DB: 1 document(s) modifié(s), 0 document(s) créé(s).","timestamp":"2:10:42 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Retrieved 12 cookies for leboss.csa@gmail.com","timestamp":"2:10:43 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started browser for leboss.csa@gmail.com","timestamp":"2:10:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to LinkedIn homepage for leboss.csa@gmail.com...","timestamp":"2:10:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Current URL after navigation: https://www.linkedin.com/","timestamp":"2:10:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying 12 cookies for leboss.csa@gmail.com...","timestamp":"2:10:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Filtered to 12 valid LinkedIn cookies","timestamp":"2:10:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Cookies applied successfully for leboss.csa@gmail.com","timestamp":"2:10:48 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Reloading page to apply cookies...","timestamp":"2:10:48 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"❌ Login check failed for: Profile picture","timestamp":"2:10:48 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Active nav link (.global-nav__primary-link--active)","timestamp":"2:10:48 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Logged into LinkedIn as leboss.csa@gmail.com (detected: Active nav link)","timestamp":"2:10:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No more 'processing' comments for this user. Waiting 2 minutes...","timestamp":"2:10:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Vérification de la connexion pour leboss.csa@gmail.com...","timestamp":"2:11:02 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Me nav (.global-nav__me)","timestamp":"2:11:02 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Logged into LinkedIn as leboss.csa@gmail.com (detected: Me nav)","timestamp":"2:11:06 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to LinkedIn feed for leboss.csa@gmail.com...","timestamp":"2:11:06 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"🚀 Starting main automation loop for leboss.csa@gmail.com","timestamp":"2:11:17 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"2:20:21 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"2:20:21 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"2:20:21 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username updated for user 683720529b99dc1e616b574d: leboss.csa@gmail.com","timestamp":"2:20:45 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Retrieved 12 cookies for leboss.csa@gmail.com","timestamp":"2:20:45 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started browser for leboss.csa@gmail.com","timestamp":"2:20:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to LinkedIn homepage for leboss.csa@gmail.com...","timestamp":"2:20:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Current URL after navigation: https://www.linkedin.com/","timestamp":"2:20:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying 12 cookies for leboss.csa@gmail.com...","timestamp":"2:20:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Filtered to 12 valid LinkedIn cookies","timestamp":"2:20:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Cookies applied successfully for leboss.csa@gmail.com","timestamp":"2:20:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Reloading page to apply cookies...","timestamp":"2:20:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Vérification de la connexion pour leboss.csa@gmail.com...","timestamp":"2:21:09 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Me nav (.global-nav__me)","timestamp":"2:21:09 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"❌ Login check failed for: Me nav","timestamp":"2:21:17 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Feed identity (.feed-identity-module)","timestamp":"2:21:17 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"❌ Login check failed for: Feed identity","timestamp":"2:21:25 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Profile picture ([data-control-name=\"identity.profile_picture\"])","timestamp":"2:21:25 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connexion LinkedIn détectée (navigation principale présente).","timestamp":"2:21:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Cookies LinkedIn sauvegardés en base de données pour l'utilisateur leboss.csa@gmail.com.","timestamp":"2:21:30 PM"}
+{"level":"\u001b[34mdebug\u001b[39m","message":"Résultat de l'opération DB: 1 document(s) modifié(s), 0 document(s) créé(s).","timestamp":"2:21:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Retrieved 12 cookies for leboss.csa@gmail.com","timestamp":"2:21:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started browser for leboss.csa@gmail.com","timestamp":"2:21:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to LinkedIn homepage for leboss.csa@gmail.com...","timestamp":"2:21:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"❌ Login check failed for: Profile picture","timestamp":"2:21:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Active nav link (.global-nav__primary-link--active)","timestamp":"2:21:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Logged into LinkedIn as leboss.csa@gmail.com (detected: Active nav link)","timestamp":"2:21:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No more 'processing' comments for this user. Waiting 2 minutes...","timestamp":"2:21:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Current URL after navigation: https://www.linkedin.com/","timestamp":"2:21:36 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying 12 cookies for leboss.csa@gmail.com...","timestamp":"2:21:36 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Filtered to 12 valid LinkedIn cookies","timestamp":"2:21:36 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Cookies applied successfully for leboss.csa@gmail.com","timestamp":"2:21:36 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Reloading page to apply cookies...","timestamp":"2:21:36 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Vérification de la connexion pour leboss.csa@gmail.com...","timestamp":"2:21:52 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Me nav (.global-nav__me)","timestamp":"2:21:52 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Logged into LinkedIn as leboss.csa@gmail.com (detected: Me nav)","timestamp":"2:21:56 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to LinkedIn feed for leboss.csa@gmail.com...","timestamp":"2:21:56 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"🚀 Starting main automation loop for leboss.csa@gmail.com","timestamp":"2:22:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/adroll_stand-out-from-the-competition-with-adroll-activity-7343000915831926784-go5W?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"2:23:12 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/adroll_stand-out-from-the-competition-with-adroll-activity-7343000915831926784-go5W?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"2:23:12 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author found: AdRoll, a division of NextRoll","timestamp":"2:23:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"AdRoll, a division of NextRoll\" matches any target usernames in our database","timestamp":"2:23:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"AdRoll, a division of NextRoll\" in our target list","timestamp":"2:23:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author \"AdRoll, a division of NextRoll\" is not in our target list. Skipping...","timestamp":"2:23:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed 1/50","timestamp":"2:23:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/naeem-ullah-75b33a2bb_inspirational-personalbranding-linkedincreators-activity-7348672405705318400-dGbr?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"2:23:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/naeem-ullah-75b33a2bb_inspirational-personalbranding-linkedincreators-activity-7348672405705318400-dGbr?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"2:23:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author found: Naeem Ullah","timestamp":"2:23:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"Naeem Ullah\" matches any target usernames in our database","timestamp":"2:23:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"Naeem Ullah\" in our target list","timestamp":"2:23:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author \"Naeem Ullah\" is not in our target list. Skipping...","timestamp":"2:23:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed 2/50","timestamp":"2:23:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/activity-7348944151343706112-7VzY?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"2:24:01 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/activity-7348944151343706112-7VzY?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"2:24:01 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author found: Celestine N.","timestamp":"2:24:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"Celestine N.\" matches any target usernames in our database","timestamp":"2:24:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"Celestine N.\" in our target list","timestamp":"2:24:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author \"Celestine N.\" is not in our target list. Skipping...","timestamp":"2:24:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed 3/50","timestamp":"2:24:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Not on feed page, navigating to feed...","timestamp":"2:24:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No more 'processing' comments for this user. Waiting 2 minutes...","timestamp":"2:24:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/jmariocotzaceo_climateperspective-earth-solarsystem-activity-7348790129110482944-7FOi?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"2:25:45 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/jmariocotzaceo_climateperspective-earth-solarsystem-activity-7348790129110482944-7FOi?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"2:25:45 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author found: Mario Cotza","timestamp":"2:25:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"Mario Cotza\" matches any target usernames in our database","timestamp":"2:25:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"Mario Cotza\" in our target list","timestamp":"2:25:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post author \"Mario Cotza\" is not in our target list. Skipping...","timestamp":"2:25:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed 4/50","timestamp":"2:25:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing post: https://www.linkedin.com/posts/gonzaga-university_taught-by-industry-experts-activity-7345953633949163520-RQsC?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"2:26:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/gonzaga-university_taught-by-industry-experts-activity-7345953633949163520-RQsC?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"2:26:10 PM"}

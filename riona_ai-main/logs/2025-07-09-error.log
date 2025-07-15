@@ -1,0 +1,10 @@
+{"level":"\u001b[31merror\u001b[39m","message":"Error in main loop: TimeoutError: Navigation timeout of 30000 ms exceeded","timestamp":"11:42:57 AM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error in main loop: TimeoutError: Navigation timeout of 30000 ms exceeded","timestamp":"11:44:04 AM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error in loop: TimeoutError: Navigation timeout of 30000 ms exceeded","timestamp":"12:11:53 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error in loop: TimeoutError: Navigation timeout of 30000 ms exceeded","timestamp":"12:13:02 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error in loop: TimeoutError: Navigation timeout of 30000 ms exceeded","timestamp":"12:15:50 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error in loop: TimeoutError: Navigation timeout of 30000 ms exceeded","timestamp":"2:34:34 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error in loop: TimeoutError: Navigation timeout of 30000 ms exceeded","timestamp":"2:39:38 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error in loop: TimeoutError: Navigation timeout of 30000 ms exceeded","timestamp":"2:42:16 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error in loop: TypeError: page.waitForTimeout is not a function","timestamp":"2:47:15 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error in loop: TypeError: page.waitForTimeout is not a function","timestamp":"2:50:42 PM"}

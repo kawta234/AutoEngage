@@ -1,0 +1,19 @@
+{"level":"\u001b[31merror\u001b[39m","message":"Erreur lors de la connexion à LinkedIn:","timestamp":"10:04:21 AM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Cookies invalid or expired for leboss.csa@gmail.com","timestamp":"10:21:11 AM"}
+{"level":"\u001b[31merror\u001b[39m","message":"LinkedIn agent error: Failed to log in as leboss.csa@gmail.com","timestamp":"10:21:11 AM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Cookies invalid or expired for leboss.csa@gmail.com","timestamp":"10:31:44 AM"}
+{"level":"\u001b[31merror\u001b[39m","message":"LinkedIn agent error: Failed to log in as leboss.csa@gmail.com","timestamp":"10:31:44 AM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Cookies invalid or expired for leboss.csa@gmail.com","timestamp":"10:33:20 AM"}
+{"level":"\u001b[31merror\u001b[39m","message":"LinkedIn agent error: Failed to log in as leboss.csa@gmail.com","timestamp":"10:33:20 AM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Cookies invalid or expired for leboss.csa@gmail.com","timestamp":"11:20:58 AM"}
+{"level":"\u001b[31merror\u001b[39m","message":"LinkedIn agent error: Failed to log in as leboss.csa@gmail.com","timestamp":"11:20:58 AM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Cookies invalid or expired for leboss.csa@gmail.com","timestamp":"11:42:07 AM"}
+{"level":"\u001b[31merror\u001b[39m","message":"LinkedIn agent error: Failed to log in as leboss.csa@gmail.com","timestamp":"11:42:07 AM"}
+{"level":"\u001b[31merror\u001b[39m","message":"❌ Cookies invalides ou expirés pour leboss.csa@gmail.com","timestamp":"12:13:40 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"LinkedIn agent error: Failed to log in as leboss.csa@gmail.com","timestamp":"12:13:40 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"❌ Cookies invalides ou expirés pour leboss.csa@gmail.com","timestamp":"12:26:01 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"LinkedIn agent error: Navigation timeout of 30000 ms exceeded","timestamp":"12:26:01 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Failed to connect to database: Error: querySrv ESERVFAIL _mongodb._tcp.cluster0.v07yq.mongodb.net","timestamp":"3:13:32 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Failed to connect to database: Error: querySrv ESERVFAIL _mongodb._tcp.cluster0.v07yq.mongodb.net","timestamp":"3:13:48 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error waiting for LinkedIn posts: Attempted to use detached Frame '9DC9DFFBA3285E7A96889C2DC3D1E786'.","stack":"Error: Attempted to use detached Frame '9DC9DFFBA3285E7A96889C2DC3D1E786'.\n    at CdpFrame.<anonymous> (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\util\\decorators.ts:61:15)\n    at CdpPage.waitForSelector (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\puppeteer-core\\src\\api\\Page.ts:3028:35)\n    at extractPostLinks (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\client\\linkedin\\linkedin.ts:327:16)\n    at runLinkedIn (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\client\\linkedin\\linkedin.ts:273:35)\n    at async C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\routes\\linkedinRoutes.ts:49:5","timestamp":"4:45:45 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error in main loop: Error: Attempted to use detached Frame '9DC9DFFBA3285E7A96889C2DC3D1E786'.","timestamp":"4:45:45 PM"}

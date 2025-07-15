@@ -1,0 +1,21 @@
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"2:40:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"2:40:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"2:40:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username updated for user 683720529b99dc1e616b574d: leboss.csa@gmail.com","timestamp":"2:41:08 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started proxy server for leboss.csa@gmail.com on port 8919","timestamp":"2:41:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Current URL after navigation: https://www.linkedin.com/","timestamp":"2:41:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying 10 cookies for leboss.csa@gmail.com...","timestamp":"2:41:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Filtered to 10 valid LinkedIn cookies","timestamp":"2:41:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Cookies applied successfully for leboss.csa@gmail.com","timestamp":"2:41:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Reloading page to apply cookies...","timestamp":"2:41:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Vérification de la connexion pour leboss.csa@gmail.com...","timestamp":"2:41:21 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Me nav (.global-nav__me)","timestamp":"2:41:21 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Logged into LinkedIn as leboss.csa@gmail.com (detected: Me nav)","timestamp":"2:41:21 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 6874c4fefa092b52cbe8d615 created on Mon Jul 14 2025 09:51:10 GMT+0100 (UTC+01:00)","timestamp":"2:41:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 6874c4fefa092b52cbe8d615 last updated on Mon Jul 14 2025 14:19:48 GMT+0100 (UTC+01:00)","timestamp":"2:41:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Attempt 1 for comment 6874c4fefa092b52cbe8d615","timestamp":"2:41:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_the-greatest-unity-comes-from-the-greatest-activity-7350128299223760896-l9re?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"2:41:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found like button for post https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_the-greatest-unity-comes-from-the-greatest-activity-7350128299223760896-l9re?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28.","timestamp":"2:41:38 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment box for post https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_the-greatest-unity-comes-from-the-greatest-activity-7350128299223760896-l9re?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28.","timestamp":"2:41:38 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Posting comment: \"Beautifully said! Embracing our unique strengths and backgrounds fosters collaboration, innovation, and growth. How can we encourage more diverse perspectives within our organizations?\"","timestamp":"2:41:40 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 52736 ms before processing next comment","timestamp":"2:41:44 PM"}

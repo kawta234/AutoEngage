@@ -509,8 +509,10 @@ async function analyzePostFromLink(page: any, postLink: string, connectedUsernam
     // Extract author information
     let postAuthor = "";
     const authorSelectorsForSinglePost = [
-      '.GYxRwjxcYYrdEgVEwOEFcsSzpSgkaduM span[aria-hidden="true"]'
-    ];
+      '.GYxRwjxcYYrdEgVEwOEFcsSzpSgkaduM span[aria-hidden="true"]',
+  // Ajoutez des sélecteurs de fallback si nécessaire
+  'span[dir="ltr"] span[aria-hidden="true"]',
+  '.visually-hidden'  ];
     
     for (const selector of authorSelectorsForSinglePost) {
       try {
