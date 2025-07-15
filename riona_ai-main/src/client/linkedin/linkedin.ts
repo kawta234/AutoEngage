@@ -244,6 +244,9 @@ export async function runLinkedIn(username: string, minPort: number = 8000, maxP
           if (processedLinks.size >= targetCount) break;
           logger.info(`Processing post: ${postLink}`);
           await analyzePostFromLink(page, postLink, username);
+         
+        await delay(2000); // Délai entre les deux générations
+        await analyzePostFromLink(page, postLink, username);
           processedLinks.add(postLink);
           logger.info(`Processed ${processedLinks.size}/${targetCount}`);
           await delay(15000);
