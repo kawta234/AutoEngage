@@ -31,7 +31,7 @@ const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 // helper to generate a random delay between retries
 const getRandomDelay = (min = 30000, max = 100000): number =>
   Math.floor(Math.random() * (max - min + 1)) + min;
-export async function processQueue(username: string, minPort: number = 8000, maxPort: number = 9000): Promise<void> {
+export async function processQueue(username: string, minPort: number = 6000, maxPort: number = 7000): Promise<void> {
   // Générer un port aléatoire entre minPort et maxPort
   const port = Math.floor(Math.random() * (maxPort - minPort + 1)) + minPort;
   

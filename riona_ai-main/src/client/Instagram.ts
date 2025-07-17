@@ -33,7 +33,7 @@ puppeteer.use(
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 
-export async function runInstagram(username: string, minPort: number = 8000, maxPort: number = 9000): Promise<void> {
+export async function runInstagram(username: string, minPort: number = 6000, maxPort: number = 7000): Promise<void> {
   // Générer un
   // aléatoire entre minPort et maxPort
   const port = Math.floor(Math.random() * (maxPort - minPort + 1)) + minPort;
@@ -64,6 +64,7 @@ export async function runInstagram(username: string, minPort: number = 8000, max
     // Lancer le navigateur avec la configuration du proxy
     browser = await puppeteer.launch({
       headless: true,
+      protocolTimeout: 180000, 
       args: [
         `--proxy-server=${proxyUrl}`,
         '--disable-web-security',
@@ -106,13 +107,14 @@ export async function runInstagram(username: string, minPort: number = 8000, max
       logger.error(`Cookies invalid or expired for ${username}`);
       throw new Error(`Failed to log in as ${username}`);
     }
-    while (true) {
-    // Main feed-processing loop
-    const targetCount = 500;
-    const processedIDs = new Set<string>();
+   while (true) {
+    try {
+      // Main feed-processing loop
+      const targetCount = 500;
+      const processedIDs = new Set<string>();
 
-    while (processedIDs.size < targetCount) {
-      await page.goto("https://www.instagram.com/", { waitUntil: "networkidle2" });
+      while (processedIDs.size < targetCount) {
+        await page.goto("https://www.instagram.com/", { waitUntil: "networkidle2" });
       await delay(2000);
 
       const postIDs = await extractPostIDs(page);
@@ -139,8 +141,16 @@ export async function runInstagram(username: string, minPort: number = 8000, max
 
       await page.evaluate(() => window.scrollBy(0, window.innerHeight));
       await delay(3000);
+    
+      }
+      logger.info(`Completed a batch of ${targetCount} posts for ${username}. Starting a new batch...`);
+      
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      logger.error(`Error in batch processing for ${username}: ${errorMessage}`);
+      logger.info(`Restarting batch in 30 seconds...`);
+      await delay(30000); // Attendre 30 secondes avant de redémarrer
     }
-    logger.info(`Completed a batch of ${targetCount} posts for ${username}. Starting a new batch...`);
   }
 } catch (error: unknown) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';

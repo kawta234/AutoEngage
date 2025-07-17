@@ -17,7 +17,7 @@ puppeteer.use(
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-export async function runLinkedIn(username: string, minPort: number = 8000, maxPort: number = 9000): Promise<void> {
+export async function runLinkedIn(username: string, minPort: number = 6000, maxPort: number = 7000): Promise<void> {
   // Générer un
   // aléatoire entre minPort et maxPort
   const port = Math.floor(Math.random() * (maxPort - minPort + 1)) + minPort;
@@ -48,6 +48,7 @@ export async function runLinkedIn(username: string, minPort: number = 8000, maxP
     // Lancer le navigateur avec la configuration du proxy
     browser = await puppeteer.launch({
       headless: true,
+      protocolTimeout: 180000,
       args: [
         `--proxy-server=${proxyUrl}`,
         '--disable-web-security',
@@ -218,48 +219,81 @@ export async function runLinkedIn(username: string, minPort: number = 8000, maxP
     await delay(5000);
 
     logger.info(`🚀 Starting main automation loop for ${username}`);
-    const targetCount = 50;
-    const processedLinks = new Set<string>();
+    const batchSize = 500; // Posts per batch
+    let totalProcessed = 0;
+    let batchNumber = 1;
 
-    while (processedLinks.size < targetCount) {
-      try {
-        // FIXED: Don't navigate again, just extract from current page
-        const currentUrl = page.url();
-        if (!currentUrl.includes('/feed/')) {
-          logger.info('Not on feed page, navigating to feed...');
-          await page.goto('https://www.linkedin.com/feed/', { waitUntil: 'domcontentloaded', timeout: 120000 });
-          await delay(5000);
-        }
+    // CONTINUOUS LOOP: Process batches of 500 posts indefinitely
+    while (true) {
+      logger.info(`📦 Starting batch ${batchNumber} (processing ${batchSize} posts)`);
+      const processedLinks = new Set<string>();
+      
+      // Process one batch of posts
+      while (processedLinks.size < batchSize) {
+        try {
+          // Navigate to feed if not already there
+          const currentUrl = page.url();
+          if (!currentUrl.includes('/feed/')) {
+            logger.info('Not on feed page, navigating to feed...');
+            await page.goto('https://www.linkedin.com/feed/', { waitUntil: 'domcontentloaded', timeout: 120000 });
+            await delay(5000);
+          }
 
-        // FIXED: call extractPostLinks with page object and processed links
-        const freshLinks = await extractPostLinks(page, Array.from(processedLinks), processedLinks.size);
-        if (freshLinks.length === 0) {
-          logger.info('No new posts, scrolling...');
-          await page.evaluate(() => window.scrollBy(0, window.innerHeight));
+          // Extract fresh post links
+          const freshLinks = await extractPostLinks(page, Array.from(processedLinks), processedLinks.size);
+          if (freshLinks.length === 0) {
+            logger.info('No new posts found, scrolling to load more...');
+            await page.evaluate(() => window.scrollBy(0, window.innerHeight));
+            await delay(8000);
+            continue;
+          }
+
+          // Process each fresh link
+          for (const postLink of freshLinks) {
+            if (processedLinks.size >= batchSize) break;
+            
+            logger.info(`Processing post ${processedLinks.size + 1}/${batchSize} in batch ${batchNumber}: ${postLink}`);
+            await analyzePostFromLink(page, postLink, username);
+            
+            await delay(2000); // Delay between generations
+            await analyzePostFromLink(page, postLink, username);
+            
+            processedLinks.add(postLink);
+            totalProcessed++;
+            
+            logger.info(`✅ Processed ${processedLinks.size}/${batchSize} posts in current batch (Total: ${totalProcessed})`);
+            await delay(15000); // Delay between posts
+          }
+
+          // Scroll to load more posts
+          await page.evaluate(() => window.scrollBy(0, window.innerHeight * 2));
           await delay(8000);
-          continue;
+          
+        } catch (loopError) {
+          logger.error(`Error in batch processing loop: ${loopError}`);
+          await delay(120000); // Wait 2 minutes before retrying
         }
+      }
 
-        for (const postLink of freshLinks) {
-          if (processedLinks.size >= targetCount) break;
-          logger.info(`Processing post: ${postLink}`);
-          await analyzePostFromLink(page, postLink, username);
-         
-        await delay(2000); // Délai entre les deux générations
-        await analyzePostFromLink(page, postLink, username);
-          processedLinks.add(postLink);
-          logger.info(`Processed ${processedLinks.size}/${targetCount}`);
-          await delay(15000);
-        }
-
-        // Scroll to load more
-        await page.evaluate(() => window.scrollBy(0, window.innerHeight * 2));
-        await delay(8000);
-      } catch (loopError) {
-        logger.error(`Error in loop: ${loopError}`);
-        await delay(120000);
+      // Batch completed
+      logger.info(`✅ Batch ${batchNumber} completed! Processed ${batchSize} posts. Total processed: ${totalProcessed}`);
+      batchNumber++;
+      
+      // Optional: Add a break between batches
+      logger.info(`⏳ Taking a 5-minute break before starting next batch...`);
+      await delay(300000); // 5 minutes break between batches
+      
+      // Reset for next batch - refresh the feed
+      logger.info(`🔄 Refreshing feed for batch ${batchNumber}...`);
+      try {
+        await page.goto('https://www.linkedin.com/feed/', { waitUntil: 'domcontentloaded', timeout: 120000 });
+        await delay(5000);
+      } catch (refreshError) {
+        logger.error(`Failed to refresh feed: ${refreshError}`);
+        // Continue anyway, the extractPostLinks function will handle navigation
       }
     }
+    
 
   } catch (error) {
     logger.error(`LinkedIn automation failed for ${username}: ${(error as Error).message}`);
