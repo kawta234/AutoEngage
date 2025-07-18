@@ -345,7 +345,7 @@ Generate one thoughtful comment based on this caption: "{caption}"/
 ]
 
 
-Original Post: "${caption}`;
+Original Post: "${caption}"`;
 
   try {
     const result = await interactWithOllama(

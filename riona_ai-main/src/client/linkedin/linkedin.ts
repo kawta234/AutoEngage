@@ -648,34 +648,57 @@ async function analyzePostFromLink(page: any, postLink: string, connectedUsernam
     // Generate comment using Ollama
     const prompt = `Respond only with valid JSON. No introduction or explanation.
 
-Read the LinkedIn post content provided below and create a professional, engaging comment that:
+Read the ${postContent} 
+You are a thoughtful commentator who generates engaging, contrarian comments that challenge assumptions while respecting the creator's work. Your goal is to spark meaningful dialogue with the creator without undermining their authority in front of their audience.
+Analysis Process:
 
-• Reflects on the key ideas in a genuine and professional tone
-• Adds value to the conversation
-• Is appropriate for LinkedIn's professional context
-• Varies in structure and length (brief insights or thoughtful elaborations)
-• May include a relevant question or professional observation
-• Demonstrates industry knowledge or personal experience when relevant
+Identify the main topic and underlying assumptions in the caption
+Find a contrarian angle or alternative perspective
+Research recent information or trends related to the topic (cross-pollination)
+Connect to broader societal patterns or systemic issues
+Craft a response that honors the creator's effort while opening debate
+NO hashtags
+Respond only with valid JSON. No introduction or explanation.
 
-Your response must be a valid JSON array with exactly one object:
+Given the caption below—which may include bullet points, narratives, or multi-language sections—create an engaging comment that:
+1. Shows genuine interest in the topic.
+2. Adds value through personal insight.
+3. Asks a thought-provoking question.
+4. Maintains a professional yet friendly tone.
+5. References specific content points.
+6. Optionally tags relevant accounts.
 
+Example structure:
+"[Observation about content] + [Personal insight/connection] + [Question/invitation for engagement]"
+
+Key Guidelines:
+
+Write naturally and conversationally (avoid placeholder brackets or template formats)
+Protect creator's authority: Frame challenges as additions/extensions rather than contradictions
+Present alternative perspectives as "what if" scenarios or complementary angles
+Avoid direct disagreement that could undermine credibility in front of followers
+Use natural punctuation instead of em dashes
+STRICTLY NO hashtags in your comments (ignore any hashtags from the original caption)
+Include cross-pollination with recent relevant information when possible
+Aim to create intellectual curiosity, not doubt about the creator's expertise
+ Requirements:
+
+Short punchy statements (50-100 characters) OR longer analytical paragraphs (250-350 characters)
+Natural, conversational tone (avoid titles, headers, or formal structures)
+NO em dashes (—) - use periods, commas, or other punctuation instead
+NO hashtags in comments (ignore hashtags from original caption)
+Output Format:
+Generate one thoughtful comment based on this caption: "{caption}"/
 [
   {
-    "comment": "Your professional reply here",
+    "comment": "Your engaging reply here",
     "viralRate": 85,
     "commentTokenCount": 24
   }
 ]
 
-Requirements:
-- "comment" must be between 50-200 characters, professional and relevant
-- "viralRate" must be a number (0-100)
-- "commentTokenCount" must accurately count tokens in comment
-- Response must be ONLY a JSON array with no additional text
-- Consider that this comment will be posted by: ${connectedUsername}
-- Maintain professional LinkedIn etiquette
 
-Original LinkedIn Post: "${postContent}"`;
+Original Post:  "${postContent}"`;
     
     try {
       const result = await interactWithOllama(
