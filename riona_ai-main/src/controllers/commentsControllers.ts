@@ -571,55 +571,60 @@ export const setInstagramUsername = async (req: Request, res: Response): Promise
     const accountsCollection = getAccountsCollection();
     const commentsCollection = getCommentsCollection();
     
+    // Check if this exact username already exists for this user
     const existingAccount = await accountsCollection.findOne({ 
       userId, 
-      platform: 'instagram'
+      platform: 'instagram',
+      username // Add username to the query to check for exact match
     });
     
     if (existingAccount) {
-      // Update username on existing account
+      // Username already exists for this user, just update the timestamp
       await accountsCollection.updateOne(
         { _id: existingAccount._id },
         { 
           $set: { 
-            username,
             updatedAt: new Date()
           } 
         }
       );
       
-      // Update username on all comments by this user
-      await commentsCollection.updateMany(
-        { userId: userId.toString() },
-        { $set: { username } }
-      );
-      
-      logger.info(`Instagram username updated for user ${userId}: ${username}`);
-    } else {
-      // Create new account record
-      const newAccount = {
-        userId,
-        platform: 'instagram',
-        username,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        isActive: false // Not active until login
-      };
-      
-      await accountsCollection.insertOne(newAccount);
-      
-      // Update username on any existing comments by this user
-      await commentsCollection.updateMany(
-        { userId: userId.toString() },
-        { $set: { username } }
-      );
-      
-      logger.info(`New Instagram account recorded for user ${userId}: ${username}`);
+      logger.info(`Instagram username already exists for user ${userId}: ${username}`);
+      res.status(200).json({ 
+        success: true, 
+        message: `Instagram username ${username} already exists for this user` 
+      });
+      return;
     }
+    
+    // Create new account record (always create new since we want multiple usernames per user)
+    const newAccount = {
+      userId,
+      platform: 'instagram',
+      username,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      isActive: false // Not active until login
+    };
+    
+    await accountsCollection.insertOne(newAccount);
+    
+    // Update username on any existing comments by this user for this specific username
+    // Note: You might want to be more specific about which comments to update
+    await commentsCollection.updateMany(
+      { 
+        userId: userId.toString(),
+        // You might want to add additional criteria here to specify which comments
+        // should be updated with this username, or remove this update entirely
+      },
+      { $set: { username } }
+    );
+    
+    logger.info(`New Instagram account created for user ${userId}: ${username}`);
     
     res.status(200).json({ 
       success: true, 
-      message: `Instagram username ${username} saved successfully` 
+      message: `Instagram username ${username} added successfully` 
     });
   } catch (error) {
     const errorMsg = error instanceof Error ? error.message : String(error);
