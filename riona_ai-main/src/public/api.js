@@ -1138,13 +1138,27 @@ renderComments();
     }
     
     try {
-      comments = await api.fetchComments();
+      const response = await api.fetchComments();
       
-      // Update alert only if we successfully loaded comments
+      // Handle the new API response structure
+      if (response && Array.isArray(response.comments)) {
+        comments = response.comments;
+      } else if (Array.isArray(response)) {
+        // Fallback for old API response format
+        comments = response;
+      } else {
+        // Handle unexpected response format
+        comments = [];
+        console.warn('Unexpected API response format:', response);
+      }
+      
+      // Update alert with success message and comment count
+      const message = response.message || `${comments.length} comments loaded`;
       dataSourceInfo.innerHTML = `
         <div class="alert alert-success">
           <i class="bi bi-check-circle"></i> Connected to Instagram as @${stateManager.getUsername() || 'user'} 
           <span class="badge bg-secondary">${comments.length} comments loaded</span>
+          ${response.message ? `<br><small>${response.message}</small>` : ''}
         </div>
       `;
       

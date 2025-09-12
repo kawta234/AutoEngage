@@ -294,6 +294,110 @@ Loading Instagram connection status...
   </div>
 </div>
 </div>
+<div class="modal fade" id="commentAnalysisModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <i class="bi bi-graph-up"></i> Comment Analysis Details
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <!-- Comment Info Section -->
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h6 class="mb-0">
+                  <i class="bi bi-chat-text"></i> Comment Details
+                </h6>
+              </div>
+              <div class="card-body">
+                <p><strong>Post ID:</strong> <span id="analysisPostId"></span></p>
+                <p><strong>Comment:</strong></p>
+                <div class="bg-light p-2 rounded">
+                  <span id="analysisCommentText"></span>
+                </div>
+                <p class="mt-2"><strong>Posted Date:</strong> <span id="analysisPostedDate"></span></p>
+                <p><strong>Last Analyzed:</strong> <span id="analysisLastAnalyzed"></span></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Statistics Section -->
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h6 class="mb-0">
+                  <i class="bi bi-bar-chart"></i> Engagement Statistics
+                </h6>
+              </div>
+              <div class="card-body">
+                <div class="row text-center">
+                  <div class="col-6">
+                    <div class="p-3 bg-primary bg-opacity-10 rounded">
+                      <h4 class="text-primary mb-0" id="analysisLikes">0</h4>
+                      <small class="text-muted">Likes</small>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="p-3 bg-success bg-opacity-10 rounded">
+                      <h4 class="text-success mb-0" id="analysisReplies">0</h4>
+                      <small class="text-muted">Replies</small>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Analysis Status -->
+                <div class="mt-3">
+                  <div class="d-flex align-items-center">
+                    <span class="badge me-2" id="analysisStatusBadge">Unknown</span>
+                    <small class="text-muted" id="analysisStatusText">Status</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Replies Section -->
+        <div class="row mt-3">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h6 class="mb-0">
+                  <i class="bi bi-reply"></i> Replies (<span id="repliesCount">0</span>)
+                </h6>
+              </div>
+              <div class="card-body">
+                <div id="repliesList" class="replies-container">
+                  <!-- Replies will be loaded here -->
+                  <div class="text-center text-muted p-3" id="noRepliesMessage">
+                    <i class="bi bi-chat"></i>
+                    <p class="mb-0">No replies yet</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Error Message (if analysis failed) -->
+        <div class="alert alert-warning mt-3" id="analysisError" style="display: none;">
+          <h6><i class="bi bi-exclamation-triangle"></i> Analysis Error</h6>
+          <p class="mb-0" id="analysisErrorMessage"></p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" id="refreshAnalysisBtn">
+          <i class="bi bi-arrow-clockwise"></i> Refresh Analysis
+        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- Accounts Management Modal -->
 <div class="modal fade" id="accountsManagementModal" tabindex="-1" aria-hidden="true">
 <div class="modal-dialog">

@@ -266,7 +266,7 @@ async function generateCommentForPost(page: any, postId: string, connectedUserna
         console.log(`Légende trouvée avec le sélecteur "${sel}" : ${caption}`);
         break;
       }
-    }
+    } 
   }
   if (!caption || caption.trim().length === 0) {
     console.log(`Aucune légende trouvée pour le post ${postId}. Abandon de la génération de commentaire.`);
@@ -361,7 +361,8 @@ Original Post: "${caption}"`;
       caption,
       undefined, 
       postUsername,   // userId is undefined here
-      connectedUsername  
+      connectedUsername  ,
+      "instagram"
   );
     // Extraire le commentaire généré
     let extractedComment = "";

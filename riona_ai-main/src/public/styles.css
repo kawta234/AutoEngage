@@ -62,7 +62,7 @@
   margin-bottom: 15px;
 }
 .stat-number {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 .section-name {
@@ -88,4 +88,55 @@
   background-color: #f8f9fa;
   border-radius: 8px;
   margin-top: 30px;
+}
+.analytics-stat-card {
+  transition: all 0.2s ease-in-out;
+}
+
+.analytics-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#analyticsCommentText {
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+#analyticsLoading {
+  padding: 2rem;
+}
+
+.badge.analyzed {
+  background-color: #6f42c1;
+}
+.replies-container {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.reply-item {
+  border-left: 3px solid #007bff;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f8f9fa;
+  border-radius: 0 8px 8px 0;
+}
+
+.reply-author {
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 5px;
+}
+
+.reply-text {
+  margin-bottom: 5px;
+  line-height: 1.4;
+}
+
+.reply-timestamp {
+  font-size: 0.8rem;
+  color: #6c757d;
 }

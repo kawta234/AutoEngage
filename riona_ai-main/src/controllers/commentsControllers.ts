@@ -333,9 +333,12 @@ export const getAllComments = async (req: Request, res: Response): Promise<void>
       .find({ username }) // Find comments by the username
       .toArray();
     
-    // If no comments found
+    // If no comments found, return empty array with success status
     if (comments.length === 0) {
-      res.status(404).json({ message: `No comments found for username: ${username}` });
+      res.status(200).json({ 
+        message: 'No comments available at the moment. Comments are being generated.',
+        comments: []
+      });
       return;
     }
 
@@ -354,7 +357,7 @@ export const getAllComments = async (req: Request, res: Response): Promise<void>
       history: c.history || []
     }));
 
-    res.status(200).json(formatted);
+    res.status(200).json({ comments: formatted });
 
   } catch (error) {
     logger.error('Error fetching comments:', error);
@@ -491,11 +494,11 @@ export const instagramLogin = async (req: Request, res: Response): Promise<void>
 
     // Wait for manual login
     try {
-      await instPage.waitForSelector("a[href='/direct/inbox/']", { timeout: 60000 });
+      await instPage.waitForSelector("a[href='/direct/inbox/']", { timeout: 240000 });
       logger.info("Connexion détectée (lien de messagerie présent).");
     } catch (e) {
       logger.warn("Lien de messagerie non détecté dans les 60s, attente additionnelle de 10s.");
-      await delay(10000);
+      await delay(60000);
     }
 
     // Sauvegarde des cookies (contenant les informations de connexion)

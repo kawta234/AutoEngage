@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@types/selenium-webdriver": "^4.1.28",
+    "puppeteer": "^21.11.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-adblocker": "^2.13.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "selenium-webdriver": "^4.35.0"
+  },
+  "devDependencies": {
+    "@types/puppeteer": "^5.4.7"
+  }
+}

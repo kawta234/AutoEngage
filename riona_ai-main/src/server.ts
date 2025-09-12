@@ -12,6 +12,7 @@ import { isAuthenticated } from './midleware/auth';
 import logger from './config/logger';
 import instagramRoutes from './routes/instaRoute';
 import linkedinRoutes from './routes/linkedinRoutes';
+import analysisRouter from './routes/analysisRoutes'; // Import the missing router
 
 dotenv.config();
 
@@ -51,7 +52,7 @@ app.get('/login', (req, res) => {
   }
   res.sendFile(path.join(__dirname, 'public','login.html'));
 });
-
+app.use('/api/analysis', analysisRouter);
 app.get('/register', (req, res) => {
   if (req.isAuthenticated()) {
     return res.redirect('/');

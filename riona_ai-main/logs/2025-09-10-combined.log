@@ -1,0 +1,745 @@
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"9:16:04 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"9:16:04 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"9:16:04 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"9:23:09 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"9:23:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"9:23:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username already exists for user 683720529b99dc1e616b574d: majesty___jewelry","timestamp":"9:23:29 AM"}
+{"level":"\u001b[32minfo\u001b[39m","maxPort":7000,"message":"Starting comment analysis for username: majesty___jewelry","minPort":6000,"timestamp":"9:23:29 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) Proxy listening on 6109","timestamp":"9:23:29 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) Logged in as majesty___jewelry","timestamp":"9:23:43 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) Inspecting posted comment 687f53ce083f9fcc14dee7fb @ https://www.instagram.com/p/DMZH2HrNaVg/ for user majesty___jewelry","timestamp":"9:23:43 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) commentDivClass=\"\" | immediateParentDivClass=\"\" | css=\"body._ar45.system-fonts--body.segoe > div#mount_0_0_/C\"","timestamp":"9:23:52 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) Updated 687f53ce083f9fcc14dee7fb with likes=1399, replies=29 | commentDivClass=\"\" immediateParentDivClass=\"\"","timestamp":"9:23:52 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) Waiting 33638 ms before next item...","timestamp":"9:23:52 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"9:57:30 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"9:57:31 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"9:57:31 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username already exists for user 683720529b99dc1e616b574d: majesty___jewelry","timestamp":"9:57:39 AM"}
+{"level":"\u001b[32minfo\u001b[39m","maxPort":7000,"message":"Starting comment analysis for username: majesty___jewelry","minPort":6000,"timestamp":"9:57:39 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) Proxy listening on 6465","timestamp":"9:57:39 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) Logged in as majesty___jewelry","timestamp":"9:57:50 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) Inspecting posted comment 687f650c182760b7cca463ad @ https://www.instagram.com/p/DMYbJW6vBzR/ for user majesty___jewelry","timestamp":"9:57:50 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) Found 2 replies, clicking to expand...","timestamp":"9:58:00 AM"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"(analysis) Failed to expand/extract replies: DOMException: SyntaxError: Failed to execute 'querySelectorAll' on 'Document': 'button[aria-label*=\"reply\" i], button[aria-label*=\"replies\" i], div[role=\"button\"]:has-text(\"replies\"), span:has-text(\"replies\")' is not a valid selector.","timestamp":"9:58:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) commentDivClass=\"x6s0dn4 x78zum5 xdt5ytf xdj266r x11t971q xat24cr xvc5jky x1n2onr6 xh8yej3\" | immediateParentDivClass=\"x1iyjqo2 xdj266r x11t971q xvc5jky x1yztbdb x1ykew4q xs9x0gt x1xnnf8n x18d9i69 x106a9eq x19sv2k2 xt0jiz3 xzakr58 x1m1r3dp xul9lc3 x1yj74s3\" | css=\"body._ar45.system-fonts--body.segoe > div#mount_0_0_hR > div > div > div.x9f619.x1n2onr6.x1ja2u2z:nth-of-type(2) > div.x78zum5.xdt5ytf.x1n2onr6.x1ja2u2z > div.x78zum5.xdt5ytf.x1n2onr6.xat3117.xxzkxad > div.x78zum5.xdt5ytf.x1t2pt76.x1n2onr6.x1ja2u2z.x10cihs4:nth-of-type(1) > div.html-div.xdj266r.x14z9mp.xat24cr.x1lziwak.xexx8yu.xyri2b.x18d9i69.x1c1uobl.x9f619.x16ye13r.xvbhtw8.x78zum5.x15mokao.x1ga7v0g.x16uus16.xbiv7yw.x1uhb9sk.x1plvlek.xryxfnj.x1c4vz4f.x2lah0s.x1q0g3np.xqjyukv.x1qjc9v5.x1oa3qoh.x1qughib:nth-of-type(1) > div.xvc5jky.xh8yej3.x10o80wk.x14k21rp.x17snn68.x6osk4m.x1porb0y.x8vgawa:nth-of-type(1) > section.x78zum5.xdt5ytf.x1iyjqo2.xg6iff7 > main.xvbhtw8.x78zum5.xdt5ytf.x1iyjqo2.xl56j7k > div.x1iyjqo2.xdj266r.x11t971q.xvc5jky.x1yztbdb.x1ykew4q.xs9x0gt.x1xnnf8n.x18d9i69.x106a9eq.x19sv2k2.xt0jiz3.xzakr58.x1m1r3dp.xul9lc3.x1yj74s3 > div.x6s0dn4.x78zum5.xdt5ytf.xdj266r.x11t971q.xat24cr.xvc5jky.x1n2onr6.xh8yej3:nth-of-type(1)\"","timestamp":"9:58:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) Updated 687f650c182760b7cca463ad with likes=1975, replies=28 | commentDivClass=\"x6s0dn4 x78zum5 xdt5ytf xdj266r x11t971q xat24cr xvc5jky x1n2onr6 xh8yej3\" immediateParentDivClass=\"x1iyjqo2 xdj266r x11t971q xvc5jky x1yztbdb x1ykew4q xs9x0gt x1xnnf8n x18d9i69 x106a9eq x19sv2k2 xt0jiz3 xzakr58 x1m1r3dp xul9lc3 x1yj74s3\"","timestamp":"9:58:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) Waiting 41559 ms before next item...","timestamp":"9:58:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) Inspecting posted comment 687f73e860148ac16dc929ca @ https://www.instagram.com/p/DMaCI6Xv_8_/ for user majesty___jewelry","timestamp":"9:58:42 AM"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"(analysis) Attempt 1 failed for 687f73e860148ac16dc929ca: Could not find comment for majesty___jewelry: \"While Putin's actions may be revising Stalin's image, what if this 'revision' is actually a calculated attempt to downplay Soviet atrocities and deflect responsibility from Russia's own human rights abuses?\" in container with class \"x78zum5.xdt5ytf.x1iyjqo2\"","timestamp":"9:58:53 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) retrying in 31772 ms","timestamp":"9:58:53 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"10:20:07 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"10:20:08 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"10:20:08 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username already exists for user 683720529b99dc1e616b574d: majesty___jewelry","timestamp":"10:20:22 AM"}
+{"level":"\u001b[32minfo\u001b[39m","maxPort":7000,"message":"Starting comment analysis for username: majesty___jewelry","minPort":6000,"timestamp":"10:20:22 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) Proxy listening on 6200","timestamp":"10:20:22 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) Logged in as majesty___jewelry","timestamp":"10:20:31 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) Inspecting posted comment 687f73e860148ac16dc929ca @ https://www.instagram.com/p/DMaCI6Xv_8_/ for user majesty___jewelry","timestamp":"10:20:31 AM"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"(analysis) Attempt 1 failed for 687f73e860148ac16dc929ca: Could not find comment for majesty___jewelry: \"While Putin's actions may be revising Stalin's image, what if this 'revision' is actually a calculated attempt to downplay Soviet atrocities and deflect responsibility from Russia's own human rights abuses?\" in container with class \"x78zum5.xdt5ytf.x1iyjqo2\"","timestamp":"10:20:40 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) retrying in 30475 ms","timestamp":"10:20:40 AM"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"(analysis) Attempt 2 failed for 687f73e860148ac16dc929ca: Could not find comment for majesty___jewelry: \"While Putin's actions may be revising Stalin's image, what if this 'revision' is actually a calculated attempt to downplay Soviet atrocities and deflect responsibility from Russia's own human rights abuses?\" in container with class \"x78zum5.xdt5ytf.x1iyjqo2\"","timestamp":"10:21:19 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) retrying in 73099 ms","timestamp":"10:21:19 AM"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"(analysis) Attempt 3 failed for 687f73e860148ac16dc929ca: Could not find comment for majesty___jewelry: \"While Putin's actions may be revising Stalin's image, what if this 'revision' is actually a calculated attempt to downplay Soviet atrocities and deflect responsibility from Russia's own human rights abuses?\" in container with class \"x78zum5.xdt5ytf.x1iyjqo2\"","timestamp":"10:22:42 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) Waiting 34339 ms before next item...","timestamp":"10:22:42 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) Inspecting posted comment 687f74c960148ac16dc929cc @ https://www.instagram.com/p/DMaD5Igx694/ for user majesty___jewelry","timestamp":"10:23:16 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) Found 1 replies, clicking to expand...","timestamp":"10:23:25 AM"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"(analysis) Failed to expand/extract replies: DOMException: SyntaxError: Failed to execute 'querySelectorAll' on 'Document': 'button[aria-label*=\"reply\" i], button[aria-label*=\"replies\" i], div[role=\"button\"]:has-text(\"replies\"), span:has-text(\"replies\")' is not a valid selector.","timestamp":"10:23:25 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) commentDivClass=\"x6s0dn4 x78zum5 xdt5ytf xdj266r x11t971q xat24cr xvc5jky x1n2onr6 xh8yej3\" | immediateParentDivClass=\"x1iyjqo2 xdj266r x11t971q xvc5jky x1yztbdb x1ykew4q xs9x0gt x1xnnf8n x18d9i69 x106a9eq x19sv2k2 xt0jiz3 xzakr58 x1m1r3dp xul9lc3 x1yj74s3\" | css=\"body._ar45.system-fonts--body.segoe > div#mount_0_0_YC > div > div > div.x9f619.x1n2onr6.x1ja2u2z:nth-of-type(2) > div.x78zum5.xdt5ytf.x1n2onr6.x1ja2u2z > div.x78zum5.xdt5ytf.x1n2onr6.xat3117.xxzkxad > div.x78zum5.xdt5ytf.x1t2pt76.x1n2onr6.x1ja2u2z.x10cihs4:nth-of-type(1) > div.html-div.xdj266r.x14z9mp.xat24cr.x1lziwak.xexx8yu.xyri2b.x18d9i69.x1c1uobl.x9f619.x16ye13r.xvbhtw8.x78zum5.x15mokao.x1ga7v0g.x16uus16.xbiv7yw.x1uhb9sk.x1plvlek.xryxfnj.x1c4vz4f.x2lah0s.x1q0g3np.xqjyukv.x1qjc9v5.x1oa3qoh.x1qughib:nth-of-type(1) > div.xvc5jky.xh8yej3.x10o80wk.x14k21rp.x17snn68.x6osk4m.x1porb0y.x8vgawa:nth-of-type(1) > section.x78zum5.xdt5ytf.x1iyjqo2.xg6iff7 > main.xvbhtw8.x78zum5.xdt5ytf.x1iyjqo2.xl56j7k > div.x1iyjqo2.xdj266r.x11t971q.xvc5jky.x1yztbdb.x1ykew4q.xs9x0gt.x1xnnf8n.x18d9i69.x106a9eq.x19sv2k2.xt0jiz3.xzakr58.x1m1r3dp.xul9lc3.x1yj74s3 > div.x6s0dn4.x78zum5.xdt5ytf.xdj266r.x11t971q.xat24cr.xvc5jky.x1n2onr6.xh8yej3:nth-of-type(1)\"","timestamp":"10:23:25 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) Updated 687f74c960148ac16dc929cc with likes=12157, replies=37 | commentDivClass=\"x6s0dn4 x78zum5 xdt5ytf xdj266r x11t971q xat24cr xvc5jky x1n2onr6 xh8yej3\" immediateParentDivClass=\"x1iyjqo2 xdj266r x11t971q xvc5jky x1yztbdb x1ykew4q xs9x0gt x1xnnf8n x18d9i69 x106a9eq x19sv2k2 xt0jiz3 xzakr58 x1m1r3dp xul9lc3 x1yj74s3\"","timestamp":"10:23:25 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"(analysis) Waiting 68180 ms before next item...","timestamp":"10:23:25 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"2:50:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"2:50:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"2:50:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username already exists for user 683720529b99dc1e616b574d: majesty___jewelry","timestamp":"2:50:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started proxy server for majesty___jewelry on port 5289","timestamp":"2:50:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to Instagram homepage for majesty___jewelry...","timestamp":"2:50:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying cookies for majesty___jewelry...","timestamp":"2:50:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Cookies applied successfully for majesty___jewelry","timestamp":"2:50:39 PM"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"Lien de messagerie non détecté dans les 60s, attente additionnelle de 10s.","timestamp":"2:50:42 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Logged into Instagram as majesty___jewelry via cookies.","timestamp":"2:50:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No more 'processing' comments for this user. Waiting 2 minutes...","timestamp":"2:50:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"2:51:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"2:51:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"2:51:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username already exists for user 683720529b99dc1e616b574d: majesty___jewelry","timestamp":"2:54:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started proxy server for majesty___jewelry on port 5054","timestamp":"2:54:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to Instagram homepage for majesty___jewelry...","timestamp":"2:54:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying cookies for majesty___jewelry...","timestamp":"2:54:17 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Cookies applied successfully for majesty___jewelry","timestamp":"2:54:17 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Logged into Instagram as majesty___jewelry via cookies.","timestamp":"2:54:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No more 'processing' comments for this user. Waiting 2 minutes...","timestamp":"2:54:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connexion détectée (lien de messagerie présent).","timestamp":"2:55:27 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Cookies Instagram sauvegardés en base de données pour l'utilisateur majesty___jewelry.","timestamp":"2:55:27 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started proxy server for majesty___jewelry on port 6308","timestamp":"2:55:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to Instagram homepage for majesty___jewelry...","timestamp":"2:55:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying cookies for majesty___jewelry...","timestamp":"2:55:31 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Cookies applied successfully for majesty___jewelry","timestamp":"2:55:31 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Logged into Instagram as majesty___jewelry via cookies.","timestamp":"2:55:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : bloombergbusiness","timestamp":"2:55:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"bloombergbusiness\" matches any target usernames in our database","timestamp":"2:55:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found a match! Post username \"bloombergbusiness\" is in our target list","timestamp":"2:55:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"bloombergbusiness\" is in our target list. Proceeding...","timestamp":"2:55:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No more 'processing' comments for this user. Waiting 2 minutes...","timestamp":"2:57:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : bloombergbusiness","timestamp":"2:57:58 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"bloombergbusiness\" matches any target usernames in our database","timestamp":"2:57:58 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found a match! Post username \"bloombergbusiness\" is in our target list","timestamp":"2:57:58 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"bloombergbusiness\" is in our target list. Proceeding...","timestamp":"2:57:58 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed post DOaS65fDEbK as majesty___jewelry (1/500)","timestamp":"2:59:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : artificialintelligencenews.in","timestamp":"2:59:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"artificialintelligencenews.in\" matches any target usernames in our database","timestamp":"2:59:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"artificialintelligencenews.in\" in our target list","timestamp":"2:59:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"artificialintelligencenews.in\" is not in our target list. Skipping...","timestamp":"2:59:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : artificialintelligencenews.in","timestamp":"2:59:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"artificialintelligencenews.in\" matches any target usernames in our database","timestamp":"2:59:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"artificialintelligencenews.in\" in our target list","timestamp":"2:59:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"artificialintelligencenews.in\" is not in our target list. Skipping...","timestamp":"2:59:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed post DOZFcm6kkgN as majesty___jewelry (2/500)","timestamp":"2:59:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : superprof.fr","timestamp":"3:00:08 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"superprof.fr\" matches any target usernames in our database","timestamp":"3:00:08 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"superprof.fr\" in our target list","timestamp":"3:00:08 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"superprof.fr\" is not in our target list. Skipping...","timestamp":"3:00:08 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : superprof.fr","timestamp":"3:00:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"superprof.fr\" matches any target usernames in our database","timestamp":"3:00:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No match found for post username \"superprof.fr\" in our target list","timestamp":"3:00:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"superprof.fr\" is not in our target list. Skipping...","timestamp":"3:00:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processed post C71GcdWNWo_ as majesty___jewelry (3/500)","timestamp":"3:00:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No more 'processing' comments for this user. Waiting 2 minutes...","timestamp":"3:00:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : mo_gawdat","timestamp":"3:00:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"mo_gawdat\" matches any target usernames in our database","timestamp":"3:00:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found a match! Post username \"mo_gawdat\" is in our target list","timestamp":"3:00:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"mo_gawdat\" is in our target list. Proceeding...","timestamp":"3:00:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"4:18:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"4:18:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"4:18:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username already exists for user 683720529b99dc1e616b574d: majesty___jewelry","timestamp":"4:18:41 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting comment analysis for username: majesty___jewelry","timestamp":"4:18:41 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started browser session for analysis of majesty___jewelry","timestamp":"4:18:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to Instagram homepage for majesty___jewelry...","timestamp":"4:18:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying cookies for majesty___jewelry...","timestamp":"4:18:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Cookies applied successfully for majesty___jewelry","timestamp":"4:18:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Logged into Instagram as majesty___jewelry via cookies.","timestamp":"4:18:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:18:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:18:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Searching for comment: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:19:03 PM"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"Comment not found: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:19:03 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:19:03 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:19:03 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:19:03 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:19:03 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:19:03 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:19:03 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 13216 ms before processing next comment","timestamp":"4:19:03 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:19:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:19:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Searching for comment: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:19:23 PM"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"Comment not found: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:19:23 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:19:23 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:19:23 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:19:23 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:19:23 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:19:23 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:19:23 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 29859 ms before processing next comment","timestamp":"4:19:23 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"4:21:59 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"4:21:59 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"4:21:59 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"4:48:38 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"4:48:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"4:48:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username already exists for user 683720529b99dc1e616b574d: majesty___jewelry","timestamp":"4:49:26 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting comment analysis for username: majesty___jewelry","timestamp":"4:49:26 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started browser session for analysis of majesty___jewelry","timestamp":"4:49:27 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to Instagram homepage for majesty___jewelry...","timestamp":"4:49:27 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying cookies for majesty___jewelry...","timestamp":"4:49:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Cookies applied successfully for majesty___jewelry","timestamp":"4:49:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Logged into Instagram as majesty___jewelry via cookies.","timestamp":"4:49:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:49:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:49:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Searching for comment: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:49:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1: //*[contains(text(), 'Break free with Daily Ontra starting June 1')]","timestamp":"4:49:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment: \"Break free with Daily Ontra starting June 1\" using Strategy 1","timestamp":"4:49:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment div class: x1lliihq x1plvlek xryxfnj x1n2onr6 xyejjpt x15dsfln x193iq5w xeuugli x1fj9vlw x13faqbe x1vvkbs x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x x1i0vuye xl565be xo1l8bm x5n08af x10wh9bi xpm28yp x8viiok x1o7cslx","timestamp":"4:49:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment div id: ","timestamp":"4:49:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found 0 likes for comment","timestamp":"4:49:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found 0 replies for comment","timestamp":"4:49:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:49:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: true","timestamp":"4:49:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:49:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:49:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: x1lliihq x1plvlek xryxfnj x1n2onr6 xyejjpt x15dsfln x193iq5w xeuugli x1fj9vlw x13faqbe x1vvkbs x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x x1i0vuye xl565be xo1l8bm x5n08af x10wh9bi xpm28yp x8viiok x1o7cslx","timestamp":"4:49:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: ","timestamp":"4:49:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 20903 ms before processing next comment","timestamp":"4:49:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:50:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:50:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Searching for comment: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:50:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1: //*[contains(text(), 'Break free with Daily Ontra starting June 1')]","timestamp":"4:50:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment: \"Break free with Daily Ontra starting June 1\" using Strategy 1","timestamp":"4:50:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment div class: x1lliihq x1plvlek xryxfnj x1n2onr6 xyejjpt x15dsfln x193iq5w xeuugli x1fj9vlw x13faqbe x1vvkbs x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x x1i0vuye xl565be xo1l8bm x5n08af x10wh9bi xpm28yp x8viiok x1o7cslx","timestamp":"4:50:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment div id: ","timestamp":"4:50:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found 0 likes for comment","timestamp":"4:50:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found 0 replies for comment","timestamp":"4:50:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:50:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: true","timestamp":"4:50:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:50:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:50:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: x1lliihq x1plvlek xryxfnj x1n2onr6 xyejjpt x15dsfln x193iq5w xeuugli x1fj9vlw x13faqbe x1vvkbs x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x x1i0vuye xl565be xo1l8bm x5n08af x10wh9bi xpm28yp x8viiok x1o7cslx","timestamp":"4:50:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: ","timestamp":"4:50:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 25649 ms before processing next comment","timestamp":"4:50:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:51:00 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:51:00 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Searching for comment: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:51:07 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1: //*[contains(text(), 'Break free with Daily Ontra starting June 1')]","timestamp":"4:51:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment: \"Break free with Daily Ontra starting June 1\" using Strategy 1","timestamp":"4:51:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment div class: x1lliihq x1plvlek xryxfnj x1n2onr6 xyejjpt x15dsfln x193iq5w xeuugli x1fj9vlw x13faqbe x1vvkbs x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x x1i0vuye xl565be xo1l8bm x5n08af x10wh9bi xpm28yp x8viiok x1o7cslx","timestamp":"4:51:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment div id: ","timestamp":"4:51:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found 0 likes for comment","timestamp":"4:51:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found 0 replies for comment","timestamp":"4:51:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:51:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: true","timestamp":"4:51:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:51:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:51:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: x1lliihq x1plvlek xryxfnj x1n2onr6 xyejjpt x15dsfln x193iq5w xeuugli x1fj9vlw x13faqbe x1vvkbs x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x x1i0vuye xl565be xo1l8bm x5n08af x10wh9bi xpm28yp x8viiok x1o7cslx","timestamp":"4:51:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: ","timestamp":"4:51:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 23247 ms before processing next comment","timestamp":"4:51:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:51:41 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:51:41 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Searching for comment: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:51:48 PM"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"Comment search failed: \"Break free with Daily Ontra starting June 1\" - invalid session id: session deleted as the browser has closed the connection\nfrom disconnected: not connected to DevTools\n  (Session info: chrome=139.0.7258.155)","timestamp":"4:51:48 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:51:48 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:51:48 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:51:48 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:51:48 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:51:48 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:51:48 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 16509 ms before processing next comment","timestamp":"4:51:48 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:52:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:52:05 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"4:52:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:52:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:52:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:52:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:52:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:52:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:52:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 24469 ms before processing next comment","timestamp":"4:52:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:52:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:52:30 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"4:52:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:52:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:52:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:52:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:52:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:52:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:52:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 23494 ms before processing next comment","timestamp":"4:52:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:52:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:52:53 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"4:52:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:52:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:52:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:52:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:52:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:52:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:52:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 19611 ms before processing next comment","timestamp":"4:52:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:53:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:53:13 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"4:53:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:53:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:53:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:53:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:53:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:53:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:53:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 20175 ms before processing next comment","timestamp":"4:53:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:53:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:53:33 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"4:53:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:53:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:53:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:53:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:53:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:53:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:53:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 13292 ms before processing next comment","timestamp":"4:53:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:53:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:53:47 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"4:53:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:53:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:53:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:53:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:53:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:53:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:53:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 22879 ms before processing next comment","timestamp":"4:53:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:54:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:54:10 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"4:54:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:54:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:54:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:54:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:54:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:54:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:54:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 21590 ms before processing next comment","timestamp":"4:54:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:54:31 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:54:31 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"4:54:31 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:54:31 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:54:31 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:54:31 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:54:31 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:54:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:54:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 21243 ms before processing next comment","timestamp":"4:54:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:54:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:54:53 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"4:54:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:54:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:54:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:54:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:54:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:54:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:54:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 15639 ms before processing next comment","timestamp":"4:54:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:55:09 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:55:09 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"4:55:09 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:55:09 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:55:09 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:55:09 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:55:09 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:55:09 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:55:09 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 25569 ms before processing next comment","timestamp":"4:55:09 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:55:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:55:34 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"4:55:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:55:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:55:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:55:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:55:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:55:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:55:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 18324 ms before processing next comment","timestamp":"4:55:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:55:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:55:53 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"4:55:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:55:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:55:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:55:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:55:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:55:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:55:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 11686 ms before processing next comment","timestamp":"4:55:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:56:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:56:05 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"4:56:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:56:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:56:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:56:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:56:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:56:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:56:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 10174 ms before processing next comment","timestamp":"4:56:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:56:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:56:15 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"4:56:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:56:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:56:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:56:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:56:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:56:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:56:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 18568 ms before processing next comment","timestamp":"4:56:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:56:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:56:34 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"4:56:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:56:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:56:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:56:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:56:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:56:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:56:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 15685 ms before processing next comment","timestamp":"4:56:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:56:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:56:50 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"4:56:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:56:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:56:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:56:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:56:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:56:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:56:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 20876 ms before processing next comment","timestamp":"4:56:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:57:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:57:11 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"4:57:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:57:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:57:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:57:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:57:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:57:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:57:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 19300 ms before processing next comment","timestamp":"4:57:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:57:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:57:30 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"4:57:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:57:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:57:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:57:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:57:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:57:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:57:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 21619 ms before processing next comment","timestamp":"4:57:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:57:52 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:57:52 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"4:57:52 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:57:52 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:57:52 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:57:52 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:57:52 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:57:52 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:57:52 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 19147 ms before processing next comment","timestamp":"4:57:52 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:58:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:58:11 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"4:58:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:58:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:58:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:58:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:58:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:58:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:58:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 21226 ms before processing next comment","timestamp":"4:58:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:58:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:58:32 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"4:58:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:58:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:58:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:58:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:58:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:58:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:58:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 16255 ms before processing next comment","timestamp":"4:58:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:58:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:58:49 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"4:58:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:58:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:58:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:58:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:58:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:58:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:58:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 15618 ms before processing next comment","timestamp":"4:58:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:59:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:59:05 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"4:59:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:59:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:59:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:59:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:59:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:59:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:59:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 19440 ms before processing next comment","timestamp":"4:59:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:59:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:59:24 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"4:59:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:59:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:59:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:59:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:59:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:59:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:59:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 25062 ms before processing next comment","timestamp":"4:59:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"4:59:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"4:59:49 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"4:59:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"4:59:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"4:59:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"4:59:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"4:59:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"4:59:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"4:59:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 20631 ms before processing next comment","timestamp":"4:59:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:00:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:00:10 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:00:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:00:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:00:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:00:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:00:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:00:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:00:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 28746 ms before processing next comment","timestamp":"5:00:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:00:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:00:39 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:00:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:00:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:00:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:00:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:00:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:00:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:00:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 14622 ms before processing next comment","timestamp":"5:00:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:00:54 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:00:54 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:00:54 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:00:54 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:00:54 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:00:54 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:00:54 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:00:54 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:00:54 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 22387 ms before processing next comment","timestamp":"5:00:54 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:01:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:01:16 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:01:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:01:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:01:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:01:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:01:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:01:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:01:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 18319 ms before processing next comment","timestamp":"5:01:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:01:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:01:35 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:01:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:01:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:01:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:01:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:01:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:01:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:01:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 15216 ms before processing next comment","timestamp":"5:01:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:01:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:01:50 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:01:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:01:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:01:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:01:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:01:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:01:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:01:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 28935 ms before processing next comment","timestamp":"5:01:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:02:19 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:02:19 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:02:19 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:02:19 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:02:19 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:02:19 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:02:19 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:02:19 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:02:19 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 29276 ms before processing next comment","timestamp":"5:02:19 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:02:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:02:49 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:02:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:02:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:02:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:02:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:02:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:02:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:02:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 24501 ms before processing next comment","timestamp":"5:02:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:03:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:03:13 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:03:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:03:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:03:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:03:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:03:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:03:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:03:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 16640 ms before processing next comment","timestamp":"5:03:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:03:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:03:30 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:03:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:03:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:03:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:03:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:03:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:03:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:03:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 14532 ms before processing next comment","timestamp":"5:03:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:03:45 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:03:45 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:03:45 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:03:45 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:03:45 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:03:45 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:03:45 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:03:45 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:03:45 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 17373 ms before processing next comment","timestamp":"5:03:45 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:04:02 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:04:02 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:04:02 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:04:02 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:04:02 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:04:02 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:04:02 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:04:02 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:04:02 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 27735 ms before processing next comment","timestamp":"5:04:02 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:04:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:04:30 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:04:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:04:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:04:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:04:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:04:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:04:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:04:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 15803 ms before processing next comment","timestamp":"5:04:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:04:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:04:46 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:04:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:04:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:04:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:04:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:04:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:04:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:04:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 24493 ms before processing next comment","timestamp":"5:04:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:05:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:05:11 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:05:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:05:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:05:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:05:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:05:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:05:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:05:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 17997 ms before processing next comment","timestamp":"5:05:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:05:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:05:29 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:05:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:05:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:05:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:05:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:05:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:05:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:05:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 17524 ms before processing next comment","timestamp":"5:05:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:05:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:05:47 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:05:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:05:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:05:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:05:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:05:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:05:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:05:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 28256 ms before processing next comment","timestamp":"5:05:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:06:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:06:15 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:06:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:06:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:06:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:06:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:06:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:06:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:06:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 19246 ms before processing next comment","timestamp":"5:06:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:06:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:06:34 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:06:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:06:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:06:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:06:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:06:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:06:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:06:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 21980 ms before processing next comment","timestamp":"5:06:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:06:56 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:06:56 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:06:56 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:06:56 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:06:56 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:06:56 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:06:56 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:06:56 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:06:56 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 17094 ms before processing next comment","timestamp":"5:06:57 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:07:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:07:14 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:07:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:07:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:07:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:07:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:07:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:07:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:07:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 18523 ms before processing next comment","timestamp":"5:07:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:07:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:07:32 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:07:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:07:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:07:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:07:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:07:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:07:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:07:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 24228 ms before processing next comment","timestamp":"5:07:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:07:57 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:07:57 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:07:57 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:07:57 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:07:57 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:07:57 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:07:57 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:07:57 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:07:57 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 25991 ms before processing next comment","timestamp":"5:07:57 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:08:23 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:08:23 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:08:23 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:08:23 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:08:23 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:08:23 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:08:23 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:08:23 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:08:23 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 27710 ms before processing next comment","timestamp":"5:08:23 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:08:51 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:08:51 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:08:51 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:08:51 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:08:51 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:08:51 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:08:51 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:08:51 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:08:51 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 19629 ms before processing next comment","timestamp":"5:08:51 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:09:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:09:11 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:09:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:09:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:09:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:09:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:09:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:09:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:09:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 21200 ms before processing next comment","timestamp":"5:09:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:09:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:09:32 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:09:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:09:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:09:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:09:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:09:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:09:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:09:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 11860 ms before processing next comment","timestamp":"5:09:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analyzing comment 6838747fe794c6db21715e70 by majesty___jewelry: \"Break free with Daily Ontra starting June 1\"","timestamp":"5:09:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to post: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"5:09:44 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error analyzing comment 6838747fe794c6db21715e70: invalid session id","timestamp":"5:09:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis Results for comment 6838747fe794c6db21715e70:","timestamp":"5:09:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Found: false","timestamp":"5:09:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Likes: 0","timestamp":"5:09:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Replies: 0","timestamp":"5:09:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div Class: undefined","timestamp":"5:09:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"- Div ID: undefined","timestamp":"5:09:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 20320 ms before processing next comment","timestamp":"5:09:44 PM"}

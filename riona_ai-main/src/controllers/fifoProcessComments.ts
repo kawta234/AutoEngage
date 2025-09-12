@@ -9,7 +9,7 @@ import logger from '../config/logger';
 import fs from 'fs';
 import { connectToDatabase, getCommentsCollection, getAccountsCollection, upsertAccount } from '../config/db';
 import { IUser } from '../models/user';
-import { Instagram_cookiesExist, loadCookies, saveCookies } from "../utils";
+
 import { getInstagramCookiesByUsername } from "../client/agentcontroller";
 const popupCloseSelector: string = 'button[class*="dismiss"]';
 const commentBoxSelector: string = 'textarea[aria-label="Add a comment…"][placeholder="Add a comment…"]';

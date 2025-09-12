@@ -37,7 +37,8 @@ export const saveInstagramComment = async (
   caption: string, 
   userId?: string,
   username?: string,
-  postUsername?: string  // Added postUsername parameter
+  postUsername?: string  ,  // Added postUsername parameter
+  platform?: string 
 ) => {
   // Verify caption is not truncated
   console.log("Caption received for saving:", caption);
@@ -51,7 +52,8 @@ export const saveInstagramComment = async (
       status: 'pending',
       model: 'llama3.1',
       username: username || 'unknown_user',
-      postUsername: postUsername || 'unknown_post_user'  // Store the post author username
+      postUsername: postUsername || 'unknown_post_user'  ,  // Store the post author username
+      platform: platform || 'unknown_platform' 
   };
     
   try {
@@ -107,7 +109,8 @@ const interactWithOllama = async (
   caption?: string,
   userId?: string,
   postUsername?: string,
-  username?: string  // Username of the post author
+  username?: string  ,  // Username of the post author
+  platform?: string 
 ): Promise<any> => {
   if (!apiUrl) {
       throw new Error('OLLAMA_API_URL is not set. Provide it via the apiUrl parameter or as an environment variable.');
@@ -173,7 +176,8 @@ const interactWithOllama = async (
                                   caption || '', 
                                   userId,
                                   username,  // Username of commenter
-                                  postUsername  // Username of post author
+                                  postUsername,
+                                  platform   
                               );
                               if (saveResult) {
                                   console.log(`Generated and saved comment by ${username || 'unknown user'} on ${postUsername || 'unknown'}'s post ${userId ? '(userId: ' + userId + ')' : ''}:`, comment);

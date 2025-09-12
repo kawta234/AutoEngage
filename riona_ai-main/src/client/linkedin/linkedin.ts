@@ -714,7 +714,9 @@ Original Post:  "${postContent}"`;
         postContent,
         undefined,
         postAuthor,
-        connectedUsername
+        connectedUsername,
+        "linkedin"
+
       );
       
       // Extract generated comment

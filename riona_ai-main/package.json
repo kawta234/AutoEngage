@@ -57,6 +57,7 @@
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
     "requirements": "^2.0.2",
+    "selenium-webdriver": "^4.35.0",
     "socket.io": "^4.8.1",
     "textract": "^2.5.0",
     "twitter-api-v2": "^1.19.0",
@@ -79,6 +80,7 @@
     "@types/puppeteer": "^5.4.7",
     "@types/readline-sync": "^1.4.8",
     "@types/request": "^2.48.12",
+    "@types/selenium-webdriver": "^4.1.28",
     "@types/textract": "^2.4.5",
     "@types/user-agents": "^1.0.4",
     "@types/uuid": "^10.0.0"

@@ -2,10 +2,10 @@ import express, { Application } from 'express';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import helmet from 'helmet';
-import { runInstagram } from './client/Instagram'; // Updated import path
 import logger, { setupErrorHandlers } from './config/logger';
 import { setup_HandleError } from './utils';
 import { connectToDatabase } from './config/db';
+
 
 // Initialize environment variables
 dotenv.config();
@@ -20,6 +20,9 @@ app.use(helmet({ xssFilter: true, noSniff: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true, limit: '1kb' }));
 app.use(cookieParser());
+
+// Register analysis routes
+
 
 // Start the Instagram automation process
 const runInstagramAgent = async () => {
