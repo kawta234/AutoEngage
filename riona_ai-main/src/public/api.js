@@ -17,10 +17,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const dropdownLogoutBtn = document.getElementById('dropdownLogoutBtn');
   const instagramLoginBtn = document.getElementById('instagramLoginBtn');
   const usernameBtn = document.getElementById('usernameBtn');
-  
   const dropdownUsernameBtn = document.getElementById('dropdownUsernameBtn');
   const dropdownAccountsBtn = document.getElementById('dropdownAccountsBtn');
-  
   const navbarUsername = document.getElementById('navbarUsername');
   const currentAccountUsername = document.getElementById('currentAccountUsername');
   const loginStatusModal = new bootstrap.Modal(document.getElementById('instagramLoginStatusModal'));
@@ -35,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const userFilterModal = new bootstrap.Modal(document.getElementById('userFilterModal'));
 
   let currentStatusFilter = 'all';       
-let currentUserFilterType = 'all'; 
+  let currentUserFilterType = 'all'; 
   let comments = [];
   let isLoggedIn = false; // Track Instagram login status
   let hasUsername = false; // Track if Instagram username is set
@@ -123,6 +121,22 @@ throw error;
       }
       
       return await response.json();
+    },
+    async triggerAnalysis  (username)  {
+      try {
+        const response = await fetch(`${API_BASE_URL}/analysis/analyze-posted-comments`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ username, port })
+        });
+        
+        const data = await response.json();
+        console.log('Analysis started:', data);
+      } catch (error) {
+        console.error('Error:', error);
+      }
     },
     async generateComment(postId, caption) {
       const response = await fetch(`${API_BASE_URL}/comments/generate`, {
@@ -1002,6 +1016,32 @@ renderComments();
       throw error;
     }
   }
+  async function triggerAnalysis(username) {
+    console.log('Calling triggerAnalysis for username:', username);
+    
+    try {
+      const response = await fetch(`${API_BASE_URL}/analysis/analyze-posted-comments`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        // Enlever le paramètre port ou le rendre optionnel
+        body: JSON.stringify({ username })
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(`HTTP ${response.status}: ${errorData.message || 'Unknown error'}`);
+      }
+      
+      const data = await response.json();
+      console.log('Analysis started successfully:', data);
+      return data;
+    } catch (error) {
+      console.error('Error in triggerAnalysis:', error);
+      throw error;
+    }
+  }
   
   // Save Instagram username
   async function saveUsername(username) {
@@ -1034,18 +1074,19 @@ renderComments();
       } catch (e) {
         console.log('Modal was not open');
       }
+     
       try {
-        await triggerFifo(username);
-        console.log('FIFO process initiated for username:', username);
+        await triggerAnalysis(username);
+        console.log('Comment analysis initiated for username:', username);
         // Optional: show success toast
         if (typeof showToast === 'function') {
-          showToast('success', 'Automated comment processing started');
+          showToast('success', 'Comment analysis started');
         }
-      } catch (fifoError) {
-        console.error('Error triggering FIFO process:', fifoError);
-        // Optional: show warning toast, but don't break the flow with an alert
+      } catch (analysisError) {
+        console.error('Error triggering comment analysis:', analysisError);
+        // Optional: show warning toast, but don't break the flow
         if (typeof showToast === 'function') {
-          showToast('warning', 'Problem with automated comment processing');
+          showToast('warning', 'Problem starting comment analysis');
         }
       }
     } catch (error) {
@@ -1107,11 +1148,7 @@ renderComments();
       loadComments();
     }, 2000);
     
-    // Déclencher le processus FIFO en arrière-plan sans bloquer
-    // Exactement comme runInstagramAgent
-   
     
-    // Run the Instagram agent in the background without waiting for it to finish
     runInstagramAgent(username).catch(agentError => {
       console.error('Error in background Instagram agent execution:', agentError);
       // Optionally notify the user about agent errors via a toast notification
@@ -1197,12 +1234,7 @@ renderComments();
     document.getElementById('stat-rejected').textContent = stats.rejected;
   }
 
-  // Render comments based on current filter
- 
-    
-    
-
-    // Existing renderComments logic, but modify the user filtering part
+  
     function renderComments() {
       
 commentsContainer.innerHTML = '';

@@ -59,7 +59,10 @@ export const getlinkComments = async (req: Request, res: Response): Promise<void
     
     // If no comments found
     if (comments.length === 0) {
-      res.status(404).json({ message: `No comments found for username: ${username}` });
+      res.status(200).json({ 
+        message: 'No comments available at the moment. Comments are being generated.',
+        comments: []
+      });
       return;
     }
 

@@ -731,12 +731,12 @@ export async function processAnalysisQueue(username: string): Promise<void> {
               errorMessage: analysisResult.errorMessage
             },
             lastAnalyzed: new Date(),
-            status: 'analyzed' // Change status so it won't be processed again
+            status: 'posted' // Change status so it won't be processed again
           }
         }
       );
       
-      logger.info(`Comment ${comment._id} analysis completed and status updated to 'analyzed'`);
+      logger.info(`Comment ${comment._id} analysis completed and status updated to 'posted'`);
       
       // Wait before processing the next comment
       const waitDelay = getRandomDelay(5000, 15000); // Shorter delay between comments

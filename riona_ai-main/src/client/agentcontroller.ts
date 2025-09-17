@@ -21,37 +21,44 @@ import {
   } from '../config/db';
   import logger from '../config/logger';
   export async function checkTargetUsernameMatch(
-    postUsername: string
+    postUsername: string,
+    connectedUsername: string  // Add this parameter
   ): Promise<{ matched: boolean; accountData?: AccountDocument }> {
     try {
       await connectToDatabase();
       const accounts = getAccountsCollection();
       
-      logger.info(`Checking if post username "${postUsername}" matches any target usernames in our database`);
+      logger.info(`Checking if post username "${postUsername}" matches target usernames for account "${connectedUsername}"`);
       
-      // Find an account that has the post username in its filteredUsers.targetUsername array
-      // and where the filteredUser is active
+      // First find the specific account document by the connected username
       const account = await accounts.findOne({
-        "filteredUsers": {
-          $elemMatch: {
-            "targetUsername": postUsername,
-            "isActive": true
-          }
-        }
+        username: connectedUsername  // Match the Instagram agent's username
       });
       
-      if (account) {
-        logger.info(`Found a match! Post username "${postUsername}" is in our target list`);
+      if (!account) {
+        logger.warn(`No account found for connected username "${connectedUsername}"`);
+        return { matched: false };
+      }
+      
+      // Check if the postUsername exists in this account's filteredUsers array
+      const matchingFilteredUser = account.filteredUsers?.find(
+        (filteredUser: any) => 
+          filteredUser.targetUsername === postUsername && 
+          filteredUser.isActive === true
+      );
+      
+      if (matchingFilteredUser) {
+        logger.info(`Found a match! Post username "${postUsername}" is in the target list for account "${connectedUsername}"`);
         return { 
           matched: true,
           accountData: account
         };
       } else {
-        logger.info(`No match found for post username "${postUsername}" in our target list`);
+        logger.info(`No match found for post username "${postUsername}" in target list for account "${connectedUsername}"`);
         return { matched: false };
       }
     } catch (error) {
-      logger.error(`Database error when checking target username match for "${postUsername}":`, error);
+      logger.error(`Database error when checking target username match for "${postUsername}" in account "${connectedUsername}":`, error);
       return { matched: false };
     }
   }

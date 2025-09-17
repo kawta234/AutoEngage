@@ -245,7 +245,7 @@ async function generateCommentForPost(page: any, postId: string, connectedUserna
       logger.warn("Erreur lors de l'extraction du nom d'utilisateur du post via le titre:", error);
     }
   }
-  const { matched, accountData } = await checkTargetUsernameMatch(postUsername);
+  const { matched, accountData } = await checkTargetUsernameMatch(postUsername, connectedUsername);
   
   if (!matched) {
     logger.info(`Post username "${postUsername}" is not in our target list. Skipping...`);

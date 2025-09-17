@@ -1166,42 +1166,48 @@ renderComments();
   }
 }
   // Load comments from API
+  
   async function loadComments() {
     if (!isLoggedIn || !hasUsername) {
-      console.log('Skipping load - not logged in or no username');
-      return;
+      return; // Don't load comments if not logged in or no username
     }
     
     try {
-      console.log('Starting to load comments...');
-      comments = await api.fetchComments();
+      const response = await api.fetchComments();
       
-      // Success UI update (same as before)
+      // Handle the new API response structure
+      if (response && Array.isArray(response.comments)) {
+        comments = response.comments;
+      } else if (Array.isArray(response)) {
+        // Fallback for old API response format
+        comments = response;
+      } else {
+        // Handle unexpected response format
+        comments = [];
+        console.warn('Unexpected API response format:', response);
+      }
+      
+      // Update alert with success message and comment count
+      const message = response.message || `${comments.length} comments loaded`;
       dataSourceInfo.innerHTML = `
         <div class="alert alert-success">
-          <i class="bi bi-check-circle"></i> Connected to linkedin as @${stateManager.getUsername() || 'user'} 
+          <i class="bi bi-check-circle"></i> Connected to Instagram as @${stateManager.getUsername() || 'user'} 
           <span class="badge bg-secondary">${comments.length} comments loaded</span>
+          ${response.message ? `<br><small>${response.message}</small>` : ''}
         </div>
       `;
       
       updateStatistics();
       renderComments();
-      
     } catch (error) {
-      console.error('Error loading comments:', {
-        name: error.name,
-        message: error.message,
-        stack: error.stack
-      });
-      
+      console.error('Error loading comments:', error);
       dataSourceInfo.innerHTML = `
         <div class="alert alert-danger">
           <strong>Error:</strong> Failed to load comments from API.
-          <p><strong>Error details:</strong> ${error.message}</p>
+          <p>${error.message}</p>
           <button class="btn btn-sm btn-primary" id="retryBtn">Retry</button>
         </div>
       `;
-      
       document.getElementById('retryBtn')?.addEventListener('click', loadComments);
     }
   }
