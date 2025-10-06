@@ -1047,7 +1047,7 @@ renderComments();
     console.log('Calling triggerAnalysis for username:', username);
     
     try {
-      const response = await fetch(`${API_BASE_URL}/analysis/analyze-comments`, {
+      const response = await fetch(`${API_BASE_URL}/analysis/analyze-posted-comments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -1112,17 +1112,17 @@ renderComments();
         }
       }
       try {
-        await triggerAnalysis(username);
-        console.log('Analysis process initiated for username:', username);
+        await triggerFifo(username);
+        console.log('FIFO process initiated for username:', username);
         // Optional: show success toast
         if (typeof showToast === 'function') {
-          showToast('success', 'Comment analysis started');
+          showToast('success', 'Automated comment processing started');
         }
-      } catch (analysisError) {
-        console.error('Error triggering analysis process:', analysisError);
-        // Optional: show the alert to the user about the error 
+      } catch (fifoError) {
+        console.error('Error triggering FIFO process:', fifoError);
+        // Optional: show warning toast, but don't break the flow with an alert
         if (typeof showToast === 'function') {
-          showToast('warning', 'Problem with comment analysis');
+          showToast('warning', 'Problem with automated comment processing');
         }
       }
       
