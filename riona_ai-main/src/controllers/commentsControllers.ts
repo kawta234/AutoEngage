@@ -342,7 +342,7 @@ export const getAllComments = async (req: Request, res: Response): Promise<void>
       return;
     }
 
-    // Format the comments before sending back to the client
+    // format comments to ensure consistent field names and types 
     const formatted = comments.map(c => ({
       id: c._id.toString(), // Convert _id to string
       userId: c.userId,
@@ -354,7 +354,14 @@ export const getAllComments = async (req: Request, res: Response): Promise<void>
       status: c.status ?? 'pending',
       model: c.model ?? 'llama3.1',
       username: c.username,
-      history: c.history || []
+      history: c.history || [],
+      
+      // Analysis data from the analysis agent
+      likes: c.likes ?? 0,
+      repliesCount: c.repliesCount ?? 0,
+      repliesData: c.repliesData || [],
+      lastUpdated: c.lastUpdated,
+      lastError: c.lastError
     }));
 
     res.status(200).json({ comments: formatted });
@@ -453,9 +460,7 @@ export const instagramLogin = async (req: Request, res: Response): Promise<void>
         '--use-mock-keychain'
       ],
       ignoreDefaultArgs: ['--enable-automation'],
-      // Set executable path if needed (uncomment and adjust for your system)
-      // executablePath: '/usr/bin/google-chrome-stable', // Linux
-      // executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', // macOS
+      
     };
 
     // Add Windows-specific options if running on Windows

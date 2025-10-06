@@ -1,0 +1,572 @@
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"11:19:17 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"11:19:17 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"11:19:17 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username already exists for user 683720529b99dc1e616b574d: majesty___jewelry","timestamp":"11:19:26 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting comment analysis for username: majesty___jewelry","timestamp":"11:19:27 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started browser session for analysis of majesty___jewelry","timestamp":"11:19:34 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Logged into Instagram as majesty___jewelry","timestamp":"11:19:44 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 6838747fe794c6db21715e70: \"Break free with Daily Ontra starting June 1\"","timestamp":"11:19:44 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:19:44 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"Break free with Daily Ontra starting June 1\"","timestamp":"11:19:44 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:20:02 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 1 likes","timestamp":"11:20:02 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 1, Found: true","timestamp":"11:20:02 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:20:06 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"Break free with Daily Ontra starting June 1\"","timestamp":"11:20:06 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:20:23 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"11:20:26 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"11:20:26 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 6838747fe794c6db21715e70 analysis completed and status updated to 'analyzed'","timestamp":"11:20:26 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 1 likes, 0 replies","timestamp":"11:20:26 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 9814 ms before processing next comment","timestamp":"11:20:26 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"11:31:19 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"11:31:20 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"11:31:20 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username already exists for user 683720529b99dc1e616b574d: majesty___jewelry","timestamp":"11:31:40 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting comment analysis for username: majesty___jewelry","timestamp":"11:31:40 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started browser session for analysis of majesty___jewelry","timestamp":"11:31:42 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Logged into Instagram as majesty___jewelry","timestamp":"11:31:52 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 68387112e794c6db21715e6a: \"Musk unleashes AI beast on Telegram\"","timestamp":"11:31:53 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:31:53 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"Musk unleashes AI beast on Telegram\"","timestamp":"11:31:53 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: false","timestamp":"11:32:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:32:14 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"Musk unleashes AI beast on Telegram\"","timestamp":"11:32:14 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: false","timestamp":"11:32:31 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 68387112e794c6db21715e6a analysis completed and status updated to 'analyzed'","timestamp":"11:32:31 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"11:32:31 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 14559 ms before processing next comment","timestamp":"11:32:31 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 683987a07a5ecbaae2dff89e: \"Let's ditch the mystery ingredients!\"","timestamp":"11:32:46 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:32:46 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"Let's ditch the mystery ingredients!\"","timestamp":"11:32:46 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:33:04 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 0 likes","timestamp":"11:33:04 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: true","timestamp":"11:33:04 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:33:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"Let's ditch the mystery ingredients!\"","timestamp":"11:33:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:33:27 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"11:33:30 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"11:33:30 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 683987a07a5ecbaae2dff89e analysis completed and status updated to 'analyzed'","timestamp":"11:33:31 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"11:33:31 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 12275 ms before processing next comment","timestamp":"11:33:31 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 6876a6a37760a5c788133ba0: \"That's an intriguing concept, but have you considered the ethics of preserving human life without clear prospects for revival? It raises questions about quality over quantity and our values surrounding mortality.\"","timestamp":"11:33:43 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:33:43 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"That's an intriguing concept, but have you considered the ethics of preserving human life without clear prospects for revival? It raises questions about quality over quantity and our values surrounding mortality.\"","timestamp":"11:33:43 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: false","timestamp":"11:34:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:34:04 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"That's an intriguing concept, but have you considered the ethics of preserving human life without clear prospects for revival? It raises questions about quality over quantity and our values surrounding mortality.\"","timestamp":"11:34:04 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: false","timestamp":"11:34:21 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 6876a6a37760a5c788133ba0 analysis completed and status updated to 'analyzed'","timestamp":"11:34:21 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"11:34:21 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 10767 ms before processing next comment","timestamp":"11:34:21 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 6876a2967760a5c788133b9d: \"What if Gaudí's most innovative aspects were not just found in Sagrada Familia, but also influenced the urban planning of Barcelona? How might his legacy be reinterpreted through a contemporary lens?\"","timestamp":"11:34:32 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:34:32 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"What if Gaudí's most innovative aspects were not just found in Sagrada Familia, but also influenced the urban planning of Barcelona? How might his legacy be reinterpreted through a contemporary lens?\"","timestamp":"11:34:32 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:34:50 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 0 likes","timestamp":"11:34:50 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: true","timestamp":"11:34:50 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:34:55 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"What if Gaudí's most innovative aspects were not just found in Sagrada Familia, but also influenced the urban planning of Barcelona? How might his legacy be reinterpreted through a contemporary lens?\"","timestamp":"11:34:55 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:35:13 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"11:35:16 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"11:35:16 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 6876a2967760a5c788133b9d analysis completed and status updated to 'analyzed'","timestamp":"11:35:16 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"11:35:16 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 14058 ms before processing next comment","timestamp":"11:35:16 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 6876a10e7760a5c788133b9c: \"What a beautiful portrayal of a loving partnership! However, have you considered the potential for this type of encouragement to be perceived as performative or even gaslighting by those who struggle with self-acceptance?\"","timestamp":"11:35:30 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:35:30 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"What a beautiful portrayal of a loving partnership! However, have you considered the potential for this type of encouragement to be perceived as performative or even gaslighting by those who struggle with self-acceptance?\"","timestamp":"11:35:30 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:35:48 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 0 likes","timestamp":"11:35:48 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: true","timestamp":"11:35:48 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:35:53 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"What a beautiful portrayal of a loving partnership! However, have you considered the potential for this type of encouragement to be perceived as performative or even gaslighting by those who struggle with self-acceptance?\"","timestamp":"11:35:53 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:36:11 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"11:36:14 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"11:36:14 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 6876a10e7760a5c788133b9c analysis completed and status updated to 'analyzed'","timestamp":"11:36:14 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"11:36:14 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 8626 ms before processing next comment","timestamp":"11:36:14 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 68769b937760a5c788133b9a: \"While embracing a 'nothing-to-lose' mindset can indeed fuel entrepreneurial spirit, I'd love to explore the nuances of financial literacy and planning in such scenarios. What if this message could be paired with resources on budgeting, saving, and smart investing?\"","timestamp":"11:36:22 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:36:22 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"While embracing a 'nothing-to-lose' mindset can indeed fuel entrepreneurial spirit, I'd love to explore the nuances of financial literacy and planning in such scenarios. What if this message could be paired with resources on budgeting, saving, and smart investing?\"","timestamp":"11:36:22 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:36:40 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 1 likes","timestamp":"11:36:40 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 1, Found: true","timestamp":"11:36:40 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:36:45 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"While embracing a 'nothing-to-lose' mindset can indeed fuel entrepreneurial spirit, I'd love to explore the nuances of financial literacy and planning in such scenarios. What if this message could be paired with resources on budgeting, saving, and smart investing?\"","timestamp":"11:36:45 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:37:02 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"11:37:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"11:37:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 68769b937760a5c788133b9a analysis completed and status updated to 'analyzed'","timestamp":"11:37:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 1 likes, 0 replies","timestamp":"11:37:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 8206 ms before processing next comment","timestamp":"11:37:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 68769b287760a5c788133b97: \"As a community, can we also explore the intersection of weather modification and urban planning? How might our cities' infrastructure contribute to or mitigate the impact of severe storms?\"","timestamp":"11:37:13 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:37:13 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"As a community, can we also explore the intersection of weather modification and urban planning? How might our cities' infrastructure contribute to or mitigate the impact of severe storms?\"","timestamp":"11:37:13 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:37:32 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 0 likes","timestamp":"11:37:32 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: true","timestamp":"11:37:32 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:37:36 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"As a community, can we also explore the intersection of weather modification and urban planning? How might our cities' infrastructure contribute to or mitigate the impact of severe storms?\"","timestamp":"11:37:36 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:37:53 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"11:37:56 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"11:37:56 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 68769b287760a5c788133b97 analysis completed and status updated to 'analyzed'","timestamp":"11:37:56 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"11:37:56 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 10132 ms before processing next comment","timestamp":"11:37:56 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687695ab7760a5c788133b94: \"What if this violent storm isn't just a freak occurrence, but rather a harbinger of deeper climate-related issues that need to be addressed?\"","timestamp":"11:38:06 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:38:06 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"What if this violent storm isn't just a freak occurrence, but rather a harbinger of deeper climate-related issues that need to be addressed?\"","timestamp":"11:38:06 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:38:24 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 1 likes","timestamp":"11:38:24 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 1, Found: true","timestamp":"11:38:24 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:38:30 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"What if this violent storm isn't just a freak occurrence, but rather a harbinger of deeper climate-related issues that need to be addressed?\"","timestamp":"11:38:30 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:38:48 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"11:38:51 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"11:38:51 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687695ab7760a5c788133b94 analysis completed and status updated to 'analyzed'","timestamp":"11:38:51 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 1 likes, 0 replies","timestamp":"11:38:51 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 10087 ms before processing next comment","timestamp":"11:38:51 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687692877760a5c788133b92: \"What if we redefined risk assessment for flood-prone areas, incorporating AI-driven predictive models and adaptive insurance policies?\"","timestamp":"11:39:01 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:39:01 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"What if we redefined risk assessment for flood-prone areas, incorporating AI-driven predictive models and adaptive insurance policies?\"","timestamp":"11:39:01 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:39:18 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 0 likes","timestamp":"11:39:18 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: true","timestamp":"11:39:18 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:39:26 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"What if we redefined risk assessment for flood-prone areas, incorporating AI-driven predictive models and adaptive insurance policies?\"","timestamp":"11:39:26 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:39:43 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"11:39:46 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"11:39:46 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687692877760a5c788133b92 analysis completed and status updated to 'analyzed'","timestamp":"11:39:46 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"11:39:46 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 11438 ms before processing next comment","timestamp":"11:39:46 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687f8f2e505a6ad921f350fe: \"While it's true that Stalin's image has been reevaluated under Putin, what if this 'revision' serves as a distraction from current authoritarian practices?\"","timestamp":"11:39:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:39:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"While it's true that Stalin's image has been reevaluated under Putin, what if this 'revision' serves as a distraction from current authoritarian practices?\"","timestamp":"11:39:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: false","timestamp":"11:40:16 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:40:19 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"While it's true that Stalin's image has been reevaluated under Putin, what if this 'revision' serves as a distraction from current authoritarian practices?\"","timestamp":"11:40:19 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: false","timestamp":"11:40:37 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687f8f2e505a6ad921f350fe analysis completed and status updated to 'analyzed'","timestamp":"11:40:37 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"11:40:37 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 14524 ms before processing next comment","timestamp":"11:40:37 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687f760660148ac16dc929cf: \"This system's design seems to be exacerbating existing tensions, rather than addressing the root causes of hunger. How can we shift focus from 'distributing aid' to 'building sustainable infrastructure for Gaza's economy and agriculture?\"","timestamp":"11:40:51 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:40:51 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"This system's design seems to be exacerbating existing tensions, rather than addressing the root causes of hunger. How can we shift focus from 'distributing aid' to 'building sustainable infrastructure for Gaza's economy and agriculture?\"","timestamp":"11:40:51 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:41:11 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 0 likes","timestamp":"11:41:11 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: true","timestamp":"11:41:11 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:41:15 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"This system's design seems to be exacerbating existing tensions, rather than addressing the root causes of hunger. How can we shift focus from 'distributing aid' to 'building sustainable infrastructure for Gaza's economy and agriculture?\"","timestamp":"11:41:15 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:41:32 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"11:41:35 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"11:41:35 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687f760660148ac16dc929cf analysis completed and status updated to 'analyzed'","timestamp":"11:41:35 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"11:41:35 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 5969 ms before processing next comment","timestamp":"11:41:35 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687f74c960148ac16dc929cc: \"What if our ultra-processed food environment isn't just a contributor, but a symptom of deeper societal issues like convenience culture and economic inequality? Can we truly address metabolic health without tackling these underlying factors?\"","timestamp":"11:41:41 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:41:41 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"What if our ultra-processed food environment isn't just a contributor, but a symptom of deeper societal issues like convenience culture and economic inequality? Can we truly address metabolic health without tackling these underlying factors?\"","timestamp":"11:41:41 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:41:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 4 likes","timestamp":"11:41:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 4, Found: true","timestamp":"11:41:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:42:04 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"What if our ultra-processed food environment isn't just a contributor, but a symptom of deeper societal issues like convenience culture and economic inequality? Can we truly address metabolic health without tackling these underlying factors?\"","timestamp":"11:42:04 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:42:21 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"11:42:24 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"11:42:24 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687f74c960148ac16dc929cc analysis completed and status updated to 'analyzed'","timestamp":"11:42:24 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 4 likes, 0 replies","timestamp":"11:42:24 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 12573 ms before processing next comment","timestamp":"11:42:24 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687f73e860148ac16dc929ca: \"While Putin's actions may be revising Stalin's image, what if this 'revision' is actually a calculated attempt to downplay Soviet atrocities and deflect responsibility from Russia's own human rights abuses?\"","timestamp":"11:42:36 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:42:36 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"While Putin's actions may be revising Stalin's image, what if this 'revision' is actually a calculated attempt to downplay Soviet atrocities and deflect responsibility from Russia's own human rights abuses?\"","timestamp":"11:42:36 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: false","timestamp":"11:42:53 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:42:59 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"While Putin's actions may be revising Stalin's image, what if this 'revision' is actually a calculated attempt to downplay Soviet atrocities and deflect responsibility from Russia's own human rights abuses?\"","timestamp":"11:42:59 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: false","timestamp":"11:43:16 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687f73e860148ac16dc929ca analysis completed and status updated to 'analyzed'","timestamp":"11:43:16 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"11:43:16 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 5332 ms before processing next comment","timestamp":"11:43:16 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687f650c182760b7cca463ad: \"Fascinating how US interests drive exploration, yet often neglect long-term environmental consequences. What safeguards are being implemented to mitigate potential oceanic damage?\"","timestamp":"11:43:22 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:43:22 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"Fascinating how US interests drive exploration, yet often neglect long-term environmental consequences. What safeguards are being implemented to mitigate potential oceanic damage?\"","timestamp":"11:43:22 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:43:38 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 1 likes","timestamp":"11:43:38 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 1, Found: true","timestamp":"11:43:38 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:43:45 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"Fascinating how US interests drive exploration, yet often neglect long-term environmental consequences. What safeguards are being implemented to mitigate potential oceanic damage?\"","timestamp":"11:43:45 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:44:02 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"11:44:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"11:44:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687f650c182760b7cca463ad analysis completed and status updated to 'analyzed'","timestamp":"11:44:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 1 likes, 0 replies","timestamp":"11:44:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 11729 ms before processing next comment","timestamp":"11:44:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687f53ce083f9fcc14dee7fb: \"While Simo's vision for democratizing AI is compelling, what if we're overlooking the potential for inclusive innovation through public-private partnerships?\"","timestamp":"11:44:17 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:44:17 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"While Simo's vision for democratizing AI is compelling, what if we're overlooking the potential for inclusive innovation through public-private partnerships?\"","timestamp":"11:44:17 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:44:34 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 0 likes","timestamp":"11:44:34 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: true","timestamp":"11:44:34 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:44:39 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"While Simo's vision for democratizing AI is compelling, what if we're overlooking the potential for inclusive innovation through public-private partnerships?\"","timestamp":"11:44:39 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:44:56 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"11:44:59 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"11:44:59 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687f53ce083f9fcc14dee7fb analysis completed and status updated to 'analyzed'","timestamp":"11:45:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"11:45:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 13958 ms before processing next comment","timestamp":"11:45:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687f51a1083f9fcc14dee7f6: \"I've witnessed this neural rewiring firsthand in patients with anxiety disorders. However, what if social media's curated connections are actually hindering our ability to form genuine relationships? Should we be reevaluating how technology influences our capacity for empathy and connection?\"","timestamp":"11:45:14 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:45:14 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"I've witnessed this neural rewiring firsthand in patients with anxiety disorders. However, what if social media's curated connections are actually hindering our ability to form genuine relationships? Should we be reevaluating how technology influences our capacity for empathy and connection?\"","timestamp":"11:45:14 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:45:30 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 7 likes","timestamp":"11:45:31 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 7, Found: true","timestamp":"11:45:31 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:45:38 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"I've witnessed this neural rewiring firsthand in patients with anxiety disorders. However, what if social media's curated connections are actually hindering our ability to form genuine relationships? Should we be reevaluating how technology influences our capacity for empathy and connection?\"","timestamp":"11:45:38 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:45:55 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"11:45:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"11:45:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687f51a1083f9fcc14dee7f6 analysis completed and status updated to 'analyzed'","timestamp":"11:45:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 7 likes, 0 replies","timestamp":"11:45:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 10554 ms before processing next comment","timestamp":"11:45:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687f4cd1083f9fcc14dee7f2: \"While SpareFare's concept is intriguing, it also raises questions about the ethics of reselling luxury vacations. What are the potential consequences for individuals and local communities when these high-end trips are sold to new buyers?\"","timestamp":"11:46:09 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:46:09 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"While SpareFare's concept is intriguing, it also raises questions about the ethics of reselling luxury vacations. What are the potential consequences for individuals and local communities when these high-end trips are sold to new buyers?\"","timestamp":"11:46:09 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: false","timestamp":"11:46:28 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:46:34 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"While SpareFare's concept is intriguing, it also raises questions about the ethics of reselling luxury vacations. What are the potential consequences for individuals and local communities when these high-end trips are sold to new buyers?\"","timestamp":"11:46:34 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: false","timestamp":"11:46:51 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687f4cd1083f9fcc14dee7f2 analysis completed and status updated to 'analyzed'","timestamp":"11:46:51 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"11:46:51 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 7901 ms before processing next comment","timestamp":"11:46:51 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687f4bbb083f9fcc14dee7f1: \"While it's fascinating to see Elon's empire expand, I'm intrigued by the impact of his high-stakes risk-taking on Tesla's stock prices and future sustainability initiatives.\"","timestamp":"11:46:59 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:46:59 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"While it's fascinating to see Elon's empire expand, I'm intrigued by the impact of his high-stakes risk-taking on Tesla's stock prices and future sustainability initiatives.\"","timestamp":"11:46:59 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:47:16 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 0 likes","timestamp":"11:47:17 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: true","timestamp":"11:47:17 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:47:23 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"While it's fascinating to see Elon's empire expand, I'm intrigued by the impact of his high-stakes risk-taking on Tesla's stock prices and future sustainability initiatives.\"","timestamp":"11:47:23 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:47:40 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"11:47:43 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"11:47:43 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687f4bbb083f9fcc14dee7f1 analysis completed and status updated to 'analyzed'","timestamp":"11:47:43 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"11:47:43 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 5876 ms before processing next comment","timestamp":"11:47:43 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687e09c6bf5caff6c82bee6d: \"While a shrinking population can bring economic benefits, have we considered the potential impact on social safety nets and pension systems?\"","timestamp":"11:47:49 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:47:49 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"While a shrinking population can bring economic benefits, have we considered the potential impact on social safety nets and pension systems?\"","timestamp":"11:47:49 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:48:07 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 0 likes","timestamp":"11:48:07 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: true","timestamp":"11:48:07 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:48:11 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"While a shrinking population can bring economic benefits, have we considered the potential impact on social safety nets and pension systems?\"","timestamp":"11:48:11 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:48:28 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"11:48:31 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"11:48:31 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687e09c6bf5caff6c82bee6d analysis completed and status updated to 'analyzed'","timestamp":"11:48:31 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"11:48:31 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 5533 ms before processing next comment","timestamp":"11:48:31 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687e08edbf5caff6c82bee6b: \"Interesting point about MAHA's name. I'd like to explore how our current understanding of nutrition might benefit from embracing the complexities and uncertainties of health rather than relying on nostalgic notions of a 'healthier past'.\"","timestamp":"11:48:36 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:48:36 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"Interesting point about MAHA's name. I'd like to explore how our current understanding of nutrition might benefit from embracing the complexities and uncertainties of health rather than relying on nostalgic notions of a 'healthier past'.\"","timestamp":"11:48:36 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:48:53 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 1 likes","timestamp":"11:48:53 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 1, Found: true","timestamp":"11:48:53 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:49:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"Interesting point about MAHA's name. I'd like to explore how our current understanding of nutrition might benefit from embracing the complexities and uncertainties of health rather than relying on nostalgic notions of a 'healthier past'.\"","timestamp":"11:49:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:49:17 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"11:49:20 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"11:49:20 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687e08edbf5caff6c82bee6b analysis completed and status updated to 'analyzed'","timestamp":"11:49:20 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 1 likes, 0 replies","timestamp":"11:49:20 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 8270 ms before processing next comment","timestamp":"11:49:20 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No more 'posted' comments for analysis. Waiting 2 minutes...","timestamp":"11:49:29 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"11:54:59 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"11:55:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"11:55:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username already exists for user 683720529b99dc1e616b574d: majesty___jewelry","timestamp":"11:55:09 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting comment analysis for username: majesty___jewelry","timestamp":"11:55:09 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started browser session for analysis of majesty___jewelry","timestamp":"11:55:11 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Logged into Instagram as majesty___jewelry","timestamp":"11:55:21 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 6838747fe794c6db21715e70: \"Break free with Daily Ontra starting June 1\"","timestamp":"11:55:21 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:55:21 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"Break free with Daily Ontra starting June 1\"","timestamp":"11:55:21 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:55:38 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 1 likes","timestamp":"11:55:38 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 1, Found: true","timestamp":"11:55:38 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:55:44 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"Break free with Daily Ontra starting June 1\"","timestamp":"11:55:44 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:56:02 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"11:56:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"11:56:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 6838747fe794c6db21715e70 analysis completed and status updated to 'analyzed'","timestamp":"11:56:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 1 likes, 0 replies","timestamp":"11:56:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 14085 ms before processing next comment","timestamp":"11:56:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 68387112e794c6db21715e6a: \"Musk unleashes AI beast on Telegram\"","timestamp":"11:56:19 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:56:19 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"Musk unleashes AI beast on Telegram\"","timestamp":"11:56:19 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: false","timestamp":"11:56:36 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:56:43 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"Musk unleashes AI beast on Telegram\"","timestamp":"11:56:43 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: false","timestamp":"11:57:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 68387112e794c6db21715e6a analysis completed and status updated to 'analyzed'","timestamp":"11:57:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"11:57:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 7693 ms before processing next comment","timestamp":"11:57:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 683987a07a5ecbaae2dff89e: \"Let's ditch the mystery ingredients!\"","timestamp":"11:57:08 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:57:08 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"Let's ditch the mystery ingredients!\"","timestamp":"11:57:08 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:57:24 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 0 likes","timestamp":"11:57:24 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: true","timestamp":"11:57:24 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:57:29 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"Let's ditch the mystery ingredients!\"","timestamp":"11:57:29 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:57:46 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"11:57:49 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"11:57:49 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 683987a07a5ecbaae2dff89e analysis completed and status updated to 'analyzed'","timestamp":"11:57:49 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"11:57:49 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 9142 ms before processing next comment","timestamp":"11:57:49 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 6876a6a37760a5c788133ba0: \"That's an intriguing concept, but have you considered the ethics of preserving human life without clear prospects for revival? It raises questions about quality over quantity and our values surrounding mortality.\"","timestamp":"11:57:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:57:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"That's an intriguing concept, but have you considered the ethics of preserving human life without clear prospects for revival? It raises questions about quality over quantity and our values surrounding mortality.\"","timestamp":"11:57:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: false","timestamp":"11:58:16 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:58:21 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"That's an intriguing concept, but have you considered the ethics of preserving human life without clear prospects for revival? It raises questions about quality over quantity and our values surrounding mortality.\"","timestamp":"11:58:21 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: false","timestamp":"11:58:37 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 6876a6a37760a5c788133ba0 analysis completed and status updated to 'analyzed'","timestamp":"11:58:38 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"11:58:38 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 13126 ms before processing next comment","timestamp":"11:58:38 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 6876a2967760a5c788133b9d: \"What if Gaudí's most innovative aspects were not just found in Sagrada Familia, but also influenced the urban planning of Barcelona? How might his legacy be reinterpreted through a contemporary lens?\"","timestamp":"11:58:51 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:58:51 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"What if Gaudí's most innovative aspects were not just found in Sagrada Familia, but also influenced the urban planning of Barcelona? How might his legacy be reinterpreted through a contemporary lens?\"","timestamp":"11:58:51 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:59:07 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 0 likes","timestamp":"11:59:07 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: true","timestamp":"11:59:07 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"11:59:14 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"What if Gaudí's most innovative aspects were not just found in Sagrada Familia, but also influenced the urban planning of Barcelona? How might his legacy be reinterpreted through a contemporary lens?\"","timestamp":"11:59:14 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"11:59:30 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"11:59:33 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"11:59:33 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 6876a2967760a5c788133b9d analysis completed and status updated to 'analyzed'","timestamp":"11:59:34 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"11:59:34 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 12902 ms before processing next comment","timestamp":"11:59:34 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 6876a10e7760a5c788133b9c: \"What a beautiful portrayal of a loving partnership! However, have you considered the potential for this type of encouragement to be perceived as performative or even gaslighting by those who struggle with self-acceptance?\"","timestamp":"11:59:47 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"11:59:47 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"What a beautiful portrayal of a loving partnership! However, have you considered the potential for this type of encouragement to be perceived as performative or even gaslighting by those who struggle with self-acceptance?\"","timestamp":"11:59:47 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:00:04 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 0 likes","timestamp":"12:00:04 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: true","timestamp":"12:00:04 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"12:00:08 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"What a beautiful portrayal of a loving partnership! However, have you considered the potential for this type of encouragement to be perceived as performative or even gaslighting by those who struggle with self-acceptance?\"","timestamp":"12:00:08 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:00:25 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"12:00:28 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"12:00:28 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 6876a10e7760a5c788133b9c analysis completed and status updated to 'analyzed'","timestamp":"12:00:28 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"12:00:28 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 11915 ms before processing next comment","timestamp":"12:00:28 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 68769b937760a5c788133b9a: \"While embracing a 'nothing-to-lose' mindset can indeed fuel entrepreneurial spirit, I'd love to explore the nuances of financial literacy and planning in such scenarios. What if this message could be paired with resources on budgeting, saving, and smart investing?\"","timestamp":"12:00:40 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"12:00:40 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"While embracing a 'nothing-to-lose' mindset can indeed fuel entrepreneurial spirit, I'd love to explore the nuances of financial literacy and planning in such scenarios. What if this message could be paired with resources on budgeting, saving, and smart investing?\"","timestamp":"12:00:40 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:00:57 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 1 likes","timestamp":"12:00:57 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 1, Found: true","timestamp":"12:00:57 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"12:01:01 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"While embracing a 'nothing-to-lose' mindset can indeed fuel entrepreneurial spirit, I'd love to explore the nuances of financial literacy and planning in such scenarios. What if this message could be paired with resources on budgeting, saving, and smart investing?\"","timestamp":"12:01:01 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:01:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"12:01:21 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"12:01:21 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 68769b937760a5c788133b9a analysis completed and status updated to 'analyzed'","timestamp":"12:01:21 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 1 likes, 0 replies","timestamp":"12:01:21 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 8329 ms before processing next comment","timestamp":"12:01:21 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 68769b287760a5c788133b97: \"As a community, can we also explore the intersection of weather modification and urban planning? How might our cities' infrastructure contribute to or mitigate the impact of severe storms?\"","timestamp":"12:01:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"12:01:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"As a community, can we also explore the intersection of weather modification and urban planning? How might our cities' infrastructure contribute to or mitigate the impact of severe storms?\"","timestamp":"12:01:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:01:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 0 likes","timestamp":"12:01:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: true","timestamp":"12:01:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"12:01:54 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"As a community, can we also explore the intersection of weather modification and urban planning? How might our cities' infrastructure contribute to or mitigate the impact of severe storms?\"","timestamp":"12:01:54 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:02:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"12:02:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"12:02:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 68769b287760a5c788133b97 analysis completed and status updated to 'analyzed'","timestamp":"12:02:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"12:02:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 10460 ms before processing next comment","timestamp":"12:02:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687695ab7760a5c788133b94: \"What if this violent storm isn't just a freak occurrence, but rather a harbinger of deeper climate-related issues that need to be addressed?\"","timestamp":"12:02:25 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"12:02:25 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"What if this violent storm isn't just a freak occurrence, but rather a harbinger of deeper climate-related issues that need to be addressed?\"","timestamp":"12:02:25 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:02:42 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 1 likes","timestamp":"12:02:42 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 1, Found: true","timestamp":"12:02:42 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"12:02:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"What if this violent storm isn't just a freak occurrence, but rather a harbinger of deeper climate-related issues that need to be addressed?\"","timestamp":"12:02:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:03:06 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"12:03:09 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"12:03:09 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687695ab7760a5c788133b94 analysis completed and status updated to 'analyzed'","timestamp":"12:03:09 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 1 likes, 0 replies","timestamp":"12:03:09 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 7083 ms before processing next comment","timestamp":"12:03:09 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687692877760a5c788133b92: \"What if we redefined risk assessment for flood-prone areas, incorporating AI-driven predictive models and adaptive insurance policies?\"","timestamp":"12:03:17 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"12:03:17 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"What if we redefined risk assessment for flood-prone areas, incorporating AI-driven predictive models and adaptive insurance policies?\"","timestamp":"12:03:17 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:03:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 0 likes","timestamp":"12:03:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: true","timestamp":"12:03:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"12:03:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"What if we redefined risk assessment for flood-prone areas, incorporating AI-driven predictive models and adaptive insurance policies?\"","timestamp":"12:03:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:03:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"12:03:59 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"12:03:59 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687692877760a5c788133b92 analysis completed and status updated to 'analyzed'","timestamp":"12:03:59 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"12:03:59 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 7226 ms before processing next comment","timestamp":"12:03:59 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687f8f2e505a6ad921f350fe: \"While it's true that Stalin's image has been reevaluated under Putin, what if this 'revision' serves as a distraction from current authoritarian practices?\"","timestamp":"12:04:06 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"12:04:06 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"While it's true that Stalin's image has been reevaluated under Putin, what if this 'revision' serves as a distraction from current authoritarian practices?\"","timestamp":"12:04:06 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: false","timestamp":"12:04:23 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"12:04:26 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"While it's true that Stalin's image has been reevaluated under Putin, what if this 'revision' serves as a distraction from current authoritarian practices?\"","timestamp":"12:04:26 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: false","timestamp":"12:04:43 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687f8f2e505a6ad921f350fe analysis completed and status updated to 'analyzed'","timestamp":"12:04:43 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"12:04:43 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 8507 ms before processing next comment","timestamp":"12:04:43 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687f760660148ac16dc929cf: \"This system's design seems to be exacerbating existing tensions, rather than addressing the root causes of hunger. How can we shift focus from 'distributing aid' to 'building sustainable infrastructure for Gaza's economy and agriculture?\"","timestamp":"12:04:52 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"12:04:52 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"This system's design seems to be exacerbating existing tensions, rather than addressing the root causes of hunger. How can we shift focus from 'distributing aid' to 'building sustainable infrastructure for Gaza's economy and agriculture?\"","timestamp":"12:04:52 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:05:09 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 0 likes","timestamp":"12:05:09 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: true","timestamp":"12:05:09 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"12:05:17 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"This system's design seems to be exacerbating existing tensions, rather than addressing the root causes of hunger. How can we shift focus from 'distributing aid' to 'building sustainable infrastructure for Gaza's economy and agriculture?\"","timestamp":"12:05:17 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:05:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"12:05:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"12:05:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687f760660148ac16dc929cf analysis completed and status updated to 'analyzed'","timestamp":"12:05:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"12:05:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 7880 ms before processing next comment","timestamp":"12:05:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687f74c960148ac16dc929cc: \"What if our ultra-processed food environment isn't just a contributor, but a symptom of deeper societal issues like convenience culture and economic inequality? Can we truly address metabolic health without tackling these underlying factors?\"","timestamp":"12:05:45 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"12:05:45 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"What if our ultra-processed food environment isn't just a contributor, but a symptom of deeper societal issues like convenience culture and economic inequality? Can we truly address metabolic health without tackling these underlying factors?\"","timestamp":"12:05:45 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:06:01 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 4 likes","timestamp":"12:06:01 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 4, Found: true","timestamp":"12:06:01 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"12:06:08 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"What if our ultra-processed food environment isn't just a contributor, but a symptom of deeper societal issues like convenience culture and economic inequality? Can we truly address metabolic health without tackling these underlying factors?\"","timestamp":"12:06:08 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:06:25 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"12:06:28 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"12:06:28 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687f74c960148ac16dc929cc analysis completed and status updated to 'analyzed'","timestamp":"12:06:28 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 4 likes, 0 replies","timestamp":"12:06:28 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 7795 ms before processing next comment","timestamp":"12:06:28 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687f73e860148ac16dc929ca: \"While Putin's actions may be revising Stalin's image, what if this 'revision' is actually a calculated attempt to downplay Soviet atrocities and deflect responsibility from Russia's own human rights abuses?\"","timestamp":"12:06:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"12:06:36 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"While Putin's actions may be revising Stalin's image, what if this 'revision' is actually a calculated attempt to downplay Soviet atrocities and deflect responsibility from Russia's own human rights abuses?\"","timestamp":"12:06:36 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: false","timestamp":"12:06:52 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"12:07:00 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"While Putin's actions may be revising Stalin's image, what if this 'revision' is actually a calculated attempt to downplay Soviet atrocities and deflect responsibility from Russia's own human rights abuses?\"","timestamp":"12:07:00 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: false","timestamp":"12:07:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687f73e860148ac16dc929ca analysis completed and status updated to 'analyzed'","timestamp":"12:07:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"12:07:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 10262 ms before processing next comment","timestamp":"12:07:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687f650c182760b7cca463ad: \"Fascinating how US interests drive exploration, yet often neglect long-term environmental consequences. What safeguards are being implemented to mitigate potential oceanic damage?\"","timestamp":"12:07:27 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"12:07:27 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"Fascinating how US interests drive exploration, yet often neglect long-term environmental consequences. What safeguards are being implemented to mitigate potential oceanic damage?\"","timestamp":"12:07:27 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:07:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 1 likes","timestamp":"12:07:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 1, Found: true","timestamp":"12:07:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"12:07:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"Fascinating how US interests drive exploration, yet often neglect long-term environmental consequences. What safeguards are being implemented to mitigate potential oceanic damage?\"","timestamp":"12:07:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:08:04 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"12:08:07 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"12:08:07 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687f650c182760b7cca463ad analysis completed and status updated to 'analyzed'","timestamp":"12:08:07 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 1 likes, 0 replies","timestamp":"12:08:07 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 6966 ms before processing next comment","timestamp":"12:08:07 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687f53ce083f9fcc14dee7fb: \"While Simo's vision for democratizing AI is compelling, what if we're overlooking the potential for inclusive innovation through public-private partnerships?\"","timestamp":"12:08:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"12:08:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"While Simo's vision for democratizing AI is compelling, what if we're overlooking the potential for inclusive innovation through public-private partnerships?\"","timestamp":"12:08:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:08:31 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 0 likes","timestamp":"12:08:31 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: true","timestamp":"12:08:31 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"12:08:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"While Simo's vision for democratizing AI is compelling, what if we're overlooking the potential for inclusive innovation through public-private partnerships?\"","timestamp":"12:08:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:08:54 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"12:08:57 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"12:08:57 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687f53ce083f9fcc14dee7fb analysis completed and status updated to 'analyzed'","timestamp":"12:08:57 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"12:08:57 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 11519 ms before processing next comment","timestamp":"12:08:57 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687f51a1083f9fcc14dee7f6: \"I've witnessed this neural rewiring firsthand in patients with anxiety disorders. However, what if social media's curated connections are actually hindering our ability to form genuine relationships? Should we be reevaluating how technology influences our capacity for empathy and connection?\"","timestamp":"12:09:08 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"12:09:08 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"I've witnessed this neural rewiring firsthand in patients with anxiety disorders. However, what if social media's curated connections are actually hindering our ability to form genuine relationships? Should we be reevaluating how technology influences our capacity for empathy and connection?\"","timestamp":"12:09:08 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:09:25 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 7 likes","timestamp":"12:09:25 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 7, Found: true","timestamp":"12:09:25 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"12:09:31 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"I've witnessed this neural rewiring firsthand in patients with anxiety disorders. However, what if social media's curated connections are actually hindering our ability to form genuine relationships? Should we be reevaluating how technology influences our capacity for empathy and connection?\"","timestamp":"12:09:31 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:09:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"12:09:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"12:09:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687f51a1083f9fcc14dee7f6 analysis completed and status updated to 'analyzed'","timestamp":"12:09:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 7 likes, 0 replies","timestamp":"12:09:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 8484 ms before processing next comment","timestamp":"12:09:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687f4cd1083f9fcc14dee7f2: \"While SpareFare's concept is intriguing, it also raises questions about the ethics of reselling luxury vacations. What are the potential consequences for individuals and local communities when these high-end trips are sold to new buyers?\"","timestamp":"12:09:59 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"12:09:59 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"While SpareFare's concept is intriguing, it also raises questions about the ethics of reselling luxury vacations. What are the potential consequences for individuals and local communities when these high-end trips are sold to new buyers?\"","timestamp":"12:09:59 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: false","timestamp":"12:10:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"12:10:20 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"While SpareFare's concept is intriguing, it also raises questions about the ethics of reselling luxury vacations. What are the potential consequences for individuals and local communities when these high-end trips are sold to new buyers?\"","timestamp":"12:10:20 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: false","timestamp":"12:10:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687f4cd1083f9fcc14dee7f2 analysis completed and status updated to 'analyzed'","timestamp":"12:10:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"12:10:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 8717 ms before processing next comment","timestamp":"12:10:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687f4bbb083f9fcc14dee7f1: \"While it's fascinating to see Elon's empire expand, I'm intrigued by the impact of his high-stakes risk-taking on Tesla's stock prices and future sustainability initiatives.\"","timestamp":"12:10:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"12:10:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"While it's fascinating to see Elon's empire expand, I'm intrigued by the impact of his high-stakes risk-taking on Tesla's stock prices and future sustainability initiatives.\"","timestamp":"12:10:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:11:03 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 0 likes","timestamp":"12:11:03 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: true","timestamp":"12:11:03 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"12:11:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"While it's fascinating to see Elon's empire expand, I'm intrigued by the impact of his high-stakes risk-taking on Tesla's stock prices and future sustainability initiatives.\"","timestamp":"12:11:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:11:27 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"12:11:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"12:11:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687f4bbb083f9fcc14dee7f1 analysis completed and status updated to 'analyzed'","timestamp":"12:11:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"12:11:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 10933 ms before processing next comment","timestamp":"12:11:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687e09c6bf5caff6c82bee6d: \"While a shrinking population can bring economic benefits, have we considered the potential impact on social safety nets and pension systems?\"","timestamp":"12:11:41 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"12:11:41 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"While a shrinking population can bring economic benefits, have we considered the potential impact on social safety nets and pension systems?\"","timestamp":"12:11:41 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:11:58 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 0 likes","timestamp":"12:11:58 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 0, Found: true","timestamp":"12:11:58 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"12:12:02 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"While a shrinking population can bring economic benefits, have we considered the potential impact on social safety nets and pension systems?\"","timestamp":"12:12:02 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:12:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"12:12:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"12:12:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687e09c6bf5caff6c82bee6d analysis completed and status updated to 'analyzed'","timestamp":"12:12:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 0 likes, 0 replies","timestamp":"12:12:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 6193 ms before processing next comment","timestamp":"12:12:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687e08edbf5caff6c82bee6b: \"Interesting point about MAHA's name. I'd like to explore how our current understanding of nutrition might benefit from embracing the complexities and uncertainties of health rather than relying on nostalgic notions of a 'healthier past'.\"","timestamp":"12:12:28 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 1: LIKES ANALYSIS ===","timestamp":"12:12:28 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1: Extracting likes for comment: \"Interesting point about MAHA's name. I'd like to explore how our current understanding of nutrition might benefit from embracing the complexities and uncertainties of health rather than relying on nostalgic notions of a 'healthier past'.\"","timestamp":"12:12:28 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:12:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete: Found 1 likes","timestamp":"12:12:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 1 Complete - Likes: 1, Found: true","timestamp":"12:12:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"=== PHASE 2: REPLIES ANALYSIS ===","timestamp":"12:12:51 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2: Extracting replies for comment: \"Interesting point about MAHA's name. I'd like to explore how our current understanding of nutrition might benefit from embracing the complexities and uncertainties of health rather than relying on nostalgic notions of a 'healthier past'.\"","timestamp":"12:12:51 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment using Strategy 1","timestamp":"12:13:08 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete: Found 0 replies using click_and_extract method","timestamp":"12:13:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Phase 2 Complete - Replies: 0, Found: true","timestamp":"12:13:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Comment 687e08edbf5caff6c82bee6b analysis completed and status updated to 'analyzed'","timestamp":"12:13:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Final results: 1 likes, 0 replies","timestamp":"12:13:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 6055 ms before processing next comment","timestamp":"12:13:11 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No more 'posted' comments for analysis. Waiting 2 minutes...","timestamp":"12:13:17 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No more 'posted' comments for analysis. Waiting 2 minutes...","timestamp":"12:15:17 PM"}

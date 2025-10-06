@@ -132,7 +132,7 @@ export async function runInstagram(username: string, minPort: number = 6000, max
         
         await generateCommentForPost(page, postId, username);
         await delay(2000); // Délai entre les deux générations
-        await generateCommentForPost(page, postId, username);
+        await generateCommentForPost2(page, postId, username);
         
         processedIDs.add(postId);
         logger.info(`Processed post ${postId} as ${username} (${processedIDs.size}/${targetCount})`);
@@ -330,7 +330,198 @@ Include cross-pollination with recent relevant information when possible
 Aim to create intellectual curiosity, not doubt about the creator's expertise
  Requirements:
 
-Short punchy statements (50-100 characters) OR longer analytical paragraphs (250-350 characters)
+Short punchy statements (20-50 characters) OR longer analytical paragraphs (50-100 characters)
+Natural, conversational tone (avoid titles, headers, or formal structures)
+NO em dashes (—) - use periods, commas, or other punctuation instead
+NO hashtags in comments (ignore hashtags from original caption)
+Output Format:
+Generate one thoughtful comment based on this caption: "{caption}"/
+[
+  {
+    "comment": "Your engaging reply here",
+    "viralRate": 85,
+    "commentTokenCount": 24
+  }
+]
+
+
+Original Post: "${caption}"`;
+
+  try {
+    const result = await interactWithOllama(
+      prompt,
+      undefined,
+      undefined,
+      "llama3.1:latest",
+      false,
+      console.log,
+      undefined,
+      "json",
+      postId,
+      caption,
+      undefined, 
+      postUsername,   // userId is undefined here
+      connectedUsername  ,
+      "instagram"
+  );
+    // Extraire le commentaire généré
+    let extractedComment = "";
+    try {
+      const jsonResult =
+        typeof result.response === "string"
+          ? JSON.parse(result.response)
+          : result;
+      extractedComment = Array.isArray(jsonResult)
+        ? jsonResult[0]?.comment
+        : jsonResult?.comment;
+    } catch (e) {
+      console.log("Impossible d'extraire le commentaire pour la journalisation");
+    }
+    if (extractedComment) {
+      console.log(`Commentaire généré pour le post ${postId} par ${connectedUsername}: "${extractedComment}"`);
+    } else {
+      console.log(`Commentaire généré pour le post ${postId}`);
+    }
+    
+    // Ici, vous pourriez ajouter le code pour réellement poster le commentaire
+  } catch (error) {
+    console.error(`Erreur lors de la génération du commentaire pour le post ${postId} :`, error);
+  }
+}
+async function generateCommentForPost2(page: any, postId: string, connectedUsername: string) {
+  const postUrl = `https://www.instagram.com/p/${postId}/`;
+  await page.goto(postUrl, { waitUntil: "networkidle2" });
+  await delay(2000); // Attendre le chargement du contenu
+  let postUsername = "";
+  const usernameSelectors = [
+    'a[href*="/"][role="link"]', // Sélecteur général basé sur votre HTML
+    'h2.x6s0dn4 a', // Sélecteur spécifique basé sur votre exemple
+    'span.xt0psk2 a', // Alternative basée sur votre HTML
+    '.x1i10hfl.xjqpnuy.xa49m3k[role="link"]', // Sélecteur de classe détaillé basé sur votre HTML
+    'article header a[role="link"]' // Autre possibilité de structure
+  ];
+
+  // Essayer chaque sélecteur de nom d'utilisateur jusqu'à obtenir un résultat non vide
+  for (const sel of usernameSelectors) {
+    try {
+      const usernameElement = await page.$(sel);
+      if (usernameElement) {
+        postUsername = await usernameElement.evaluate((el: HTMLElement) => el.innerText.trim());
+        if (postUsername && postUsername.trim().length > 0) {
+          logger.info(`Nom d'utilisateur du post trouvé avec le sélecteur "${sel}" : ${postUsername}`);
+          break;
+        }
+      }
+    } catch (error) {
+      // Continue avec le prochain sélecteur en cas d'erreur
+      continue;
+    }
+  }
+
+  // Si aucun sélecteur n'a fonctionné, essayer l'extraction via le titre de la page
+  if (!postUsername || postUsername.trim().length === 0) {
+    try {
+      postUsername = await page.evaluate(() => {
+        const titleText = document.title;
+        // Format typique: "Nom d'utilisateur sur Instagram: "caption du post""
+        const match = titleText.match(/^([^:]+) on Instagram/);
+        return match ? match[1].trim() : "";
+      });
+      
+      if (postUsername && postUsername.trim().length > 0) {
+        logger.info(`Nom d'utilisateur du post extrait du titre de la page : ${postUsername}`);
+      }
+    } catch (error) {
+      logger.warn("Erreur lors de l'extraction du nom d'utilisateur du post via le titre:", error);
+    }
+  }
+  const { matched, accountData } = await checkTargetUsernameMatch(postUsername, connectedUsername);
+  
+  if (!matched) {
+    logger.info(`Post username "${postUsername}" is not in our target list. Skipping...`);
+    return;
+  }
+
+  logger.info(`Post username "${postUsername}" is in our target list. Proceeding...`);
+
+  // Rest of your existing code for caption extraction and comment generation...
+  
+  let caption = "";
+  // Essayer chaque sélecteur de légende jusqu'à obtenir une légende non vide
+  for (const sel of captionSelectors) {
+    const captionElement = await page.$(sel);
+    if (captionElement) {
+      caption = await captionElement.evaluate((el: HTMLElement) => el.innerText);
+      if (caption && caption.trim().length > 0) {
+        console.log(`Légende trouvée avec le sélecteur "${sel}" : ${caption}`);
+        break;
+      }
+    } 
+  }
+  if (!caption || caption.trim().length === 0) {
+    console.log(`Aucune légende trouvée pour le post ${postId}. Abandon de la génération de commentaire.`);
+    return;
+  }
+
+  // Si un lien "more" est présent, cliquer pour étendre la légende
+  const moreLink = await page.$(moreLinkSelector);
+  if (moreLink) {
+    console.log(`Extension de la légende pour le post ${postId}...`);
+    await moreLink.click();
+    await delay(1000);
+    // Re-vérifier avec les mêmes sélecteurs pour récupérer la légende étendue
+    for (const sel of captionSelectors) {
+      const captionElement = await page.$(sel);
+      if (captionElement) {
+        caption = await captionElement.evaluate((el: HTMLElement) => el.innerText);
+        if (caption && caption.trim().length > 0) {
+          console.log(`Légende étendue trouvée avec le sélecteur "${sel}" : ${caption}`);
+          break;
+        }
+      }
+    }
+  }
+
+  // Construction du prompt pour la génération de commentaire
+  const prompt = `Respond only with valid JSON. No introduction or explanation.
+
+Read the ${caption} 
+You are a thoughtful commentator who generates engaging, contrarian comments that challenge assumptions while respecting the creator's work. Your goal is to spark meaningful dialogue with the creator without undermining their authority in front of their audience.
+Analysis Process:
+
+Identify the main topic and underlying assumptions in the caption
+Find a contrarian angle or alternative perspective
+Research recent information or trends related to the topic (cross-pollination)
+Connect to broader societal patterns or systemic issues
+Craft a response that honors the creator's effort while opening debate
+NO hashtags
+Respond only with valid JSON. No introduction or explanation.
+
+Given the caption below—which may include bullet points, narratives, or multi-language sections—create an engaging comment that:
+
+Shows genuine interest in the topic.
+Adds value through personal insight.
+Shares a personal insight or experience.
+Maintains a professional yet friendly tone.
+References specific content points.
+Optionally tags relevant accounts.
+
+Example structure:
+"[Observation about content] + [Personal insight/connection] + [Personal insight or experience]"
+
+Key Guidelines:
+
+Write naturally and conversationally (avoid placeholder brackets or template formats)
+Protect creator's authority: Frame challenges as additions/extensions rather than contradictions
+Present alternative perspectives as "what if" scenarios or complementary angles
+Avoid direct disagreement that could undermine credibility in front of followers
+Use natural punctuation instead of em dashes
+STRICTLY NO hashtags in your comments (ignore any hashtags from the original caption)
+Include cross-pollination with recent relevant information when possible
+Aim to create intellectual curiosity, not doubt about the creator's expertise
+ Requirements:
+
+Short punchy statements (20-50 characters) OR longer analytical paragraphs (50-100 characters)
 Natural, conversational tone (avoid titles, headers, or formal structures)
 NO em dashes (—) - use periods, commas, or other punctuation instead
 NO hashtags in comments (ignore hashtags from original caption)

@@ -151,6 +151,22 @@ throw error;
       
       return await response.json();
     },
+    async triggerAnalysis  (username)  {
+      try {
+        const response = await fetch(`${API_BASE_URL}/analysis/analyze-posted-comments`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ username, port })
+        });
+        
+        const data = await response.json();
+        console.log('Analysis started:', data);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    },
     async generateComment(postId, caption) {
       const response = await fetch(`${API_BASE_URL}/comments/generate`, {
         method: 'POST',
@@ -1027,7 +1043,32 @@ renderComments();
       throw error;
     }
   }
-  
+  async function triggerAnalysis(username) {
+    console.log('Calling triggerAnalysis for username:', username);
+    
+    try {
+      const response = await fetch(`${API_BASE_URL}/analysis/analyze-comments`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        // Enlever le paramètre port ou le rendre optionnel
+        body: JSON.stringify({ username })
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(`HTTP ${response.status}: ${errorData.message || 'Unknown error'}`);
+      }
+      
+      const data = await response.json();
+      console.log('Analysis started successfully:', data);
+      return data;
+    } catch (error) {
+      console.error('Error in triggerAnalysis:', error);
+      throw error;
+    }
+  }
   
  
   async function saveUsername(username) {
@@ -1071,17 +1112,17 @@ renderComments();
         }
       }
       try {
-        await triggerFifo(username);
-        console.log('FIFO process initiated for username:', username);
+        await triggerAnalysis(username);
+        console.log('Analysis process initiated for username:', username);
         // Optional: show success toast
         if (typeof showToast === 'function') {
-          showToast('success', 'Automated comment processing started');
+          showToast('success', 'Comment analysis started');
         }
-      } catch (fifoError) {
-        console.error('Error triggering FIFO process:', fifoError);
-        // Optional: show warning toast, but don't break the flow with an alert
+      } catch (analysisError) {
+        console.error('Error triggering analysis process:', analysisError);
+        // Optional: show the alert to the user about the error 
         if (typeof showToast === 'function') {
-          showToast('warning', 'Problem with automated comment processing');
+          showToast('warning', 'Problem with comment analysis');
         }
       }
       

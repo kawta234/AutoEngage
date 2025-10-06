@@ -1,0 +1,489 @@
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"9:34:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"9:34:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"9:34:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username already exists for user 683720529b99dc1e616b574d: majesty___jewelry","timestamp":"9:35:43 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting comment analysis for username: majesty___jewelry","timestamp":"9:35:43 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting analysis session for majesty___jewelry on port 6596","timestamp":"9:35:43 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Proxy started on port 6596","timestamp":"9:35:43 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Attempting to retrieve Instagram cookies for majesty___jewelry...","timestamp":"9:35:45 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Successfully retrieved cookies for majesty___jewelry","timestamp":"9:35:45 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to Instagram homepage for majesty___jewelry...","timestamp":"9:35:45 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying cookies for majesty___jewelry...","timestamp":"9:35:48 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Logged into Instagram as majesty___jewelry","timestamp":"9:35:55 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687f650c182760b7cca463ad on post DMYbJW6vBzR","timestamp":"9:35:55 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis attempt 1 for comment 687f650c182760b7cca463ad","timestamp":"9:35:55 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to: https://www.instagram.com/p/DMYbJW6vBzR/","timestamp":"9:35:55 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment on page","timestamp":"9:36:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Clicked 1 'View replies' buttons","timestamp":"9:36:07 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found 1 likes","timestamp":"9:36:09 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted 1 replies","timestamp":"9:36:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Replies data:","timestamp":"9:36:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"  Reply 1:","timestamp":"9:36:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"    Username: turt5468","timestamp":"9:36:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"    Text: @majesty___jewelry you think they care about that?","timestamp":"9:36:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"    Likes: 1","timestamp":"9:36:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Full replies JSON: [\n  {\n    \"username\": \"turt5468\",\n    \"text\": \"@majesty___jewelry you think they care about that?\",\n    \"likes\": 1\n  }\n]","timestamp":"9:36:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis complete: 1 likes, 1 replies","timestamp":"9:36:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Successfully analyzed comment 687f650c182760b7cca463ad","timestamp":"9:36:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 44109ms before next comment","timestamp":"9:36:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687f53ce083f9fcc14dee7fb on post DMZH2HrNaVg","timestamp":"9:36:54 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis attempt 1 for comment 687f53ce083f9fcc14dee7fb","timestamp":"9:36:54 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to: https://www.instagram.com/p/DMZH2HrNaVg/","timestamp":"9:36:54 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment on page","timestamp":"9:37:02 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Clicked 0 'View replies' buttons","timestamp":"9:37:02 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found 0 likes","timestamp":"9:37:04 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted 0 replies","timestamp":"9:37:04 AM"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"No replies found","timestamp":"9:37:04 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis complete: 0 likes, 0 replies","timestamp":"9:37:04 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Successfully analyzed comment 687f53ce083f9fcc14dee7fb","timestamp":"9:37:04 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 43738ms before next comment","timestamp":"9:37:04 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687f51a1083f9fcc14dee7f6 on post DMXfBXas1C9","timestamp":"9:37:48 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis attempt 1 for comment 687f51a1083f9fcc14dee7f6","timestamp":"9:37:48 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to: https://www.instagram.com/p/DMXfBXas1C9/","timestamp":"9:37:48 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment on page","timestamp":"9:37:56 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Clicked 1 'View replies' buttons","timestamp":"9:37:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found 7 likes","timestamp":"9:38:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted 2 replies","timestamp":"9:38:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Replies data:","timestamp":"9:38:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"  Reply 1:","timestamp":"9:38:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"    Username: karlaevelynyoga","timestamp":"9:38:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"    Text: @majesty___jewelry YES, we should be. ❤️","timestamp":"9:38:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"    Likes: 1","timestamp":"9:38:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"  Reply 2:","timestamp":"9:38:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"    Username: tyree.lyn","timestamp":"9:38:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"    Text: @majesty___jewelry 1000% we should.","timestamp":"9:38:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"    Likes: 1","timestamp":"9:38:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Full replies JSON: [\n  {\n    \"username\": \"karlaevelynyoga\",\n    \"text\": \"@majesty___jewelry YES, we should be. ❤️\",\n    \"likes\": 1\n  },\n  {\n    \"username\": \"tyree.lyn\",\n    \"text\": \"@majesty___jewelry 1000% we should.\",\n    \"likes\": 1\n  }\n]","timestamp":"9:38:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis complete: 7 likes, 2 replies","timestamp":"9:38:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Successfully analyzed comment 687f51a1083f9fcc14dee7f6","timestamp":"9:38:01 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 42963ms before next comment","timestamp":"9:38:01 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687f4bbb083f9fcc14dee7f1 on post DMXumeNtQlM","timestamp":"9:38:44 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis attempt 1 for comment 687f4bbb083f9fcc14dee7f1","timestamp":"9:38:44 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to: https://www.instagram.com/p/DMXumeNtQlM/","timestamp":"9:38:44 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment on page","timestamp":"9:38:53 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Clicked 0 'View replies' buttons","timestamp":"9:38:53 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found 0 likes","timestamp":"9:38:55 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted 0 replies","timestamp":"9:38:55 AM"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"No replies found","timestamp":"9:38:55 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis complete: 0 likes, 0 replies","timestamp":"9:38:55 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Successfully analyzed comment 687f4bbb083f9fcc14dee7f1","timestamp":"9:38:55 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 52589ms before next comment","timestamp":"9:38:55 AM"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"Lien de messagerie non détecté dans les 60s, attente additionnelle de 10s.","timestamp":"9:39:07 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687e09c6bf5caff6c82bee6d on post DMTHr0jJhzI","timestamp":"9:39:47 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis attempt 1 for comment 687e09c6bf5caff6c82bee6d","timestamp":"9:39:47 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to: https://www.instagram.com/p/DMTHr0jJhzI/","timestamp":"9:39:47 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment on page","timestamp":"9:39:56 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Clicked 0 'View replies' buttons","timestamp":"9:39:56 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found 0 likes","timestamp":"9:39:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted 0 replies","timestamp":"9:39:58 AM"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"No replies found","timestamp":"9:39:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis complete: 0 likes, 0 replies","timestamp":"9:39:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Successfully analyzed comment 687e09c6bf5caff6c82bee6d","timestamp":"9:39:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 48360ms before next comment","timestamp":"9:39:58 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Cookies Instagram sauvegardés en base de données pour l'utilisateur majesty___jewelry.","timestamp":"9:40:07 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started proxy server for majesty___jewelry on port 6032","timestamp":"9:40:08 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to Instagram homepage for majesty___jewelry...","timestamp":"9:40:08 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying cookies for majesty___jewelry...","timestamp":"9:40:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Cookies applied successfully for majesty___jewelry","timestamp":"9:40:10 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Logged into Instagram as majesty___jewelry via cookies.","timestamp":"9:40:15 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : drmarkhyman","timestamp":"9:40:28 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"drmarkhyman\" matches target usernames for account \"majesty___jewelry\"","timestamp":"9:40:28 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found a match! Post username \"drmarkhyman\" is in the target list for account \"majesty___jewelry\"","timestamp":"9:40:28 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"drmarkhyman\" is in our target list. Proceeding...","timestamp":"9:40:29 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 687e08edbf5caff6c82bee6b on post DMVXbm4NzC9","timestamp":"9:40:46 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis attempt 1 for comment 687e08edbf5caff6c82bee6b","timestamp":"9:40:46 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to: https://www.instagram.com/p/DMVXbm4NzC9/","timestamp":"9:40:46 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment on page","timestamp":"9:40:59 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Clicked 0 'View replies' buttons","timestamp":"9:40:59 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found 1 likes","timestamp":"9:41:01 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted 0 replies","timestamp":"9:41:01 AM"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"No replies found","timestamp":"9:41:01 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis complete: 1 likes, 0 replies","timestamp":"9:41:01 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Successfully analyzed comment 687e08edbf5caff6c82bee6b","timestamp":"9:41:01 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 40139ms before next comment","timestamp":"9:41:01 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 6838747fe794c6db21715e70 on post DKNfsKkRG-n","timestamp":"9:41:41 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis attempt 1 for comment 6838747fe794c6db21715e70","timestamp":"9:41:41 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to: https://www.instagram.com/p/DKNfsKkRG-n/","timestamp":"9:41:41 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment on page","timestamp":"9:41:53 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Clicked 0 'View replies' buttons","timestamp":"9:41:53 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found 1 likes","timestamp":"9:41:55 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted 0 replies","timestamp":"9:41:55 AM"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"No replies found","timestamp":"9:41:55 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis complete: 1 likes, 0 replies","timestamp":"9:41:55 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Successfully analyzed comment 6838747fe794c6db21715e70","timestamp":"9:41:55 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 56901ms before next comment","timestamp":"9:41:55 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 683987a07a5ecbaae2dff89e on post DKMd5MBJ6Ym","timestamp":"9:42:52 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis attempt 1 for comment 683987a07a5ecbaae2dff89e","timestamp":"9:42:52 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to: https://www.instagram.com/p/DKMd5MBJ6Ym/","timestamp":"9:42:52 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment on page","timestamp":"9:43:03 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Clicked 0 'View replies' buttons","timestamp":"9:43:03 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found 0 likes","timestamp":"9:43:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted 0 replies","timestamp":"9:43:05 AM"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"No replies found","timestamp":"9:43:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis complete: 0 likes, 0 replies","timestamp":"9:43:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Successfully analyzed comment 683987a07a5ecbaae2dff89e","timestamp":"9:43:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 57694ms before next comment","timestamp":"9:43:05 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Nom d'utilisateur du post trouvé avec le sélecteur \"a[href*=\"/\"][role=\"link\"]\" : drmarkhyman","timestamp":"9:44:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"drmarkhyman\" matches target usernames for account \"majesty___jewelry\"","timestamp":"9:44:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found a match! Post username \"drmarkhyman\" is in the target list for account \"majesty___jewelry\"","timestamp":"9:44:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Post username \"drmarkhyman\" is in our target list. Proceeding...","timestamp":"9:44:00 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing comment 6876a2967760a5c788133b9d on post DMFlu-FgtcM","timestamp":"9:44:03 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis attempt 1 for comment 6876a2967760a5c788133b9d","timestamp":"9:44:03 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to: https://www.instagram.com/p/DMFlu-FgtcM/","timestamp":"9:44:03 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment on page","timestamp":"9:44:14 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Clicked 0 'View replies' buttons","timestamp":"9:44:14 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found 0 likes","timestamp":"9:44:16 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted 0 replies","timestamp":"9:44:16 AM"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"No replies found","timestamp":"9:44:16 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Analysis complete: 0 likes, 0 replies","timestamp":"9:44:16 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Successfully analyzed comment 6876a2967760a5c788133b9d","timestamp":"9:44:16 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 52957ms before next comment","timestamp":"9:44:16 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"9:52:15 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"9:52:15 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"9:52:15 AM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"2:18:25 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"2:18:26 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"2:18:26 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"New Instagram account recorded for user 683720529b99dc1e616b574d: leboss.csa@gmail.com","timestamp":"2:18:38 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting comment analysis for username: leboss.csa@gmail.com","timestamp":"2:18:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting LinkedIn analysis session for account leboss.csa@gmail.com on port 6781","timestamp":"2:18:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Proxy started on port 6781","timestamp":"2:18:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Attempting to retrieve LinkedIn cookies for account leboss.csa@gmail.com...","timestamp":"2:18:40 PM"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"Could not retrieve LinkedIn cookies for account leboss.csa@gmail.com. Retrying in 3 minutes...","timestamp":"2:18:40 PM"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"Éléments de navigation LinkedIn non détectés dans les 60s, attente additionnelle de 10s.","timestamp":"2:19:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Cookies LinkedIn sauvegardés en base de données pour l'utilisateur leboss.csa@gmail.com.","timestamp":"2:19:59 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"LinkedIn automation failed for leboss.csa@gmail.com: Could not retrieve Instagram cookies","timestamp":"2:20:00 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Closing browser for leboss.csa@gmail.com","timestamp":"2:20:00 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username updated for user 683720529b99dc1e616b574d: leboss.csa@gmail.com","timestamp":"2:20:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting comment analysis for username: leboss.csa@gmail.com","timestamp":"2:20:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting LinkedIn analysis session for account leboss.csa@gmail.com on port 6261","timestamp":"2:20:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Proxy started on port 6261","timestamp":"2:20:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Attempting to retrieve LinkedIn cookies for account leboss.csa@gmail.com...","timestamp":"2:20:48 PM"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"Could not retrieve LinkedIn cookies for account leboss.csa@gmail.com. Retrying in 3 minutes...","timestamp":"2:20:48 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connexion LinkedIn détectée (navigation principale présente).","timestamp":"2:21:19 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Cookies LinkedIn sauvegardés en base de données pour l'utilisateur leboss.csa@gmail.com.","timestamp":"2:21:19 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started proxy server for leboss.csa@gmail.com on port 6845","timestamp":"2:21:20 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Current URL after navigation: https://www.linkedin.com/","timestamp":"2:21:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying 12 cookies for leboss.csa@gmail.com...","timestamp":"2:21:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Filtered to 12 valid LinkedIn cookies","timestamp":"2:21:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Cookies applied successfully for leboss.csa@gmail.com","timestamp":"2:21:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Reloading page to apply cookies...","timestamp":"2:21:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"2:21:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"2:21:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"2:21:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username updated for user 683720529b99dc1e616b574d: leboss.csa@gmail.com","timestamp":"2:21:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting comment analysis for username: leboss.csa@gmail.com","timestamp":"2:21:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting LinkedIn analysis session for account leboss.csa@gmail.com on port 6950","timestamp":"2:21:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Proxy started on port 6950","timestamp":"2:21:55 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Attempting to retrieve LinkedIn cookies for account leboss.csa@gmail.com...","timestamp":"2:21:56 PM"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"Could not retrieve LinkedIn cookies for account leboss.csa@gmail.com. Retrying in 3 minutes...","timestamp":"2:21:56 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"2:23:27 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"2:23:27 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"2:23:27 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username updated for user 683720529b99dc1e616b574d: leboss.csa@gmail.com","timestamp":"2:23:36 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting comment analysis for username: leboss.csa@gmail.com","timestamp":"2:23:36 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting LinkedIn analysis session for account leboss.csa@gmail.com on port 6489","timestamp":"2:23:36 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Proxy started on port 6489","timestamp":"2:23:36 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Attempting to retrieve LinkedIn cookies for account leboss.csa@gmail.com...","timestamp":"2:23:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Successfully retrieved cookies for account leboss.csa@gmail.com","timestamp":"2:23:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to LinkedIn homepage for account leboss.csa@gmail.com...","timestamp":"2:23:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying cookies for account leboss.csa@gmail.com...","timestamp":"2:23:41 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Error during LinkedIn analysis queue processing: Failed to log in to LinkedIn as account leboss.csa@gmail.com","stack":"Error: Failed to log in to LinkedIn as account leboss.csa@gmail.com\n    at processLinkedInAnalysisQueue (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\controllers\\analysislink.ts:489:13)","timestamp":"2:23:53 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"2:26:49 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"2:26:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"2:26:50 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username updated for user 683720529b99dc1e616b574d: leboss.csa@gmail.com","timestamp":"2:27:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting comment analysis for username: leboss.csa@gmail.com","timestamp":"2:27:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started proxy server for leboss.csa@gmail.com on port 6742","timestamp":"2:27:19 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Current URL after navigation: https://www.linkedin.com/","timestamp":"2:27:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying 12 cookies for leboss.csa@gmail.com...","timestamp":"2:27:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Filtered to 12 valid LinkedIn cookies","timestamp":"2:27:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Cookies applied successfully for leboss.csa@gmail.com","timestamp":"2:27:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Reloading page to apply cookies...","timestamp":"2:27:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Vérification de la connexion pour leboss.csa@gmail.com...","timestamp":"2:27:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Me nav (.global-nav__me)","timestamp":"2:27:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Logged into LinkedIn as leboss.csa@gmail.com (detected: Me nav)","timestamp":"2:27:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No LinkedIn comments need re-analysis. Waiting 2 hours...","timestamp":"2:27:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connexion LinkedIn détectée (navigation principale présente).","timestamp":"2:28:59 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Cookies LinkedIn sauvegardés en base de données pour l'utilisateur leboss.csa@gmail.com.","timestamp":"2:28:59 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started proxy server for leboss.csa@gmail.com on port 6429","timestamp":"2:29:00 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Current URL after navigation: https://www.linkedin.com/","timestamp":"2:29:03 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying 12 cookies for leboss.csa@gmail.com...","timestamp":"2:29:03 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Filtered to 12 valid LinkedIn cookies","timestamp":"2:29:03 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Cookies applied successfully for leboss.csa@gmail.com","timestamp":"2:29:04 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Reloading page to apply cookies...","timestamp":"2:29:04 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Vérification de la connexion pour leboss.csa@gmail.com...","timestamp":"2:29:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Me nav (.global-nav__me)","timestamp":"2:29:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Logged into LinkedIn as leboss.csa@gmail.com (detected: Me nav)","timestamp":"2:29:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to LinkedIn feed for leboss.csa@gmail.com...","timestamp":"2:29:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"🚀 Starting main automation loop for leboss.csa@gmail.com","timestamp":"2:29:26 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"📦 Starting batch 1 (processing 500 posts)","timestamp":"2:29:26 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"2:52:00 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"2:52:00 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"2:52:00 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username updated for user 683720529b99dc1e616b574d: leboss.csa@gmail.com","timestamp":"2:52:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting comment analysis for username: leboss.csa@gmail.com","timestamp":"2:52:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started proxy server for leboss.csa@gmail.com on port 6354","timestamp":"2:52:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Current URL after navigation: https://www.linkedin.com/","timestamp":"2:52:36 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying 12 cookies for leboss.csa@gmail.com...","timestamp":"2:52:36 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Filtered to 12 valid LinkedIn cookies","timestamp":"2:52:36 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Cookies applied successfully for leboss.csa@gmail.com","timestamp":"2:52:36 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Reloading page to apply cookies...","timestamp":"2:52:36 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Vérification de la connexion pour leboss.csa@gmail.com...","timestamp":"2:52:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Me nav (.global-nav__me)","timestamp":"2:52:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Logged into LinkedIn as leboss.csa@gmail.com (detected: Me nav)","timestamp":"2:52:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing LinkedIn comment 6891ce0bff8c13a235344a50 on post https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_similarities-create-friendships-while-differences-activity-7357736593262043136-Me8V?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"2:52:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"LinkedIn analysis attempt 1 for comment 6891ce0bff8c13a235344a50","timestamp":"2:52:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to: https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_similarities-create-friendships-while-differences-activity-7357736593262043136-Me8V?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"2:52:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Loaded all LinkedIn comments","timestamp":"2:53:23 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"LinkedIn attempt 1 failed: LinkedIn comment \"What if our differences aren't meant to be bridged...\" not found on page","stack":"Error: LinkedIn comment \"What if our differences aren't meant to be bridged...\" not found on page\n    at processLinkedInAnalysisQueue (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\controllers\\analysislink.ts:655:19)","timestamp":"2:53:25 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 36343ms before retry","timestamp":"2:53:25 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"LinkedIn analysis attempt 2 for comment 6891ce0bff8c13a235344a50","timestamp":"2:54:01 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to: https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_similarities-create-friendships-while-differences-activity-7357736593262043136-Me8V?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"2:54:01 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Loaded all LinkedIn comments","timestamp":"2:54:34 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"LinkedIn attempt 2 failed: LinkedIn comment \"What if our differences aren't meant to be bridged...\" not found on page","stack":"Error: LinkedIn comment \"What if our differences aren't meant to be bridged...\" not found on page\n    at processLinkedInAnalysisQueue (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\controllers\\analysislink.ts:655:19)","timestamp":"2:54:36 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 31573ms before retry","timestamp":"2:54:36 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"LinkedIn analysis attempt 3 for comment 6891ce0bff8c13a235344a50","timestamp":"2:55:08 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to: https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_similarities-create-friendships-while-differences-activity-7357736593262043136-Me8V?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"2:55:08 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Loaded all LinkedIn comments","timestamp":"2:55:41 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"LinkedIn attempt 3 failed: LinkedIn comment \"What if our differences aren't meant to be bridged...\" not found on page","stack":"Error: LinkedIn comment \"What if our differences aren't meant to be bridged...\" not found on page\n    at processLinkedInAnalysisQueue (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\controllers\\analysislink.ts:655:19)","timestamp":"2:55:43 PM"}
+{"level":"\u001b[31merror\u001b[39m","message":"Failed to analyze LinkedIn comment 6891ce0bff8c13a235344a50 after 3 attempts: LinkedIn comment \"What if our differences aren't meant to be bridged...\" not found on page","timestamp":"2:55:43 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 43190ms before next LinkedIn comment","timestamp":"2:55:43 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing LinkedIn comment 6891ce31ff8c13a235344a51 on post https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_similarities-create-friendships-while-differences-activity-7357736593262043136-Me8V?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"2:56:27 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"LinkedIn analysis attempt 1 for comment 6891ce31ff8c13a235344a51","timestamp":"2:56:27 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to: https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_similarities-create-friendships-while-differences-activity-7357736593262043136-Me8V?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"2:56:27 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"2:57:17 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"2:57:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"2:57:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username updated for user 683720529b99dc1e616b574d: leboss.csa@gmail.com","timestamp":"2:57:31 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting comment analysis for username: leboss.csa@gmail.com","timestamp":"2:57:31 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started proxy server for leboss.csa@gmail.com on port 6349","timestamp":"2:57:32 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Current URL after navigation: https://www.linkedin.com/","timestamp":"2:57:36 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying 12 cookies for leboss.csa@gmail.com...","timestamp":"2:57:36 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Filtered to 12 valid LinkedIn cookies","timestamp":"2:57:36 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Cookies applied successfully for leboss.csa@gmail.com","timestamp":"2:57:36 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Reloading page to apply cookies...","timestamp":"2:57:36 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Vérification de la connexion pour leboss.csa@gmail.com...","timestamp":"2:57:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Me nav (.global-nav__me)","timestamp":"2:57:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Logged into LinkedIn as leboss.csa@gmail.com (detected: Me nav)","timestamp":"2:57:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing LinkedIn comment 6874c4fefa092b52cbe8d615 on post https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_the-greatest-unity-comes-from-the-greatest-activity-7350128299223760896-l9re?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"2:57:45 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"LinkedIn analysis attempt 1 for comment 6874c4fefa092b52cbe8d615","timestamp":"2:57:45 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to: https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_the-greatest-unity-comes-from-the-greatest-activity-7350128299223760896-l9re?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"2:57:45 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Loaded all LinkedIn comments","timestamp":"2:58:20 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found LinkedIn comment on page","timestamp":"2:58:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Clicked 0 'Show more replies' buttons on LinkedIn","timestamp":"2:58:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment container with ID: ember30","timestamp":"2:58:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted metrics - Likes: 122, Impressions: 28, Replies: 4","timestamp":"2:58:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment container with ID: ember30","timestamp":"2:58:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted 0 LinkedIn replies","timestamp":"2:58:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"LinkedIn analysis complete: 122 likes, 28 impressions, 0 replies","timestamp":"2:58:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Successfully analyzed LinkedIn comment 6874c4fefa092b52cbe8d615","timestamp":"2:58:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 33379ms before next LinkedIn comment","timestamp":"2:58:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing LinkedIn comment 68768d467760a5c788133b8e on post https://www.linkedin.com/posts/rebecca-schocker_mindsetcoaching-stressmanagement-personalgrowth-activity-7350530052461121536-oKR2?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"2:58:57 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"LinkedIn analysis attempt 1 for comment 68768d467760a5c788133b8e","timestamp":"2:58:57 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to: https://www.linkedin.com/posts/rebecca-schocker_mindsetcoaching-stressmanagement-personalgrowth-activity-7350530052461121536-oKR2?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"2:58:57 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Loaded all LinkedIn comments","timestamp":"2:59:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found LinkedIn comment on page","timestamp":"2:59:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Clicked 0 'Show more replies' buttons on LinkedIn","timestamp":"2:59:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment container with ID: ember30","timestamp":"2:59:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted metrics - Likes: 721, Impressions: 23, Replies: 1","timestamp":"2:59:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment container with ID: ember30","timestamp":"2:59:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted 0 LinkedIn replies","timestamp":"2:59:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"LinkedIn analysis complete: 721 likes, 23 impressions, 0 replies","timestamp":"2:59:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Successfully analyzed LinkedIn comment 68768d467760a5c788133b8e","timestamp":"2:59:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 52377ms before next LinkedIn comment","timestamp":"2:59:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing LinkedIn comment 68768d067760a5c788133b8c on post https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_children-are-born-explorers-fueled-by-an-activity-7350838294793891841-2Qka?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"3:00:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"LinkedIn analysis attempt 1 for comment 68768d067760a5c788133b8c","timestamp":"3:00:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to: https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_children-are-born-explorers-fueled-by-an-activity-7350838294793891841-2Qka?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"3:00:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Loaded all LinkedIn comments","timestamp":"3:01:00 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found LinkedIn comment on page","timestamp":"3:01:02 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Clicked 0 'Show more replies' buttons on LinkedIn","timestamp":"3:01:02 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment container with ID: ember30","timestamp":"3:01:04 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted metrics - Likes: 332, Impressions: 22, Replies: 1","timestamp":"3:01:04 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment container with ID: ember30","timestamp":"3:01:04 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted 0 LinkedIn replies","timestamp":"3:01:04 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"LinkedIn analysis complete: 332 likes, 22 impressions, 0 replies","timestamp":"3:01:04 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Successfully analyzed LinkedIn comment 68768d067760a5c788133b8c","timestamp":"3:01:04 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 30636ms before next LinkedIn comment","timestamp":"3:01:04 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing LinkedIn comment 687a56d59e9395831b578d3c on post https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_hope-is-the-most-exciting-thing-there-is-activity-7351900537094619138-wcl8?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"3:01:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"LinkedIn analysis attempt 1 for comment 687a56d59e9395831b578d3c","timestamp":"3:01:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to: https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_hope-is-the-most-exciting-thing-there-is-activity-7351900537094619138-wcl8?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"3:01:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"3:52:12 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"3:52:12 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"3:52:12 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username updated for user 683720529b99dc1e616b574d: leboss.csa@gmail.com","timestamp":"3:52:23 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting comment analysis for username: leboss.csa@gmail.com","timestamp":"3:52:23 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started proxy server for leboss.csa@gmail.com on port 6798","timestamp":"3:52:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Current URL after navigation: https://www.linkedin.com/","timestamp":"3:52:28 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying 11 cookies for leboss.csa@gmail.com...","timestamp":"3:52:28 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Filtered to 11 valid LinkedIn cookies","timestamp":"3:52:28 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Cookies applied successfully for leboss.csa@gmail.com","timestamp":"3:52:28 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Reloading page to apply cookies...","timestamp":"3:52:28 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Vérification de la connexion pour leboss.csa@gmail.com...","timestamp":"3:52:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Me nav (.global-nav__me)","timestamp":"3:52:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Logged into LinkedIn as leboss.csa@gmail.com (detected: Me nav)","timestamp":"3:52:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing LinkedIn comment 687a56d59e9395831b578d3c on post https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_hope-is-the-most-exciting-thing-there-is-activity-7351900537094619138-wcl8?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"3:52:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"LinkedIn analysis attempt 1 for comment 687a56d59e9395831b578d3c","timestamp":"3:52:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to: https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_hope-is-the-most-exciting-thing-there-is-activity-7351900537094619138-wcl8?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"3:52:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Loaded all LinkedIn comments","timestamp":"3:53:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found LinkedIn comment on page","timestamp":"3:53:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Clicked 0 'Show more replies' buttons on LinkedIn","timestamp":"3:53:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment container with ID: ember30","timestamp":"3:53:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted metrics - Likes: 883, Impressions: 10, Replies: 5","timestamp":"3:53:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment container with ID: ember30","timestamp":"3:53:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted 0 LinkedIn replies","timestamp":"3:53:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"LinkedIn analysis complete: 883 likes, 10 impressions, 0 replies","timestamp":"3:53:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Successfully analyzed LinkedIn comment 687a56d59e9395831b578d3c","timestamp":"3:53:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 35944ms before next LinkedIn comment","timestamp":"3:53:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"3:58:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"3:58:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"3:58:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username updated for user 683720529b99dc1e616b574d: leboss.csa@gmail.com","timestamp":"3:58:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting comment analysis for username: leboss.csa@gmail.com","timestamp":"3:58:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started proxy server for leboss.csa@gmail.com on port 6934","timestamp":"3:58:24 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Current URL after navigation: https://www.linkedin.com/","timestamp":"3:58:27 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying 11 cookies for leboss.csa@gmail.com...","timestamp":"3:58:27 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Filtered to 11 valid LinkedIn cookies","timestamp":"3:58:27 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Cookies applied successfully for leboss.csa@gmail.com","timestamp":"3:58:27 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Reloading page to apply cookies...","timestamp":"3:58:27 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Vérification de la connexion pour leboss.csa@gmail.com...","timestamp":"3:58:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Me nav (.global-nav__me)","timestamp":"3:58:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Logged into LinkedIn as leboss.csa@gmail.com (detected: Me nav)","timestamp":"3:58:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing LinkedIn comment 687a50ee9e9395831b578d3a on post https://www.linkedin.com/posts/rebecca-schocker_mindsetcoaching-leadership-personaldevelopment-activity-7351969670083641346-CRHd?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"3:58:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"LinkedIn analysis attempt 1 for comment 687a50ee9e9395831b578d3a","timestamp":"3:58:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to: https://www.linkedin.com/posts/rebecca-schocker_mindsetcoaching-leadership-personaldevelopment-activity-7351969670083641346-CRHd?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"3:58:34 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Loaded all LinkedIn comments","timestamp":"3:58:59 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found LinkedIn comment on page","timestamp":"3:59:01 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Clicked 0 'Show more replies' buttons on LinkedIn","timestamp":"3:59:01 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment container with ID: ember31","timestamp":"3:59:03 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted metrics - Likes: 107, Impressions: 4, Replies: 2","timestamp":"3:59:03 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment container with ID: ember31","timestamp":"3:59:03 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted 0 LinkedIn replies","timestamp":"3:59:03 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"LinkedIn analysis complete: 107 likes, 4 impressions, 0 replies","timestamp":"3:59:03 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Successfully analyzed LinkedIn comment 687a50ee9e9395831b578d3a","timestamp":"3:59:03 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 40645ms before next LinkedIn comment","timestamp":"3:59:03 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No LinkedIn comments need re-analysis. Waiting 2 hours...","timestamp":"3:59:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"4:03:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"4:03:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"4:03:29 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username updated for user 683720529b99dc1e616b574d: leboss.csa@gmail.com","timestamp":"4:03:38 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting comment analysis for username: leboss.csa@gmail.com","timestamp":"4:03:38 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started proxy server for leboss.csa@gmail.com on port 6049","timestamp":"4:03:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Current URL after navigation: https://www.linkedin.com/","timestamp":"4:03:43 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying 11 cookies for leboss.csa@gmail.com...","timestamp":"4:03:43 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Filtered to 11 valid LinkedIn cookies","timestamp":"4:03:43 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Cookies applied successfully for leboss.csa@gmail.com","timestamp":"4:03:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Reloading page to apply cookies...","timestamp":"4:03:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Vérification de la connexion pour leboss.csa@gmail.com...","timestamp":"4:03:51 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Me nav (.global-nav__me)","timestamp":"4:03:51 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Logged into LinkedIn as leboss.csa@gmail.com (detected: Me nav)","timestamp":"4:03:52 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No LinkedIn comments need re-analysis. Waiting 2 hours...","timestamp":"4:03:52 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"4:07:26 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"4:07:27 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"4:07:27 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username updated for user 683720529b99dc1e616b574d: leboss.csa@gmail.com","timestamp":"4:07:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting comment analysis for username: leboss.csa@gmail.com","timestamp":"4:07:46 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started proxy server for leboss.csa@gmail.com on port 6959","timestamp":"4:07:47 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Current URL after navigation: https://www.linkedin.com/","timestamp":"4:07:51 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying 11 cookies for leboss.csa@gmail.com...","timestamp":"4:07:51 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Filtered to 11 valid LinkedIn cookies","timestamp":"4:07:51 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Cookies applied successfully for leboss.csa@gmail.com","timestamp":"4:07:51 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Reloading page to apply cookies...","timestamp":"4:07:51 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Vérification de la connexion pour leboss.csa@gmail.com...","timestamp":"4:07:58 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Me nav (.global-nav__me)","timestamp":"4:07:58 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Logged into LinkedIn as leboss.csa@gmail.com (detected: Me nav)","timestamp":"4:07:58 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing LinkedIn comment 6874c4fefa092b52cbe8d615 on post https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_the-greatest-unity-comes-from-the-greatest-activity-7350128299223760896-l9re?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"4:07:58 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"LinkedIn analysis attempt 1 for comment 6874c4fefa092b52cbe8d615","timestamp":"4:07:58 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to: https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_the-greatest-unity-comes-from-the-greatest-activity-7350128299223760896-l9re?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"4:07:58 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Loaded all LinkedIn comments","timestamp":"4:08:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found LinkedIn comment on page","timestamp":"4:08:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Clicked 0 'Show more replies' buttons on LinkedIn","timestamp":"4:08:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment container with ID: ember30","timestamp":"4:08:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted metrics - Likes: 122, Impressions: 28, Replies: 4","timestamp":"4:08:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment container with ID: ember30","timestamp":"4:08:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted 0 LinkedIn replies","timestamp":"4:08:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"LinkedIn analysis complete: 122 likes, 28 impressions, 0 replies","timestamp":"4:08:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Successfully analyzed LinkedIn comment 6874c4fefa092b52cbe8d615","timestamp":"4:08:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 41539ms before next LinkedIn comment","timestamp":"4:08:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"4:11:07 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"4:11:07 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"4:11:07 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username updated for user 683720529b99dc1e616b574d: leboss.csa@gmail.com","timestamp":"4:11:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting comment analysis for username: leboss.csa@gmail.com","timestamp":"4:11:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started proxy server for leboss.csa@gmail.com on port 6320","timestamp":"4:11:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Current URL after navigation: https://www.linkedin.com/","timestamp":"4:11:20 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying 11 cookies for leboss.csa@gmail.com...","timestamp":"4:11:20 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Filtered to 11 valid LinkedIn cookies","timestamp":"4:11:20 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Cookies applied successfully for leboss.csa@gmail.com","timestamp":"4:11:20 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Reloading page to apply cookies...","timestamp":"4:11:20 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Vérification de la connexion pour leboss.csa@gmail.com...","timestamp":"4:11:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Me nav (.global-nav__me)","timestamp":"4:11:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Logged into LinkedIn as leboss.csa@gmail.com (detected: Me nav)","timestamp":"4:11:31 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing LinkedIn comment 68768d467760a5c788133b8e on post https://www.linkedin.com/posts/rebecca-schocker_mindsetcoaching-stressmanagement-personalgrowth-activity-7350530052461121536-oKR2?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"4:11:31 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"LinkedIn analysis attempt 1 for comment 68768d467760a5c788133b8e","timestamp":"4:11:31 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to: https://www.linkedin.com/posts/rebecca-schocker_mindsetcoaching-stressmanagement-personalgrowth-activity-7350530052461121536-oKR2?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"4:11:31 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Loaded all LinkedIn comments","timestamp":"4:12:10 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found LinkedIn comment on page","timestamp":"4:12:12 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Clicked 0 'Show more replies' buttons on LinkedIn","timestamp":"4:12:12 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment container with ID: ember30","timestamp":"4:12:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted metrics - Likes: 721, Impressions: 30, Replies: 1","timestamp":"4:12:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment container with ID: ember30","timestamp":"4:12:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted 0 LinkedIn replies","timestamp":"4:12:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"LinkedIn analysis complete: 721 likes, 30 impressions, 0 replies","timestamp":"4:12:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Successfully analyzed LinkedIn comment 68768d467760a5c788133b8e","timestamp":"4:12:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 36421ms before next LinkedIn comment","timestamp":"4:12:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"4:17:00 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"4:17:00 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"4:17:00 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username updated for user 683720529b99dc1e616b574d: leboss.csa@gmail.com","timestamp":"4:17:12 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting comment analysis for username: leboss.csa@gmail.com","timestamp":"4:17:12 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started proxy server for leboss.csa@gmail.com on port 6537","timestamp":"4:17:13 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Current URL after navigation: https://www.linkedin.com/","timestamp":"4:17:17 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying 11 cookies for leboss.csa@gmail.com...","timestamp":"4:17:17 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Filtered to 11 valid LinkedIn cookies","timestamp":"4:17:17 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Cookies applied successfully for leboss.csa@gmail.com","timestamp":"4:17:17 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Reloading page to apply cookies...","timestamp":"4:17:17 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Vérification de la connexion pour leboss.csa@gmail.com...","timestamp":"4:17:28 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Checking for login indicator: Me nav (.global-nav__me)","timestamp":"4:17:28 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"✅ Logged into LinkedIn as leboss.csa@gmail.com (detected: Me nav)","timestamp":"4:17:28 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing LinkedIn comment 68768d067760a5c788133b8c on post https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_children-are-born-explorers-fueled-by-an-activity-7350838294793891841-2Qka?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"4:17:28 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"LinkedIn analysis attempt 1 for comment 68768d067760a5c788133b8c","timestamp":"4:17:28 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to: https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_children-are-born-explorers-fueled-by-an-activity-7350838294793891841-2Qka?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"4:17:28 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Loaded all LinkedIn comments","timestamp":"4:18:01 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found LinkedIn comment on page","timestamp":"4:18:03 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Clicked 0 'Show more replies' buttons on LinkedIn","timestamp":"4:18:03 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment container with ID: ember30","timestamp":"4:18:06 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted metrics - Likes: 332, Impressions: 28, Replies: 1","timestamp":"4:18:06 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment container with ID: ember30","timestamp":"4:18:06 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted 0 LinkedIn replies","timestamp":"4:18:06 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"LinkedIn analysis complete: 332 likes, 28 impressions, 0 replies","timestamp":"4:18:06 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Successfully analyzed LinkedIn comment 68768d067760a5c788133b8c","timestamp":"4:18:06 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 38541ms before next LinkedIn comment","timestamp":"4:18:06 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing LinkedIn comment 687a56d59e9395831b578d3c on post https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_hope-is-the-most-exciting-thing-there-is-activity-7351900537094619138-wcl8?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"4:18:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"LinkedIn analysis attempt 1 for comment 687a56d59e9395831b578d3c","timestamp":"4:18:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to: https://www.linkedin.com/posts/kelly-mizell-%F0%9F%8C%9F-67084331_hope-is-the-most-exciting-thing-there-is-activity-7351900537094619138-wcl8?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"4:18:44 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Loaded all LinkedIn comments","timestamp":"4:19:18 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found LinkedIn comment on page","timestamp":"4:19:20 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Clicked 0 'Show more replies' buttons on LinkedIn","timestamp":"4:19:20 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment container with ID: ember31","timestamp":"4:19:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted metrics - Likes: 883, Impressions: 13, Replies: 5","timestamp":"4:19:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment container with ID: ember31","timestamp":"4:19:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted 0 LinkedIn replies","timestamp":"4:19:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"LinkedIn analysis complete: 883 likes, 13 impressions, 0 replies","timestamp":"4:19:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Successfully analyzed LinkedIn comment 687a56d59e9395831b578d3c","timestamp":"4:19:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 46806ms before next LinkedIn comment","timestamp":"4:19:22 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Processing LinkedIn comment 687a50ee9e9395831b578d3a on post https://www.linkedin.com/posts/rebecca-schocker_mindsetcoaching-leadership-personaldevelopment-activity-7351969670083641346-CRHd?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"4:20:09 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"LinkedIn analysis attempt 1 for comment 687a50ee9e9395831b578d3a","timestamp":"4:20:09 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to: https://www.linkedin.com/posts/rebecca-schocker_mindsetcoaching-leadership-personaldevelopment-activity-7351969670083641346-CRHd?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAAEM_-I0Btc1LsqkpwAXcBs2C95nv1kHKz28","timestamp":"4:20:09 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Loaded all LinkedIn comments","timestamp":"4:20:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found LinkedIn comment on page","timestamp":"4:20:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Clicked 0 'Show more replies' buttons on LinkedIn","timestamp":"4:20:35 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment container with ID: ember31","timestamp":"4:20:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted metrics - Likes: 107, Impressions: 7, Replies: 2","timestamp":"4:20:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Found comment container with ID: ember31","timestamp":"4:20:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Extracted 0 LinkedIn replies","timestamp":"4:20:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"LinkedIn analysis complete: 107 likes, 7 impressions, 0 replies","timestamp":"4:20:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Successfully analyzed LinkedIn comment 687a50ee9e9395831b578d3a","timestamp":"4:20:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Waiting 33637ms before next LinkedIn comment","timestamp":"4:20:37 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No LinkedIn comments need re-analysis. Waiting 2 hours...","timestamp":"4:21:11 PM"}
+{"cause":{"beforeHandshake":false,"errorLabelSet":{}},"errorLabelSet":{},"level":"\u001b[31merror\u001b[39m","message":"Error during LinkedIn analysis queue processing: getaddrinfo ENOTFOUND cluster0-shard-00-01.v07yq.mongodb.net","reason":{"commonWireVersion":0,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"logicalSessionTimeoutMinutes":null,"maxElectionId":{"$oid":"7fffffff000000000000001b"},"maxSetVersion":4,"servers":{"cluster0-shard-00-00.v07yq.mongodb.net:27017":{"$clusterTime":null,"address":"cluster0-shard-00-00.v07yq.mongodb.net:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":302868937,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"},"cluster0-shard-00-01.v07yq.mongodb.net:27017":{"$clusterTime":null,"address":"cluster0-shard-00-01.v07yq.mongodb.net:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":302868937,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"},"cluster0-shard-00-02.v07yq.mongodb.net:27017":{"$clusterTime":null,"address":"cluster0-shard-00-02.v07yq.mongodb.net:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":302868943,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"}},"setName":"atlas-j46dlc-shard-0","stale":false,"type":"ReplicaSetNoPrimary"},"stack":"MongoServerSelectionError: getaddrinfo ENOTFOUND cluster0-shard-00-01.v07yq.mongodb.net\n    at Topology.selectServer (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\mongodb\\src\\sdam\\topology.ts:634:30)\n    at async tryOperation (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\mongodb\\src\\operations\\execute_operation.ts:264:16)\n    at async executeOperation (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\mongodb\\src\\operations\\execute_operation.ts:115:12)\n    at async FindCursor._initialize (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\mongodb\\src\\cursor\\find_cursor.ts:92:22)\n    at async FindCursor.cursorInit (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\mongodb\\src\\cursor\\abstract_cursor.ts:944:21)\n    at async FindCursor.fetchBatch (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\mongodb\\src\\cursor\\abstract_cursor.ts:982:7)\n    at async FindCursor.next (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\mongodb\\src\\cursor\\abstract_cursor.ts:612:9)\n    at async Collection.findOne (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\node_modules\\mongodb\\src\\collection.ts:526:17)\n    at async processLinkedInAnalysisQueue (C:\\Users\\admin\\Desktop\\epi-engage\\riona_ai-main\\src\\controllers\\analysislink.ts:674:23)","timestamp":"9:29:57 PM"}

@@ -8,6 +8,44 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Additional styles for posted-only analysis */
+    .analysis-disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    
+    .analysis-disabled .btn {
+      pointer-events: none;
+    }
+    
+    .posted-only-indicator {
+      background: linear-gradient(45deg, #28a745, #20c997);
+      color: white;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75em;
+      margin-left: 0.5rem;
+    }
+    
+    .analysis-status-badge {
+      font-size: 0.7em;
+      padding: 0.2rem 0.4rem;
+    }
+    
+    .engagement-preview {
+      background: #f8f9fa;
+      border-left: 3px solid #0d6efd;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+    }
+    
+    .status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+  </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -36,16 +74,16 @@
           <div class="dropdown-item">
             <label for="filterOptionDropdown">Filter by User:</label>
             <select id="filterOptionDropdown" class="form-select form-select-sm mt-1">
-             
               <option value="all">Filtered users</option>
-              <!-- you can dynamically populate this list from stateManager.getUserFilters() -->
             </select>
             <button class="btn btn-sm btn-outline-primary mt-1 w-100" id="manageUsersBtn">
               <i class="bi bi-people"></i> Manage Users Filter
             </button>
           </div>
-        </li>  <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item text-danger" href="#" id="dropdownLogoutBtn"><i class="bi bi-box-arrow-right"></i> Logout</a></li> </ul>
+        </li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item text-danger" href="#" id="dropdownLogoutBtn"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+      </ul>
     </div>
   </div>
 </div>
@@ -54,9 +92,20 @@
 <div class="container mt-4">
 <h1>Comment Review Dashboard</h1>
 
-
 <div class="alert alert-info" id="data-source-info">
 Loading Instagram connection status...
+</div>
+
+<!-- Analysis Status Alert -->
+<div class="alert alert-warning" id="analysis-status-alert" style="display: none;">
+  <div class="d-flex align-items-center">
+    <i class="bi bi-info-circle me-2"></i>
+    <div>
+      <strong>Analysis Availability:</strong> 
+      Detailed comment analysis (likes, replies, engagement data) is only available for comments with "Posted" status. 
+      <span class="posted-only-indicator">Posted Comments Only</span>
+    </div>
+  </div>
 </div>
 
 <!-- Username setup section - shown when user needs to set Instagram username -->
@@ -76,9 +125,8 @@ Loading Instagram connection status...
 </div>
 </div>
 </div>
+
 <!-- User Filter Management Modal -->
-
-
 <div class="modal fade" id="userFilterModal" tabindex="-1" aria-hidden="true">
 <div class="modal-dialog">
 <div class="modal-content">
@@ -96,10 +144,8 @@ Loading Instagram connection status...
       </div>
     </div>
 
-
 <h6 class="mt-4">Selected Users</h6>
 <div class="list-group" id="userFiltersList">
-  <!-- User filters will be loaded here -->
   <div class="text-center p-3 text-muted" id="noUsersMessage">
     <i class="bi bi-people"></i> No users in filter yet
   </div>
@@ -107,13 +153,11 @@ Loading Instagram connection status...
 </div>
 <div class="modal-footer">
 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
+</div>
+</div>
 </div>
 </div>
 
-
-</div>
-</div>
 <!-- Login prompt - shown when username is set but Instagram account is not connected -->
 <div id="login-prompt" class="login-prompt" style="display: none;">
   <i class="bi bi-instagram login-icon"></i>
@@ -123,7 +167,6 @@ Loading Instagram connection status...
     <i class="bi bi-instagram"></i> Connect Instagram
   </button>
 </div>
-
 
 <!-- Dashboard content - shown when both username is set and Instagram is connected -->
 <div id="dashboard-content" style="display: none;">
@@ -166,6 +209,7 @@ Loading Instagram connection status...
     <div class="card-body">
       <h6 class="card-title">Posted</h6>
       <div class="stat-number text-info" id="stat-posted">0</div>
+      <small class="text-muted">Analysis Available</small>
     </div>
   </div>
 </div>
@@ -185,7 +229,10 @@ Loading Instagram connection status...
   <button type="button" class="btn btn-outline-warning" data-filter="pending">Pending</button>
   <button type="button" class="btn btn-outline-success" data-filter="approved">Approved</button>
   <button type="button" class="btn btn-outline-primary" data-filter="processing">Processing</button>
-  <button type="button" class="btn btn-outline-info" data-filter="posted">Posted</button>
+  <button type="button" class="btn btn-outline-info" data-filter="posted">
+    Posted 
+    <span class="analysis-status-badge badge bg-success ms-1">Analysis</span>
+  </button>
   <button type="button" class="btn btn-outline-danger" data-filter="rejected">Rejected</button>
   <button type="button" class="btn btn-outline-warning" data-filter="error">Error</button>
 </div>
@@ -197,15 +244,13 @@ Loading Instagram connection status...
 </div>
 
 <div id="comments-container">
-<!-- Comments will be loaded here -->
+<!-- Comments will be loaded here with posted status analysis indicators -->
 </div>
 </div>
-
 
 </div>
 
 <!-- Edit Comment Modal -->
-
 <div class="modal fade" id="editCommentModal" tabindex="-1" aria-hidden="true">
 <div class="modal-dialog">
   <div class="modal-content">
@@ -238,6 +283,7 @@ Loading Instagram connection status...
   </div>
 </div>
 </div>
+
 <!-- New Manual Comment Modal -->
 <div class="modal fade" id="newCommentModal" tabindex="-1" aria-hidden="true">
 <div class="modal-dialog">
@@ -267,7 +313,6 @@ Loading Instagram connection status...
 </div>
 
 <!-- Instagram Username Modal -->
-
 <div class="modal fade" id="usernameModal" tabindex="-1" aria-hidden="true">
 <div class="modal-dialog">
   <div class="modal-content">
@@ -294,16 +339,32 @@ Loading Instagram connection status...
   </div>
 </div>
 </div>
+
+<!-- Updated Comment Analysis Modal - Posted Comments Only -->
 <div class="modal fade" id="commentAnalysisModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">
           <i class="bi bi-graph-up"></i> Comment Analysis Details
+          <span class="posted-only-indicator">
+            <i class="bi bi-check-circle"></i> Posted Comments Only
+          </span>
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <!-- Analysis Restriction Notice -->
+        <div class="alert alert-info" role="alert">
+          <div class="d-flex align-items-center">
+            <i class="bi bi-info-circle me-2"></i>
+            <div>
+              <strong>Analysis Scope:</strong> This analysis is only available for comments that have been successfully posted to Instagram. 
+              Comments with other statuses (pending, approved, processing, etc.) do not have engagement data available.
+            </div>
+          </div>
+        </div>
+
         <div class="row">
           <!-- Comment Info Section -->
           <div class="col-md-6">
@@ -315,6 +376,9 @@ Loading Instagram connection status...
               </div>
               <div class="card-body">
                 <p><strong>Post ID:</strong> <span id="analysisPostId"></span></p>
+                <p><strong>Status:</strong> 
+                  <span class="badge bg-info" id="analysisCommentStatus">Posted</span>
+                </p>
                 <p><strong>Comment:</strong></p>
                 <div class="bg-light p-2 rounded">
                   <span id="analysisCommentText"></span>
@@ -325,26 +389,33 @@ Loading Instagram connection status...
             </div>
           </div>
 
-          <!-- Statistics Section -->
+          <!-- Statistics Section - Only for Posted Comments -->
           <div class="col-md-6">
             <div class="card">
               <div class="card-header">
                 <h6 class="mb-0">
                   <i class="bi bi-bar-chart"></i> Engagement Statistics
+                  <span class="analysis-status-badge badge bg-success ms-2">Live Data</span>
                 </h6>
               </div>
               <div class="card-body">
                 <div class="row text-center">
-                  <div class="col-6">
+                  <div class="col-4">
                     <div class="p-3 bg-primary bg-opacity-10 rounded">
                       <h4 class="text-primary mb-0" id="analysisLikes">0</h4>
                       <small class="text-muted">Likes</small>
                     </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-4">
                     <div class="p-3 bg-success bg-opacity-10 rounded">
                       <h4 class="text-success mb-0" id="analysisReplies">0</h4>
                       <small class="text-muted">Replies</small>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="p-3 bg-info bg-opacity-10 rounded">
+                      <h4 class="text-info mb-0" id="analysisTotalEngagement">0</h4>
+                      <small class="text-muted">Total</small>
                     </div>
                   </div>
                 </div>
@@ -356,21 +427,36 @@ Loading Instagram connection status...
                     <small class="text-muted" id="analysisStatusText">Status</small>
                   </div>
                 </div>
+
+                <!-- Analysis Availability Notice -->
+                <div class="mt-3 p-2 bg-success bg-opacity-10 rounded">
+                  <small class="text-success">
+                    <i class="bi bi-check-circle"></i>
+                    <strong>Analysis Available:</strong> This comment has "posted" status and engagement data can be retrieved.
+                  </small>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Replies Section -->
+        <!-- Replies Section - Only for Posted Comments -->
         <div class="row mt-3">
           <div class="col-12">
             <div class="card">
               <div class="card-header">
                 <h6 class="mb-0">
                   <i class="bi bi-reply"></i> Replies (<span id="repliesCount">0</span>)
+                  <span class="analysis-status-badge badge bg-info ms-2">Posted Only</span>
                 </h6>
               </div>
               <div class="card-body">
+                <div class="engagement-preview mb-3">
+                  <small class="text-muted">
+                    <i class="bi bi-info-circle"></i>
+                    Replies are only tracked and displayed for comments that have been posted to Instagram.
+                  </small>
+                </div>
                 <div id="repliesList" class="replies-container">
                   <!-- Replies will be loaded here -->
                   <div class="text-center text-muted p-3" id="noRepliesMessage">
@@ -388,6 +474,20 @@ Loading Instagram connection status...
           <h6><i class="bi bi-exclamation-triangle"></i> Analysis Error</h6>
           <p class="mb-0" id="analysisErrorMessage"></p>
         </div>
+
+        <!-- Non-Posted Comment Notice -->
+        <div class="alert alert-secondary mt-3" id="nonPostedNotice" style="display: none;">
+          <h6><i class="bi bi-clock-history"></i> Analysis Not Available</h6>
+          <p class="mb-0">
+            This comment does not have "posted" status yet. Analysis data (likes, replies, engagement metrics) 
+            will become available once the comment is successfully posted to Instagram.
+          </p>
+          <div class="mt-2">
+            <small class="text-muted">
+              <strong>Current Status:</strong> <span id="nonPostedCurrentStatus" class="badge bg-secondary">Unknown</span>
+            </small>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-primary" id="refreshAnalysisBtn">
@@ -398,6 +498,7 @@ Loading Instagram connection status...
     </div>
   </div>
 </div>
+
 <!-- Accounts Management Modal -->
 <div class="modal fade" id="accountsManagementModal" tabindex="-1" aria-hidden="true">
 <div class="modal-dialog">
@@ -428,6 +529,7 @@ Loading Instagram connection status...
   </div>
 </div>
 </div>
+
 <!-- Instagram Login Status Modal -->
 <div class="modal fade" id="instagramLoginStatusModal" tabindex="-1" aria-hidden="true">
 <div class="modal-dialog">

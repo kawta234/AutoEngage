@@ -1075,20 +1075,39 @@ renderComments();
         console.log('Modal was not open');
       }
      
-      try {
-        await triggerFifo(username);
-        console.log('FIFO process initiated for username:', username);
-        // Optional: show success toast
-        if (typeof showToast === 'function') {
-          showToast('success', 'Automated comment processing started');
-        }
-      } catch (fifoError) {
-        console.error('Error triggering FIFO process:', fifoError);
-        // Optional: show warning toast, but don't break the flow with an alert
-        if (typeof showToast === 'function') {
-          showToast('warning', 'Problem with automated comment processing');
-        }
-      }
+      // Fire both processes in parallel WITHOUT waiting (fire-and-forget)
+      console.log('Starting both FIFO and Analysis processes for username:', username);
+      
+      // FIFO process - runs independently
+      triggerFifo(username)
+        .then(() => {
+          console.log('FIFO process initiated successfully for username:', username);
+          if (typeof showToast === 'function') {
+            showToast('success', 'Automated comment processing started');
+          }
+        })
+        .catch((error) => {
+          console.error('Error triggering FIFO process:', error);
+          if (typeof showToast === 'function') {
+            showToast('warning', 'Problem with automated comment processing');
+          }
+        });
+      
+      // Analysis process - runs independently
+      triggerAnalysis(username)
+        .then(() => {
+          console.log('Analysis process initiated successfully for username:', username);
+          if (typeof showToast === 'function') {
+            showToast('success', 'Comment analysis started');
+          }
+        })
+        .catch((error) => {
+          console.error('Error triggering analysis process:', error);
+          if (typeof showToast === 'function') {
+            showToast('warning', 'Problem with comment analysis');
+          }
+        });
+      
     } catch (error) {
       console.error('Error saving username:', error);
       alert(`Error saving username: ${error.message}`);
@@ -1127,7 +1146,7 @@ renderComments();
   loginStatusModal.show();
   
   try {
-    // First, handle cookie storage through the login API
+    // first handle the loging and cookies storage via the api 
     const loginResult = await api.instagramLogin(username);
     
     loginStatus.innerHTML = `
@@ -1137,7 +1156,7 @@ renderComments();
       </div>
     `;
     
-    // Update both local state and UI after cookies are stored
+    // Update both localstorage items 
     stateManager.saveLoginState(username);
     
     // Update UI and go to dashboard immediately
@@ -1171,30 +1190,38 @@ renderComments();
   // Load comments from API
   async function loadComments() {
     if (!isLoggedIn || !hasUsername) {
-      return; // Don't load comments if not logged in or no username
+      return;
     }
     
     try {
       const response = await api.fetchComments();
       
-      // Handle the new API response structure
       if (response && Array.isArray(response.comments)) {
         comments = response.comments;
       } else if (Array.isArray(response)) {
-        // Fallback for old API response format
         comments = response;
       } else {
-        // Handle unexpected response format
         comments = [];
         console.warn('Unexpected API response format:', response);
       }
       
-      // Update alert with success message and comment count
+      // Calculate analysis statistics
+      const analyzedComments = comments.filter(c => 
+        c.status === 'posted' && (c.likes !== undefined || c.repliesCount !== undefined)
+      ).length;
+      const totalLikes = comments.reduce((sum, c) => sum + (c.likes || 0), 0);
+      const totalReplies = comments.reduce((sum, c) => sum + (c.repliesCount || 0), 0);
+      
       const message = response.message || `${comments.length} comments loaded`;
       dataSourceInfo.innerHTML = `
         <div class="alert alert-success">
           <i class="bi bi-check-circle"></i> Connected to Instagram as @${stateManager.getUsername() || 'user'} 
           <span class="badge bg-secondary">${comments.length} comments loaded</span>
+          ${analyzedComments > 0 ? `
+            <span class="badge bg-info">${analyzedComments} analyzed</span>
+            <span class="badge bg-primary">${totalLikes} total likes</span>
+            <span class="badge bg-primary">${totalReplies} total replies</span>
+          ` : ''}
           ${response.message ? `<br><small>${response.message}</small>` : ''}
         </div>
       `;
@@ -1213,7 +1240,259 @@ renderComments();
       document.getElementById('retryBtn')?.addEventListener('click', loadComments);
     }
   }
+  // Helper function to format date
+function formatDate(dateString) {
+  if (!dateString) return 'Not available';
+  const date = new Date(dateString);
+  return date.toLocaleString();
+}
 
+// Function to fill analysis modal with comment data
+function fillAnalysisModal(comment) {
+  // Populate basic comment info
+  document.getElementById('analysisPostId').textContent = comment.postId || 'N/A';
+  document.getElementById('analysisCommentText').textContent = comment.comment || '';
+  document.getElementById('analysisPostedDate').textContent = formatDate(comment.timestamp);
+  document.getElementById('analysisCommentStatus').textContent = comment.status || 'unknown';
+  document.getElementById('analysisCommentStatus').className = `badge bg-${getStatusColor(comment.status)}`;
+  console.log('Comment data:', comment);
+  console.log('Replies data:', comment.repliesData);
+  console.log('Replies count:', comment.repliesCount);
+  // Check if comment is posted and has analysis data
+  const isPosted = comment.status === 'posted';
+  const hasAnalysisData = comment.likes !== undefined || comment.repliesCount !== undefined;
+  
+  if (isPosted && hasAnalysisData) {
+    // Show engagement statistics
+    document.getElementById('analysisLikes').textContent = comment.likes || 0;
+    document.getElementById('analysisReplies').textContent = comment.repliesCount || 0;
+    document.getElementById('analysisTotalEngagement').textContent = (comment.likes || 0) + (comment.repliesCount || 0);
+    document.getElementById('repliesCount').textContent = comment.repliesCount || 0;
+    
+    // Show last analyzed time
+    document.getElementById('analysisLastAnalyzed').textContent = comment.lastUpdated 
+      ? formatDate(comment.lastUpdated) 
+      : 'Not yet analyzed';
+    
+    // Update analysis status
+    if (comment.lastUpdated) {
+      const hoursAgo = Math.floor((Date.now() - new Date(comment.lastUpdated).getTime()) / (1000 * 60 * 60));
+      document.getElementById('analysisStatusBadge').className = 'badge bg-success me-2';
+      document.getElementById('analysisStatusBadge').textContent = 'Analyzed';
+      document.getElementById('analysisStatusText').textContent = `Updated ${hoursAgo}h ago`;
+    } else {
+      document.getElementById('analysisStatusBadge').className = 'badge bg-warning me-2';
+      document.getElementById('analysisStatusBadge').textContent = 'Pending Analysis';
+      document.getElementById('analysisStatusText').textContent = 'Waiting for first analysis';
+    }
+    
+    // Populate replies
+   
+    const repliesList = document.getElementById('repliesList');
+  const noRepliesMessage = document.getElementById('noRepliesMessage');
+  
+  console.log('repliesList element:', repliesList);
+  console.log('noRepliesMessage element:', noRepliesMessage);
+  
+  if (comment.repliesData && Array.isArray(comment.repliesData) && comment.repliesData.length > 0) {
+    console.log('Rendering replies:', comment.repliesData);
+    
+    if (noRepliesMessage) {
+      noRepliesMessage.style.display = 'none';
+    }
+    
+    repliesList.innerHTML = comment.repliesData.map((reply, index) => {
+      console.log(`Reply ${index}:`, reply);
+      return `
+        <div class="reply-item border-bottom pb-2 mb-2">
+          <div class="d-flex justify-content-between align-items-start">
+            <div class="flex-grow-1">
+              <strong class="text-primary">@${reply.username || 'unknown'}</strong>
+              <p class="mb-1 mt-1">${reply.text || 'No text'}</p>
+            </div>
+            <span class="badge bg-light text-dark ms-2">
+              <i class="bi bi-heart-fill text-danger"></i> ${reply.likes || 0}
+            </span>
+          </div>
+        </div>
+      `;
+    }).join('');
+  } else {
+    console.log('No replies found or empty array');
+    if (noRepliesMessage) {
+      noRepliesMessage.style.display = 'block';
+    }
+    repliesList.innerHTML = '';
+  }
+    
+    // Show/hide sections
+    document.getElementById('analysisError').style.display = comment.lastError ? 'block' : 'none';
+    if (comment.lastError) {
+      document.getElementById('analysisErrorMessage').textContent = comment.lastError;
+    }
+    document.getElementById('nonPostedNotice').style.display = 'none';
+    
+  } else {
+    // Comment is not posted or doesn't have analysis data
+    document.getElementById('nonPostedNotice').style.display = 'block';
+    document.getElementById('nonPostedCurrentStatus').textContent = comment.status || 'unknown';
+    document.getElementById('nonPostedCurrentStatus').className = `badge bg-${getStatusColor(comment.status)}`;
+    
+    // Hide analysis sections
+    document.getElementById('analysisError').style.display = 'none';
+    
+    // Show placeholder values
+    document.getElementById('analysisLikes').textContent = '—';
+    document.getElementById('analysisReplies').textContent = '—';
+    document.getElementById('analysisTotalEngagement').textContent = '—';
+    document.getElementById('analysisLastAnalyzed').textContent = 'N/A';
+    document.getElementById('repliesCount').textContent = 0;
+    document.getElementById('repliesList').innerHTML = '';
+    document.getElementById('noRepliesMessage').style.display = 'block';
+    
+    document.getElementById('analysisStatusBadge').className = 'badge bg-secondary me-2';
+    document.getElementById('analysisStatusBadge').textContent = 'Not Available';
+    document.getElementById('analysisStatusText').textContent = 'Comment must be posted first';
+  }
+  
+  // Store current comment ID for refresh
+  document.getElementById('commentAnalysisModal').dataset.commentId = comment.id;
+}
+
+// Helper function to get status color
+function getStatusColor(status) {
+  const colors = {
+    'pending': 'warning',
+    'approved': 'success',
+    'processing': 'primary',
+    'posted': 'info',
+    'rejected': 'danger',
+    'error': 'danger'
+  };
+  return colors[status] || 'secondary';
+}
+  function createCommentCard(comment) {
+    const status = (comment.status || '').toLowerCase();
+    const badgeClass = getStatusBadgeClassSafe(status);
+    const createdAtStr = new Date(comment.timestamp || comment.createdAt || Date.now()).toLocaleString('en-GB', {
+      day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit'
+    });
+  
+    // Actions by status
+    let actionButtons = '';
+    if (status === 'pending') {
+      actionButtons = `
+        <button class="btn btn-sm btn-success approve-btn" data-id="${comment.id}">
+          <i class="bi bi-check-circle"></i> Approve
+        </button>
+        <button class="btn btn-sm btn-danger reject-btn" data-id="${comment.id}">
+          <i class="bi bi-x-circle"></i> Reject
+        </button>`;
+    } else if (status === 'approved') {
+      actionButtons = `
+        <button class="btn btn-sm btn-primary post-btn" data-id="${comment.id}">
+          <i class="bi bi-send"></i> Post Comment
+        </button>
+        <button class="btn btn-sm btn-danger reject-btn" data-id="${comment.id}">
+          <i class="bi bi-x-circle"></i> Reject
+        </button>`;
+    } else if (status === 'processing') {
+      actionButtons = `
+        <button class="btn btn-sm btn-outline-primary" disabled>
+          <i class="bi bi-hourglass-split"></i> Processing...
+        </button>`;
+    } else if (status === 'posted') {
+      actionButtons = `
+        <button class="btn btn-sm btn-outline-info analyze-btn" data-id="${comment.id}">
+          <i class="bi bi-graph-up"></i> View Analysis
+        </button>
+        <button class="btn btn-sm btn-outline-secondary refresh-btn" data-id="${comment.id}">
+          <i class="bi bi-arrow-clockwise"></i> Refresh
+        </button>`;
+    } else if (status === 'error') {
+      actionButtons = `
+        <button class="btn btn-sm btn-primary post-btn" data-id="${comment.id}">
+          <i class="bi bi-send"></i> Retry Post
+        </button>`;
+    }
+  
+    // History
+    let statusHistory = '';
+    if (comment.history && comment.history.length) {
+      const hist = comment.history.map(h => `
+        <span class="badge ${getStatusBadgeClassSafe(h.status)}">${h.status}</span>
+        <span>${new Date(h.timestamp).toLocaleString()}</span>
+      `).join(' → ');
+      statusHistory = `<div class="status-history"><small><i class="bi bi-clock-history"></i> Status history: ${hist}</small></div>`;
+    }
+  
+    const modelBadge = comment.model ? `<span class="badge bg-secondary json-model-badge">${comment.model}</span>` : '';
+  
+    // Engagement pills (likes/replies only live for posted)
+   // Around line where you create engagement pills, replace with:
+const likes = comment.likes || 0;
+const replies = comment.repliesCount || 0;
+const hasAnalysis = comment.likes !== undefined || comment.repliesCount !== undefined;
+const disabled = (status === 'posted' && hasAnalysis) ? '' : 'disabled';
+const titleLikes = (status === 'posted' && hasAnalysis) ? `${likes} Likes` : 'Available when posted and analyzed';
+const titleReplies = (status === 'posted' && hasAnalysis) ? `${replies} Replies` : 'Available when posted and analyzed';
+  
+    const el = document.createElement('div');
+    el.className = `card comment-card ${status}`;
+    el.dataset.id = comment.id;
+  
+    el.innerHTML = `
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span class="badge ${badgeClass} text-uppercase">${comment.status}</span>
+          <small class="text-muted">${createdAtStr} ${modelBadge}</small>
+        </div>
+  
+        <div class="section-name">Post link</div>
+        <div class="post-id">
+          <a href="https://www.instagram.com/p/${comment.postId}/" target="_blank" class="badge post-id-badge">
+            ${comment.postId}
+          </a>
+        </div>
+  
+        <div class="section-name">Post Username</div>
+        <p class="post-caption">${comment.postUsername}</p>
+  
+        <div class="section-name">Post Caption</div>
+        <p class="post-caption">${comment.postCaption}</p>
+  
+        <div class="section-name">Comment</div>
+        <p class="card-text">${comment.comment}</p>
+  
+        ${statusHistory}
+  
+        <div class="d-flex justify-content-between align-items-center mt-2">
+          <div></div>
+          <div class="engagement-pills" data-engagement>
+            <span class="engagement-pill likes ${disabled}" title="${titleLikes}" aria-disabled="${status!=='posted'}">
+              <i class="bi bi-hand-thumbs-up"></i> <span class="like-count">${likes}</span>
+            </span>
+            <span class="engagement-pill replies ${disabled}" title="${titleReplies}" aria-disabled="${status!=='posted'}">
+              <i class="bi bi-reply"></i> <span class="reply-count">${replies}</span>
+            </span>
+          </div>
+        </div>
+  
+        <hr>
+        <div class="btn-toolbar">
+          <button class="btn btn-sm btn-outline-secondary edit-btn me-2" data-id="${comment.id}">
+            <i class="bi bi-pencil"></i> Edit
+          </button>
+          ${actionButtons}
+        </div>
+      </div>`;
+  
+    // If you added the helper earlier
+    if (typeof applyEngagement === 'function') applyEngagement(el, comment);
+  
+    return el;
+  }
+  
   // Update statistics
   function updateStatistics() {
     const stats = {
@@ -1235,261 +1514,173 @@ renderComments();
   }
 
   
-    function renderComments() {
-      
-commentsContainer.innerHTML = '';
-
-// 1) Start with all comments
-let filtered = [...comments];
-
-// 2) Apply status filter
-if (currentStatusFilter !== 'all') {
-filtered = filtered.filter(c => c.status === currentStatusFilter);
-}
-
-// 3) Apply user filter if requested
-if (currentUserFilterType === 'user') {
-// Get normalized usernames from filters
-const userFilters = stateManager.getUserFilters()
-  .map(u => {
-    // Handle both string and object formats
-    const username = typeof u === 'object' ? u.username : u;
-    return username.trim().replace(/^@/, '').toLowerCase();
-  });
- 
-// Only filter if we have filters defined
-if (userFilters.length > 0) {
-  filtered = filtered.filter(c => {
-    const commentUsername = (c.username || '').trim().replace(/^@/, '').toLowerCase();
-    return userFilters.includes(commentUsername);
-  });
-}
-}
-filtered.sort((a, b) => {
-  const dateA = new Date(a.timestamp);
-  const dateB = new Date(b.timestamp);
-  return dateB - dateA; // Descending order (newest first)
-});
-// 4) Render "no results" or the cards
-if (filtered.length === 0) {
-commentsContainer.innerHTML = `
-  <div class="alert alert-info">
-    <i class="bi bi-info-circle"></i>
-    No comments match your filters.
-  </div>`;
-return;
-}
-
-let hasLogged = false;
-filtered.forEach(comment => {
-
- 
-    
-    
-      const card = document.createElement('div');
-      card.className = `card comment-card ${comment.status}`;
-      card.dataset.id = comment.id;
-      
-      // Format date
-      const date = new Date(comment.timestamp);
-      const formattedDate = date.toLocaleString('en-GB', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-      });
-
-      // Determine badge color based on status
-      let badgeClass = 'bg-secondary';
-      if (comment.status === 'pending') badgeClass = 'bg-warning';
-      if (comment.status === 'approved') badgeClass = 'bg-success';
-      if (comment.status === 'processing') badgeClass = 'bg-primary';
-      if (comment.status === 'posted') badgeClass = 'bg-info';
-      if (comment.status === 'rejected') badgeClass = 'bg-danger';
-      if (comment.status === 'error') badgeClass = 'bg-warning text-dark';
-      
-      // Determine action buttons based on status
-      let actionButtons = '';
-      if (comment.status === 'pending') {
-        actionButtons = `
-          <button class="btn btn-sm btn-success approve-btn" data-id="${comment.id}">
-            <i class="bi bi-check-circle"></i> Approve
-          </button>
-          <button class="btn btn-sm btn-danger reject-btn" data-id="${comment.id}">
-            <i class="bi bi-x-circle"></i> Reject
-          </button>
-        `;
-      } else if (comment.status === 'approved') {
-        actionButtons = `
-          <button class="btn btn-sm btn-primary post-btn" data-id="${comment.id}">
-            <i class="bi bi-send"></i> Post Comment
-          </button>
-          <button class="btn btn-sm btn-danger reject-btn" data-id="${comment.id}">
-            <i class="bi bi-x-circle"></i> Reject
-          </button>
-        `;
-      } else if (comment.status === 'error') {
-        actionButtons = `
-          <button class="btn btn-sm btn-primary post-btn" data-id="${comment.id}">
-            <i class="bi bi-send"></i> Retry Post
-          </button>
-        `;
-      }
-      
-      // Build status history display
-      let statusHistory = '';
-      if (comment.history && comment.history.length > 0) {
-        statusHistory = `
-          <div class="status-history">
-            <small>
-              <i class="bi bi-clock-history"></i> Status history:
-              ${comment.history.map(h => `
-                <span class="badge ${getStatusBadgeClass(h.status)}">${h.status}</span>
-                <span>${new Date(h.timestamp).toLocaleString()}</span>
-              `).join(' → ')}
-            </small>
-          </div>
-        `;
-      }
-      
-      // JSON/AI model badge
-      const modelBadge = comment.model 
-        ? `<span class="badge bg-secondary json-model-badge">${comment.model}</span>` 
-        : '';
-      
-      card.innerHTML = `
-        <div class="card-body">
-          <!-- Section: Post ID -->
-          <div class="section-name">Post link</div>
-          <div class="post-id">
-            <a
-              href="https://www.instagram.com/p/${comment.postId}/"
-              target="_blank"
-              class="badge post-id-badge"
-            >
-              ${comment.postId}
-            </a>
-          </div>
-
-          <!-- Section: Post Username -->
-          <div class="section-name">Post Username</div>
-          <p class="post-caption">${comment.postUsername}</p>
-
-          <!-- Section: Post Caption -->
-          <div class="section-name">Post Caption</div>
-          <p class="post-caption">${comment.postCaption}</p>
-
-          <!-- Section: Comment Text -->
-          <div class="section-name">Comment </div>
-          <p class="card-text">${comment.comment}</p>
-          <div class="timestamp">
-            ${formattedDate} ${modelBadge}
-          </div>
-          ${statusHistory}
-          <hr>
-          <div class="btn-toolbar">
-            <button class="btn btn-sm btn-outline-secondary edit-btn me-2" data-id="${comment.id}">
-              <i class="bi bi-pencil"></i> Edit
-            </button>
-            ${actionButtons}
-          </div>
-        </div>
-      `;
-      
-      commentsContainer.appendChild(card);
-    });
-    
-    // Add event listeners to action buttons
-    document.querySelectorAll('.approve-btn').forEach(btn => {
-btn.addEventListener('click', async (e) => {
-const id = e.target.closest('button').dataset.id;
-try {
-  // Show loading state
-  const button = e.target.closest('button');
-  button.disabled = true;
-  button.innerHTML = '<i class="bi bi-hourglass"></i> Approving...';
+  function renderComments() {
+    commentsContainer.innerHTML = '';
   
-  await api.approveComment(id);
-  loadComments(); // Reload comments after successful approval
-} catch (error) {
-  alert(`Error approving comment: ${error.message}`);
-  // Reset button on error
-  const button = e.target.closest('button');
-  button.disabled = false;
-  button.innerHTML = '<i class="bi bi-check-circle"></i> Approve';
-}
-});
-});
-    
-    document.querySelectorAll('.reject-btn').forEach(btn => {
+    // 1) Start with all comments
+    let filtered = [...comments];
+  
+    // 2) Status filter
+    if (currentStatusFilter !== 'all') {
+      filtered = filtered.filter(c => c.status === currentStatusFilter);
+    }
+  
+    // 3) User filter
+    if (currentUserFilterType === 'user') {
+      const userFilters = stateManager.getUserFilters()
+        .map(u => (typeof u === 'object' ? u.username : u))
+        .map(u => u.trim().replace(/^@/, '').toLowerCase());
+      if (userFilters.length) {
+        filtered = filtered.filter(c =>
+          userFilters.includes((c.username || '').trim().replace(/^@/, '').toLowerCase())
+        );
+      }
+    }
+  
+    // Sort by timestamp desc
+    filtered.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+  
+    if (!filtered.length) {
+      commentsContainer.innerHTML = `
+        <div class="alert alert-info">
+          <i class="bi bi-info-circle"></i> No comments match your filters.
+        </div>`;
+      return;
+    }
+  
+    // 4) Build cards via the helper (NO const card / formattedDate here)
+    filtered.forEach(comment => {
+      const cardEl = createCommentCard(comment);
+      commentsContainer.appendChild(cardEl);
+    });
+  
+    // 5) Listeners (reuse your existing, but prefer e.currentTarget)
+    document.querySelectorAll('.approve-btn').forEach(btn => {
       btn.addEventListener('click', async (e) => {
-        const id = e.target.closest('button').dataset.id;
-        if (confirm('Are you sure you want to reject this comment?')) {
-          try {
-            await api.rejectComment(id);
-            loadComments(); // Reload all comments
-          } catch (error) {
-            alert(`Error rejecting comment: ${error.message}`);
-          }
+        const button = e.currentTarget;
+        const id = button.dataset.id;
+        try {
+          button.disabled = true;
+          button.innerHTML = '<i class="bi bi-hourglass"></i> Approving...';
+          await api.approveComment(id);
+          loadComments();
+        } catch (error) {
+          alert(`Error approving comment: ${error.message}`);
+          button.disabled = false;
+          button.innerHTML = '<i class="bi bi-check-circle"></i> Approve';
         }
       });
     });
-    
+  
+    document.querySelectorAll('.reject-btn').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        const id = e.currentTarget.dataset.id;
+        if (!confirm('Are you sure you want to reject this comment?')) return;
+        try {
+          await api.rejectComment(id);
+          loadComments();
+        } catch (error) {
+          alert(`Error rejecting comment: ${error.message}`);
+        }
+      });
+    });
+  
     document.querySelectorAll('.post-btn').forEach(btn => {
       btn.addEventListener('click', async (e) => {
-        const id = e.target.closest('button').dataset.id;
+        const button = e.currentTarget;
+        const id = button.dataset.id;
         try {
-          const button = e.target.closest('button');
           button.disabled = true;
           button.innerHTML = '<i class="bi bi-hourglass"></i> Posting...';
-          
           await api.postComment(id);
           loadComments();
         } catch (error) {
           alert(`Error posting comment: ${error.message}`);
-          const button = e.target.closest('button');
           button.disabled = false;
           button.innerHTML = '<i class="bi bi-send"></i> Post Comment';
         }
       });
     });
-    
+  
     document.querySelectorAll('.edit-btn').forEach(btn => {
-btn.addEventListener('click', async (e) => {
-const id = e.target.closest('button').dataset.id;
-try {
-  const comment = await api.getCommentById(id);
+      btn.addEventListener('click', async (e) => {
+        const id = e.currentTarget.dataset.id;
+        try {
+          const comment = await api.getCommentById(id);
+          editCommentIdInput.value = comment.id;
+          commentTextArea.value    = comment.comment;
+          postCaptionArea.value    = comment.postCaption;
+          postIdInput.value        = comment.postId;
+          editModal.show();
+        } catch (error) {
+          alert(`Error loading comment details: ${error.message}`);
+        }
+      });
+    });
   
- 
-
-editCommentIdInput.value = comment.id;
-commentTextArea.value    = comment.comment;    
-postCaptionArea.value    = comment.postCaption;
-postIdInput.value        = comment.postId;
-
+    // NEW: analysis + refresh for posted
+   // In the renderComments function, update the analyze button listener:
+document.querySelectorAll('.analyze-btn').forEach(btn => {
+  btn.addEventListener('click', async (e) => {
+    const id = e.currentTarget.dataset.id;
+    console.log('Opening analysis for comment ID:', id);
+    
+    try {
+      // Find comment in local array first (faster)
+      let comment = comments.find(c => c.id === id);
+      
+      // If not found locally or needs refresh, fetch from API
+      if (!comment) {
+        console.log('Comment not in local cache, fetching from API');
+        comment = await api.getCommentById(id);
+      }
+      
+      console.log('Comment to analyze:', comment);
+      
+      fillAnalysisModal(comment);
+      const modal = new bootstrap.Modal(document.getElementById('commentAnalysisModal'));
+      modal.show();
+    } catch (error) {
+      console.error('Error loading analysis:', error);
+      alert(`Error loading analysis: ${error.message}`);
+    }
+  });
+});
   
-  editModal.show();
-} catch (error) {
-  alert(`Error loading comment details: ${error.message}`);
-}
-});
-});
+    document.querySelectorAll('.refresh-btn').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        const button = e.currentTarget;
+        const id = button.dataset.id;
+        try {
+          button.disabled = true;
+          button.innerHTML = '<i class="bi bi-arrow-repeat"></i> Refreshing...';
+          await api.refreshCommentMetrics(id); // ensure this exists on your backend
+          loadComments();
+        } catch (error) {
+          alert(`Error refreshing: ${error.message}`);
+          button.disabled = false;
+          button.innerHTML = '<i class="bi bi-arrow-clockwise"></i> Refresh';
+        }
+      });
+    });
   }
+  
   
   // Helper function to get status badge class
-  function getStatusBadgeClass(status) {
-    switch (status) {
-      case 'pending': return 'bg-warning text-dark';
-      case 'approved': return 'bg-success';
-      case 'processing': return 'bg-primary';
-      case 'posted': return 'bg-info';
-      case 'rejected': return 'bg-danger';
-      case 'error': return 'bg-warning text-dark';
-      default: return 'bg-secondary';
-    }
-  }
+  // Status → badge class
+const STATUS_BADGE = {
+  pending:    'bg-warning text-dark',
+  approved:   'bg-success',
+  processing: 'bg-primary',
+  posted:     'bg-info',
+  rejected:   'bg-danger',
+  error:      'bg-warning text-dark'
+};
+
+function getStatusBadgeClassSafe(status) {
+  return STATUS_BADGE[(status || '').toLowerCase()] || 'bg-secondary';
+}
+
   function updateFilterBanner() {
     if (currentUserFilterType === 'user') {
       api.getFilteredUsers().then(users => {
@@ -1655,6 +1846,29 @@ postIdInput.value        = comment.postId;
   });
   
   
-
+// Add this near the end, before the closing of DOMContentLoaded
+document.getElementById('refreshAnalysisBtn')?.addEventListener('click', async () => {
+  const commentId = document.getElementById('commentAnalysisModal').dataset.commentId;
+  if (!commentId) return;
+  
+  const btn = document.getElementById('refreshAnalysisBtn');
+  const originalText = btn.innerHTML;
+  btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Refreshing...';
+  btn.disabled = true;
+  
+  try {
+    await loadComments();
+    const comment = comments.find(c => c.id === commentId);
+    if (comment) {
+      fillAnalysisModal(comment);
+    }
+  } catch (error) {
+    console.error('Error refreshing analysis:', error);
+    alert('Failed to refresh analysis data');
+  } finally {
+    btn.innerHTML = originalText;
+    btn.disabled = false;
+  }
+});
   checkInitialState();
     });
