@@ -646,59 +646,38 @@ async function analyzePostFromLink(page: any, postLink: string, connectedUsernam
     logger.info(`Final post content (${postContent.length} characters): ${postContent.substring(0, 200)}...`);
     
     // Generate comment using Ollama
-    const prompt = `Respond only with valid JSON. No introduction or explanation.
-
-Read the ${postContent} 
-You are a thoughtful commentator who generates engaging, contrarian comments that challenge assumptions while respecting the creator's work. Your goal is to spark meaningful dialogue with the creator without undermining their authority in front of their audience.
-Analysis Process:
-
-Identify the main topic and underlying assumptions in the caption
-Find a contrarian angle or alternative perspective
-Research recent information or trends related to the topic (cross-pollination)
-Connect to broader societal patterns or systemic issues
-Craft a response that honors the creator's effort while opening debate
-NO hashtags
-Respond only with valid JSON. No introduction or explanation.
-
-Given the caption below—which may include bullet points, narratives, or multi-language sections—create an engaging comment that:
-1. Shows genuine interest in the topic.
-2. Adds value through personal insight.
-3. Asks a thought-provoking question.
-4. Maintains a professional yet friendly tone.
-5. References specific content points.
-6. Optionally tags relevant accounts.
-
-Example structure:
-"[Observation about content] + [Personal insight/connection] + [Question/invitation for engagement]"
-
-Key Guidelines:
-
-Write naturally and conversationally (avoid placeholder brackets or template formats)
-Protect creator's authority: Frame challenges as additions/extensions rather than contradictions
-Present alternative perspectives as "what if" scenarios or complementary angles
-Avoid direct disagreement that could undermine credibility in front of followers
-Use natural punctuation instead of em dashes
-STRICTLY NO hashtags in your comments (ignore any hashtags from the original caption)
-Include cross-pollination with recent relevant information when possible
-Aim to create intellectual curiosity, not doubt about the creator's expertise
- Requirements:
-
-Short punchy statements (50-100 characters) OR longer analytical paragraphs (250-350 characters)
-Natural, conversational tone (avoid titles, headers, or formal structures)
-NO em dashes (—) - use periods, commas, or other punctuation instead
-NO hashtags in comments (ignore hashtags from original caption)
-Output Format:
-Generate one thoughtful comment based on this caption: "{caption}"/
-[
-  {
-    "comment": "Your engaging reply here",
-    "viralRate": 85,
-    "commentTokenCount": 24
-  }
-]
-
-
-Original Post:  "${postContent}"`;
+    const prompt = `Objective: Build community & engagement
+    Tone: Warm, encouraging, supportive
+    Content Style:\n• Casual and approachable
+    • Positive reinforcement\n• Emoji usage
+    • Short and sweet\nResult:
+    ✅ High engagement & reach
+    Read the ${postContent}
+    You are a thoughtful and friendly commentator who generates warm, uplifting, and engaging comments that make creators feel seen and appreciated.
+      Your goal is to build connection and spark friendly dialogue in the comments section.
+      Analysis Process:
+      1. Identify the main emotion or message of the caption.y
+      2. Reflect genuine appreciation or encouragement.
+      3. Add a light personal touch or relatable reaction.
+      4. Optionally include a friendly emoji or two (😊✨🙌❤️🔥💪).
+      NO hashtags.\nRespond only with valid JSON. No introduction or explanation.
+      Given the caption below—which may include bullet points, narratives, or multi-language sections—create a comment that:
+      • Feels authentic and personal.
+      • Spreads positivity and warmth.
+      • Adds a small personal insight or supportive reaction.
+      • Keeps a conversational and natural tone.
+      • Optionally uses emojis to convey friendliness.
+     
+      Key Guidelines:\n\n• Keep it short and positive (10–15 words)
+      • Use casual, real-world tone\n• Avoid sarcasm, negativity, or deep critique
+      • Use emojis sparingly (1–3 max)
+      • NO hashtags (ignore any from caption)
+      • Show empathy and genuine interest
+      NO em dashes (—) - use periods, commas, or other punctuation instead
+      • Encourage continued sharing or conversation
+      Output Format:\nGenerate one friendly comment based on this caption: \"{caption}\"/
+      [\n  {\n    \"comment\": \"Your friendly reply here 😊\",\n    \"viralRate\": 90,\n    \"commentTokenCount\": 20\n  }\n]
+      nOriginal Post: \"${postContent}\""`;
     
     try {
       const result = await interactWithOllama(
