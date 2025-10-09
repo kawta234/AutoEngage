@@ -13,7 +13,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "Riona-AI-Agent is an AI-powered automation tool designed to interact with various social media platforms.",
+  "description": "epi-engage is an AI-powered automation tool designed to interact with various social media platforms.",
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
     "@langchain/community": "^0.3.47",

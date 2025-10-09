@@ -52,9 +52,9 @@ export const getlinkComments = async (req: Request, res: Response): Promise<void
     
     const commentsCollection = getCommentsCollection();
     
-    // Query comments using the userEmail field in metadata
+    // Query comments using the username field
     const comments = await commentsCollection
-      .find({ "username": username }) // Search by userEmail in metadata
+      .find({ "username": username })
       .toArray();
     
     // If no comments found
@@ -66,9 +66,9 @@ export const getlinkComments = async (req: Request, res: Response): Promise<void
       return;
     }
 
-    // Format the comments based on the structure
+    // Format the comments with analysis data
     const formatted = comments.map(c => ({
-      id: c._id.toString(), // Convert _id to string
+      id: c._id.toString(),
       accountId: c.accountId,
       userId: c.userId,
       platform: c.platform,
@@ -79,7 +79,23 @@ export const getlinkComments = async (req: Request, res: Response): Promise<void
       timestamp: c.timestamp ?? c.createdAt,
       status: c.status ?? 'pending',
       model: c.model ?? 'llama3.1',
-     
+      
+      // Analysis data from LinkedIn comment analysis
+      likes: c.likes ?? 0,
+      impressions: c.impressions ?? 0,
+      repliesCount: c.repliesCount ?? 0,
+      repliesData: c.repliesData ?? [],
+      
+      // Analysis timestamps
+      analyzedAt: c.analyzedAt ?? null,
+      lastUpdated: c.lastUpdated ?? null,
+      
+      // Error information if any
+      lastError: c.lastError ?? null,
+      errorMessage: c.errorMessage ?? null,
+      
+      // Metadata
+      metadata: c.metadata ?? {}
     }));
 
     res.status(200).json(formatted);

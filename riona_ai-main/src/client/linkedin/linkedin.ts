@@ -256,7 +256,7 @@ export async function runLinkedIn(username: string, minPort: number = 6000, maxP
             await analyzePostFromLink(page, postLink, username);
             
             await delay(2000); // Delay between generations
-            await analyzePostFromLink(page, postLink, username);
+            await analyzePostFromLink2(page, postLink, username);
             
             processedLinks.add(postLink);
             totalProcessed++;
@@ -521,6 +521,229 @@ if (freshPostLinks.length < 5 && attempts < maxAttempts) {
 
 // ACTION 2: Analyze individual post from link (FIXED)
 async function analyzePostFromLink(page: any, postLink: string, connectedUsername: string) {
+  try {
+    logger.info(`Navigating to post: ${postLink}`);
+    
+    // Navigate to the specific post with increased timeout
+    try {
+      await page.goto(postLink, { 
+        waitUntil: "domcontentloaded",
+        timeout: 120000
+      });
+      await delay(5000);
+    } catch (navError) {
+      logger.error(`Navigation to post failed: ${navError}`);
+      return;
+    }
+    
+    // Wait for post content to load
+    try {
+      await page.waitForSelector('.feed-shared-update-v2, .feed-shared-text, .share-update-card', { timeout: 15000 });
+    } catch (error) {
+      logger.warn(`Post content not found for ${postLink}, trying alternative selectors...`);
+    }
+    
+    // Extract author information
+    let postAuthor = "";
+    const authorSelectorsForSinglePost = [
+      '.GYxRwjxcYYrdEgVEwOEFcsSzpSgkaduM span[aria-hidden="true"]',
+  // Ajoutez des sélecteurs de fallback si nécessaire
+  'span[dir="ltr"] span[aria-hidden="true"]',
+  '.visually-hidden'  ];
+    
+    for (const selector of authorSelectorsForSinglePost) {
+      try {
+        const authorElement = await page.$(selector);
+        if (authorElement) {
+          postAuthor = await authorElement.evaluate((el: HTMLElement) => el.textContent?.trim() || "");
+          if (postAuthor && postAuthor.length > 0) {
+            logger.info(`Post author found: ${postAuthor}`);
+            break;
+          }
+        }
+      } catch (error) {
+        continue;
+      }
+    }
+    
+    if (!postAuthor || postAuthor.trim().length === 0) {
+      logger.warn(`No author found for post ${postLink}. Skipping...`);
+      return;
+    }
+    
+    // Check if author is in target list
+    const { matched, accountData } = await checkTargetUsernameMatch(postAuthor);
+    
+    if (!matched) {
+      logger.info(`Post author "${postAuthor}" is not in our target list. Skipping...`);
+      return;
+    }
+    
+    logger.info(`Post author "${postAuthor}" is in our target list. Proceeding with content analysis...`);
+    
+    // Extract post content
+    let postContent = "";
+    const contentSelectorsForSinglePost = [
+      '.break-words.tvm-parent-container span[dir="ltr"]'
+    ];
+    
+    for (const selector of contentSelectorsForSinglePost) {
+      try {
+        const contentElement = await page.$(selector);
+        if (contentElement) {
+          postContent = await contentElement.evaluate((el: HTMLElement) => el.textContent?.trim() || "");
+          if (postContent && postContent.length > 0) {
+            logger.info(`Post content found with selector "${selector}"`);
+            break;
+          }
+        }
+      } catch (error) {
+        continue;
+      }
+    }
+    
+    if (!postContent || postContent.trim().length === 0) {
+      logger.warn(`No content found for post ${postLink}. Skipping comment generation.`);
+      return;
+    }
+    
+    // Check for "See more" link and click it
+    const seeMoreSelectors = [
+      '.feed-shared-inline-show-more-text__see-more-less-toggle'
+    ];
+    
+    for (const seeMoreSelector of seeMoreSelectors) {
+      try {
+        const seeMoreLink = await page.$(seeMoreSelector);
+        if (seeMoreLink) {
+          logger.info(`Expanding post content for ${postLink}...`);
+          await seeMoreLink.click();
+          await delay(3000);
+          
+          // Re-extract content after expansion
+          for (const selector of contentSelectorsForSinglePost) {
+            try {
+              const contentElement = await page.$(selector);
+              if (contentElement) {
+                const expandedContent = await contentElement.evaluate((el: HTMLElement) => el.textContent?.trim() || "");
+                if (expandedContent && expandedContent.length > postContent.length) {
+                  postContent = expandedContent;
+                  logger.info(`Expanded content extracted for ${postLink}`);
+                  break;
+                }
+              }
+            } catch (error) {
+              continue;
+            }
+          }
+          break;
+        }
+      } catch (error) {
+        continue;
+      }
+    }
+    
+    logger.info(`Final post content (${postContent.length} characters): ${postContent.substring(0, 200)}...`);
+    
+    // Generate comment using Ollama
+    const prompt = `Respond only with valid JSON. No introduction or explanation.
+
+Read the ${postContent} 
+You are a thoughtful commentator who generates engaging, contrarian comments that challenge assumptions while respecting the creator's work. Your goal is to spark meaningful dialogue with the creator without undermining their authority in front of their audience.
+Analysis Process:
+
+Identify the main topic and underlying assumptions in the caption
+Find a contrarian angle or alternative perspective
+Research recent information or trends related to the topic (cross-pollination)
+Connect to broader societal patterns or systemic issues
+Craft a response that honors the creator's effort while opening debate
+NO hashtags
+Respond only with valid JSON. No introduction or explanation.
+
+Given the caption below—which may include bullet points, narratives, or multi-language sections—create an engaging comment that:
+1. Shows genuine interest in the topic.
+2. Adds value through personal insight.
+3. Asks a thought-provoking question.
+4. Maintains a professional yet friendly tone.
+5. References specific content points.
+6. Optionally tags relevant accounts.
+
+Example structure:
+"[Observation about content] + [Personal insight/connection] + [Question/invitation for engagement]"
+
+Key Guidelines:
+
+Write naturally and conversationally (avoid placeholder brackets or template formats)
+Protect creator's authority: Frame challenges as additions/extensions rather than contradictions
+Present alternative perspectives as "what if" scenarios or complementary angles
+Avoid direct disagreement that could undermine credibility in front of followers
+Use natural punctuation instead of em dashes
+STRICTLY NO hashtags in your comments (ignore any hashtags from the original caption)
+Include cross-pollination with recent relevant information when possible
+Aim to create intellectual curiosity, not doubt about the creator's expertise
+ Requirements:
+
+Short punchy statements (50-100 characters) OR longer analytical paragraphs (250-350 characters)
+Natural, conversational tone (avoid titles, headers, or formal structures)
+NO em dashes (—) - use periods, commas, or other punctuation instead
+NO hashtags in comments (ignore hashtags from original caption)
+Output Format:
+Generate one thoughtful comment based on this caption: "{caption}"/
+[
+  {
+    "comment": "Your engaging reply here",
+    "viralRate": 85,
+    "commentTokenCount": 24
+  }
+]
+
+
+Original Post:  "${postContent}"`;
+    
+    try {
+      const result = await interactWithOllama(
+        prompt,
+        undefined,
+        undefined,
+        "llama3.1:latest",
+        false,
+        console.log,
+        undefined,
+        "json",
+        postLink,
+        postContent,
+        undefined,
+        postAuthor,
+        connectedUsername,
+        "linkedin"
+
+      );
+      
+      // Extract generated comment
+      let extractedComment = "";
+      try {
+        const jsonResult = typeof result.response === "string" ? JSON.parse(result.response) : result;
+        extractedComment = Array.isArray(jsonResult) ? jsonResult[0]?.comment : jsonResult?.comment;
+      } catch (e) {
+        logger.error("Unable to extract comment from Ollama response:", e);
+        logger.error("Raw response:", result.response);
+      }
+      
+      if (extractedComment) {
+        logger.info(`✅ Comment generated for post ${postLink} by ${connectedUsername}: "${extractedComment}"`);
+      } else {
+        logger.warn(`❌ Failed to generate comment for post ${postLink}`);
+      }
+      
+    } catch (ollamaError) {
+      logger.error(`Ollama interaction failed: ${ollamaError}`);
+    }
+    
+  } catch (error) {
+    logger.error(`Error analyzing post ${postLink}:`, error);
+  }
+}
+async function analyzePostFromLink2(page: any, postLink: string, connectedUsername: string) {
   try {
     logger.info(`Navigating to post: ${postLink}`);
     

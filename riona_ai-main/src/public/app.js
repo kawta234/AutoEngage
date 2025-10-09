@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const newCommentModal = new bootstrap.Modal(document.getElementById('newCommentModal'));
   const usernameModal = new bootstrap.Modal(document.getElementById('usernameModal'));
   const accountsModal = new bootstrap.Modal(document.getElementById('accountsManagementModal'));
+  const commentAnalysisModal = new bootstrap.Modal(document.getElementById('commentAnalysisModal'));
   const commentTextArea = document.getElementById('commentText');
   const postCaptionArea = document.getElementById('postCaption');
   const postIdInput = document.getElementById('postId');
@@ -35,21 +36,21 @@ document.addEventListener('DOMContentLoaded', function () {
   const userFilterModal = new bootstrap.Modal(document.getElementById('userFilterModal'));
 
   let currentStatusFilter = 'all';       
-let currentUserFilterType = 'all'; 
+  let currentUserFilterType = 'all'; 
   let comments = [];
   let isLoggedIn = false; 
   let hasUsername = false; 
-  const API_BASE_URL = '/api'; // Adjust based on your API configuration
+  const API_BASE_URL = '/api';
   
-
   const AUTH_STORAGE_KEY = 'linkedin_auth_status';
   const USERNAME_STORAGE_KEY = 'linkedin_username';
   const USER_FILTERS_STORAGE_KEY = 'user_filters';
-  // Updated API client
+
+  // Updated API client with analysis endpoint
   const api = {
     async fetchComments() {
       const username = stateManager.getUsername();
-      console.log('Username from state:', username); // Debug log
+      console.log('Username from state:', username);
       
       if (!username) {
         throw new Error('Username not set');
@@ -57,21 +58,20 @@ let currentUserFilterType = 'all';
       
       try {
         const url = `${API_BASE_URL}/comments/link?username=${encodeURIComponent(username)}`;
-        console.log('Fetching from URL:', url); // Debug log
+        console.log('Fetching from URL:', url);
         
         const response = await fetch(url);
-        console.log('Response status:', response.status); // Debug log
-        console.log('Response ok:', response.ok); // Debug log
+        console.log('Response status:', response.status);
+        console.log('Response ok:', response.ok);
         
         if (!response.ok) {
-          // Get the actual error message from the server
           const errorData = await response.text();
           console.error('Server error response:', errorData);
           throw new Error(`HTTP ${response.status}: ${errorData}`);
         }
         
         const data = await response.json();
-        console.log('Successfully loaded comments:', data.length, 'comments'); // Debug log
+        console.log('Successfully loaded comments:', data.length, 'comments');
         return data;
         
       } catch (error) {
@@ -80,36 +80,37 @@ let currentUserFilterType = 'all';
           message: error.message,
           stack: error.stack
         });
-        throw error; // Re-throw to be caught by loadComments
+        throw error;
       }
     },
+    
     async getCommentById(id) {
       const response = await fetch(`${API_BASE_URL}/comments/${id}`);
       if (!response.ok) throw new Error(`HTTP error ${response.status}`);
       return await response.json();
     },
+    
     async approveComment(id) {
-try {
-// First, get the comment to find its username
-const comment = await this.getCommentById(id);
-const username = comment.username;
+      try {
+        const comment = await this.getCommentById(id);
+        const username = comment.username;
 
-// Now make the approve request with the username
-const response = await fetch(`${API_BASE_URL}/comments/${id}/approve`, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({ userId: id }) // Using comment ID as userId as per your backend expectation
-});
+        const response = await fetch(`${API_BASE_URL}/comments/${id}/approve`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ userId: id })
+        });
 
-if (!response.ok) throw new Error(`HTTP error ${response.status}`);
-return await response.json();
-} catch (error) {
-console.error('Error approving comment:', error);
-throw error;
-}
-},
+        if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+        return await response.json();
+      } catch (error) {
+        console.error('Error approving comment:', error);
+        throw error;
+      }
+    },
+    
     async rejectComment(id) {
       const response = await fetch(`${API_BASE_URL}/comments/${id}/reject`, {
         method: 'POST',
@@ -117,6 +118,7 @@ throw error;
       if (!response.ok) throw new Error(`HTTP error ${response.status}`);
       return await response.json();
     },
+    
     async postComment(id) {
       const response = await fetch(`${API_BASE_URL}/comments/${id}/comment`, {
         method: 'POST',
@@ -124,6 +126,7 @@ throw error;
       if (!response.ok) throw new Error(`HTTP error ${response.status}`);
       return await response.json();
     },
+    
     async updateComment(id, comment) {
       const response = await fetch(`${API_BASE_URL}/comments/${id}`, {
         method: 'PUT',
@@ -135,6 +138,7 @@ throw error;
       if (!response.ok) throw new Error(`HTTP error ${response.status}`);
       return await response.json();
     },
+    
     async triggerFifo(username) {
       const response = await fetch(`${API_BASE_URL}/linkedin/trigger-fifo`, {
         method: 'POST',
@@ -151,22 +155,26 @@ throw error;
       
       return await response.json();
     },
-    async triggerAnalysis  (username)  {
+    
+    async triggerAnalysis(username) {
       try {
-        const response = await fetch(`${API_BASE_URL}/analysis/analyze-posted-comments`, {
+        const response = await fetch(`${API_BASE_URL}/analysis/analyze-comments`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ username, port })
+          body: JSON.stringify({ username })
         });
         
         const data = await response.json();
         console.log('Analysis started:', data);
+        return data;
       } catch (error) {
         console.error('Error:', error);
+        throw error;
       }
     },
+    
     async generateComment(postId, caption) {
       const response = await fetch(`${API_BASE_URL}/comments/generate`, {
         method: 'POST',
@@ -178,6 +186,7 @@ throw error;
       if (!response.ok) throw new Error(`HTTP error ${response.status}`);
       return await response.json();
     },
+    
     async linkedinLogin(username) {
       const response = await fetch(`${API_BASE_URL}/linkedin/login`, { 
         method: 'POST',
@@ -189,13 +198,14 @@ throw error;
       if (!response.ok) throw new Error(`HTTP error ${response.status}`);
       return await response.json();
     },
+    
     async checkLoginStatus() {
       const response = await fetch(`${API_BASE_URL}/instagram/status`);
       if (!response.ok) throw new Error(`HTTP error ${response.status}`);
       return await response.json();
     },
+    
     async setUsername(username) {
-      // This would be a new API endpoint to set the username on the server
       console.log('Setting username:', username);
       const response = await fetch(`${API_BASE_URL}/linkedin/username`, {
         method: 'POST',
@@ -207,7 +217,8 @@ throw error;
       if (!response.ok) throw new Error(`HTTP error ${response.status}`);
       return await response.json();
     },
-    async runLinkedInAgent  (username)  {
+    
+    async runLinkedInAgent(username) {
       const response = await fetch(`${API_BASE_URL}/linkedin/run`, {
         method: 'POST',
         headers: {
@@ -219,151 +230,140 @@ throw error;
       if (!response.ok) throw new Error(`HTTP error ${response.status}`);
       return await response.json();
     },
-    // API endpoints for user filtering
+    
     async saveFilteredUser(filterUsername) {
-try {
-// Get username through the stateManager - for validation only
-const username = stateManager.getUsername();
-console.log('Current username:', username);
+      try {
+        const username = stateManager.getUsername();
+        console.log('Current username:', username);
 
+        if (!username) {
+          throw new Error('You must set your linkedin username first');
+        }
 
-if (!username) {
-  throw new Error('You must set your linkedin username first');
-}
+        const targetUsername = filterUsername.trim().replace(/^@/, '').toLowerCase();
+        console.log('Target username:', targetUsername);
 
-// Process the filter username
-const targetUsername = filterUsername.trim().replace(/^@/, '').toLowerCase();
-console.log('Target username:', targetUsername);
+        if (!targetUsername) {
+          throw new Error('Target username is required');
+        }
 
-// Check if target username is provided
-if (!targetUsername) {
-  throw new Error('Target username is required');
-}
+        const res = await fetch(`${API_BASE_URL}/linkedin/filtered-users`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({
+            username: stateManager.getUsername(),
+            targetUsername: filterUsername 
+          }),
+        });
 
-// Make the API request
-const res = await fetch(`${API_BASE_URL}/linkedin/filtered-users`, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  credentials: 'include', // Include cookies for authentication
-  body: JSON.stringify({
-username: stateManager.getUsername(), // From localStorage
-targetUsername: filterUsername 
- }), });
+        const data = await res.json();
 
-// Get the response data
-const data = await res.json();
+        if (!res.ok) {
+          console.error('Error response:', data);
+          throw new Error(data.message || `HTTP ${res.status}`);
+        }
 
-// Check if request was successful
-if (!res.ok) {
-  console.error('Error response:', data);
-  throw new Error(data.message || `HTTP ${res.status}`);
-}
-
-return data;
-} catch (error) {
-console.error('Error in saveFilteredUser:', error);
-throw error;
-}
-},
-async getFilteredUsers() {
-  // Get the username from stateManager instead of directly referencing an undefined variable
-  const username = stateManager.getUsername();
-  
-  if (!username) {
-    throw new Error('Username is required');
-  }
-  
-  try {
-
-    const response = await fetch(`${API_BASE_URL}/linkedin/filtered-users?username=${encodeURIComponent(username)}`);
+        return data;
+      } catch (error) {
+        console.error('Error in saveFilteredUser:', error);
+        throw error;
+      }
+    },
     
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.message || `HTTP ${response.status}`);
+    async getFilteredUsers() {
+      const username = stateManager.getUsername();
+      
+      if (!username) {
+        throw new Error('Username is required');
+      }
+      
+      try {
+        const response = await fetch(`${API_BASE_URL}/linkedin/filtered-users?username=${encodeURIComponent(username)}`);
+        
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.message || `HTTP ${response.status}`);
+        }
+        
+        return await response.json();
+      } catch (error) {
+        console.error('API error in getFilteredUsers:', error);
+        throw error;
+      }
+    },
+    
+    async deleteFilteredUser(targetUsername) {
+      try {
+        const username = stateManager.getUsername();
+        
+        if (!username) {
+          throw new Error('Username not found in localStorage');
+        }
+        
+        const res = await fetch(`${API_BASE_URL}/linkedin/filtered-users/${targetUsername}?username=${encodeURIComponent(username)}`, {
+          method: 'DELETE',
+          credentials: 'include'
+        });
+        
+        if (!res.ok) {
+          const errorData = await res.json().catch(() => ({ message: `HTTP Error ${res.status}` }));
+          throw new Error(errorData.message || `HTTP Error ${res.status}`);
+        }
+        
+        return await res.json();
+      } catch (error) {
+        console.error('Error in deleteFilteredUser:', error);
+        throw error;
+      }
+    },
+
+    async updateUserFilters(usernames) {
+      const response = await fetch(`${API_BASE_URL}/filters/users`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ usernames }),
+      });
+
+      if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+      return await response.json();
     }
-    
-    return await response.json();
-  } catch (error) {
-    console.error('API error in getFilteredUsers:', error);
-    throw error;
-  }
-},
-async deleteFilteredUser(targetUsername) {
-  try {
-    // Get username from localStorage
-    const username = stateManager.getUsername();
-    
-    if (!username) {
-      throw new Error('Username not found in localStorage');
-    }
-    
-    const res = await fetch(`${API_BASE_URL}/linkedin/filtered-users/${targetUsername}?username=${encodeURIComponent(username)}`, {
-      method: 'DELETE',
-      credentials: 'include' // Include cookies for authentication
-    });
-    
-    if (!res.ok) {
-      const errorData = await res.json().catch(() => ({ message: `HTTP Error ${res.status}` }));
-      throw new Error(errorData.message || `HTTP Error ${res.status}`);
-    }
-    
-    return await res.json();
-  } catch (error) {
-    console.error('Error in deleteFilteredUser:', error);
-    throw error; // Re-throw so the caller can handle the error
-  }
-},
-
-// Related but less core endpoint
-async updateUserFilters  (usernames) {
-const response = await fetch(`${API_BASE_URL}/filters/users`, {
-method: 'POST',
-headers: {
-  'Content-Type': 'application/json',
-},
-body: JSON.stringify({ usernames }),
-});
-
-if (!response.ok) throw new Error(`HTTP error ${response.status}`);
-return await response.json();
-}
-}     
+  };
 
   const FILTER_STORAGE_KEY = 'default_filter';
   const ACCOUNTS_STORAGE_KEY = 'instagram_accounts';
   
   const stateManager = {
     KEYS: {
-USER_FILTERS: USER_FILTERS_STORAGE_KEY
-},
+      USER_FILTERS: USER_FILTERS_STORAGE_KEY
+    },
 
-getUserFilters () {
-try {
-const data = localStorage.getItem(this.KEYS.USER_FILTERS);
-if (!data) return [];
+    getUserFilters() {
+      try {
+        const data = localStorage.getItem(this.KEYS.USER_FILTERS);
+        if (!data) return [];
 
-const parsed = JSON.parse(data);
+        const parsed = JSON.parse(data);
 
-// Handle both array of strings and array of objects
-if (Array.isArray(parsed)) {
-  // If it's array of objects with username property
-  if (parsed.length > 0 && typeof parsed[0] === 'object' && parsed[0].username) {
-    return parsed.map(item => item.username);
-  }
-  // If it's array of strings
-  return parsed;
-}
+        if (Array.isArray(parsed)) {
+          if (parsed.length > 0 && typeof parsed[0] === 'object' && parsed[0].username) {
+            return parsed.map(item => item.username);
+          }
+          return parsed;
+        }
 
-return [];
-} catch (error) {
-console.error('Error parsing user filters:', error);
-return [];
-}
-},
+        return [];
+      } catch (error) {
+        console.error('Error parsing user filters:', error);
+        return [];
+      }
+    },
 
-saveUserFilters(filters) {
-localStorage.setItem(this.KEYS.USER_FILTERS, JSON.stringify(filters));
-},
+    saveUserFilters(filters) {
+      localStorage.setItem(this.KEYS.USER_FILTERS, JSON.stringify(filters));
+    },
 
     saveLoginState(username) {
       localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify({
@@ -389,7 +389,6 @@ localStorage.setItem(this.KEYS.USER_FILTERS, JSON.stringify(filters));
     
     saveUsername(username) {
       localStorage.setItem(USERNAME_STORAGE_KEY, username);
-      // Also update display wherever needed
       if (usernameDisplay) {
         usernameDisplay.textContent = username ? `(@${username})` : '';
       }
@@ -400,11 +399,7 @@ localStorage.setItem(this.KEYS.USER_FILTERS, JSON.stringify(filters));
         currentAccountUsername.textContent = username || '';
       }
       
-      // Save to accounts list if not already there
       this.addAccount(username);
-      
-      // Trigger the FIFO process and handle any errors
-     
     },
     
     getUsername() {
@@ -416,66 +411,54 @@ localStorage.setItem(this.KEYS.USER_FILTERS, JSON.stringify(filters));
     },
     
     async fetchFilteredUsers() {
-try {
-  const filteredUsers = await api.getFilteredUsers();
-  // Synchronize with local storage
-  
-  return filteredUsers;
-} catch (error) {
-  console.error('Error fetching filtered users:', error);
-  return [];
-}
-},
+      try {
+        const filteredUsers = await api.getFilteredUsers();
+        return filteredUsers;
+      } catch (error) {
+        console.error('Error fetching filtered users:', error);
+        return [];
+      }
+    },
 
-// Add a filtered user
-async addUserFilter(username) {
-  if (!username) return;
-  
-  try {
-    // Save to server first
-    const newUser = await api.saveFilteredUser(username);
-    
-    // Update local storage - normalize the username first
-    const normalizedUsername = username.trim().replace(/^@/, '').toLowerCase();
-    
-    // Get current filters
-    let filters = this.getUserFilters();
-    
-    // Check if username already exists (case insensitive)
-    const normalizedFilters = filters.map(f => 
-      typeof f === 'object' ? f.username.toLowerCase() : f.toLowerCase()
-    );
-    
-    if (!normalizedFilters.includes(normalizedUsername)) {
-      // Add new username to filters
-      filters.push(normalizedUsername);
-      this.saveUserFilters(filters);
-    }
-    
-    return newUser;
-  } catch (error) {
-    console.error('Error adding user filter:', error);
-    throw error;
-  }
-},
+    async addUserFilter(username) {
+      if (!username) return;
+      
+      try {
+        const newUser = await api.saveFilteredUser(username);
+        
+        const normalizedUsername = username.trim().replace(/^@/, '').toLowerCase();
+        
+        let filters = this.getUserFilters();
+        
+        const normalizedFilters = filters.map(f => 
+          typeof f === 'object' ? f.username.toLowerCase() : f.toLowerCase()
+        );
+        
+        if (!normalizedFilters.includes(normalizedUsername)) {
+          filters.push(normalizedUsername);
+          this.saveUserFilters(filters);
+        }
+        
+        return newUser;
+      } catch (error) {
+        console.error('Error adding user filter:', error);
+        throw error;
+      }
+    },
 
-// Remove a filtered user
-async removeUserFilter(targetUsername) {
-  try {
-    // Pas besoin de chercher l'ID puisque nous supprimons directement par targetUsername
-    // Appeler directement l'API avec le targetUsername
-    await api.deleteFilteredUser(targetUsername);
+    async removeUserFilter(targetUsername) {
+      try {
+        await api.deleteFilteredUser(targetUsername);
 
-    // Mettre à jour le stockage local
-    const filters = this.getUserFilters();
-    const updatedFilters = filters.filter(filter => filter !== targetUsername);
-    this.saveUserFilters(updatedFilters);
-  } catch (error) {
-    console.error('Error removing user filter:', error);
-    throw error;
-  }
-},
-    // Accounts management
+        const filters = this.getUserFilters();
+        const updatedFilters = filters.filter(filter => filter !== targetUsername);
+        this.saveUserFilters(updatedFilters);
+      } catch (error) {
+        console.error('Error removing user filter:', error);
+        throw error;
+      }
+    },
+    
     getAccounts() {
       try {
         const accounts = JSON.parse(localStorage.getItem(ACCOUNTS_STORAGE_KEY));
@@ -485,6 +468,7 @@ async removeUserFilter(targetUsername) {
         return [];
       }
     },
+    
     addAccount(username) {
       if (!username) return;
       
@@ -494,350 +478,421 @@ async removeUserFilter(targetUsername) {
         localStorage.setItem(ACCOUNTS_STORAGE_KEY, JSON.stringify(accounts));
       }
     },
+    
     removeAccount(username) {
       const accounts = this.getAccounts();
       const updatedAccounts = accounts.filter(account => account !== username);
       localStorage.setItem(ACCOUNTS_STORAGE_KEY, JSON.stringify(updatedAccounts));
       
-      // If current username is removed, clear it
       if (this.getUsername() === username) {
         this.clearUsername();
       }
     },
-    // Get default filter
+    
     getDefaultFilter() {
       return localStorage.getItem(this.KEYS.DEFAULT_FILTER) || 'all';
     },
+  };
 
-
-  
-};
-
-async function populateUserFiltersList() {
-  const list = document.getElementById('userFiltersList');
-  const noUsersMessage = document.getElementById('noUsersMessage');
-
-  if (!list) {
-    console.error('User filters list element not found');
-    return;
-  }
-
-  // Clear existing list items
-  list.innerHTML = '';
-
-  try {
-    // Get username from stateManager
-    const username = stateManager.getUsername();
-  
-    if (!username) {
-      list.innerHTML = `
-        <div class="alert alert-warning">
-          Username not found in localStorage
-        </div>
-      `;
-      return;
-    }
+  // Analysis Modal Functions
+  function showCommentAnalysis(comment) {
+    console.log('Opening analysis modal for comment:', comment);
     
-    // Fetch target usernames from server with username parameter
-    const response = await api.getFilteredUsers();
+    // Check if comment has "posted" status
+    const isPosted = comment.status === 'posted';
     
-    // Extract targetUsernames array from response
-    let targetUsernames = [];
+    // Update modal elements
+    document.getElementById('analysisPostId').textContent = comment.postUrl || comment.postId || 'N/A';
+    document.getElementById('analysisCommentStatus').textContent = comment.status || 'Unknown';
+    document.getElementById('analysisCommentStatus').className = `badge ${getStatusBadgeClass(comment.status)}`;
+    document.getElementById('analysisCommentText').textContent = comment.comment || 'No comment text';
     
-    if (Array.isArray(response)) {
-      targetUsernames = response;
-    } else if (response && typeof response === 'object' && Array.isArray(response.targetUsernames)) {
-      targetUsernames = response.targetUsernames;
-    }
+    // Format dates
+    const postedDate = comment.timestamp ? new Date(comment.timestamp).toLocaleString() : 'N/A';
+    const analyzedDate = comment.lastUpdated ? new Date(comment.lastUpdated).toLocaleString() : 
+                         comment.analyzedAt ? new Date(comment.analyzedAt).toLocaleString() : 'Never';
     
-    // Show "no users" message if empty
-    if (!targetUsernames || targetUsernames.length === 0) {
-      if (noUsersMessage) {
-        noUsersMessage.style.display = 'block';
-        list.appendChild(noUsersMessage.cloneNode(true));
+    document.getElementById('analysisPostedDate').textContent = postedDate;
+    document.getElementById('analysisLastAnalyzed').textContent = analyzedDate;
+    
+    if (isPosted) {
+      // Show engagement statistics
+      document.getElementById('analysisLikes').textContent = comment.likes || 0;
+      document.getElementById('analysisImpressions').textContent = comment.impressions || 0;
+      document.getElementById('analysisReplies').textContent = comment.repliesCount || 0;
+      
+      // Update status badge
+      const statusBadge = document.getElementById('analysisStatusBadge');
+      const statusText = document.getElementById('analysisStatusText');
+      
+      if (comment.lastError) {
+        statusBadge.className = 'badge bg-warning';
+        statusBadge.textContent = 'Analysis Error';
+        statusText.textContent = comment.lastError;
+      } else if (comment.lastUpdated) {
+        statusBadge.className = 'badge bg-success';
+        statusBadge.textContent = 'Analyzed';
+        statusText.textContent = `Last updated: ${analyzedDate}`;
       } else {
-        const emptyMessage = document.createElement('div');
-        emptyMessage.className = 'list-group-item text-center';
-        emptyMessage.textContent = 'No filtered users found';
-        list.appendChild(emptyMessage);
+        statusBadge.className = 'badge bg-info';
+        statusBadge.textContent = 'Pending Analysis';
+        statusText.textContent = 'Waiting for first analysis';
       }
-      return;
-    }
-    
-    // Hide the "no users" message if we have users
-    if (noUsersMessage) {
-      noUsersMessage.style.display = 'none';
-    }
-    
-    // Render target usernames
-    targetUsernames.forEach(targetUsername => {
-      const item = document.createElement('div');
-      item.className = 'list-group-item d-flex justify-content-between align-items-center';
-      item.innerHTML = `
-        <span>@${targetUsername}</span>
-        <button class="btn btn-sm btn-outline-danger remove-filter-btn" data-username="${targetUsername}">
-          <i class="bi bi-trash"></i>
-        </button>
-      `;
-      list.appendChild(item);
-    });
-    
-    // Add event listeners to remove buttons
-    attachRemoveFilterListeners();
-    
-  } catch (error) {
-    console.error('Error loading filtered users:', error);
-    list.innerHTML = `
-      <div class="alert alert-danger">
-        Error loading filtered users: ${error.message}
-      </div>
-    `;
-  }
-}
-function attachRemoveFilterListeners() {
-  document.querySelectorAll('.remove-filter-btn').forEach(btn => {
-    btn.addEventListener('click', async function(e) {
-      e.preventDefault(); // Empêche le comportement par défaut du bouton
-      const targetUsername = this.dataset.username;
       
-      if (!confirm(`Remove @${targetUsername} from filter?`)) return;
+      // Show/hide replies
+      const repliesList = document.getElementById('repliesList');
+      const repliesCount = document.getElementById('repliesCount');
+      const noRepliesMessage = document.getElementById('noRepliesMessage');
       
-      try {
-        // Visual feedback - disable button and show loading state
-        this.disabled = true;
-        this.innerHTML = '<i class="bi bi-hourglass-split"></i>';
+      repliesCount.textContent = comment.repliesCount || 0;
+      
+      if (comment.repliesData && comment.repliesData.length > 0) {
+        noRepliesMessage.style.display = 'none';
+        repliesList.innerHTML = '';
         
-        // Delete from server using the targetUsername
-        const response = await api.deleteFilteredUser(targetUsername);
-        
-        if (response && response.success) {
-          // Update local storage
-          await stateManager.removeUserFilter(targetUsername);
-          
-          // Refresh the list and update UI
-          await populateUserFiltersList();
-          renderComments();
-          updateFilterBanner();
-          
-          // Show success message
-          dataSourceInfo.innerHTML = `
-            <div class="alert alert-success">
-              <i class="bi bi-check-circle"></i> Removed @${targetUsername} from filters
+        comment.repliesData.forEach((reply, index) => {
+          const replyElement = document.createElement('div');
+          replyElement.className = 'card mb-2';
+          replyElement.innerHTML = `
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <h6 class="mb-0"><i class="bi bi-person-circle"></i> ${reply.username || 'Unknown'}</h6>
+                <small class="text-muted">${reply.timestamp || 'N/A'}</small>
+              </div>
+              <p class="mb-2">${reply.text || ''}</p>
+              <div class="d-flex gap-3">
+                <small class="text-muted">
+                  <i class="bi bi-heart-fill text-danger"></i> ${reply.likes || 0} likes
+                </small>
+                ${reply.impressions ? `
+                  <small class="text-muted">
+                    <i class="bi bi-eye-fill text-primary"></i> ${reply.impressions} impressions
+                  </small>
+                ` : ''}
+              </div>
             </div>
           `;
-          
-          // Restore normal display after 3 seconds
-          setTimeout(() => updateFilterBanner(), 3000);
-        } else {
-          throw new Error('Server returned unsuccessful status');
-        }
-        
-      } catch (err) {
-        console.error('Error removing filter:', err);
-        
-        // Re-enable button on error
-        this.disabled = false;
-        this.innerHTML = '<i class="bi bi-trash"></i>';
-        
-        alert(`Could not remove filter: ${err.message || 'Unknown error'}`);
+          repliesList.appendChild(replyElement);
+        });
+      } else {
+        noRepliesMessage.style.display = 'block';
+        repliesList.innerHTML = '';
+        repliesList.appendChild(noRepliesMessage);
       }
-    });
-  });
-}
-
-
-
-
-
-document.getElementById('addUserFilterBtn').addEventListener('click', async () => {
-  const input = document.getElementById('newUserFilter');
-  const username = input.value.trim().replace(/^@/, '');
-  
-  if (!username) {
-    alert('Please enter a valid username');
-    return;
-  }
-  
-  try {
-    // Disable button and show loading state
-    const addBtn = document.getElementById('addUserFilterBtn');
-    addBtn.disabled = true;
-    addBtn.innerHTML = '<i class="bi bi-hourglass-split"></i> Adding...';
-    
-    // Add to server first
-    await api.saveFilteredUser(username);
-
-   
-    
-    // Clear input and refresh list
-    input.value = '';
-    await populateUserFiltersList();
-    
-    // Update UI to show we're filtering by users
-    currentUserFilterType = 'user';
-    filterOptionDropdown.value = 'user';
-    renderComments();
-    updateFilterBanner();
-    
-    // Show success message
-    dataSourceInfo.innerHTML = `
-      <div class="alert alert-success">
-        <i class="bi bi-check-circle"></i> Added @${username} to filters
-      </div>
-    `;
-    
-    // Restore normal display after 3 seconds
-    setTimeout(() => updateFilterBanner(), 3000);
-    
-  } catch (err) {
-    alert(`Could not add filter: ${err.message}`);
-  } finally {
-    // Re-enable button in any case
-    const addBtn = document.getElementById('addUserFilterBtn');
-    addBtn.disabled = false;
-    addBtn.innerHTML = 'Add User';
-  }
-});
-// Update the Apply User Filters button handler
-
-
-// Add automatic filter application for "all users"
-document.querySelector('[data-filter="all"]')?.addEventListener('click', () => {
-  // Set filter type to 'all'
-  currentUserFilterType = 'all';
-  
-  // Update UI
-  document.querySelector('[data-filter].active')?.classList.remove('active');
-  document.querySelector('[data-filter="all"]')?.classList.add('active');
-  
-  if (typeof filterOptionDropdown !== 'undefined' && filterOptionDropdown) {
-    filterOptionDropdown.value = 'all';
-  }
-  
-  // Clear filtered users
-  if (stateManager && typeof stateManager.setFilteredUsers === 'function') {
-    stateManager.setFilteredUsers([]);
-  } else {
-    window.filteredUsers = [];
-  }
-  
-  // Update the UI
-  renderComments();
-  if (typeof updateFilterBanner === 'function') {
-    updateFilterBanner();
-  }
-});
-
-// “Manage Users” opens the modal
-document.getElementById('manageUsersBtn').addEventListener('click', () => {
-populateUserFiltersList();
-userFilterModal.show();
-});
-
-// Add User Filter button handler
-
-
-
-// Update the API to include a new userFilters method
-api.updateUserFilters = async (usernames) => {
-const response = await fetch(`${API_BASE_URL}/filters/users`, {
-method: 'POST',
-headers: {
-  'Content-Type': 'application/json',
-},
-body: JSON.stringify({ usernames }),
-});
-
-if (!response.ok) throw new Error(`HTTP error ${response.status}`);
-return await response.json();
-};
-  
-  // Check initial state - first check localStorage, then verify with server
-  async function checkInitialState() {
-try {
-// Show loading state
-dataSourceInfo.innerHTML = `
-  <div class="alert alert-info">
-    <i class="bi bi-hourglass-split"></i> Checking connection status...
-  </div>
-`;
-
-// Get stored state for fallback
-const storedState = stateManager.getLoginState();
-const storedUsername = stateManager.getUsername();
-
-// First check with server
-let serverResponse;
-try {
-  serverResponse = await api.checkLoginStatus();
-  
-  // Update based on server response (as source of truth)
-  isLoggedIn = serverResponse.loggedIn;
-  
-  if (isLoggedIn) {
-    // If server says we're logged in, update stored state
-    stateManager.saveLoginState(serverResponse.username);
-    
-    // If no username stored but server has it, use that
-    if (!storedUsername && serverResponse.username) {
-      stateManager.saveUsername(serverResponse.username);
+      
+      // Show/hide appropriate sections
+      document.getElementById('analysisError').style.display = comment.lastError ? 'block' : 'none';
+      if (comment.lastError) {
+        document.getElementById('analysisErrorMessage').textContent = comment.lastError;
+      }
+      document.getElementById('nonPostedNotice').style.display = 'none';
+      
+    } else {
+      // Comment is not posted - show notice
+      document.getElementById('nonPostedNotice').style.display = 'block';
+      document.getElementById('nonPostedCurrentStatus').textContent = comment.status || 'Unknown';
+      document.getElementById('analysisError').style.display = 'none';
+      
+      // Hide engagement data
+      document.getElementById('analysisLikes').textContent = '—';
+      document.getElementById('analysisImpressions').textContent = '—';
+      document.getElementById('analysisReplies').textContent = '—';
+      document.getElementById('repliesCount').textContent = '0';
+      document.getElementById('noRepliesMessage').style.display = 'block';
+      document.getElementById('repliesList').innerHTML = '';
+      document.getElementById('repliesList').appendChild(document.getElementById('noRepliesMessage'));
     }
-  } else {
-    // Server says not logged in, clear stored state
-    stateManager.clearLoginState();
+    
+    // Store comment ID for refresh functionality
+    document.getElementById('refreshAnalysisBtn').dataset.commentId = comment.id;
+    
+    // Show the modal
+    commentAnalysisModal.show();
   }
-} catch (serverError) {
-  console.error('Server check failed:', serverError);
-  // If server check fails, fallback to stored state
-  isLoggedIn = storedState.loggedIn;
+
+  // Refresh Analysis Button Handler
+  document.getElementById('refreshAnalysisBtn')?.addEventListener('click', async function() {
+    const commentId = this.dataset.commentId;
+    if (!commentId) return;
+    
+    try {
+      this.disabled = true;
+      this.innerHTML = '<i class="bi bi-hourglass-split"></i> Refreshing...';
+      
+      // Reload comments to get fresh data
+      await loadComments();
+      
+      // Find the updated comment
+      const updatedComment = comments.find(c => c.id === commentId);
+      if (updatedComment) {
+        showCommentAnalysis(updatedComment);
+      }
+      
+      this.disabled = false;
+      this.innerHTML = '<i class="bi bi-arrow-clockwise"></i> Refresh Analysis';
+    } catch (error) {
+      console.error('Error refreshing analysis:', error);
+      alert('Error refreshing analysis data');
+      this.disabled = false;
+      this.innerHTML = '<i class="bi bi-arrow-clockwise"></i> Refresh Analysis';
+    }
+  });
+
+  // User Filter Management Functions
+  async function populateUserFiltersList() {
+    const list = document.getElementById('userFiltersList');
+    const noUsersMessage = document.getElementById('noUsersMessage');
+
+    if (!list) {
+      console.error('User filters list element not found');
+      return;
+    }
+
+    list.innerHTML = '';
+
+    try {
+      const username = stateManager.getUsername();
+    
+      if (!username) {
+        list.innerHTML = `
+          <div class="alert alert-warning">
+            Username not found in localStorage
+          </div>
+        `;
+        return;
+      }
+      
+      const response = await api.getFilteredUsers();
+      
+      let targetUsernames = [];
+      
+      if (Array.isArray(response)) {
+        targetUsernames = response;
+      } else if (response && typeof response === 'object' && Array.isArray(response.targetUsernames)) {
+        targetUsernames = response.targetUsernames;
+      }
+      
+      if (!targetUsernames || targetUsernames.length === 0) {
+        if (noUsersMessage) {
+          noUsersMessage.style.display = 'block';
+          list.appendChild(noUsersMessage.cloneNode(true));
+        } else {
+          const emptyMessage = document.createElement('div');
+          emptyMessage.className = 'list-group-item text-center';
+          emptyMessage.textContent = 'No filtered users found';
+          list.appendChild(emptyMessage);
+        }
+        return;
+      }
+      
+      if (noUsersMessage) {
+        noUsersMessage.style.display = 'none';
+      }
+      
+      targetUsernames.forEach(targetUsername => {
+        const item = document.createElement('div');
+        item.className = 'list-group-item d-flex justify-content-between align-items-center';
+        item.innerHTML = `
+          <span>@${targetUsername}</span>
+          <button class="btn btn-sm btn-outline-danger remove-filter-btn" data-username="${targetUsername}">
+            <i class="bi bi-trash"></i>
+          </button>
+        `;
+        list.appendChild(item);
+      });
+      
+      attachRemoveFilterListeners();
+      
+    } catch (error) {
+      console.error('Error loading filtered users:', error);
+      list.innerHTML = `
+        <div class="alert alert-danger">
+          Error loading filtered users: ${error.message}
+        </div>
+      `;
+    }
+  }
+
+  function attachRemoveFilterListeners() {
+    document.querySelectorAll('.remove-filter-btn').forEach(btn => {
+      btn.addEventListener('click', async function(e) {
+        e.preventDefault();
+        const targetUsername = this.dataset.username;
+        
+        if (!confirm(`Remove @${targetUsername} from filter?`)) return;
+        
+        try {
+          this.disabled = true;
+          this.innerHTML = '<i class="bi bi-hourglass-split"></i>';
+          
+          const response = await api.deleteFilteredUser(targetUsername);
+          
+          if (response && response.success) {
+            await stateManager.removeUserFilter(targetUsername);
+            
+            await populateUserFiltersList();
+            renderComments();
+            updateFilterBanner();
+            
+            dataSourceInfo.innerHTML = `
+              <div class="alert alert-success">
+                <i class="bi bi-check-circle"></i> Removed @${targetUsername} from filters
+              </div>
+            `;
+            
+            setTimeout(() => updateFilterBanner(), 3000);
+          } else {
+            throw new Error('Server returned unsuccessful status');
+          }
+          
+        } catch (err) {
+          console.error('Error removing filter:', err);
+          
+          this.disabled = false;
+          this.innerHTML = '<i class="bi bi-trash"></i>';
+          
+          alert(`Could not remove filter: ${err.message || 'Unknown error'}`);
+        }
+      });
+    });
+  }
+
+  document.getElementById('addUserFilterBtn').addEventListener('click', async () => {
+    const input = document.getElementById('newUserFilter');
+    const username = input.value.trim().replace(/^@/, '');
+    
+    if (!username) {
+      alert('Please enter a valid username');
+      return;
+    }
+    
+    try {
+      const addBtn = document.getElementById('addUserFilterBtn');
+      addBtn.disabled = true;
+      addBtn.innerHTML = '<i class="bi bi-hourglass-split"></i> Adding...';
+      
+      await api.saveFilteredUser(username);
+      
+      input.value = '';
+      await populateUserFiltersList();
+      
+      currentUserFilterType = 'user';
+      filterOptionDropdown.value = 'user';
+      renderComments();
+      updateFilterBanner();
+      
+      dataSourceInfo.innerHTML = `
+        <div class="alert alert-success">
+          <i class="bi bi-check-circle"></i> Added @${username} to filters
+        </div>
+      `;
+      
+      setTimeout(() => updateFilterBanner(), 3000);
+      
+    } catch (err) {
+      alert(`Could not add filter: ${err.message}`);
+    } finally {
+      const addBtn = document.getElementById('addUserFilterBtn');
+      addBtn.disabled = false;
+      addBtn.innerHTML = 'Add User';
+    }
+  });
+
+  document.querySelector('[data-filter="all"]')?.addEventListener('click', () => {
+    currentUserFilterType = 'all';
+    
+    document.querySelector('[data-filter].active')?.classList.remove('active');
+    document.querySelector('[data-filter="all"]')?.classList.add('active');
+    
+    if (typeof filterOptionDropdown !== 'undefined' && filterOptionDropdown) {
+      filterOptionDropdown.value = 'all';
+    }
+    
+    if (stateManager && typeof stateManager.setFilteredUsers === 'function') {
+      stateManager.setFilteredUsers([]);
+    } else {
+      window.filteredUsers = [];
+    }
+    
+    renderComments();
+    if (typeof updateFilterBanner === 'function') {
+      updateFilterBanner();
+    }
+  });
+
+  document.getElementById('manageUsersBtn').addEventListener('click', () => {
+    populateUserFiltersList();
+    userFilterModal.show();
+  });
+
+  // Initial State Check
+  async function checkInitialState() {
+    try {
+      dataSourceInfo.innerHTML = `
+        <div class="alert alert-info">
+          <i class="bi bi-hourglass-split"></i> Checking connection status...
+        </div>
+      `;
+
+      const storedState = stateManager.getLoginState();
+      const storedUsername = stateManager.getUsername();
+
+      let serverResponse;
+      try {
+        serverResponse = await api.checkLoginStatus();
+        
+        isLoggedIn = serverResponse.loggedIn;
+        
+        if (isLoggedIn) {
+          stateManager.saveLoginState(serverResponse.username);
+          
+          if (!storedUsername && serverResponse.username) {
+            stateManager.saveUsername(serverResponse.username);
+          }
+        } else {
+          stateManager.clearLoginState();
+        }
+      } catch (serverError) {
+        console.error('Server check failed:', serverError);
+        isLoggedIn = storedState.loggedIn;
+        
+        dataSourceInfo.innerHTML = `
+          <div class="alert alert-warning">
+            <i class="bi bi-exclamation-triangle"></i> Could not verify login status with server. Using stored credentials.
+          </div>
+        `;
+      }
+
+      hasUsername = !!stateManager.getUsername();
+      if (hasUsername) {
+        usernameDisplay.textContent = `(@${stateManager.getUsername()})`;
+      }
+
+      updateUIState();
+
+      if (isLoggedIn && hasUsername) {
+        loadComments();
+      }
+    } catch (error) {
+      console.error('Error in initialization:', error);
+      dataSourceInfo.innerHTML = `
+        <div class="alert alert-danger">
+          <i class="bi bi-exclamation-triangle"></i> Error checking connection status: ${error.message}
+        </div>
+      `;
+
+      hasUsername = !!stateManager.getUsername();
+      updateUIState();
+    }
+  }
   
-  // Show warning about using cached credentials
-  dataSourceInfo.innerHTML = `
-    <div class="alert alert-warning">
-      <i class="bi bi-exclamation-triangle"></i> Could not verify login status with server. Using stored credentials.
-    </div>
-  `;
-}
-
-// Update username status
-hasUsername = !!stateManager.getUsername();
-if (hasUsername) {
-  usernameDisplay.textContent = `(@${stateManager.getUsername()})`;
-}
-
-// Update UI based on final state
-updateUIState();
-
-// If we're good to go, load comments
-if (isLoggedIn && hasUsername) {
-  loadComments();
-}
-} catch (error) {
-console.error('Error in initialization:', error);
-dataSourceInfo.innerHTML = `
-  <div class="alert alert-danger">
-    <i class="bi bi-exclamation-triangle"></i> Error checking connection status: ${error.message}
-  </div>
-`;
-
-// Still update UI with what we know
-hasUsername = !!stateManager.getUsername();
-updateUIState();
-}
-}
-  
-  // Helper function to determine and update UI state based on username and login status
-  // Helper function to determine and update UI state based on username and login status
   function updateUIState() {
-    // First, hide all content sections
     usernameSetup.style.display = 'none';
     loginPrompt.style.display = 'none';
     dashboardContent.style.display = 'none';
     
-    // Get current username
     const username = stateManager.getUsername();
     
-    // Update username displays
     if (navbarUsername) {
       navbarUsername.textContent = username || 'Account';
     }
@@ -845,19 +900,15 @@ updateUIState();
       currentAccountUsername.textContent = username || '';
     }
     
-    // Show/hide appropriate navbar buttons
     usernameBtn.style.display = hasUsername ? 'inline-block' : 'none';
-   linkedinLoginBtn.style.display = (hasUsername && !isLoggedIn) ? 'inline-block' : 'none';
+    linkedinLoginBtn.style.display = (hasUsername && !isLoggedIn) ? 'inline-block' : 'none';
     
-    // Set default filter if available
     const defaultFilter = stateManager.getDefaultFilter();
     if (filterOptionDropdown) {
       filterOptionDropdown.value = defaultFilter;
     }
     
-    // Then show appropriate section based on state
     if (!hasUsername) {
-      // Step 1: Need to set username
       usernameSetup.style.display = 'block';
       dataSourceInfo.innerHTML = `
         <div class="alert alert-info">
@@ -865,7 +916,6 @@ updateUIState();
         </div>
       `;
     } else if (!isLoggedIn) {
-     
       loginPrompt.style.display = 'block';
       dataSourceInfo.innerHTML = `
         <div class="alert alert-warning">
@@ -873,7 +923,6 @@ updateUIState();
         </div>
       `;
     } else {
-     
       dashboardContent.style.display = 'block';
       dataSourceInfo.innerHTML = `
         <div class="alert alert-success">
@@ -882,86 +931,71 @@ updateUIState();
       `;
     }
   }
-  // Dropdown logout button handler
-  // Dropdown logout button handler
-dropdownLogoutBtn.addEventListener('click', () => {
-if (confirm('Are you sure you want to log out?')) {
-// Clear all storage items
-stateManager.clearLoginState();
-stateManager.clearUsername();
-localStorage.clear(); // Clear all localStorage items
 
-// Redirect to login.html and replace history state so back button doesn't return to dashboard
-window.location.replace('login.html');
-}
-});
+  dropdownLogoutBtn.addEventListener('click', () => {
+    if (confirm('Are you sure you want to log out?')) {
+      stateManager.clearLoginState();
+      stateManager.clearUsername();
+      localStorage.clear();
+
+      window.location.replace('login.html');
+    }
+  });
   
-  // Dropdown username button handler
   dropdownUsernameBtn.addEventListener('click', () => {
-    // Pre-fill with current username
     document.getElementById('modallinkedinUsername').value = stateManager.getUsername();
     usernameModal.show();
   });
   
-  // Dropdown accounts button handler
   dropdownAccountsBtn.addEventListener('click', () => {
-    // Populate accounts list
     populateAccountsList();
     accountsModal.show();
   });
   
-  // Filter option dropdown handler
   filterOptionDropdown.addEventListener('change', async e => {
-const selection = e.target.value;       // "all" or "user"
-currentUserFilterType = selection;
+    const selection = e.target.value;
+    currentUserFilterType = selection;
 
-if (selection === 'user') {
-try {
-  const users = await api.getFilteredUsers();
-  if (!users.length) {
-    alert('No users in filter list. Please add some first.');
-    filterOptionDropdown.value = 'all';
-    currentUserFilterType = 'all';
-  }
-} catch (err) {
-  alert(`Error fetching filters: ${err.message}`);
-  filterOptionDropdown.value = 'all';
-  currentUserFilterType = 'all';
-}
-}
+    if (selection === 'user') {
+      try {
+        const users = await api.getFilteredUsers();
+        if (!users.length) {
+          alert('No users in filter list. Please add some first.');
+          filterOptionDropdown.value = 'all';
+          currentUserFilterType = 'all';
+        }
+      } catch (err) {
+        alert(`Error fetching filters: ${err.message}`);
+        filterOptionDropdown.value = 'all';
+        currentUserFilterType = 'all';
+      }
+    }
 
-renderComments();
-updateFilterBanner();
-});
+    renderComments();
+    updateFilterBanner();
+  });
 
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', e => {
+      document.querySelector('[data-filter].active')?.classList.remove('active');
+      btn.classList.add('active');
 
-filterButtons.forEach(btn => {
-btn.addEventListener('click', e => {
-// update the active button UI
-document.querySelector('[data-filter].active')?.classList.remove('active');
-btn.classList.add('active');
-
-currentStatusFilter = btn.dataset.filter;
-renderComments();
-});
-});
-
+      currentStatusFilter = btn.dataset.filter;
+      renderComments();
+    });
+  });
   
-  // Function to populate accounts list in the modal
   function populateAccountsList() {
     const accountsList = document.getElementById('accountsList');
     const accounts = stateManager.getAccounts();
     const currentUsername = stateManager.getUsername();
     
-    // Clear current list except first item (current account)
     const firstItem = accountsList.firstElementChild;
     accountsList.innerHTML = '';
     accountsList.appendChild(firstItem);
     
-    // Update current account display
     currentAccountUsername.textContent = currentUsername;
     
-    // Add other accounts
     accounts.forEach(account => {
       if (account !== currentUsername) {
         const item = document.createElement('div');
@@ -983,7 +1017,6 @@ renderComments();
       }
     });
     
-    // Add event listeners to switch and remove buttons
     document.querySelectorAll('.switch-account-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const username = e.target.dataset.username;
@@ -998,26 +1031,24 @@ renderComments();
         const username = e.target.closest('button').dataset.username;
         if (confirm(`Are you sure you want to remove @${username}?`)) {
           stateManager.removeAccount(username);
-          populateAccountsList(); // Refresh the list
+          populateAccountsList();
         }
       });
     });
   }
   
-  // Add account button handler
   document.getElementById('addAccountBtn')?.addEventListener('click', () => {
     accountsModal.hide();
     usernameModal.show();
   });
 
-  // Initialize the application
   checkInitialState();
   
-  // Set initial filter option
   const savedFilter = stateManager.getDefaultFilter();
   if (savedFilter && filterOptionDropdown) {
     filterOptionDropdown.value = savedFilter;
   }
+
   async function triggerFifo(username) {
     try {
       const response = await fetch(`${API_BASE_URL}/linkedin/trigger-fifo`, {
@@ -1043,16 +1074,16 @@ renderComments();
       throw error;
     }
   }
+
   async function triggerAnalysis(username) {
     console.log('Calling triggerAnalysis for username:', username);
     
     try {
-      const response = await fetch(`${API_BASE_URL}/analysis/analyze-posted-comments`, {
+      const response = await fetch(`${API_BASE_URL}/analysis/analyze-comments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        // Enlever le paramètre port ou le rendre optionnel
         body: JSON.stringify({ username })
       });
       
@@ -1070,7 +1101,6 @@ renderComments();
     }
   }
   
- 
   async function saveUsername(username) {
     if (!username || username.trim() === '') {
       alert('Please enter a valid username');
@@ -1078,20 +1108,15 @@ renderComments();
     }
     
     try {
-      // Clean username (remove @ if present)
       username = username.trim().replace(/^@/, '');
       
-      // Call API to save username on server
       await api.setUsername(username);
       
-      // Save locally
       stateManager.saveUsername(username);
       hasUsername = true;
       
-      // Update UI
       updateUIState();
       
-      // Reset any username input fields - with null checks
       const usernameInput = document.getElementById('instagramUsername');
       const modalUsernameInput = document.getElementById('modalInstagramUsername');
       
@@ -1103,7 +1128,6 @@ renderComments();
         modalUsernameInput.value = '';
       }
       
-      // Hide modals if open - with null check
       if (typeof usernameModal !== 'undefined' && usernameModal) {
         try {
           usernameModal.hide();
@@ -1111,26 +1135,42 @@ renderComments();
           console.log('Modal was not open or not initialized');
         }
       }
-      try {
-        await triggerFifo(username);
-        console.log('FIFO process initiated for username:', username);
-        // Optional: show success toast
-        if (typeof showToast === 'function') {
-          showToast('success', 'Automated comment processing started');
-        }
-      } catch (fifoError) {
-        console.error('Error triggering FIFO process:', fifoError);
-        // Optional: show warning toast, but don't break the flow with an alert
-        if (typeof showToast === 'function') {
-          showToast('warning', 'Problem with automated comment processing');
-        }
-      }
+  
+      // Fire both agents simultaneously - no waiting
+      triggerFifo(username)
+        .then(() => {
+          console.log('FIFO process initiated for username:', username);
+          if (typeof showToast === 'function') {
+            showToast('success', 'Automated comment processing started');
+          }
+        })
+        .catch((fifoError) => {
+          console.error('Error triggering FIFO process:', fifoError);
+          if (typeof showToast === 'function') {
+            showToast('warning', 'Problem with automated comment processing');
+          }
+        });
+  
+      triggerAnalysis(username)
+        .then(() => {
+          console.log('Analysis process initiated for username:', username);
+          if (typeof showToast === 'function') {
+            showToast('success', 'Comment analysis started');
+          }
+        })
+        .catch((analysisError) => {
+          console.error('Error triggering analysis process:', analysisError);
+          if (typeof showToast === 'function') {
+            showToast('warning', 'Problem with comment analysis');
+          }
+        });
       
     } catch (error) {
       console.error('Error saving username:', error);
       alert(`Error saving username: ${error.message}`);
     }
   }
+
   async function runLinkedInAgent(username) {
     const response = await fetch(`${API_BASE_URL}/linkedin/run`, {
       method: 'POST',
@@ -1145,94 +1185,82 @@ renderComments();
   }
   
   async function handleInstagramLogin() {
-  const username = stateManager.getUsername();
-  
-  if (!username) {
-    alert('Please set your linkedin username first');
-    return;
-  }
-  
-  loginStatus.innerHTML = `
-    <div class="d-flex justify-content-center">
-      <div class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-    </div>
-    <p class="text-center mt-2">Launching linkedin login browser for @${username}...</p>
-  `;
-  
-  loginStatusModal.show();
-  
-  try {
-    // First, handle cookie storage through the login API
-    const loginResult = await api.linkedinLogin(username);
+    const username = stateManager.getUsername();
+    
+    if (!username) {
+      alert('Please set your linkedin username first');
+      return;
+    }
     
     loginStatus.innerHTML = `
-      <div class="alert alert-success">
-        <i class="bi bi-check-circle-fill"></i> Cookies stored successfully!
-        <p>linkedin agent is now running in the background...</p>
+      <div class="d-flex justify-content-center">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
       </div>
+      <p class="text-center mt-2">Launching linkedin login browser for @${username}...</p>
     `;
     
-    // Update both local state and UI after cookies are stored
-    stateManager.saveLoginState(username);
+    loginStatusModal.show();
     
-    // Update UI and go to dashboard immediately
-    setTimeout(() => {
-      loginStatusModal.hide();
-      isLoggedIn = true;
-      updateUIState();
-      loadComments();
-    }, 2000);
-    
-   
-    runLinkedInAgent
-    (username).catch(agentError => {
-      console.error('Error in background linkedin agent execution:', agentError);
-      // Optionally notify the user about agent errors via a toast notification
-    });
-   
-    
-  } catch (error) {
-    console.error('Error during linkedin login:', error);
-    
-    loginStatus.innerHTML = `
-      <div class="alert alert-danger">
-        <i class="bi bi-exclamation-triangle-fill"></i> Error during linkedin login: ${error.message}
-        <button class="btn btn-sm btn-outline-danger mt-2" id="retryLoginBtn">Retry</button>
-      </div>
-    `;
-    
-    document.getElementById('retryLoginBtn')?.addEventListener('click', () => handleInstagramLogin());
+    try {
+      const loginResult = await api.linkedinLogin(username);
+      
+      loginStatus.innerHTML = `
+        <div class="alert alert-success">
+          <i class="bi bi-check-circle-fill"></i> Cookies stored successfully!
+          <p>linkedin agent is now running in the background...</p>
+        </div>
+      `;
+      
+      stateManager.saveLoginState(username);
+      
+      setTimeout(() => {
+        loginStatusModal.hide();
+        isLoggedIn = true;
+        updateUIState();
+        loadComments();
+      }, 2000);
+      
+      runLinkedInAgent(username).catch(agentError => {
+        console.error('Error in background linkedin agent execution:', agentError);
+      });
+      
+    } catch (error) {
+      console.error('Error during linkedin login:', error);
+      
+      loginStatus.innerHTML = `
+        <div class="alert alert-danger">
+          <i class="bi bi-exclamation-triangle-fill"></i> Error during linkedin login: ${error.message}
+          <button class="btn btn-sm btn-outline-danger mt-2" id="retryLoginBtn">Retry</button>
+        </div>
+      `;
+      
+      document.getElementById('retryLoginBtn')?.addEventListener('click', () => handleInstagramLogin());
+    }
   }
-}
-  // Load comments from API
   
   async function loadComments() {
     if (!isLoggedIn || !hasUsername) {
-      return; // Don't load comments if not logged in or no username
+      return;
     }
     
     try {
       const response = await api.fetchComments();
       
-      // Handle the new API response structure
       if (response && Array.isArray(response.comments)) {
         comments = response.comments;
       } else if (Array.isArray(response)) {
-        // Fallback for old API response format
         comments = response;
       } else {
-        // Handle unexpected response format
         comments = [];
         console.warn('Unexpected API response format:', response);
       }
       
-      // Update alert with success message and comment count
       const message = response.message || `${comments.length} comments loaded`;
       dataSourceInfo.innerHTML = `
         <div class="alert alert-success">
-          <i class="bi bi-check-circle"></i> Connected to Instagram as @${stateManager.getUsername() || 'user'} 
+          <i class="bi bi-check-circle"></i> Connected to linkedin as @${stateManager.getUsername() || 'user'} 
           <span class="badge bg-secondary">${comments.length} comments loaded</span>
           ${response.message ? `<br><small>${response.message}</small>` : ''}
         </div>
@@ -1253,7 +1281,6 @@ renderComments();
     }
   }
 
-  // Update statistics
   function updateStatistics() {
     const stats = {
       total: comments.length,
@@ -1273,68 +1300,50 @@ renderComments();
     document.getElementById('stat-rejected').textContent = stats.rejected;
   }
 
-  // Render comments based on current filter
- 
-    
-    
+  function renderComments() {
+    commentsContainer.innerHTML = '';
 
-    // Existing renderComments logic, but modify the user filtering part
-    function renderComments() {
+    let filtered = [...comments];
+
+    if (currentStatusFilter !== 'all') {
+      filtered = filtered.filter(c => c.status === currentStatusFilter);
+    }
+
+    if (currentUserFilterType === 'user') {
+      const userFilters = stateManager.getUserFilters()
+        .map(u => {
+          const username = typeof u === 'object' ? u.username : u;
+          return username.trim().replace(/^@/, '').toLowerCase();
+        });
       
-commentsContainer.innerHTML = '';
+      if (userFilters.length > 0) {
+        filtered = filtered.filter(c => {
+          const commentUsername = (c.username || '').trim().replace(/^@/, '').toLowerCase();
+          return userFilters.includes(commentUsername);
+        });
+      }
+    }
 
-// 1) Start with all comments
-let filtered = [...comments];
+    filtered.sort((a, b) => {
+      const dateA = new Date(a.timestamp);
+      const dateB = new Date(b.timestamp);
+      return dateB - dateA;
+    });
 
-// 2) Apply status filter
-if (currentStatusFilter !== 'all') {
-filtered = filtered.filter(c => c.status === currentStatusFilter);
-}
+    if (filtered.length === 0) {
+      commentsContainer.innerHTML = `
+        <div class="alert alert-info">
+          <i class="bi bi-info-circle"></i>
+          No comments match your filters.
+        </div>`;
+      return;
+    }
 
-// 3) Apply user filter if requested
-if (currentUserFilterType === 'user') {
-// Get normalized usernames from filters
-const userFilters = stateManager.getUserFilters()
-  .map(u => {
-    // Handle both string and object formats
-    const username = typeof u === 'object' ? u.username : u;
-    return username.trim().replace(/^@/, '').toLowerCase();
-  });
- 
-// Only filter if we have filters defined
-if (userFilters.length > 0) {
-  filtered = filtered.filter(c => {
-    const commentUsername = (c.username || '').trim().replace(/^@/, '').toLowerCase();
-    return userFilters.includes(commentUsername);
-  });
-}
-}
-filtered.sort((a, b) => {
-  const dateA = new Date(a.timestamp);
-  const dateB = new Date(b.timestamp);
-  return dateB - dateA; // Descending order (newest first)
-});
-// 4) Render "no results" or the cards
-if (filtered.length === 0) {
-commentsContainer.innerHTML = `
-  <div class="alert alert-info">
-    <i class="bi bi-info-circle"></i>
-    No comments match your filters.
-  </div>`;
-return;
-}
-
-let hasLogged = false;
-filtered.forEach(comment => {
-
- 
-    
-    
+    filtered.forEach(comment => {
       const card = document.createElement('div');
       card.className = `card comment-card ${comment.status}`;
       card.dataset.id = comment.id;
       
-      // Format date
       const date = new Date(comment.timestamp);
       const formattedDate = date.toLocaleString('en-GB', {
         day: '2-digit',
@@ -1345,7 +1354,6 @@ filtered.forEach(comment => {
         second: '2-digit',
       });
 
-      // Determine badge color based on status
       let badgeClass = 'bg-secondary';
       if (comment.status === 'pending') badgeClass = 'bg-warning';
       if (comment.status === 'approved') badgeClass = 'bg-success';
@@ -1354,7 +1362,6 @@ filtered.forEach(comment => {
       if (comment.status === 'rejected') badgeClass = 'bg-danger';
       if (comment.status === 'error') badgeClass = 'bg-warning text-dark';
       
-      // Determine action buttons based on status
       let actionButtons = '';
       if (comment.status === 'pending') {
         actionButtons = `
@@ -1380,9 +1387,14 @@ filtered.forEach(comment => {
             <i class="bi bi-send"></i> Retry Post
           </button>
         `;
+      } else if (comment.status === 'posted') {
+        actionButtons = `
+          <button class="btn btn-sm btn-info view-analysis-btn" data-id="${comment.id}">
+            <i class="bi bi-graph-up"></i> View Analysis
+          </button>
+        `;
       }
       
-      // Build status history display
       let statusHistory = '';
       if (comment.history && comment.history.length > 0) {
         statusHistory = `
@@ -1398,14 +1410,26 @@ filtered.forEach(comment => {
         `;
       }
       
-      // JSON/AI model badge
       const modelBadge = comment.model 
         ? `<span class="badge bg-secondary json-model-badge">${comment.model}</span>` 
         : '';
       
+      // Add engagement preview for posted comments
+      let engagementPreview = '';
+      if (comment.status === 'posted') {
+        engagementPreview = `
+          <div class="engagement-preview mt-2">
+            <small class="text-muted">
+              <i class="bi bi-heart-fill text-danger"></i> ${comment.likes || 0} likes
+              <i class="bi bi-eye-fill text-primary ms-2"></i> ${comment.impressions || 0} impressions
+              <i class="bi bi-chat-fill text-success ms-2"></i> ${comment.repliesCount || 0} replies
+            </small>
+          </div>
+        `;
+      }
+      
       card.innerHTML = `
         <div class="card-body">
-          <!-- Section: Post ID -->
           <div class="section-name">Post link</div>
           <div class="post-id">
             <a
@@ -1417,20 +1441,18 @@ filtered.forEach(comment => {
             </a>
           </div>
 
-          <!-- Section: Post Username -->
           <div class="section-name">Post Username</div>
           <p class="post-caption">${comment.postUsername}</p>
 
-          <!-- Section: Post Caption -->
           <div class="section-name">Post Caption</div>
           <p class="post-caption">${comment.postCaption}</p>
 
-          <!-- Section: Comment Text -->
-          <div class="section-name">Comment </div>
+          <div class="section-name">Comment</div>
           <p class="card-text">${comment.comment}</p>
           <div class="timestamp">
             ${formattedDate} ${modelBadge}
           </div>
+          ${engagementPreview}
           ${statusHistory}
           <hr>
           <div class="btn-toolbar">
@@ -1445,27 +1467,35 @@ filtered.forEach(comment => {
       commentsContainer.appendChild(card);
     });
     
-    // Add event listeners to action buttons
+    // Add event listeners for all buttons including analysis button
+    document.querySelectorAll('.view-analysis-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const id = e.target.closest('button').dataset.id;
+        const comment = comments.find(c => c.id === id);
+        if (comment) {
+          showCommentAnalysis(comment);
+        }
+      });
+    });
+
     document.querySelectorAll('.approve-btn').forEach(btn => {
-btn.addEventListener('click', async (e) => {
-const id = e.target.closest('button').dataset.id;
-try {
-  // Show loading state
-  const button = e.target.closest('button');
-  button.disabled = true;
-  button.innerHTML = '<i class="bi bi-hourglass"></i> Approving...';
-  
-  await api.approveComment(id);
-  loadComments(); // Reload comments after successful approval
-} catch (error) {
-  alert(`Error approving comment: ${error.message}`);
-  // Reset button on error
-  const button = e.target.closest('button');
-  button.disabled = false;
-  button.innerHTML = '<i class="bi bi-check-circle"></i> Approve';
-}
-});
-});
+      btn.addEventListener('click', async (e) => {
+        const id = e.target.closest('button').dataset.id;
+        try {
+          const button = e.target.closest('button');
+          button.disabled = true;
+          button.innerHTML = '<i class="bi bi-hourglass"></i> Approving...';
+          
+          await api.approveComment(id);
+          loadComments();
+        } catch (error) {
+          alert(`Error approving comment: ${error.message}`);
+          const button = e.target.closest('button');
+          button.disabled = false;
+          button.innerHTML = '<i class="bi bi-check-circle"></i> Approve';
+        }
+      });
+    });
     
     document.querySelectorAll('.reject-btn').forEach(btn => {
       btn.addEventListener('click', async (e) => {
@@ -1473,7 +1503,7 @@ try {
         if (confirm('Are you sure you want to reject this comment?')) {
           try {
             await api.rejectComment(id);
-            loadComments(); // Reload all comments
+            loadComments();
           } catch (error) {
             alert(`Error rejecting comment: ${error.message}`);
           }
@@ -1501,28 +1531,24 @@ try {
     });
     
     document.querySelectorAll('.edit-btn').forEach(btn => {
-btn.addEventListener('click', async (e) => {
-const id = e.target.closest('button').dataset.id;
-try {
-  const comment = await api.getCommentById(id);
-  
- 
-
-editCommentIdInput.value = comment.id;
-commentTextArea.value    = comment.comment;    
-postCaptionArea.value    = comment.postCaption;
-postIdInput.value        = comment.postId;
-
-  
-  editModal.show();
-} catch (error) {
-  alert(`Error loading comment details: ${error.message}`);
-}
-});
-});
+      btn.addEventListener('click', async (e) => {
+        const id = e.target.closest('button').dataset.id;
+        try {
+          const comment = await api.getCommentById(id);
+          
+          editCommentIdInput.value = comment.id;
+          commentTextArea.value = comment.comment;
+          postCaptionArea.value = comment.postCaption;
+          postIdInput.value = comment.postId;
+          
+          editModal.show();
+        } catch (error) {
+          alert(`Error loading comment details: ${error.message}`);
+        }
+      });
+    });
   }
   
-  // Helper function to get status badge class
   function getStatusBadgeClass(status) {
     switch (status) {
       case 'pending': return 'bg-warning text-dark';
@@ -1534,10 +1560,10 @@ postIdInput.value        = comment.postId;
       default: return 'bg-secondary';
     }
   }
+
   function updateFilterBanner() {
     if (currentUserFilterType === 'user') {
       api.getFilteredUsers().then(users => {
-        // Handle both array responses and object responses
         let userList = [];
         
         if (Array.isArray(users)) {
@@ -1548,12 +1574,9 @@ postIdInput.value        = comment.postId;
           userList = users.users;
         }
         
-        // Handle both object-style users and string-style users
         const usernameList = userList.map(u => 
           typeof u === 'object' ? `@${u.username}` : `@${u}`
         );
-        
-      
         
         dataSourceInfo.innerHTML = `
           <div class="alert alert-info">
@@ -1564,7 +1587,6 @@ postIdInput.value        = comment.postId;
             </button>
           </div>`;
           
-        // Add clear filter button handler
         document.getElementById('clearUserFiltersBtn')?.addEventListener('click', () => {
           currentUserFilterType = 'all';
           filterOptionDropdown.value = 'all';
@@ -1573,7 +1595,6 @@ postIdInput.value        = comment.postId;
         });
       });
     } else {
-      // Check if we're logged in
       const username = stateManager.getUsername();
       const loggedIn = stateManager.getLoginState().loggedIn;
       
@@ -1597,9 +1618,6 @@ postIdInput.value        = comment.postId;
     }
   }
 
-
-  
-  // Save comment button handler
   saveCommentBtn.addEventListener('click', async () => {
     const id = editCommentIdInput.value;
     const comment = commentTextArea.value;
@@ -1618,7 +1636,6 @@ postIdInput.value        = comment.postId;
     }
   });
   
-  // Generate new comment button handler
   generateCommentBtn.addEventListener('click', async () => {
     const postId = document.getElementById('newPostId').value;
     const caption = document.getElementById('newPostCaption').value;
@@ -1629,22 +1646,18 @@ postIdInput.value        = comment.postId;
     }
     
     try {
-      // Update button state
       generateCommentBtn.disabled = true;
       generateCommentBtn.innerHTML = '<i class="bi bi-hourglass"></i> Generating...';
       
       const result = await api.generateComment(postId, caption);
       newCommentModal.hide();
       
-      // Reset form
       document.getElementById('newPostId').value = '';
       document.getElementById('newPostCaption').value = '';
       
-      // Reset button
       generateCommentBtn.disabled = false;
       generateCommentBtn.innerHTML = 'Generate Comment';
       
-      // Reload comments to show the new one
       loadComments();
     } catch (error) {
       alert(`Error generating comment: ${error.message}`);
@@ -1653,10 +1666,8 @@ postIdInput.value        = comment.postId;
     }
   });
   
-  // Refresh button handler
   refreshBtn.addEventListener('click', async () => {
     try {
-      // Show loading state
       refreshBtn.disabled = true;
       refreshBtn.innerHTML = '<i class="bi bi-arrow-clockwise"></i> Loading...';
       
@@ -1664,26 +1675,20 @@ postIdInput.value        = comment.postId;
     } catch (error) {
       console.error('Error refreshing comments:', error);
     } finally {
-      // Reset button state
       refreshBtn.disabled = false;
       refreshBtn.innerHTML = '<i class="bi bi-arrow-clockwise"></i> Refresh';
     }
   });
   
-  // Add new comment button handler
   addNewCommentBtn.addEventListener('click', () => {
     newCommentModal.show();
   });
   
- 
   linkedinLoginBtn.addEventListener('click', handleInstagramLogin);
   
-  // Login prompt button handler
   loginPromptBtn.addEventListener('click', handleInstagramLogin);
   
-  // Username button handlers
   usernameBtn.addEventListener('click', () => {
-    // Pre-fill with current username
     document.getElementById('modallinkedinUsername').value = stateManager.getUsername();
     usernameModal.show();
   });
@@ -1697,8 +1702,6 @@ postIdInput.value        = comment.postId;
     const username = document.getElementById('modallinkedinUsername').value;
     saveUsername(username);
   });
-  
-  
 
   checkInitialState();
-    });
+});

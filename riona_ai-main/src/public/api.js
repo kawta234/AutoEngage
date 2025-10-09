@@ -1214,14 +1214,9 @@ renderComments();
       
       const message = response.message || `${comments.length} comments loaded`;
       dataSourceInfo.innerHTML = `
-        <div class="alert alert-success">
-          <i class="bi bi-check-circle"></i> Connected to Instagram as @${stateManager.getUsername() || 'user'} 
+       <div class="alert alert-success">
+          <i class="bi bi-check-circle"></i> Connected to instagram as @${stateManager.getUsername() || 'user'} 
           <span class="badge bg-secondary">${comments.length} comments loaded</span>
-          ${analyzedComments > 0 ? `
-            <span class="badge bg-info">${analyzedComments} analyzed</span>
-            <span class="badge bg-primary">${totalLikes} total likes</span>
-            <span class="badge bg-primary">${totalReplies} total replies</span>
-          ` : ''}
           ${response.message ? `<br><small>${response.message}</small>` : ''}
         </div>
       `;
@@ -1406,9 +1401,7 @@ function getStatusColor(status) {
         <button class="btn btn-sm btn-outline-info analyze-btn" data-id="${comment.id}">
           <i class="bi bi-graph-up"></i> View Analysis
         </button>
-        <button class="btn btn-sm btn-outline-secondary refresh-btn" data-id="${comment.id}">
-          <i class="bi bi-arrow-clockwise"></i> Refresh
-        </button>`;
+        `;
     } else if (status === 'error') {
       actionButtons = `
         <button class="btn btn-sm btn-primary post-btn" data-id="${comment.id}">
@@ -1428,15 +1421,28 @@ function getStatusColor(status) {
   
     const modelBadge = comment.model ? `<span class="badge bg-secondary json-model-badge">${comment.model}</span>` : '';
   
-    // Engagement pills (likes/replies only live for posted)
-   // Around line where you create engagement pills, replace with:
-const likes = comment.likes || 0;
-const replies = comment.repliesCount || 0;
-const hasAnalysis = comment.likes !== undefined || comment.repliesCount !== undefined;
-const disabled = (status === 'posted' && hasAnalysis) ? '' : 'disabled';
-const titleLikes = (status === 'posted' && hasAnalysis) ? `${likes} Likes` : 'Available when posted and analyzed';
-const titleReplies = (status === 'posted' && hasAnalysis) ? `${replies} Replies` : 'Available when posted and analyzed';
+    // Engagement pills (likes/replies only for posted)
+let engagementSection = '';
+if (status === 'posted') {
+  const likes = comment.likes || 0;
+  const replies = comment.repliesCount || 0;
+  const hasAnalysis = comment.likes !== undefined || comment.repliesCount !== undefined;
+  const disabled = hasAnalysis ? '' : 'disabled';
+  const titleLikes = hasAnalysis ? `${likes} Likes` : 'Available when analyzed';
+  const titleReplies = hasAnalysis ? `${replies} Replies` : 'Available when analyzed';
   
+  engagementSection = `
+   
+          <div class="engagement-preview mt-2">
+            <small class="text-muted">
+              <i class="bi bi-heart-fill text-danger"></i> ${likes || 0} likes
+             
+              <i class="bi bi-chat-fill text-success ms-2"></i> ${replies || 0} replies
+            </small>
+          </div>
+        
+      `;
+}
     const el = document.createElement('div');
     el.className = `card comment-card ${status}`;
     el.dataset.id = comment.id;
@@ -1465,20 +1471,10 @@ const titleReplies = (status === 'posted' && hasAnalysis) ? `${replies} Replies`
         <p class="card-text">${comment.comment}</p>
   
         ${statusHistory}
-  
-        <div class="d-flex justify-content-between align-items-center mt-2">
-          <div></div>
-          <div class="engagement-pills" data-engagement>
-            <span class="engagement-pill likes ${disabled}" title="${titleLikes}" aria-disabled="${status!=='posted'}">
-              <i class="bi bi-hand-thumbs-up"></i> <span class="like-count">${likes}</span>
-            </span>
-            <span class="engagement-pill replies ${disabled}" title="${titleReplies}" aria-disabled="${status!=='posted'}">
-              <i class="bi bi-reply"></i> <span class="reply-count">${replies}</span>
-            </span>
-          </div>
-        </div>
-  
-        <hr>
+
+${engagementSection}
+
+<hr>
         <div class="btn-toolbar">
           <button class="btn btn-sm btn-outline-secondary edit-btn me-2" data-id="${comment.id}">
             <i class="bi bi-pencil"></i> Edit

@@ -159,7 +159,7 @@ export async function processQueue(username: string, minPort: number = 6000, max
         logger.info(`✅ Logged into LinkedIn as ${username} (detected: ${check.name})`);
         break;
       } catch (e) {
-        logger.info(`❌ Login check failed for: ${check.name}`);
+        logger.info(`Login check failed for: ${check.name}`);
         continue;
       }
     }
