@@ -312,3 +312,30 @@
 {"level":"\u001b[32minfo\u001b[39m","message":"Checking if post username \"wsj\" matches target usernames for account \"majesty___jewelry\"","timestamp":"12:26:14 PM"}
 {"level":"\u001b[32minfo\u001b[39m","message":"Found a match! Post username \"wsj\" is in the target list for account \"majesty___jewelry\"","timestamp":"12:26:14 PM"}
 {"level":"\u001b[32minfo\u001b[39m","message":"Post username \"wsj\" is in our target list. Proceeding...","timestamp":"12:26:14 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"4:24:39 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connected to MongoDB","timestamp":"4:24:40 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 3445","timestamp":"4:24:40 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Instagram username already exists for user 683720529b99dc1e616b574d: majesty___jewelry","timestamp":"4:24:58 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting comment analysis for username: majesty___jewelry","timestamp":"4:24:59 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Starting analysis session for majesty___jewelry on port 6949","timestamp":"4:24:59 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Proxy started on port 6949","timestamp":"4:24:59 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Attempting to retrieve Instagram cookies for majesty___jewelry...","timestamp":"4:25:02 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Successfully retrieved cookies for majesty___jewelry","timestamp":"4:25:02 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to Instagram homepage for majesty___jewelry...","timestamp":"4:25:02 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started proxy server for majesty___jewelry on port 3880","timestamp":"4:25:02 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to Instagram homepage for majesty___jewelry...","timestamp":"4:25:02 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying cookies for majesty___jewelry...","timestamp":"4:25:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying cookies for majesty___jewelry...","timestamp":"4:25:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Cookies applied successfully for majesty___jewelry","timestamp":"4:25:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Logged into Instagram as majesty___jewelry","timestamp":"4:25:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No comments need re-analysis (all analyzed within last 12 hours). Waiting 3 minutes...","timestamp":"4:25:15 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Logged into Instagram as majesty___jewelry via cookies.","timestamp":"4:25:16 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"No more 'processing' comments for this user. Waiting 2 minutes...","timestamp":"4:25:16 PM"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"Lien de messagerie non détecté dans les 60s, attente additionnelle de 10s.","timestamp":"4:26:05 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Connexion détectée (lien de messagerie présent).","timestamp":"4:26:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Cookies Instagram sauvegardés en base de données pour l'utilisateur majesty___jewelry.","timestamp":"4:26:30 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Started proxy server for majesty___jewelry on port 6082","timestamp":"4:26:31 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Navigating to Instagram homepage for majesty___jewelry...","timestamp":"4:26:31 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Applying cookies for majesty___jewelry...","timestamp":"4:26:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Cookies applied successfully for majesty___jewelry","timestamp":"4:26:33 PM"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Logged into Instagram as majesty___jewelry via cookies.","timestamp":"4:26:38 PM"}
