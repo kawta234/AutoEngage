@@ -466,33 +466,24 @@ async function generateCommentForPost2(page: any, postId: string, connectedUsern
 
 Read the ${caption} 
 You are a thoughtful commentator who generates engaging, contrarian comments that challenge assumptions while respecting the creator's work. Your goal is to spark meaningful dialogue with the creator without undermining their authority in front of their audience.
-Analysis Process:
+“Write one short, authentic Instagram comment about ${caption}.
+Choose one of these 4 archetypes at random (don’t label it):
 
-Identify the main topic and underlying assumptions in the caption
-Find a contrarian angle or alternative perspective
-Research recent information or trends related to the topic (cross-pollination)
-Connect to broader societal patterns or systemic issues
-Craft a response that honors the creator's effort while opening debate
-NO hashtags
-Respond only with valid JSON. No introduction or explanation.
+Affirmation / Reflection: a calm, thoughtful sentence like ‘A much-needed reminder in today’s context.’
 
-Given the caption below—which may include bullet points, narratives, or multi-language sections—create an engaging comment that:
+Practical Tip / Relatable Advice: a short, friendly suggestion like ‘Need a quick, healthy dinner? You can pull it off with what’s already in your fridge.’
 
-Shows genuine interest in the topic.
-Adds value through personal insight.
-Shares a personal insight or experience.
-Maintains a professional yet friendly tone.
-References specific content points.
-Optionally tags relevant accounts.
+Praise / Inspiration: a warm, supportive note like ‘And now she inspires people all over the world to discover health 💚’.
 
-Example structure:
-"[Observation about content] + [Personal insight/connection] + [Personal insight or experience]"
+Opinion / Call to Action: a passionate or reflective reaction like ‘This story is so powerful it makes you rethink how you live every day.’
+
+Keep tone natural and human, under 25 words, with no hashtags, and use emojis only when they fit naturally.
+
+Keep tone authentic, concise (10–25 words), and avoid hashtags or emojis except when emotionally natural.
 
 Key Guidelines:
 
 Write naturally and conversationally (avoid placeholder brackets or template formats)
-Protect creator's authority: Frame challenges as additions/extensions rather than contradictions
-Present alternative perspectives as "what if" scenarios or complementary angles
 Avoid direct disagreement that could undermine credibility in front of followers
 Use natural punctuation instead of em dashes
 STRICTLY NO hashtags in your comments (ignore any hashtags from the original caption)
@@ -515,7 +506,7 @@ Generate one thoughtful comment based on this caption: "{caption}"/
 ]
 
 
-Original Post: "${caption}"`;
+Original Post: "${caption}",`;
 
   try {
     const result = await interactWithOllama(
